@@ -1,0 +1,13 @@
+{
+  "name": "oscar-farm-club",
+  "version": "4.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "start": "node server.mjs",
+    "online": "node start-online.mjs",
+    "test": "node --test test/*.test.mjs",
+    "package": "node package-local.mjs"
+  }
+}
