@@ -1,8 +1,8 @@
 // Shared compact wire format. Combat stays authoritative; these values are for display.
-const WORLD_KEYS=['version','started','wave','phase','seconds','kills','heroKills','bossKills','wins','losses','fightTime','pendingStrike','enemyTeam','spawned','breakTime','bigHeadsUntil','eventId','hazards'];
-const PLAYER_KEYS=['id','skill','level','xp','gold','kills','heroKills','damage','speed','wisdom','auto','paused','hp','respawn','stun','hex','haste','cooldown','pose','x','y','moveX','moveY','moving','mana','eulCooldown','ultCooldown','channel','slow','target'];
+const WORLD_KEYS=['version','runId','gameOver','started','wave','phase','seconds','kills','heroKills','bossKills','wins','losses','fightTime','pendingStrike','enemyTeam','spawned','breakTime','bigHeadsUntil','eventId','hazards','zones','casts'];
+const PLAYER_KEYS=['id','skill','level','xp','gold','kills','heroKills','damage','speed','wisdom','auto','paused','hp','respawn','stun','hex','haste','cooldown','pose','x','y','moveX','moveY','moving','mana','eulCooldown','ultCooldown','channel','slow','target','skillPower','skillHaste','skillTalent','shrapnelCooldown','guard','deaths','assists','bossKills','damageDealt','heroDamage','creepDamage','bossDamage','spellDamage','damageTaken','dps','aimX','aimY','razeNearCooldown','razeMidCooldown','razeFarCooldown','lives','inventory','bkbLeft','bkbCooldown','staticLeft','mjollnirCooldown','spawnShield','itemDamage','goldEarned','goldSpent'];
 const ENEMY_KEYS=['id','x','y','hp','maxHP','hero','boss','ranged','speed','hit','kit','heroName','color','armor','spin','buff','grave','enraged','neutral','name','mana','maxMana','cyclone','fear','slow'];
-const SHOT_KEYS=['id','hero','skill','ability','target','x','y','delay','execute'];
+const SHOT_KEYS=['id','hero','skill','ability','target','x','y','delay','execute','hostile','source','targetPlayer','speed','vx','vy','kind','radius'];
 const ENEMY_CHANGES=['x','y','hp','hit','armor','spin','buff','grave','enraged','mana','cyclone','fear','slow'];
 const SHOT_CHANGES=['x','y','delay','target'];
 function pick(source,keys){const out={};for(const key of keys)if(source[key]!==undefined)out[key]=typeof source[key]==='number'?(Math.round(source[key]*100)/100||0):(source[key]&&typeof source[key]==='object'?structuredClone(source[key]):source[key]);return out;}

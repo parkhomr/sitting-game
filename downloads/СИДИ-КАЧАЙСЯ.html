@@ -34,6 +34,10 @@
 @media(pointer:coarse){.touch-movement{display:grid}}
 
 [data-theme=dark] .battle-details>span:first-child{color:#acc48f}[data-theme=dark] .enemy-card strong{color:#efc99f}[data-theme=dark] dialog pre{background:#203024;color:#d7e5c5}[data-theme=dark] .dialog-close{color:#adbea0}.game-frame .arena-status{background:var(--paper);padding:12px 20px;flex-shrink:0}.sf-abilities kbd{display:inline-block!important}
+.ability-icon canvas{width:32px;height:32px;image-rendering:pixelated}.spell-button canvas{width:29px;height:29px;image-rendering:pixelated;flex-shrink:0}.upgrade-info strong>span:first-child{font-size:10px;color:var(--ink);margin-left:0;font-weight:700}.upgrade-icon{font-size:23px}.upgrade-info small{line-height:1.55;max-width:310px}#combatStats{color:#adbc96;font-variant-numeric:tabular-nums}.combat-statistics{margin-top:26px;border:1px solid var(--line);border-radius:7px;overflow:hidden;background:color-mix(in srgb,var(--paper),var(--ink) 3%)}.statistics-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:15px 17px;border-bottom:1px solid var(--line)}.statistics-heading h2{font-size:11px;letter-spacing:1.3px;margin:0;white-space:nowrap}.statistics-heading span{font-size:9px;color:var(--muted);line-height:1.6}.statistics-scroll{overflow-x:auto;overscroll-behavior-x:contain}.combat-statistics table{width:100%;min-width:880px;border-collapse:collapse;text-align:right;font-variant-numeric:tabular-nums;font-size:11px}.combat-statistics td,.combat-statistics th{padding:12px 13px;border-bottom:1px solid var(--line);white-space:nowrap}.combat-statistics thead th{font-size:9px;color:var(--muted);font-weight:500;background:#6d876109}.combat-statistics th:first-child{text-align:left}.combat-statistics tbody th{font-weight:700}.combat-statistics tbody th small{display:block;font-size:8px;color:var(--muted);margin-top:4px;font-weight:400}.combat-statistics tr:last-child td,.combat-statistics tr:last-child th{border-bottom:0}.combat-statistics .your-stats{background:#9cb97012}.combat-statistics .your-stats th{box-shadow:inset 3px 0 #b6cf8b}.combat-statistics td:nth-child(4){color:#c3da9e;font-weight:700}[data-theme=light] .combat-statistics td:nth-child(4){color:#52723d}[data-theme=light] #combatStats{color:#657c4e}@media(max-width:760px){.statistics-heading{align-items:flex-start;flex-direction:column;padding:12px}.statistics-heading span:after{content:' · Таблицу можно листать ↔'}.combat-statistics{margin-top:18px}.combat-statistics td,.combat-statistics th{padding:10px}.spell-button canvas{width:24px;height:24px}.upgrade-info small{font-size:9px}.upgrade-info strong>span:first-child{font-size:11px}.ability-icon canvas{width:27px;height:27px}#combatStats{font-size:9px;line-height:1.6}}
+.raze-abilities{display:flex;gap:6px;flex-wrap:wrap}.raze-button{border-color:#805b47;background:#8c4e2812}.raze-button[data-raze=mid]{border-color:#80514f}.raze-button[data-raze=far]{border-color:#76577b}.raze-button kbd{color:#ffd19e}.raze-button:disabled kbd{color:var(--muted)}.viewport>canvas{cursor:none}@media(max-width:760px){.raze-abilities{width:100%}.raze-button{flex:1;justify-content:center;font-size:10px;padding:9px 5px}.raze-button kbd{display:inline-block!important}.raze-button small{font-size:8px}}
+@media(max-width:760px){.viewport{aspect-ratio:1800/1000}.viewport>canvas{object-fit:fill}}
+.hero-lives{color:#dd9d91;white-space:nowrap;font-size:12px;letter-spacing:1px}.item-controls{display:flex;gap:8px}.item-shop{margin-top:22px;border:1px solid var(--line);border-radius:7px;padding:20px;background:color-mix(in srgb,var(--paper),var(--ink) 3%)}.shop-heading{display:flex;align-items:center;justify-content:space-between;gap:15px}.shop-heading h2{font-size:17px;letter-spacing:1px;margin:8px 0 18px}.shop-heading>span{font-size:10px;color:var(--muted)}.shop-cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.shop-card{display:flex;flex-direction:column;padding:15px;border:1px solid var(--line);border-radius:5px;min-width:0;background:#67865708}.shop-card.owned{border-color:#91ad6077;background:#99b86b0b}.shop-item-title{display:flex;align-items:center;gap:10px}.shop-item-title canvas{width:48px;height:48px;image-rendering:pixelated;border-radius:5px;flex-shrink:0}.shop-item-title h3{font-size:12px;margin:0 0 5px}.shop-item-title span{font-size:10px;color:var(--muted)}.shop-card p{font-size:11px;line-height:1.7;color:var(--muted);margin:12px 0}.shop-card>small{font-size:9px;line-height:1.6;color:var(--muted);margin-top:auto;margin-bottom:12px}.shop-card button{background:#afc67c;color:#1b2b20;font-size:11px;font-weight:700;border:0;border-radius:4px;padding:11px 8px}.shop-card button:disabled{opacity:.45;cursor:default}.shop-card.owned button{color:var(--ink);background:#8ca56326;opacity:1}.shop-advice{font-size:10px;color:var(--muted);margin-top:15px;line-height:1.8}.game-over-overlay{position:absolute;inset:0;background:#0b1614ee;z-index:5;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:18px;color:#e6ecd9;text-align:center;padding:20px}.game-over-overlay>strong{font-size:clamp(20px,4vw,55px);color:#e6ad96}.game-over-overlay>span:not(.eyebrow){font-size:12px}.game-over-overlay>small{font-size:10px;color:#acb69e;max-width:400px;line-height:1.6}.game-over-overlay button{border:1px solid #c7d797;border-radius:5px;background:#bdd18d;color:#17291e;padding:13px 24px;font-weight:700}.game-over-overlay button:disabled{opacity:.5}@media(max-width:1000px){.shop-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:760px){.item-shop{padding:13px}.shop-heading{align-items:flex-start;flex-direction:column;gap:0;margin-bottom:14px}.shop-heading h2{margin-bottom:8px;font-size:15px}.shop-card{padding:11px}.shop-item-title{gap:6px;align-items:flex-start;flex-direction:column}.shop-item-title h3{font-size:11px}.shop-card p{font-size:10px}.shop-card button{font-size:10px}.shop-cards{gap:8px}.hero-lives{font-size:11px}.game-over-overlay{gap:8px}.game-over-overlay>small{font-size:8px}.game-over-overlay>span:not(.eyebrow){font-size:9px}.game-over-overlay button{padding:8px 16px}}
 
 </style>
   
@@ -73,45 +77,48 @@
       <section id="game-frame" class="game-frame" aria-label="Бесконечный фарм и тимфайты пять на пять">
         <div class="game-topline"><span class="scene-location"><span class="live-dot"></span> ЛЕС СВЕТА <span class="muted-separator">/</span> <span class="scene-mode">HARDCORE · ОБЗОР АРЕНЫ</span></span><div class="game-settings"><button id="fullscreenButton" class="icon-button" title="На весь экран" aria-label="На весь экран">⛶</button><span class="session-time" id="sessionTime">00:00</span><button id="soundButton" class="icon-button" title="Включить звук" aria-label="Включить звук" aria-pressed="false"><svg><use href="#mute"/></svg></button><button id="pauseButton" class="icon-button" title="Пауза (P)" aria-label="Пауза" aria-pressed="false"><svg><use href="#pause"/></svg></button></div></div>
         <div class="viewport" id="viewport">
-          <canvas id="game" width="1800" height="1000" tabindex="0" aria-label="Большая арена. WASD или стрелки — движение, клик по земле — идти, клик по врагу — выбрать цель.">Для игры нужен браузер с поддержкой Canvas.</canvas>
+          <canvas id="game" width="1800" height="1000" tabindex="0" aria-label="Большая арена. Мышь — прицел, ЛКМ или Пробел — стрелять, ПКМ или WASD — идти. Артур: Z X C — три койла.">Для игры нужен браузер с поддержкой Canvas.</canvas>
           <div class="wave-badge"><span class="wave-dot"></span> ВОЛНА <strong id="wave">01</strong><span class="wave-divider"></span><span id="waveDescription">Лёгкая разминка</span></div>
           <div class="fight-panel" id="fightPanel" hidden><strong id="fightTitle">ТИМФАЙТ 5 × 5</strong><span id="fightAlive"></span><small id="fightHint">ЭМИР ЖДЁТ 30% HP</small></div>
           <div class="start-overlay" id="startOverlay"><span class="start-kicker">ЛЕС САМ СЕБЯ НЕ ЗАФАРМИТ</span><button class="start-button" id="startButton"><svg><use href="#arrow"/></svg> <span id="startButtonText">СЕСТЬ И КАЧАТЬСЯ</span> <span>↗</span></button><span class="start-hint">Четверо ботов прикроют. Друзья могут занять их места.</span></div>
           <div class="paused-overlay" id="pausedOverlay" hidden><span>ПЕРЕКУР.</span><button id="resumeButton">Продолжить фарм →</button></div>
           <div class="level-toast" id="levelToast" role="status" aria-live="polite"></div>
+          <div class="game-over-overlay" id="gameOverOverlay" hidden><span class="eyebrow">ПЯТЬ ЖИЗНЕЙ НА ГЕРОЯ</span><strong>ОТРЯД ПАЛ</strong><span id="gameOverSummary"></span><button id="restartRunButton">Новый забег ↗</button><small id="restartRunHint"></small></div>
           <div class="touch-movement" aria-label="Передвижение"><button data-walk="ArrowUp" aria-label="Вверх">↑</button><button data-walk="ArrowLeft" aria-label="Влево">←</button><button data-walk="ArrowDown" aria-label="Вниз">↓</button><button data-walk="ArrowRight" aria-label="Вправо">→</button></div>
-          <div class="scene-footer"><span><span class="scene-coordinates">36° 08′ N &nbsp; 52° 14′ E</span><span class="scene-caption">WASD · Q · Артур: E → R</span></span><span class="auto-indicator"><span class="live-dot"></span> <span id="sceneStatus">ОСКАР ЖДЁТ</span></span></div>
+          <div class="scene-footer"><span><span class="scene-coordinates">36° 08′ N &nbsp; 52° 14′ E</span><span class="scene-caption">ЛКМ · WASD · Z X C · E → R</span></span><span class="auto-indicator"><span class="live-dot"></span> <span id="sceneStatus">ОСКАР ЖДЁТ</span></span></div>
         </div>
-        <div class="control-bar"><div class="hero-identity"><div class="portrait"><canvas id="portrait" width="56" height="56" aria-hidden="true"></canvas></div><div><div class="hero-name"><strong id="heroName">ОСКАР</strong> <span id="heroClass">DROW RANGER</span></div><div class="hero-tag"><span class="live-dot"></span> <span id="heroStatus">Готов сидеть</span></div></div></div><div class="combat-controls"><button id="attackButton" class="ability" title="Выстрел (Пробел)"><span class="ability-icon"><svg><use href="#arrow"/></svg></span><span class="ability-text">Выстрел<small>+ один к спокойствию</small></span><kbd>SPACE</kbd></button><button id="multiButton" class="ability" title="Мультивыстрел (Q)"><span class="ability-icon frost"><svg><use href="#snow"/></svg></span><span class="ability-text"><span id="abilityName">Мультивыстрел</span><small id="multiStatus">Пять ледяных стрел</small><small id="manaCost">75 MP</small></span><kbd>Q</kbd></button><span id="sfAbilities" class="sf-abilities" hidden><button id="eulButton" class="spell-button" title="Eul — поднять выбранную или ближайшую цель на 2.5 секунды · 75 MP · 23 сек"><kbd>E</kbd><span>Eul<small id="eulButtonStatus">75 MP</small></span></button><button id="ultButton" class="spell-button requiem-button" title="Requiem of Souls — подготовка, взрыв вокруг Артура · 175 MP · 65 сек"><kbd>R</kbd><span>Requiem<small id="ultButtonStatus">175 MP</small></span></button></span><button id="autoButton" class="auto-button" aria-pressed="true"><span class="toggle"><span></span></span><span>Автофарм</span></button></div></div>
-      <div class="arena-status"><div class="mana-meter"><span id="manaText"></span><div class="mana-track"><i id="manaFill"></i></div></div><span id="channelStatus"></span><span id="targetStatus"></span></div>
+        <div class="control-bar"><div class="hero-identity"><div class="portrait"><canvas id="portrait" width="56" height="56" aria-hidden="true"></canvas></div><div><div class="hero-name"><strong id="heroName">ОСКАР</strong> <span id="heroClass">DROW RANGER</span></div><div class="hero-tag"><span class="live-dot"></span> <span id="heroStatus">Готов сидеть</span></div></div></div><div class="combat-controls"><button id="attackButton" class="ability" title="Выстрел (Пробел)"><span class="ability-icon"><svg><use href="#arrow"/></svg></span><span class="ability-text">Выстрел<small>+ один к спокойствию</small></span><kbd>SPACE</kbd></button><button id="multiButton" class="ability" title="Мультивыстрел (Q)"><span class="ability-icon frost"><canvas id="abilityIcon" width="48" height="48" aria-hidden="true"></canvas></span><span class="ability-text"><span id="abilityName">Мультивыстрел</span><small id="multiStatus">Пять ледяных стрел</small><small id="manaCost">75 MP</small></span><kbd>Q</kbd></button><span id="razeAbilities" class="raze-abilities" hidden><button id="raze-near" class="spell-button raze-button" data-raze="near"><kbd>Z</kbd><span>Ближний<small id="raze-near-status">60 MP · 200</small></span></button><button id="raze-mid" class="spell-button raze-button" data-raze="mid"><kbd>X</kbd><span>Средний<small id="raze-mid-status">60 MP · 450</small></span></button><button id="raze-far" class="spell-button raze-button" data-raze="far"><kbd>C</kbd><span>Дальний<small id="raze-far-status">60 MP · 700</small></span></button></span><span id="sfAbilities" class="sf-abilities" hidden><button id="eulButton" class="spell-button" title="Eul — поднять цель под курсором на 2.5 секунды · 75 MP · 23 сек"><canvas id="eulIcon" width="48" height="48" aria-hidden="true"></canvas><kbd>E</kbd><span>Eul<small id="eulButtonStatus">75 MP</small></span></button><button id="ultButton" class="spell-button requiem-button" title="Requiem of Souls — подготовка, летящие души вокруг Артура · 175 MP · 65 сек"><canvas id="ultIcon" width="48" height="48" aria-hidden="true"></canvas><kbd>R</kbd><span>Requiem<small id="ultButtonStatus">175 MP</small></span></button></span><span id="sniperAbilities" class="sf-abilities" hidden><button id="shrapnelButton" class="spell-button" title="Шрапнель (E) — дождь пуль, урон и замедление"><canvas id="shrapnelIcon" width="48" height="48" aria-hidden="true"></canvas><kbd>E</kbd><span>Шрапнель<small id="shrapnelButtonStatus">80 MP</small></span></button></span><span class="item-controls" id="itemControls"><button id="bkbButton" class="spell-button" hidden><canvas id="bkbIcon" width="48" height="48" aria-hidden="true"></canvas><kbd>F</kbd><span>BKB<small id="bkbStatus"></small></span></button><button id="mjollnirButton" class="spell-button" hidden><canvas id="mjollnirIcon" width="48" height="48" aria-hidden="true"></canvas><kbd>G</kbd><span>Mjollnir<small id="mjollnirStatus"></small></span></button></span><button id="autoButton" class="auto-button" aria-pressed="false"><span class="toggle"><span></span></span><span>Автоогонь</span></button></div></div>
+      <div class="arena-status"><div class="mana-meter"><span id="manaText"></span><div class="mana-track"><i id="manaFill"></i></div></div><span id="heroLives" class="hero-lives"></span><span id="channelStatus"></span><span id="targetStatus"></span><span id="combatStats"></span></div>
       </section>
 
       <div class="battle-details"><span id="heroHealth"></span><button id="hostPanelButton" hidden>♛ Панель ведущего</button><span id="waveDetails"></span><span id="fightScore"></span></div>
       <div id="enemyLineup" class="enemy-lineup" hidden></div>
+      <section class="item-shop" aria-label="Лавка предметов"><div class="shop-heading"><div><span class="eyebrow">ГОТОВЬСЯ К СЛЕДУЮЩЕЙ ВОЛНЕ</span><h2>ЛАВКА ПРЕДМЕТОВ</h2></div><span id="shopSummary">4 предмета · по одному каждого</span></div><div id="shopCards" class="shop-cards"></div><div class="shop-advice" id="shopAdvice"></div></section>
+      <section class="combat-statistics" aria-label="Статистика отряда"><div class="statistics-heading"><h2>ВКЛАД В БОЙ</h2><span>K/D/A — герои · ЛХ — крипы · урон после защиты · DPS за 5 секунд</span></div><div class="statistics-scroll"><table><thead><tr><th scope="col">Герой</th><th scope="col">K / D / A</th><th scope="col">ЛХ</th><th scope="col">Урон</th><th scope="col">Магия</th><th scope="col">В героев</th><th scope="col">В крипов</th><th scope="col">Рошан</th><th scope="col">Получено</th><th scope="col">DPS · 5с</th></tr></thead><tbody id="statsBody"></tbody></table></div></section>
       <section class="dashboard" aria-label="Прогресс и улучшения">
         <div class="progress-panel"><div class="panel-label">МАЛЕНЬКИЕ ШАГИ. БОЛЬШИЕ ЦИФРЫ.</div><div class="stats-row"><div class="level-stat"><span class="stat-label">Уровень</span><span class="stat-number" id="level">1<span class="level-star">✳</span></span></div><div><span class="stat-label"><svg><use href="#cross"/></svg> Крипов убито</span><span class="stat-number" id="kills">0</span></div><div><span class="stat-label"><svg><use href="#coin"/></svg> Золото</span><span class="stat-number gold" id="gold">0<span class="gold-unit">G</span></span></div></div><div class="xp-label"><span>До следующего уровня</span><span><strong id="xp">0</strong> / <span id="xpNeeded">100</span> XP</span></div><div class="xp-track" role="progressbar" id="xpBar" aria-label="Опыт до следующего уровня" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="xpFill"></span></div><div class="progress-foot"><span id="damageStat">Урон: 24</span><span id="speedStat">Атака: 1.0/сек</span><span class="save-status" id="saveStatus">Прогресс сохраняется</span></div></div>
-        <div class="upgrades-panel"><div class="upgrade-heading"><h2>ЧУТЬ СИЛЬНЕЕ</h2><span>Вложись в себя ↗</span></div><div class="upgrades"><button class="upgrade" data-upgrade="damage"><span class="upgrade-icon"><svg><use href="#arrow"/></svg></span><span class="upgrade-info"><strong>Острые стрелы <span id="damageRank">I</span></strong><small>+14 к базовому урону</small></span><span class="upgrade-price" id="damagePrice">60 G</span></button><button class="upgrade" data-upgrade="speed"><span class="upgrade-icon"><svg><use href="#bolt"/></svg></span><span class="upgrade-info"><strong>Ловкие руки <span id="speedRank">I</span></strong><small>+15% к скорости атаки</small></span><span class="upgrade-price" id="speedPrice">90 G</span></button><button class="upgrade" data-upgrade="wisdom"><span class="upgrade-icon"><svg><use href="#leaf"/></svg></span><span class="upgrade-info"><strong>Мудрый фармер <span id="wisdomRank">I</span></strong><small>+20% получаемого опыта</small></span><span class="upgrade-price" id="wisdomPrice">120 G</span></button></div></div>
+        <div class="upgrades-panel"><div class="upgrade-heading"><h2>ПРОКАЧКА УМЕНИЙ</h2><span>Умения · пассивки · особые способности ↗</span></div><div class="upgrades"><button class="upgrade" data-upgrade="skillPower"><span class="upgrade-icon">✦</span><span class="upgrade-info"><strong><span id="skillPowerName">Мощь способности</span> <span id="skillPowerRank">УР. 0</span></strong><small id="skillPowerHint"></small></span><span class="upgrade-price" id="skillPowerPrice">0 G</span></button><button class="upgrade" data-upgrade="skillHaste"><span class="upgrade-icon">◷</span><span class="upgrade-info"><strong><span id="skillHasteName">Мастерство заклинаний</span> <span id="skillHasteRank">УР. 0</span></strong><small id="skillHasteHint"></small></span><span class="upgrade-price" id="skillHastePrice">0 G</span></button><button class="upgrade" data-upgrade="skillTalent"><span class="upgrade-icon">✧</span><span class="upgrade-info"><strong><span id="skillTalentName">Талант героя</span> <span id="skillTalentRank">УР. 0</span></strong><small id="skillTalentHint"></small></span><span class="upgrade-price" id="skillTalentPrice">0 G</span></button></div></div>
       </section>
       <div class="bottom-note"><span><span class="note-spark">✳</span> Фарм → тимфайты → Рошан на 30-й → снова фарм.</span><button id="helpButton">Как играть <span>?</span></button></div>
     </main>
     <footer><span>MADE FOR OSCAR. BUILT FOR THE LONG RUN.</span><span class="footer-right">Неофициальная фан-игра по Dota 2 <span>·</span> <button id="resetButton" title="Сбросить прогресс"><svg><use href="#reset"/></svg> Начать заново</button></span></footer>
   </div>
-  <dialog id="helpDialog"><button class="dialog-close" data-close aria-label="Закрыть">×</button><span class="eyebrow">ПРОСТО УСАЖИВАЙСЯ</span><h2>СИДИ КАЧАЙСЯ.</h2><p>Оскар — Drow Ranger, Ержан — Timbersaw, Артур — Shadow Fiend, Санжар — Rubick, Эмир — Sniper. Собери отряд или играй с ботами.</p><ul><li><strong>Автофарм</strong> стреляет за тебя. Нужно держать дистанцию и следить за маной.</li><li><strong>WASD / стрелки / клик по земле</strong> — передвижение. Правый клик всегда отдаёт приказ идти. На телефоне есть стрелки. Клик по врагу выбирает цель, Пробел — дополнительная атака. Враги преследуют героев; держи дистанцию и выходи из отмеченных зон.</li><li><strong>Q</strong> — способность героя с перезарядкой и стоимостью маны. Мана восстанавливается со временем; автоатаки бесплатны. Сатиры-душекрады могут выжечь ману.</li><li><strong>Артур:</strong> E — Eul (75 MP, 23 сек), поднимает выбранную или ближайшую цель на 2.5 секунды. R — Requiem of Souls (175 MP, 65 сек), требует подготовки и выпускает души вокруг Артура. Чем ближе цель, тем больше урон. Комбо: E → подойти → R. Оглушение прерывает подготовку; Рошан невосприимчив к Eul.</li><li><strong>Нейтралы:</strong> сатир-мучитель выпускает Shockwave по линии, душекрад выжигает ману, изгонятель замедляет через Purge, кентавр оглушает через War Stomp, медведь применяет Thunder Clap. Опасные зоны видны до удара.</li><li><strong>Каждые 3 волны</strong> — тимфайт против пяти случайных героев Dota 2. У каждого своя способность, усиленное здоровье и 28% защиты. Команда полностью восстанавливается перед боем.</li><li><strong>30-я волна — Рошан</strong> вместо тимфайта: 35% защиты, регенерация, Bash, Thunder Clap и ярость при 35% HP. На бой 180 секунд. При поражении — −10% золота и новая попытка через 5 секунд. После победы — 31-я волна и бесконечный фарм.</li><li><strong>Эмир</strong> не атакует крипов. Автоматически добивает героев при ≤18% HP, а с Q — при ≤30%. У Рошана защита от раннего добивания: автоатака при ≤4%, Q при ≤8% HP. Опыт и основное золото получают все, бонус за добивание — убийца.</li><li>Герой возвращается через 8 секунд после смерти. Если весь отряд погиб в тимфайте — теряется 10% золота, затем фарм продолжается.</li><li><strong>Друзья:</strong> запусти <code>npm run online</code>, открой localhost из терминала, создай комнату и отправь ссылку друзьям. Каждый выбирает свободного героя. Одиночный HTML работает без интернета.</li><li>За крипов получаешь <strong>опыт и золото</strong>. Покупай улучшения под лесом.</li><li><strong>P</strong> — пауза. В комнате останавливает только твоего героя. Общий бой продолжается.</li><li>В соло прогресс сохраняется в этом браузере. В комнате — на сервере до его остановки. После 15 секунд без связи героя подменяет бот; место резервируется на 90 секунд.</li></ul><button class="dialog-primary" data-close>Всё понял. Пора фармить.</button></dialog>
+  <dialog id="helpDialog"><button class="dialog-close" data-close aria-label="Закрыть">×</button><span class="eyebrow">ПРОСТО УСАЖИВАЙСЯ</span><h2>СИДИ КАЧАЙСЯ.</h2><p>Оскар — Drow Ranger, Ержан — Timbersaw, Артур — Shadow Fiend, Санжар — Rubick, Эмир — Sniper. Собери отряд или играй с ботами. У каждого героя 5 жизней на весь забег.</p><ul><li><strong>Прицеливание мышью.</strong> ЛКМ (можно удерживать) или Пробел — выстрел. Все снаряды летят прямо без доворачивания: стреляй с упреждением и уворачивайся от вражеских атак. «Автоогонь» выключен по умолчанию; если включить, он стреляет только в направлении твоего прицела.</li><li><strong>WASD / стрелки / правый клик</strong> — передвижение. На телефоне есть стрелки; касание арены задаёт прицел и выпускает снаряд. Враги преследуют героев; держи дистанцию и выходи из отмеченных зон.</li><li><strong>Q</strong> — направленная способность героя (у Артура вместо Q — Z / X / C) с перезарядкой и стоимостью маны. Мана восстанавливается со временем; автоатаки бесплатны. Сатиры-душекрады могут выжечь ману.</li><li><strong>Артур: Z / X / C — ближний / средний / дальний койл</strong> на 200 / 450 / 700 в направлении прицела. У каждого свой КД 8 сек и цена 60 MP. Три круга показывают места взрывов; после нажатия точка фиксируется, взрыв через 0.4 сек. E — Eul (75 MP, 23 сек): наведи курсор прямо на врага в радиусе 560, поднимает на 2.5 секунды. R — Requiem of Souls (175 MP, 65 сек), требует подготовки и выпускает души вокруг Артура. Чем ближе цель, тем больше урон. Комбо: E → подойти → R. Оглушение прерывает подготовку; Рошан невосприимчив к Eul.</li><li><strong>Нейтралы:</strong> сатир-мучитель выпускает Shockwave по линии, душекрад выжигает ману, изгонятель замедляет через Purge, кентавр оглушает через War Stomp, медведь применяет Thunder Clap. Опасные зоны видны до удара.</li><li><strong>Каждые 3 волны</strong> — тимфайт против пяти случайных героев Dota 2. У каждого своя способность, усиленное здоровье и 28% защиты. Команда полностью восстанавливается перед боем.</li><li><strong>30-я волна — Рошан</strong> вместо тимфайта: 240 000 HP, 35% защиты, регенерация, Bash, Thunder Clap и ярость при 35% HP. На бой 180 секунд. При поражении — −10% золота и новая попытка через 5 секунд. После победы — 31-я волна и бесконечный фарм.</li><li><strong>Эмир</strong> не атакует крипов. Атака добивает героев при ≤20% HP, а Q — при ≤32%. Даже при подходящем HP нужно попасть снарядом. У Рошана защита от раннего добивания: автоатака при ≤4%, Q при ≤8% HP. Опыт и основное золото получают все, бонус за добивание — убийца.</li><li><strong>Эмир: E — Шрапнель</strong> (80 MP, базовый КД 16 сек). Несколько секунд идёт дождь пуль, который ранит и замедляет врагов. E и кнопка ставят шрапнель в точку последнего прицела; ближайший враг не выбирается. Крипов шрапнель оставляет с минимум 1 HP. Каждое дорогое улучшение Эмира даёт +1 процентный пункт к порогу стила; пределы: Q 60% / авто 45%, Рошан Q 25% / авто 20%.</li><li><strong>Прокачка умений:</strong> мощь магии, сокращение перезарядок и талант героя. Мана восстанавливается примерно вчетверо медленнее. Старые купленные характеристики сохраняются, новые покупки относятся к скиллам.</li><li><strong>Статистика:</strong> K — добитые герои, D — смерти, A — помощь уроном или Eul за 12 секунд до убийства героя. ЛХ — добитые крипы. Урон учитывается после защиты, без оверкилла.</li><li><strong>Пять жизней:</strong> каждая смерть отнимает одну. Первые четыре смерти возвращают героя через 8 сек с защитой на 2.5 сек; пятая переводит в наблюдатели. Жизни не возвращаются от волн, уровней, предметов и переподключения. Когда все выбыли, забег завершён. В комнате новый забег запускает ведущий, места игроков сохраняются.</li><li><strong>Лавка под ареной:</strong> BKB 2200 G (F — защита на 6 сек, КД 35), Тараска 2800 G (HP и реген), Даедалус 2600 G (криты атак), Mjollnir 2400 G (скорость и цепные молнии; G — щит на 8 сек, КД 24). По одному предмету каждого вида, жизней в продаже нет. Даедалус даёт Эмиру +3 п.п. к стилу вместо критов; его молнии не добивают крипов.</li><li><strong>Между волнами:</strong> 4 сек на покупки, возвращение в лагерь и восстановление 20% HP/MP. Перед тимфайтом и Рошаном оставшиеся герои получают полное HP/MP. Улучшения стоят от 160 / 220 / 280 G, у Эмира ×3; цена следующего ранга ×1.35.</li><li><strong>Друзья:</strong> запусти <code>npm run online</code>, открой localhost из терминала, создай комнату и отправь ссылку друзьям. Каждый выбирает свободного героя. Одиночный HTML работает без интернета.</li><li>За крипов получаешь <strong>опыт и золото</strong>. Покупай улучшения под лесом.</li><li><strong>P</strong> — пауза. В комнате останавливает только твоего героя. Общий бой продолжается.</li><li>В соло прогресс сохраняется в этом браузере. В комнате — на сервере до его остановки. После 15 секунд без связи героя подменяет бот; место резервируется на 90 секунд.</li></ul><button class="dialog-primary" data-close>Всё понял. Пора фармить.</button></dialog>
   <dialog id="resetDialog"><button class="dialog-close" data-close aria-label="Закрыть">×</button><span class="eyebrow">НОВОЕ НАЧАЛО</span><h2>С чистого пня?</h2><p>Уровень, золото и улучшения будут сброшены. Сохранённый прогресс восстановить не получится.</p><div class="dialog-actions"><button data-close>Оставить как есть</button><button class="dialog-primary" id="confirmReset">Начать заново</button></div></dialog>
   <dialog id="onlineDialog"><button class="dialog-close" data-close aria-label="Закрыть">×</button><span class="eyebrow">ВМЕСТЕ ИЗ ЛЮБОЙ СТРАНЫ</span><h2>Сначала запусти отряд.</h2><p>Этот HTML работает в одиночку без интернета. Для общего леса запусти в папке <strong>oscar-farm</strong>:</p><pre>npm run online</pre><p>Открой localhost из терминала, создай комнату и отправь ссылку друзьям. Им нужен только браузер. У ведущего компьютер и терминал должны оставаться включёнными.</p><button class="dialog-primary" data-close>Понятно</button></dialog>
   <dialog id="shareDialog"><button class="dialog-close" data-close aria-label="Закрыть">×</button><h2>Пригласи своих</h2><p>Скопируй ссылку и отправь друзьям:</p><input id="shareLink" readonly aria-label="Ссылка в комнату"><button class="dialog-primary" data-close>Готово</button></dialog>
-  <dialog id="hostDialog"><button class="dialog-close" data-close aria-label="Закрыть">×</button><span class="eyebrow">ТОЛЬКО ДЛЯ ВЕДУЩЕГО</span><h2>ПУЛЬТ ХАОСА ♛</h2><p>Эту панель видишь только ты. Друзья увидят результат.</p><div class="host-targets"><label>Кого?<select id="prankTarget"></select></label><label>С кем?<select id="prankOther"></select></label></div><div class="prank-buttons"><button data-prank="swapSkills">⇄ Поменять Q местами</button><button data-prank="shuffle">⚄ Перемешать всем Q</button><button data-prank="bigHeads">◉ Большие головы · 15 с</button><button data-prank="bonk">✦ Оглушить · 2 с</button><button data-prank="goldRain">✳ Золотой дождь · +300 G</button><button data-prank="haste">ϟ Кофе всем · 10 с</button><button data-prank="resetSkills">↶ Вернуть родные скиллы</button></div><p class="host-footnote">У Эмира остаётся правило: только добивания героев, даже с чужим Q. Головы, оглушение и ускорение проходят сами.</p></dialog>
+  <dialog id="hostDialog"><button class="dialog-close" data-close aria-label="Закрыть">×</button><span class="eyebrow">ТОЛЬКО ДЛЯ ВЕДУЩЕГО</span><h2>ПУЛЬТ ХАОСА ♛</h2><p>Эту панель видишь только ты. Друзья увидят результат.</p><div class="host-targets"><label>Кого?<select id="prankTarget"></select></label><label>С кем?<select id="prankOther"></select></label></div><div class="prank-buttons"><button data-prank="swapSkills">⇄ Поменять скиллы местами</button><button data-prank="shuffle">⚄ Перемешать всем скиллы</button><button data-prank="bigHeads">◉ Большие головы · 15 с</button><button data-prank="bonk">✦ Оглушить · 2 с</button><button data-prank="goldRain">✳ Золотой дождь · +300 G</button><button data-prank="haste">ϟ Кофе всем · 10 с</button><button data-prank="resetSkills">↶ Вернуть родные скиллы</button></div><p class="host-footnote">У Эмира остаётся правило: только добивания героев, даже с чужим Q. Головы, оглушение и ускорение проходят сами.</p></dialog>
 <script type="module">
 // The exact same rules run offline and on the authoritative multiplayer server.
 export const HEROES = [
   {id:'drow',name:'Оскар',hero:'Drow Ranger',color:'#9cdce6',icon:'❄',skill:'Мультивыстрел',hint:'Пять ледяных стрел',cooldown:10,power:1,speed:1.15},
-  {id:'timber',name:'Ержан',hero:'Timbersaw',color:'#efb76b',icon:'⚙',skill:'Вихрь пил',hint:'Пилы по восьми целям · броня',cooldown:9,power:1.25,speed:.85},
-  {id:'sf',name:'Артур',hero:'Shadow Fiend',color:'#ee8872',icon:'♨',skill:'Shadowraze',hint:'Взрыв по шести целям · души',cooldown:11,power:1.2,speed:1},
-  {id:'rubick',name:'Санжар',hero:'Rubick',color:'#b9ed86',icon:'✧',skill:'Fade Bolt',hint:'Цепная молния · шесть целей',cooldown:8,power:.95,speed:1.1},
-  {id:'sniper',name:'Эмир',hero:'Sniper',color:'#e9cc85',icon:'⌖',skill:'Украсть фраг',hint:'Только добивание героя при ≤30% HP',cooldown:12,power:1,speed:.9}
+  {id:'timber',name:'Ержан',hero:'Timbersaw',color:'#efb76b',icon:'⚙',skill:'Вихрь пил',hint:'Веер пробивающих пил · броня',cooldown:9,power:1.25,speed:.85},
+  {id:'sf',name:'Артур',hero:'Shadow Fiend',color:'#ee8872',icon:'♨',skill:'Shadowraze',hint:'Z / X / C · 200 / 450 / 700',cooldown:8,power:1.2,speed:1},
+  {id:'rubick',name:'Санжар',hero:'Rubick',color:'#b9ed86',icon:'✧',skill:'Fade Bolt',hint:'Шесть прямых пробивающих импульсов',cooldown:8,power:.95,speed:1.1},
+  {id:'sniper',name:'Эмир',hero:'Sniper',color:'#e9cc85',icon:'⌖',skill:'Украсть фраг',hint:'Стил при ≤32% HP · E: Шрапнель',cooldown:12,power:1,speed:.9}
 ];
 export const ENEMY_HEROES=[
-  {id:'axe',name:'Axe',color:'#d7886b',skill:'Berserker’s Call',description:'Провокация и броня',cooldown:7},
+  {id:'axe',name:'Axe',color:'#d7886b',skill:'Berserker’s Call',description:'Зона замедления и броня',cooldown:7},
   {id:'lina',name:'Lina',color:'#f0a46a',skill:'Laguna Blade',description:'Мощный удар молнией',cooldown:8},
   {id:'cm',name:'Crystal Maiden',color:'#a9dbed',skill:'Frostbite',description:'Замораживает одного героя',cooldown:7},
   {id:'pudge',name:'Pudge',color:'#b4b47f',skill:'Dismember',description:'Оглушение и вампиризм',cooldown:8},
@@ -135,26 +142,100 @@ export const NEUTRALS=[
   {id:'centaur',name:'Кентавр-завоеватель',skill:'War Stomp',hint:'Оглушение вокруг кентавра',cooldown:10,mana:50,hp:2.3,color:'#b99169'},
   {id:'hellbear',name:'Медведь-крушитель',skill:'Thunder Clap',hint:'Урон и замедление вокруг медведя',cooldown:9,mana:45,hp:2,color:'#b16e4f'}
 ];
-export const manaCost=p=>({drow:75,timber:85,sf:95,rubick:90,sniper:100}[p.skill]);
+// Fan-game item values are tuned to this game's shared gold economy.
+export const ITEMS=[
+  {id:'bkb',bit:1,name:'Black King Bar',short:'BKB',cost:2200,hint:'+200 HP, +8% атаки. F: 6 сек защиты от контроля и −75% магического урона. КД 35 сек.'},
+  {id:'heart',bit:2,name:'Heart of Tarrasque',short:'Тараска',cost:2800,hint:'+800 HP и +15% базового HP. Регенерация: +0.5% HP/сек в бою, +2% после 4 сек без урона.'},
+  {id:'daedalus',bit:4,name:'Daedalus',short:'Даедалус',cost:2600,hint:'+35% атаки. Шанс 25% на крит ×2.2 обычной атаки. Эмиру: вместо критов +3 п.п. к стилу (до лимита).'},
+  {id:'mjollnir',bit:8,name:'Mjollnir',short:'Мьёллнир',cost:2400,hint:'+18% атаки, +35% скорости. Попадания: 30% на молнию по 3 врагам. G: электрический щит на 8 сек, КД 24 сек.'}
+];
+export const hasItem=(p,id)=>!!((p.inventory||0)&(ITEMS.find(item=>item.id===id)?.bit||0));
+export const alive=p=>p.lives>0&&p.respawn<=0;
+export const baseDamage=p=>Math.floor((34+p.damage*12+(p.level-1)*8)*heroInfo(p.id).power*(p.id==='sf'?1+Math.min(p.kills,100)*(.005+(p.skillTalent||0)*.00025):1));
+export const spellDamage=p=>baseDamage(p)*skillMultiplier(p);
+export const hpRegen=(w,p)=>maxHP(p)*(.004+(hasItem(p,'heart')?(w.seconds-(p.lastHurt??-100)>4?.02:.005):0));
+export function shoppingPlan(p){
+  const rank=Math.min(...SKILL_UPGRADES.map(key=>p[key]||0));
+  const branch=SKILL_UPGRADES.filter(key=>Number.isFinite(upgradeCost(p,key))).sort((a,b)=>(p[a]||0)-(p[b]||0))[0];
+  const orders={timber:['heart','mjollnir','bkb','daedalus'],sf:['heart','bkb','mjollnir','daedalus']};
+  const order=orders[p.id]||['mjollnir','heart','bkb','daedalus'];
+  const owned=order.filter(id=>hasItem(p,id)).length,item=order.find(id=>!hasItem(p,id));
+  if(item&&rank>=2+Math.floor(owned/2))return {type:'buy',item,cost:ITEMS.find(i=>i.id===item).cost};
+  return branch?{type:'upgrade',upgrade:branch,cost:upgradeCost(p,branch)}:item?{type:'buy',item,cost:ITEMS.find(i=>i.id===item).cost}:null;
+}
+function buyItem(w,p,id){
+  const item=ITEMS.find(i=>i.id===id);if(!item)return {ok:false,message:'Нет такого предмета'};
+  if(w.gameOver||p.lives<=0)return {ok:false,message:'Этот забег закончен для героя'};
+  if(hasItem(p,id))return {ok:false,message:'Предмет уже куплен'};
+  if(p.gold<item.cost)return {ok:false,message:'Не хватает золота'};
+  const before=maxHP(p);p.gold-=item.cost;p.goldSpent+=item.cost;p.inventory|=item.bit;
+  if(p.respawn<=0)p.hp+=maxHP(p)-before;
+  emit(w,'purchase',{hero:p.id,item:id});return {ok:true};
+}
+function activateItem(w,p,id){
+  if(!hasItem(p,id)||!['bkb','mjollnir'].includes(id))return {ok:false,message:'Сначала купи активный предмет'};
+  if(!w.started||w.gameOver||w.breakTime>0||!alive(p)||p.paused||p.stun>0||p.hex>0)return {ok:false,message:'Сейчас нельзя использовать предмет'};
+  const key=id==='bkb'?'bkbCooldown':'mjollnirCooldown';if(p[key]>0)return {ok:false,message:'Предмет перезаряжается'};
+  if(id==='bkb'){p.bkbLeft=6;p.bkbCooldown=35;p.slow=0;p.stun=0;p.hex=0;}
+  else{p.staticLeft=8;p.mjollnirCooldown=24;}
+  emit(w,'itemActive',{hero:p.id,item:id,x:p.x,y:p.y});return {ok:true};
+}
+function regroup(p){
+  if(p.lives<=0)return;
+  const seat=SEATS[HEROES.findIndex(h=>h.id===p.id)];p.x=p.moveX=seat.x;p.y=p.moveY=seat.y;p.walkUntil=0;p.walkX=0;p.walkY=0;p.moving=false;
+}
+function recover(p){
+  if(p.lives<=0)return;
+  regroup(p);p.hp=maxHP(p);p.mana=maxMana(p);p.respawn=0;p.spawnShield=2.5;p.stun=0;p.hex=0;p.slow=0;p.channel=0;
+}
+function control(p,data){
+  if(!alive(p)||p.bkbLeft>0||p.spawnShield>0)return;
+  if(p.controlGuard<=0&&(data.stun>0||data.hex>0)){
+    p.stun=Math.max(p.stun,Math.min(1.6,data.stun||0));p.hex=Math.max(p.hex,Math.min(1.8,data.hex||0));
+    p.controlGuard=Math.max(p.stun,p.hex)+2.5;
+  }
+  p.slow=Math.max(p.slow,Math.min(3,data.slow||0));if(data.purge)p.haste=0;
+}
+export const manaCost=p=>Math.ceil(({drow:75,timber:85,sf:60,rubick:90,sniper:100}[p.skill])*Math.max(.7,1-(p.skillHaste||0)*.015));
 export const maxMana=p=>(p.id==='rubick'?460:360)+(p.level-1)*22;
-export const manaRegen=p=>3+maxMana(p)*.012;
-export const moveSpeed=p=>(p.id==='timber'?205:245)*(p.slow>0?.55:1)*(p.haste>0?1.25:1);
-export const attackRange=p=>({drow:620,timber:400,sf:560,rubick:580,sniper:1000}[p.id]);
+export const manaRegen=p=>.8+maxMana(p)*.003;
+export const moveSpeed=p=>(p.id==='timber'?225:245)*(p.slow>0?.78:1)*(p.haste>0?1.25:1);
+export const attackRange=p=>({drow:620,timber:520,sf:560,rubick:580,sniper:1000}[p.id]);
 const distance=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
 const playerPoints=w=>Object.values(w.players).filter(p=>p.respawn<=0).map(p=>({x:p.x,y:p.y-30}));
 const clamp=(n,min,max)=>Math.max(min,Math.min(max,n));
 export const requiredXP = p => Math.floor(100*Math.pow(p.level,1.25));
-export const damage = p => Math.floor((28+p.damage*14+(p.level-1)*7)*heroInfo(p.id).power*(p.id==='sf'?1+Math.min(p.kills,200)*.012:1));
-export const attackSpeed = p => Math.min(12,(1+p.speed*.15+(p.level-1)*.025)*heroInfo(p.id).speed*(p.haste>0?1.8:1));
-export const upgradeCost = (p,type) => Math.ceil(({damage:60,speed:90,wisdom:120}[type]??Infinity)*Math.pow(1.38,p[type]||0));
-export const maxHP = p => (p.id==='timber'?650:450)+(p.level-1)*75;
-export const waveRules = wave => ({count:8+wave*3,interval:Math.max(.16,1.3*Math.pow(.93,wave-1)),hp:Math.floor((62+wave*17)*(1+wave*.045)*4.2),speed:Math.min(290,51+wave*7),damage:Math.floor((7+wave*2.4)*1.3),teamfight:wave%3===0&&wave!==30,boss:wave===30});
-// Include multi-hit Q damage: late-game SF souls must not erase an entire fight on arrival.
-function partyDPS(w){return HEROES.filter(h=>h.id!=='sniper').reduce((sum,h)=>{const p=w.players[h.id],burst={drow:6.5,timber:20.8,sf:20.4,rubick:15.1,sniper:0}[p.skill];return sum+damage(p)*(attackSpeed(p)+burst/heroInfo(p.skill).cooldown);},0);}
+export const damage = p => Math.floor(baseDamage(p)*(1+(hasItem(p,'bkb')?.08:0)+(hasItem(p,'daedalus')?.35:0)+(hasItem(p,'mjollnir')?.18:0)));
+export const attackSpeed = p => Math.min(6,(1+p.speed*.12+(p.level-1)*.03)*heroInfo(p.id).speed*(hasItem(p,'mjollnir')?1.35:1)*(p.haste>0?1.5:1));
+export const SKILL_UPGRADES=['skillPower','skillHaste','skillTalent'];
+export const MAX_SKILL_RANK=20;
+export const skillMultiplier=p=>1+(p.skillPower||0)*.18;
+export const cooldownFor=(p,base)=>base*Math.max(.4,1-(p.skillHaste||0)*.045);
+export const abilityCooldown=p=>cooldownFor(p,heroInfo(p.skill).cooldown);
+export const upgradeCost=(p,type)=>!SKILL_UPGRADES.includes(type)||(p[type]||0)>=MAX_SKILL_RANK?Infinity:Math.ceil(({skillPower:160,skillHaste:220,skillTalent:280}[type])*(p.id==='sniper'?3:1)*Math.pow(1.35,p[type]||0));
+export function stealThreshold(p,ability=false,boss=false){
+  const ranks=p.id==='sniper'?SKILL_UPGRADES.reduce((sum,key)=>sum+(p[key]||0),0):0;
+  return Math.min(boss?(ability?.25:.20):(ability?.60:.45),(boss?(ability?.08:.04):(ability?.32:.20))+ranks*.01+(p.id==='sniper'&&hasItem(p,'daedalus')?.03:0));
+}
+export function upgradeInfo(p,type){
+  const q=heroInfo(p.skill).skill;
+  const talent={drow:['Ледяные наконечники','Больше ледяных стрел, замедление атак; с ранга 3 обычная стрела пробивает ещё 2 цели (больше на рангах 8/16)'],timber:['Реактивная броня','Q даёт броню; больше пробивающих пил'],sf:['Некромастерия','Сильнее души, шире койлы и Requiem'],rubick:['Чародейская цепь','Больше прямых импульсов; Fade Bolt ослабляет врагов'],sniper:['Плотный обстрел','Шрапнель шире и длится дольше']}[p.id];
+  const info=type==='skillPower'?{name:p.id==='sniper'?'Калибр шрапнели':q+' · мощь',hint:p.id==='sniper'?'+18% урона шрапнели':'+18% урона умений'}:type==='skillHaste'?{name:'Мастерство заклинаний',hint:'−4.5% базового КД умений · дешевле магия'}:{name:talent[0],hint:talent[1]};
+  if(p.id==='sniper')info.hint+=' · +1 п.п. к стилу (до лимита)';
+  return info;
+}
+export const maxHP = p => Math.floor(((p.id==='timber'?850:650)+(p.level-1)*100)*(hasItem(p,'heart')?1.15:1)+(hasItem(p,'heart')?800:0)+(hasItem(p,'bkb')?200:0));
+export const waveRules = wave => {
+  const stage=Math.min(30,wave),endless=Math.max(0,wave-30);
+  return {count:8+wave*3,activeCap:Math.min(20,12+Math.floor(wave*.25)),interval:Math.max(.2,1.3*Math.pow(.95,wave-1)),hp:Math.floor((62+stage*17)*(1+stage*.025)*3.6*Math.pow(1+endless*.045,.9)),speed:Math.min(255,48+stage*3.7+endless*.6),damage:Math.floor((6+stage*1.25)*Math.pow(1+endless*.025,.65)),teamfight:wave%3===0&&wave!==30,boss:wave===30};
+};
+// Encounter HP is tied to the wave, never to the players' purchases or DPS.
+export const teamfightHP=wave=>Math.floor(waveRules(wave).hp*(6.1+Math.min(6,wave*.2)));
+export const roshanHP=()=>240000;
 
 export function createWorld() {
-  const world={version:2,started:false,wave:1,phase:'farm',seconds:0,kills:0,heroKills:0,bossKills:0,wins:0,losses:0,fightTime:0,pendingStrike:0,seed:Math.floor(Math.random()*2147483646)+1,enemyTeam:[],spawned:0,spawnTimer:.2,breakTime:0,nextId:1,eventId:0,events:[],enemies:[],projectiles:[],hazards:[],players:{}};
-  for(const [index,h] of HEROES.entries()){const p={x:SEATS[index].x,y:SEATS[index].y,moveX:SEATS[index].x,moveY:SEATS[index].y,walkX:0,walkY:0,walkUntil:0,moving:false,mana:0,eulCooldown:0,ultCooldown:0,channel:0,slow:0,target:0,id:h.id,skill:h.id,level:1,xp:0,gold:0,kills:0,heroKills:0,damage:0,speed:0,wisdom:0,auto:true,paused:false,hp:0,respawn:0,stun:0,hex:0,haste:0,attackTimer:0,manualTimer:0,cooldown:0,pose:0};p.hp=maxHP(p);p.mana=maxMana(p);world.players[h.id]=p;}
+  const world={version:2,runId:Math.floor(Math.random()*2147483646)+1,gameOver:false,started:false,wave:1,phase:'farm',seconds:0,kills:0,heroKills:0,bossKills:0,wins:0,losses:0,fightTime:0,pendingStrike:0,seed:Math.floor(Math.random()*2147483646)+1,enemyTeam:[],spawned:0,spawnTimer:.2,breakTime:0,nextId:1,eventId:0,events:[],enemies:[],projectiles:[],hazards:[],zones:[],casts:[],players:{}};
+  for(const [index,h] of HEROES.entries()){const p={lives:5,inventory:0,bkbLeft:0,bkbCooldown:0,staticLeft:0,mjollnirCooldown:0,lightningTimer:0,staticTimer:0,spawnShield:0,controlGuard:0,lastHurt:-100,itemDamage:0,goldEarned:0,goldSpent:0,shopTimer:0,aimX:SEATS[index].x+500,aimY:SEATS[index].y-35,razeNearCooldown:0,razeMidCooldown:0,razeFarCooldown:0,skillPower:0,skillHaste:0,skillTalent:0,shrapnelCooldown:0,guard:0,deaths:0,assists:0,bossKills:0,damageDealt:0,heroDamage:0,creepDamage:0,bossDamage:0,spellDamage:0,damageTaken:0,dps:0,recentHits:[],x:SEATS[index].x,y:SEATS[index].y,moveX:SEATS[index].x,moveY:SEATS[index].y,walkX:0,walkY:0,walkUntil:0,moving:false,mana:0,eulCooldown:0,ultCooldown:0,channel:0,slow:0,target:0,id:h.id,skill:h.id,level:1,xp:0,gold:0,kills:0,heroKills:0,damage:0,speed:0,wisdom:0,auto:false,paused:false,hp:0,respawn:0,stun:0,hex:0,haste:0,attackTimer:0,manualTimer:0,cooldown:0,pose:0};p.hp=maxHP(p);p.mana=maxMana(p);world.players[h.id]=p;}
   return world;
 }
 export function emit(w,type,data={}) {w.events.push({id:++w.eventId,type,...data});if(w.events.length>60)w.events.splice(0,w.events.length-60);}
@@ -167,31 +248,70 @@ export function spawnEnemy(w) {
 }
 export function allowedTarget(p,e,ability=false) {
   if(e.hp<=0||e.cyclone>0)return false;
-  if(e.boss&&(p.id==='sniper'||(ability&&p.skill==='sniper')))return e.hp/e.maxHP<=(ability?.08:.04);
-  return !(p.id==='sniper'||(ability&&p.skill==='sniper')) || (e.hero && e.hp/e.maxHP <= (ability?.30:.18) && !e.grave);
+  if(p.id==='sniper'||(ability&&p.skill==='sniper'))return (e.hero||e.boss)&&e.hp/e.maxHP<=stealThreshold(p,ability,!!e.boss)&&!(e.grave>0);
+  return true;
 }
-function targets(w,p,ability=false) {return w.enemies.filter(e=>allowedTarget(p,e,ability)&&distance(p,e)<=attackRange(p)+(ability?100:0)).sort((a,b)=>(a.id===p.target?-1:b.id===p.target?1:p.id==='sniper'?a.hp-b.hp:distance(p,a)-distance(p,b)));}
-function fire(w,p,ability=false,inputSeq) {
+export const RAZES=[
+  {id:'near',key:'Z',distance:200,cooldown:'razeNearCooldown',name:'Ближний койл'},
+  {id:'mid',key:'X',distance:450,cooldown:'razeMidCooldown',name:'Средний койл'},
+  {id:'far',key:'C',distance:700,cooldown:'razeFarCooldown',name:'Дальний койл'}
+];
+export const razeRules=(p,id)=>{const slot=RAZES.find(r=>r.id===id);return slot?{...slot,radius:135+Math.min(40,(p.skillTalent||0)*2),cost:manaCost({...p,skill:'sf'}),cd:cooldownFor(p,8),windup:.4}:null;};
+function setAim(p,action={}){
+  if(action.x!==undefined||action.y!==undefined){if(!Number.isFinite(action.x)||!Number.isFinite(action.y))return false;p.aimX=clamp(action.x,-200,ARENA.width+200);p.aimY=clamp(action.y,-200,ARENA.height+200);}
+  return true;
+}
+export function aimDirection(p){const dx=p.aimX-p.x,dy=p.aimY-(p.y-35),len=Math.hypot(dx,dy);return len>.01?{x:dx/len,y:dy/len}:{x:1,y:0};}
+function shotAt(w,p,angle,data={}){
+  if(w.projectiles.length>=400)return;
+  const speed=data.speed||720;
+  w.projectiles.push({id:w.nextId++,hero:p.id,skill:p.id,ability:false,x:p.x,y:p.y-35,vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed,speed,rangeLeft:attackRange(p)+120,radius:9,pierce:0,hitIds:[],delay:0,damage:damage(p),...data});
+}
+function fire(w,p,ability=false,inputSeq,action={}) {
   if(!w.started||w.breakTime>0||p.paused||p.respawn>0||p.stun>0||p.hex>0||p.channel>0)return {ok:false,message:'Герой отдыхает или оглушён'};
-  if(ability&&p.mana<manaCost(p))return {ok:false,message:"Не хватает маны"};
-  const available=targets(w,p,ability);
-    if(!available.length)return {ok:false,message:p.id==='sniper'?(w.phase==='boss'?'Рошан защищён от добивания: нужно ≤'+(ability?8:4)+'% HP':'Эмир ждёт: у вражеского героя должно остаться не больше '+(ability?30:18)+'% HP'):'Целей пока нет'};
-  let count=1,multiplier=1;const skill=ability?p.skill:p.id;
-  if(ability){count={drow:5,timber:8,sf:6,rubick:6,sniper:1}[skill];multiplier={drow:1.3,timber:2.6,sf:3.4,rubick:3,sniper:1}[skill];}
-  const seat={x:p.x-30,y:p.y+15};
-  const points=[];
+  if(ability&&p.skill==='sf')return {ok:false,message:'Койлы: Z — ближний, X — средний, C — дальний'};
+  if(!setAim(p,action))return {ok:false,message:'Некорректный прицел'};
+  if(ability&&p.mana<manaCost(p))return {ok:false,message:'Не хватает маны'};
+  const dir=aimDirection(p),angle=Math.atan2(dir.y,dir.x),skill=ability?p.skill:p.id,count=ability?abilityCount(p):1,points=[];
   for(let i=0;i<count;i++){
-    const e=available[i%available.length];
-    const ground=ability&&(skill==='sf'||skill==='rubick');
-    w.projectiles.push({id:w.nextId++,hero:p.id,skill,ability,target:e.id,x:ground?e.x:seat.x+50,y:ground?e.y-35:seat.y-60,damage:damage(p)*multiplier*(skill==='rubick'?Math.pow(.93,i):1),delay:i*.06+(ground?.12:0),execute:p.id==='sniper'||(ability&&skill==='sniper'),threshold:ability?.30:.18});
-    if(!points.some(point=>point.id===e.id))points.push({id:e.id,x:e.x,y:e.y-15});
+    const spread=ability?(skill==='drow'?.075:skill==='timber'?.065:0):0,a=angle+(i-(count-1)/2)*spread;
+    const multiplier=ability?({drow:1.8,timber:1.8,rubick:2.2,sniper:1}[skill]||1)*skillMultiplier(p):1;
+    const speed=skill==='sniper'?1050:skill==='timber'?560:720;
+    shotAt(w,p,a,{skill,ability,inputSeq,damage:(ability?baseDamage(p):damage(p))*multiplier*(skill==='rubick'?Math.pow(.93,i):1),speed,vx:Math.cos(a)*speed,vy:Math.sin(a)*speed,rangeLeft:attackRange(p)+(ability?180:120),radius:skill==='timber'?(ability?20:12):skill==='rubick'?14:9,pierce:ability&&['drow','timber','rubick'].includes(skill)?2+Math.floor((p.skillTalent||0)/5):!ability&&p.id==='drow'&&p.skillTalent>=3?2+Math.floor(p.skillTalent/8):0,delay:ability?i*.045:0,execute:p.id==='sniper'||ability&&skill==='sniper',threshold:stealThreshold(p,ability,false),bossThreshold:stealThreshold(p,ability,true)});
+    points.push({x:p.x+Math.cos(a)*120,y:p.y-35+Math.sin(a)*120});
   }
-  if(ability){p.mana-=manaCost(p);p.cooldown=heroInfo(p.skill).cooldown;}
-  p.pose=.3;emit(w,'shot',{hero:p.id,skill,ability,inputSeq,x:seat.x+50,y:seat.y-60,points});return {ok:true};
+  if(ability){p.mana-=manaCost(p);p.cooldown=abilityCooldown(p);if(skill==='timber')p.guard=3+(p.skillTalent||0)*.25;}
+  p.pose=.3;emit(w,'shot',{hero:p.id,skill,ability,inputSeq,x:p.x,y:p.y-35,points});return {ok:true};
+}
+function castRaze(w,p,action){
+  if(p.skill!=='sf')return {ok:false,message:'Койлы доступны владельцу Shadowraze'};
+  const rules=razeRules(p,action.raze);
+  if(!rules)return {ok:false,message:'Выбери койл Z, X или C'};
+  if(!w.started||w.breakTime>0||p.paused||p.respawn>0||p.stun>0||p.hex>0||p.channel>0)return {ok:false,message:'Сейчас нельзя применить койл'};
+  if(p[rules.cooldown]>0)return {ok:false,message:rules.name+' перезаряжается'};
+  if(p.mana<rules.cost)return {ok:false,message:'Не хватает маны'};
+  if(!setAim(p,action))return {ok:false,message:'Некорректный прицел'};
+  const dir=aimDirection(p),x=p.x+dir.x*rules.distance,y=p.y+dir.y*rules.distance;
+  p.mana-=rules.cost;p[rules.cooldown]=rules.cd;p.pose=.4;
+  w.casts.push({id:w.nextId++,hero:p.id,skill:'sf',raze:rules.id,x,y,radius:rules.radius,left:rules.windup,damage:spellDamage(p)*5.8});
+  emit(w,'razeCharge',{hero:p.id,raze:rules.id,x,y,radius:rules.radius});return {ok:true};
+}
+function resolveCasts(w,dt){
+  for(const cast of w.casts){cast.left-=dt;if(cast.left>0)continue;
+    for(const e of w.enemies)if(e.hp>0&&!(e.cyclone>0)&&distance(cast,e)<=cast.radius)hit(w,{hero:cast.hero,skill:'sf',ability:true,damage:cast.damage},e);
+    emit(w,'raze',{hero:cast.hero,raze:cast.raze,x:cast.x,y:cast.y,radius:cast.radius});
+  }
+  w.casts=w.casts.filter(cast=>cast.left>0);
 }
 export function command(w,id,action) {
   const p=w.players[id];if(!p||!action||typeof action!=='object')return {ok:false,message:'Неизвестный герой'};
-  if(action.type==='start'){w.started=true;return {ok:true};}
+  if(action.type==='start'){if(w.gameOver)return {ok:false,message:'Начни новый забег'};w.started=true;return {ok:true};}
+  if(action.type==='buy')return buyItem(w,p,action.item);
+  if(action.type==='item')return activateItem(w,p,action.item);
+  if(w.gameOver)return {ok:false,message:'Забег завершён'};
+  if(p.lives<=0)return {ok:false,message:'У героя закончились жизни'};
+  if(action.type==='aim')return setAim(p,action)?{ok:true}:{ok:false,message:'Некорректный прицел'};
+  if(action.type==='raze')return castRaze(w,p,action);
   if(action.type==='auto'){p.auto=typeof action.value==='boolean'?action.value:!p.auto;return {ok:true};}
   if(action.type==='pause'){p.paused=!!action.value;return {ok:true};}
   if(action.type==='move'||action.type==='walk'){
@@ -206,25 +326,48 @@ export function command(w,id,action) {
     }
     return {ok:true};
   }
-  if(action.type==='target'){
-    const enemy=w.enemies.find(e=>e.id===action.enemy&&e.hp>0);if(!enemy)return {ok:false,message:'Цель исчезла'};
-    p.target=enemy.id;return {ok:true};
-  }
+  if(action.type==='shrapnel')return castShrapnel(w,p,action);
   if(action.type==='eul'||action.type==='ultimate')return sfSpell(w,p,action);
   if(action.type==='upgrade'){
-    if(!['damage','speed','wisdom'].includes(action.upgrade))return {ok:false,message:'Нет такого улучшения'};
-    const cost=upgradeCost(p,action.upgrade);if(p.gold<cost)return {ok:false,message:'Не хватает золота'};
-    p.gold-=cost;p[action.upgrade]++;return {ok:true};
+    if(!SKILL_UPGRADES.includes(action.upgrade))return {ok:false,message:'Нет такого улучшения'};
+    const cost=upgradeCost(p,action.upgrade);if(!Number.isFinite(cost))return {ok:false,message:'Достигнут максимум улучшения'};if(p.gold<cost)return {ok:false,message:'Не хватает золота'};
+    p.gold-=cost;p.goldSpent+=cost;p[action.upgrade]++;return {ok:true};
   }
   if(action.type==='attack'){
-    if(p.manualTimer>0)return {ok:false,message:'Перезарядка выстрела'};
-    const result=fire(w,p,false,action.seq);if(result.ok)p.manualTimer=.25;return result;
+    if(p.attackTimer>0)return {ok:false,message:'Перезарядка выстрела'};
+    const result=fire(w,p,false,action.seq,action);if(result.ok)p.attackTimer=1/attackSpeed(p);return result;
   }
   if(action.type==='ability'){
     if(p.cooldown>0)return {ok:false,message:'Способность перезаряжается'};
-    return fire(w,p,true,action.seq);
+    return fire(w,p,true,action.seq,action);
   }
   return {ok:false,message:'Неизвестная команда'};
+}
+export const abilityCount=p=>({drow:5+Math.min(5,Math.floor((p.skillTalent||0)/2)),timber:8+Math.min(6,p.skillTalent||0),sf:6,rubick:6+Math.min(6,p.skillTalent||0),sniper:1}[p.skill]);
+export const requiemRadius=p=>400+Math.min(150,(p.skillTalent||0)*12);
+export const shrapnelRules=p=>({cost:80,cooldown:cooldownFor(p,16),radius:175+Math.min(120,(p.skillTalent||0)*8),duration:5+Math.min(5,(p.skillTalent||0)*.35),damage:Math.max(5,spellDamage(p)*.22)});
+function castShrapnel(w,p,action){
+  if(p.id!=='sniper')return {ok:false,message:'Шрапнель доступна Эмиру'};
+  if(!w.started||w.breakTime>0||p.paused||p.respawn>0||p.stun>0||p.hex>0||p.channel>0)return {ok:false,message:'Сейчас нельзя применить способность'};
+  const rules=shrapnelRules(p);
+  if(p.shrapnelCooldown>0)return {ok:false,message:'Шрапнель перезаряжается'};
+  if(p.mana<rules.cost)return {ok:false,message:'Не хватает маны'};
+  if(!setAim(p,action))return {ok:false,message:'Некорректная точка'};
+  let x=p.aimX,y=p.aimY;
+  if(Math.hypot(x-p.x,y-p.y)>1100)return {ok:false,message:'Шрапнель: цель слишком далеко'};
+  x=clamp(x,ARENA.minX,ARENA.maxX);y=clamp(y,ARENA.minY,ARENA.maxY);
+  p.mana-=rules.cost;p.shrapnelCooldown=rules.cooldown;
+  w.zones.push({id:w.nextId++,hero:p.id,x,y,radius:rules.radius,left:rules.duration,tickTimer:0,damage:rules.damage});
+  if(w.zones.length>10)w.zones.shift();
+  emit(w,'shrapnel',{hero:p.id,x,y,radius:rules.radius});return {ok:true};
+}
+function stepZones(w,dt){
+  for(const zone of w.zones){
+    zone.left=Math.max(0,zone.left-dt);zone.tickTimer-=dt;
+    if(zone.tickTimer>0)continue;zone.tickTimer=.5;
+    for(const e of w.enemies){if(e.hp<=0||e.cyclone>0||distance(zone,e)>zone.radius)continue;e.slow=Math.max(e.slow,.9);hit(w,{hero:zone.hero,skill:'sniper',kind:'shrapnel',ability:true,damage:zone.damage},e);}
+  }
+  w.zones=w.zones.filter(zone=>zone.left>0);
 }
 function sfSpell(w,p,action){
   if(p.id!=='sf')return {ok:false,message:'Eul и Requiem доступны Артуру'};
@@ -233,24 +376,20 @@ function sfSpell(w,p,action){
   if(p[key]>0)return {ok:false,message:'Способность перезаряжается'};
   if(p.mana<cost)return {ok:false,message:'Не хватает маны'};
   if(eul){
-    const target=targets(w,p).find(e=>!e.boss);if(!target)return {ok:false,message:'Для Eul нужна цель в радиусе 560; Рошан невосприимчив'};
-    target.cyclone=2.5;p.comboTarget=target.id;emit(w,'eul',{hero:p.id,enemy:target.id,x:target.x,y:target.y});
+    if(!setAim(p,action))return {ok:false,message:'Некорректный прицел'};
+    const target=w.enemies.filter(e=>!e.boss&&e.hp>0&&e.cyclone<=0&&distance(p,e)<=560&&Math.hypot(e.x-p.aimX,e.y-35-p.aimY)<65).sort((a,b)=>Math.hypot(a.x-p.aimX,a.y-35-p.aimY)-Math.hypot(b.x-p.aimX,b.y-35-p.aimY))[0];if(!target)return {ok:false,message:'Наведи курсор на цель Eul в радиусе 560; Рошан невосприимчив'};
+    target.cyclone=2.5+Math.min(.5,(p.skillTalent||0)*.05);(target.contributors||={})[p.id]=w.seconds;p.comboTarget=target.id;emit(w,'eul',{hero:p.id,enemy:target.id,x:target.x,y:target.y});
   }else{
-    const combo=w.enemies.find(e=>e.id===p.comboTarget&&distance(p,e)<=400);
+    const combo=w.enemies.find(e=>e.id===p.comboTarget&&distance(p,e)<=requiemRadius(p));
     p.channel=Math.max(1.67,(combo?.cyclone||0)+.08);p.moveX=p.x;p.moveY=p.y;p.walkUntil=0;
     emit(w,'requiemCharge',{hero:p.id,x:p.x,y:p.y,duration:p.channel});
   }
-  p.mana-=cost;p[key]=eul?23:65;return {ok:true};
+  p.mana-=cost;p[key]=cooldownFor(p,eul?23:65);return {ok:true};
 }
 function releaseRequiem(w,p){
-  const points=[];
-  for(const e of w.enemies){
-    const d=distance(p,e);if(d>400||e.hp<=0||e.cyclone>0)continue;
-    hit(w,{hero:p.id,skill:'sf',ability:true,damage:damage(p)*(5+Math.min(p.kills,100)*.035)*(1+2*(1-d/400))},e);
-    if(e.hp>0&&!e.boss)e.fear=2;
-    points.push({x:e.x,y:e.y-25});
-  }
-  emit(w,'requiem',{hero:p.id,x:p.x,y:p.y-25,radius:400,points});
+  const count=Math.min(28,16+Math.floor(p.kills/12));
+  for(let i=0;i<count;i++)shotAt(w,p,i*Math.PI*2/count,{skill:'sf',kind:'soul',ability:true,speed:560,vx:Math.cos(i*Math.PI*2/count)*560,vy:Math.sin(i*Math.PI*2/count)*560,rangeLeft:requiemRadius(p),radius:18,pierce:4,fear:2+(p.skillTalent||0)*.1,damage:baseDamage(p)*(2.4+Math.min(p.kills,100)*.018)*skillMultiplier(p)});
+  emit(w,'requiem',{hero:p.id,x:p.x,y:p.y-35,radius:requiemRadius(p),souls:count,points:[]});
 }
 function movePlayer(w,p,dt){
   p.moving=false;if(p.paused||p.respawn>0||p.stun>0||p.hex>0||p.channel>0)return;
@@ -261,69 +400,159 @@ function movePlayer(w,p,dt){
   if(w.seconds<p.walkUntil){p.moveX=p.x;p.moveY=p.y;}
 }
 function botMove(w,p){
-  const available=w.enemies.filter(e=>e.hp>0).sort((a,b)=>distance(p,a)-distance(p,b)),foe=available[0];
+  const available=w.enemies.filter(e=>e.hp>0&&!(e.cyclone>0)).sort((a,b)=>distance(p,a)-distance(p,b)),foe=available[0];
   if(!foe)return;
-  const d=distance(p,foe),range=attackRange(p)*.78;
-  if(d>range){p.moveX=clamp(foe.x-range*.8,ARENA.minX,ARENA.maxX);p.moveY=clamp(foe.y+(HEROES.findIndex(h=>h.id===p.id)-2)*65,ARENA.minY,ARENA.maxY);}
-  else{p.moveX=p.x;p.moveY=p.y;}
-  const danger=w.hazards.find(h=>Math.hypot(p.x-h.x,p.y-h.y)<h.radius+45);
-  if(danger){p.moveY=clamp(p.y+(p.y<danger.y?-1:1)*(danger.radius+100),ARENA.minY,ARENA.maxY);}
+  const d=distance(p,foe),range=attackRange(p)*.78,dx=(p.x-foe.x)/(d||1),dy=(p.y-foe.y)/(d||1);
+  p.moveX=p.x;p.moveY=p.y;
+  if(d>range+30){p.moveX=clamp(foe.x+dx*range,ARENA.minX,ARENA.maxX);p.moveY=clamp(foe.y+dy*range,ARENA.minY,ARENA.maxY);}
+  else if(d<range*.7){p.moveX=clamp(p.x+dx*140,ARENA.minX,ARENA.maxX);p.moveY=clamp(p.y+dy*140,ARENA.minY,ARENA.maxY);}
+  const danger=w.hazards.find(h=>{
+    if(h.kind!=='shockwave')return distance(p,h)<h.radius+35;
+    const dx=h.toX-h.fromX,dy=h.toY-h.fromY,t=clamp(((p.x-h.fromX)*dx+(p.y-h.fromY)*dy)/(dx*dx+dy*dy),0,1);
+    return Math.hypot(p.x-h.fromX-dx*t,p.y-h.fromY-dy*t)<h.radius+35;
+  });
+  if(danger){
+    let ex=p.x-danger.x,ey=p.y-danger.y;if(danger.kind==='shockwave'){ex=-(danger.toY-danger.fromY);ey=danger.toX-danger.fromX;}
+    const length=Math.hypot(ex,ey)||1;if(length===1){ex=0;ey=1;}
+    const candidates=[1,-1].map(sign=>({x:clamp(p.x+ex/length*(danger.radius+100)*sign,ARENA.minX,ARENA.maxX),y:clamp(p.y+ey/length*(danger.radius+100)*sign,ARENA.minY,ARENA.maxY)}));
+    candidates.sort((a,b)=>(distance(b,danger)+distance(b,foe)*.3)-(distance(a,danger)+distance(a,foe)*.3));p.moveX=candidates[0].x;p.moveY=candidates[0].y;
+  }
+}
+function botAim(w,p,ability=false){
+  const enemies=w.enemies.filter(e=>e.hp>0&&!(e.cyclone>0)&&(!(p.id==='sniper'||ability&&p.skill==='sniper')||allowedTarget(p,e,ability))).sort((a,b)=>distance(p,a)-distance(p,b));
+  const target=enemies[0];if(!target||distance(p,target)>attackRange(p)+(p.skill==='sf'?250:150))return null;
+  const lead=Math.min(.55,distance(p,target)/720),x=target.x+(target.moveVX||0)*lead,y=target.y-35+(target.moveVY||0)*lead;
+  setAim(p,{x,y});return target;
+}
+function botCast(w,p){
+  const target=botAim(w,p,true);if(!target)return;
+  if(p.skill==='sf'){
+    const d=distance(p,target),slots=RAZES.filter(r=>p[r.cooldown]<=0&&Math.abs(r.distance-d)<razeRules(p,r.id).radius*.9).sort((a,b)=>Math.abs(a.distance-d)-Math.abs(b.distance-d));
+    if(slots.length)castRaze(w,p,{raze:slots[0].id});
+  }else if(p.cooldown<=0)fire(w,p,true);
+}
+// Segment-vs-circle sweep: fast projectiles cannot tunnel through a unit between ticks.
+export function sweepHit(ax,ay,bx,by,cx,cy,r){
+  const dx=bx-ax,dy=by-ay,ox=ax-cx,oy=ay-cy,a=dx*dx+dy*dy,c=ox*ox+oy*oy-r*r;
+  if(c<=0)return 0;if(a<1e-12)return null;const b=2*(ox*dx+oy*dy),d=b*b-4*a*c;if(d<0)return null;const t=(-b-Math.sqrt(d))/(2*a);return t>=0&&t<=1?t:null;
+}
+function unitRadius(u){return u.boss?65:u.neutral==='centaur'||u.neutral==='hellbear'?31:23;}
+function flightHit(s,unit,x,y){
+  const offset=unit.boss?80:35;
+  return sweepHit(s.x-(unit.prevX??unit.x),s.y-((unit.prevY??unit.y)-offset),x-unit.x,y-(unit.y-offset),0,0,(s.radius||9)+unitRadius(unit));
+}
+function stepProjectiles(w,dt){
+  for(const shot of w.projectiles){
+    if(shot.delay>0){shot.delay-=dt;continue;}
+    const speed=Math.hypot(shot.vx,shot.vy),travel=Math.min(shot.rangeLeft,speed*dt),x=shot.x+shot.vx/speed*travel,y=shot.y+shot.vy/speed*travel;
+    const pool=shot.hostile?Object.values(w.players).filter(p=>p.respawn<=0&&!(p.id===shot.targetPlayer&&p.deaths!==shot.targetLife)):w.enemies.filter(e=>e.hp>0&&!(e.cyclone>0)&&!shot.hitIds.includes(e.id));
+    const hits=pool.map(unit=>({unit,t:flightHit(shot,unit,x,y)})).filter(h=>h.t!==null).sort((a,b)=>a.t-b.t);
+    for(const {unit} of hits){
+      if(shot.hostile){
+        hurt(w,unit,shot.damage,!!shot.ability,shot.source);control(unit,shot);
+        const owner=w.enemies.find(e=>e.id===shot.source&&e.hp>0);if(owner&&shot.leech)owner.hp=Math.min(owner.maxHP,owner.hp+owner.maxHP*shot.leech);
+        emit(w,'enemyImpact',{skill:shot.skill,x:unit.x,y:unit.y-35});shot.done=true;break;
+      }
+      hit(w,shot,unit);shot.hitIds.push(unit.id);if(shot.fear&&unit.hp>0&&!unit.boss)unit.fear=Math.max(unit.fear||0,shot.fear);
+      if(shot.pierce--<=0){shot.done=true;break;}
+    }
+    shot.x=x;shot.y=y;shot.rangeLeft-=travel;
+    if(shot.rangeLeft<=0||!Number.isFinite(x)||x< -100||x>ARENA.width+100||y< -100||y>ARENA.height+100)shot.done=true;
+  }
+  w.projectiles=w.projectiles.filter(s=>!s.done);
 }
 function reward(w,e,killer) {
   if(e.boss)w.bossKills++;else if(e.hero)w.heroKills++;else w.kills++;
-  const last=w.players[killer];if(e.hero)last.heroKills++;else if(!e.boss)last.kills++;
+  const last=w.players[killer];if(e.boss)last.bossKills++;else if(e.hero){last.heroKills++;for(const [id,at] of Object.entries(e.contributors||{}))if(id!==killer&&w.players[id]&&w.seconds-at<=12)w.players[id].assists++;}else last.kills++;
   for(const p of Object.values(w.players)){
     const xp=Math.floor((e.boss?1800:e.hero?110:e.ranged?27:21)*(1+p.wisdom*.2));
-    p.xp+=xp;p.gold+=(e.boss?1500:e.hero?80:14)+Math.floor(w.wave*.6)+(p.id===killer?(e.boss?500:e.hero?130:7):0);
-    while(p.xp>=requiredXP(p)){p.xp-=requiredXP(p);p.level++;p.hp=Math.min(maxHP(p),p.hp+110);emit(w,'level',{hero:p.id,level:p.level});}
+    p.xp+=xp;const gold=(e.boss?1500:e.hero?95:16)+Math.floor(Math.min(w.wave,60)*.65)+(p.id===killer?(e.boss?500:e.hero?100:5):0);p.gold+=gold;p.goldEarned+=gold;
+    while(p.xp>=requiredXP(p)){p.xp-=requiredXP(p);p.level++;if(alive(p))p.hp=Math.min(maxHP(p),p.hp+150);emit(w,'level',{hero:p.id,level:p.level});}
   }
   emit(w,e.boss?'bossKill':e.hero?'heroKill':'kill',{hero:killer,enemy:e.id,name:e.heroName,x:e.x,y:e.y,gold:e.boss?2000:e.hero?210:21});
 }
+function recordDamage(w,p,e,amount,spell){
+  if(!(amount>0))return;
+  p.damageDealt+=amount;p[e.boss?'bossDamage':e.hero?'heroDamage':'creepDamage']+=amount;
+  if(spell)p.spellDamage+=amount;
+  (e.contributors||={})[p.id]=w.seconds;
+  p.recentHits.push({at:w.seconds,amount});
+  if(p.recentHits.length>300)p.recentHits.shift();
+}
 export function hit(w,shot,e) {
   const p=w.players[shot.hero];if(!p||!e||e.hp<=0||e.cyclone>0)return;
-  if(p.id==='sniper'||shot.execute){
-    // Enforced at impact too: no ability, retarget or stale projectile can kill a creep.
-    if(e.boss){if(e.hp/e.maxHP>(shot.threshold>.18?.08:.04))return;}
-    else if(!e.hero||e.hp/e.maxHP>shot.threshold||e.grave>0)return;
+  const shrapnel=shot.kind==='shrapnel',sniperChip=p.id==='sniper'&&['shrapnel','lightning','static'].includes(shot.kind);
+  let before=e.hp;
+  if((p.id==='sniper'&&!sniperChip)||shot.execute){
+    if(!e.hero&&!e.boss||e.grave>0)return;
+    const ability=shot.ability??(shot.threshold>.20),threshold=Math.min(stealThreshold(p,ability,!!e.boss),(e.boss?shot.bossThreshold:shot.threshold)??1);
+    if(e.hp/e.maxHP>threshold)return;
     e.hp=0;
-  } else {
-    // Axe forces attacks into himself; PA evades, Juggernaut resists, Dazzle prevents death.
-    if(e.hero&&e.kit==='pa'&&random(w)<.2)return;
-    const taunter=w.enemies.find(other=>other.hero&&other.kit==='axe'&&other.armor>0&&other.hp>0&&!(other.cyclone>0));
-    if(taunter&&taunter.id!==e.id)e=taunter;
-    const amount=shot.damage*(e.resistance??1)*(e.spin>0?.35:e.armor>0?.45:1);
-    e.hp=Math.max(e.grave>0?1:0,e.hp-amount);
+  }else{
+    if(e.hero&&e.kit==='pa'&&random(w)<.12&&!shot.ability)return;
+    before=e.hp;
+    const crit=!shot.ability&&!shot.kind&&hasItem(p,'daedalus')&&random(w)<.25;
+    if(crit)emit(w,'crit',{hero:p.id,x:e.x,y:e.y,damage:Math.round(shot.damage*2.2)});
+    const amount=shot.damage*(crit?2.2:1)*(e.resistance??1)*(e.spin>0?.35:e.armor>0?.45:1);
+    const floor=e.grave>0||(shrapnel||sniperChip)&&!e.hero&&!e.boss?Math.min(e.hp,1):0;
+    e.hp=Math.max(floor,e.hp-amount);
+    if(shot.skill==='drow'&&(shot.ability||p.skillTalent>0))e.slow=Math.max(e.slow,shot.ability?2+(p.skillTalent||0)*.25:1);
+    if(shot.ability&&shot.skill==='rubick')e.weaken=Math.max(e.weaken||0,3+(p.skillTalent||0)*.4);
   }
+  const effective=Math.max(0,before-e.hp);recordDamage(w,p,e,effective,!!shot.ability);
   e.hit=.18;
-  emit(w,'impact',{hero:p.id,skill:shot.skill||p.id,ability:!!shot.ability,x:e.x,y:e.y-28});
+  if(!shrapnel)emit(w,'impact',{hero:p.id,skill:shot.skill||p.id,ability:!!shot.ability,x:e.x,y:e.y-28});
   if(e.hp===0)reward(w,e,p.id);
+  if(shot.kind==='lightning'||shot.kind==='static')p.itemDamage+=effective;
+  if(effective>0&&!shot.ability&&!shot.kind&&hasItem(p,'mjollnir')&&p.lightningTimer<=0&&random(w)<.3){p.lightningTimer=.3;chainLightning(w,p,e,false);}
 }
-function hurt(w,p,amount) {
-  if(p.respawn>0)return;
-  p.hp=Math.max(0,p.hp-amount*(p.id==='timber'?.5:1));
-  if(p.hp<=0){p.respawn=8;p.pose=0;emit(w,'down',{hero:p.id});}
+function chainLightning(w,p,first,reactive){
+  const visited=new Set(),points=[];let source=first;
+  for(let i=0;i<3&&source;i++){
+    visited.add(source.id);points.push({x:source.x,y:source.y-35});
+    hit(w,{hero:p.id,skill:'mjollnir',kind:reactive?'static':'lightning',ability:true,damage:(60+p.level*7)*(reactive?.8:1)},source);
+    source=w.enemies.filter(e=>e.hp>0&&!(e.cyclone>0)&&!visited.has(e.id)&&distance(e,source)<380).sort((a,b)=>distance(a,source)-distance(b,source))[0];
+  }
+  emit(w,'lightning',{hero:p.id,x:p.x,y:p.y-35,points});
 }
+function hurt(w,p,amount,magic=false,source){
+  if(!alive(p)||p.spawnShield>0)return;
+  const before=p.hp;
+  p.hp=Math.max(0,p.hp-amount*(p.id==='timber'?.6:1)*(p.guard>0?.8:1)*(magic&&p.bkbLeft>0?.25:1));
+  const actual=Math.max(0,before-p.hp),lethal=p.hp<=0;p.damageTaken+=actual;if(actual>0)p.lastHurt=w.seconds;
+  if(actual>0&&hasItem(p,'mjollnir')&&p.staticLeft>0&&p.staticTimer<=0){
+    const first=w.enemies.find(e=>e.id===source&&e.hp>0&&distance(p,e)<600);
+    if(first){p.staticTimer=.75;chainLightning(w,p,first,true);}
+  }
+  if(lethal){p.hp=0;p.deaths++;p.lives=Math.max(0,p.lives-1);p.respawn=p.lives>0?8:999999;p.pose=0;p.channel=0;p.bkbLeft=0;p.staticLeft=0;emit(w,'down',{hero:p.id,lives:p.lives,kind:magic?'magic':'attack',source,damage:Math.round(actual)});}
+}
+function launchEnemyShot(w,e,target,data={}){
+  if(w.projectiles.length>=400)return;
+  const speed=data.speed|| (e.boss?440:e.hero?620:520),originY=e.y-(e.boss?80:35),dx=target.x-e.x||-.001,dy=target.y-35-originY,len=Math.hypot(dx,dy);
+  w.projectiles.push({id:w.nextId++,hostile:true,source:e.id,targetPlayer:target.id,targetLife:target.deaths,skill:e.kit||e.neutral||(e.ranged?'creepRanged':'creepMelee'),x:e.x,y:originY,vx:dx/len*speed,vy:dy/len*speed,rangeLeft:Math.max(650,len+250),radius:12,damage:e.damage*(e.enraged?1.6:e.buff>0?2:1)*(e.weaken>0?.8:1),speed,delay:0,...data});
+}
+
 function random(w){w.seed=(Math.imul(w.seed,1664525)+1013904223)>>>0;return w.seed/4294967296;}
 export function startTeamfight(w){
-  const rules=waveRules(w.wave),pool=[...ENEMY_HEROES],dps=partyDPS(w);
+  const rules=waveRules(w.wave),pool=[...ENEMY_HEROES];
   for(let i=pool.length-1;i>0;i--){const j=Math.floor(random(w)*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]];}
-  w.phase='teamfight';w.fightTime=0;w.enemies=[];w.projectiles=[];w.hazards=[];w.enemyTeam=pool.slice(0,5).map(h=>h.id);
+  w.phase='teamfight';w.fightTime=0;w.enemies=[];w.projectiles=[];w.hazards=[];w.zones=[];w.casts=[];w.enemyTeam=pool.slice(0,5).map(h=>h.id);
   for(const [i,h] of pool.slice(0,5).entries()){
-    const hp=Math.floor(Math.max(rules.hp*8,dps*4.8)*(h.id==='axe'?1.3:1));
-    w.enemies.push({id:w.nextId++,hero:true,kit:h.id,heroName:h.name,color:h.color,x:1390+(i%2)*170,y:260+i*135,hp,maxHP:hp,resistance:.72,mana:420,maxMana:420,cyclone:0,fear:0,slow:0,speed:Math.min(225,rules.speed+35),damage:rules.damage*1.45,attackTimer:.7+i*.12,abilityTimer:.8+i*.35,step:0,hit:0,armor:0,spin:0,buff:0,grave:0});
+    const hp=Math.floor(teamfightHP(w.wave)*(h.id==='axe'?1.3:1));
+    w.enemies.push({id:w.nextId++,hero:true,kit:h.id,heroName:h.name,color:h.color,x:1390+(i%2)*170,y:260+i*135,hp,maxHP:hp,resistance:.72,mana:420,maxMana:420,cyclone:0,fear:0,slow:0,speed:Math.min(225,rules.speed+35),damage:rules.damage*1.15,attackTimer:.7+i*.12,abilityTimer:.8+i*.35,step:0,hit:0,armor:0,spin:0,buff:0,grave:0});
   }
-  for(const p of Object.values(w.players)){p.hp=maxHP(p);p.mana=maxMana(p);p.respawn=0;p.stun=0;p.hex=0;p.slow=0;p.channel=0;p.cooldown=Math.min(2,p.cooldown);}
+  for(const p of Object.values(w.players)){recover(p);p.cooldown=Math.min(2,p.cooldown);}
   emit(w,'fightStart',{team:w.enemyTeam});
 }
 export function startRoshan(w){
-  const hp=Math.floor(Math.max(60000,partyDPS(w)*32));
-  w.phase='boss';w.fightTime=0;w.pendingStrike=0;w.enemyTeam=['roshan'];w.projectiles=[];w.hazards=[];
-  w.enemies=[{id:w.nextId++,boss:true,hero:false,kit:'roshan',heroName:ROSHAN.name,color:ROSHAN.color,x:1390,y:560,hp,maxHP:hp,resistance:.65,mana:900,maxMana:900,cyclone:0,fear:0,slow:0,speed:135,damage:Math.max(170,Object.values(w.players).reduce((sum,p)=>sum+maxHP(p),0)/5*.07),attackTimer:1,abilityTimer:4,clapTimer:8,enraged:false,step:0,hit:0}];
-  for(const p of Object.values(w.players)){p.hp=maxHP(p);p.mana=maxMana(p);p.respawn=0;p.stun=0;p.hex=0;p.slow=0;p.channel=0;p.cooldown=0;}
+  const hp=roshanHP();
+  w.phase='boss';w.fightTime=0;w.pendingStrike=0;w.enemyTeam=['roshan'];w.projectiles=[];w.hazards=[];w.zones=[];w.casts=[];
+  w.enemies=[{id:w.nextId++,boss:true,hero:false,kit:'roshan',heroName:ROSHAN.name,color:ROSHAN.color,x:1390,y:560,hp,maxHP:hp,resistance:.65,mana:900,maxMana:900,cyclone:0,fear:0,slow:0,speed:135,damage:150,attackTimer:1,abilityTimer:4,clapTimer:8,enraged:false,step:0,hit:0}];
+  for(const p of Object.values(w.players)){recover(p);p.cooldown=0;}
   emit(w,'bossStart');
 }
 function finishRoshan(w,won){
-  for(const p of Object.values(w.players)){p.hp=maxHP(p);p.mana=maxMana(p);p.respawn=0;p.stun=0;p.hex=0;p.slow=0;p.channel=0;if(!won)p.gold=Math.floor(p.gold*.9);}
+  for(const p of Object.values(w.players)){recover(p);if(!won)p.gold=Math.floor(p.gold*.9);}
   if(won)nextWave(w,true);
   else{startRoshan(w);w.breakTime=5;}
   emit(w,'bossEnd',{won});
@@ -336,12 +565,12 @@ function roshanStep(w,e,dt){
   e.abilityTimer-=dt;e.clapTimer-=dt;
   if(e.abilityTimer<=0&&e.mana>=45&&living.some(p=>distance(p,e)<340)){
     e.mana-=45;const target=living.filter(p=>distance(p,e)<340).sort((a,b)=>damage(b)*attackSpeed(b)-damage(a)*attackSpeed(a))[0];
-    hurt(w,target,e.damage*(e.enraged?3.8:2.8));target.stun=Math.max(target.stun,1.8);e.abilityTimer=e.enraged?3.5:5;
+    addHazard(w,e,{x:target.x,y:target.y,radius:90,delay:.6,damage:e.damage*(e.enraged?3.8:2.8),stun:1.8,kind:'bash'});e.abilityTimer=e.enraged?3.5:5;
     const seat={x:target.x-23,y:target.y+40};
     emit(w,'bossAbility',{kit:'roshan',skill:'Bash',x:e.x,y:e.y-80,points:[{x:seat.x+23,y:seat.y-40}]});
   }
   if(e.clapTimer<=0&&e.mana>=80){
-    e.mana-=80;for(const p of living.filter(p=>distance(p,e)<360)){hurt(w,p,e.damage*(e.enraged?2.3:1.6));p.stun=Math.max(p.stun,.7);}
+    e.mana-=80;addHazard(w,e,{x:e.x,y:e.y,radius:360,delay:.9,damage:e.damage*(e.enraged?2.3:1.6),stun:.7,kind:'roshanClap'});
     e.clapTimer=e.enraged?6:9;
     emit(w,'bossAbility',{kit:'roshan',skill:'Thunder Clap',x:e.x,y:e.y-30,points:playerPoints(w)});
   }
@@ -350,25 +579,25 @@ function nextWave(w,won){
   if(w.phase==='teamfight'){
     if(won)w.wins++;else{w.losses++;for(const p of Object.values(w.players))p.gold=Math.floor(p.gold*.9);}
     emit(w,'fightEnd',{won});
-    for(const p of Object.values(w.players)){p.hp=maxHP(p);p.mana=maxMana(p);p.respawn=0;p.stun=0;p.hex=0;p.slow=0;p.channel=0;}
+    for(const p of Object.values(w.players))recover(p);
   }
-  w.phase='farm';w.wave++;w.spawned=0;w.spawnTimer=.1;w.breakTime=2;w.enemies=[];w.projectiles=[];w.hazards=[];w.pendingStrike=0;emit(w,'wave',{wave:w.wave});
+  w.phase='farm';w.wave++;w.spawned=0;w.spawnTimer=.1;w.breakTime=4;for(const p of Object.values(w.players))if(alive(p)){regroup(p);p.hp=Math.min(maxHP(p),p.hp+maxHP(p)*.2);p.mana=Math.min(maxMana(p),p.mana+maxMana(p)*.2);}w.enemies=[];w.projectiles=[];w.hazards=[];w.zones=[];w.casts=[];w.pendingStrike=0;emit(w,'wave',{wave:w.wave});
 }
 export function enemyAbility(w,e){
   const living=Object.values(w.players).filter(p=>p.respawn<=0&&distance(p,e)<700);if(!living.length||e.mana<50)return false;e.mana-=50;
   const target=living[Math.floor(random(w)*living.length)],power=e.damage;
   switch(e.kit){
-    case 'axe':e.armor=3;for(const p of living)hurt(w,p,power*.8);break;
-    case 'lina':hurt(w,target,power*6);break;
-    case 'cm':target.stun=Math.max(target.stun,2.4);hurt(w,target,power*1.7);break;
-    case 'pudge':target.stun=Math.max(target.stun,1.8);hurt(w,target,power*2.5);e.hp=Math.min(e.maxHP,e.hp+e.maxHP*.12);break;
-    case 'pa':hurt(w,target,power*4.5);break;
-    case 'tide':for(const p of living.filter(p=>distance(p,e)<500)){hurt(w,p,power*1.5);p.stun=Math.max(p.stun,1.6);}break;
+    case 'axe':e.armor=3;addHazard(w,e,{x:e.x,y:e.y,radius:250,delay:.45,damage:power*.8,kind:'call'});break;
+    case 'lina':launchEnemyShot(w,e,target,{damage:power*4.5,speed:680,radius:18,ability:true});break;
+    case 'cm':launchEnemyShot(w,e,target,{damage:power*1.7,speed:500,stun:2.4,radius:20,ability:true});break;
+    case 'pudge':launchEnemyShot(w,e,target,{damage:power*2.5,speed:560,stun:1.8,leech:.12,radius:23,ability:true});break;
+    case 'pa':launchEnemyShot(w,e,target,{damage:power*3,speed:700,radius:12,ability:true});break;
+    case 'tide':addHazard(w,e,{x:e.x,y:e.y,radius:500,delay:.8,damage:power*1.5,stun:1.6,kind:'ravage'});break;
     case 'sven':e.buff=4;break;
-    case 'lion':target.hex=3;break;
+    case 'lion':launchEnemyShot(w,e,target,{damage:power*.5,speed:520,hex:3,radius:20,ability:true});break;
     case 'wd':for(const foe of w.enemies)if(foe.hp>0)foe.hp=Math.min(foe.maxHP,foe.hp+foe.maxHP*.10);break;
     case 'invoker':for(const p of living)addHazard(w,e,{x:p.x,y:p.y,radius:105,delay:1.5,damage:power*3.8,kind:'sun'});break;
-    case 'jugger':e.spin=3;for(const p of living.filter(p=>distance(p,e)<260))hurt(w,p,power*1.8);break;
+    case 'jugger':e.spin=3;addHazard(w,e,{x:e.x,y:e.y,radius:260,delay:.55,damage:power*1.8,kind:'fury'});break;
     case 'dazzle':{const low=w.enemies.filter(foe=>foe.hp>0).sort((a,b)=>a.hp/a.maxHP-b.hp/b.maxHP)[0];if(low)low.grave=3;break;}
   }
   const seat={x:target.x-23,y:target.y+40};
@@ -387,10 +616,10 @@ export function neutralAbility(w,e){
   if((e.neutral==='centaur'||e.neutral==='hellbear')&&distance(target,e)>220)return false;
   e.mana-=kit.mana;e.abilityTimer=kit.cooldown;
   if(e.neutral==='satyr'){
-    const d=Math.max(1,distance(e,target));addHazard(w,e,{x:target.x,y:target.y,fromX:e.x,fromY:e.y,toX:e.x+(target.x-e.x)/d*750,toY:e.y+(target.y-e.y)/d*750,radius:55,delay:1,damage:e.damage*3.5,kind:'shockwave'});
-  }else if(e.neutral==='mindstealer')addHazard(w,e,{x:target.x,y:target.y,radius:100,delay:.9,damage:e.damage*1.5,manaBurn:85,kind:'manaBurn'});
-  else if(e.neutral==='banisher'){target.haste=0;target.slow=3.5;emit(w,'neutralSpell',{kit:e.neutral,skill:kit.skill,x:e.x,y:e.y,points:[{x:target.x,y:target.y-30}]});}
-  else addHazard(w,e,{x:e.x,y:e.y,radius:e.neutral==='centaur'?185:215,delay:1,damage:e.damage*2.6,stun:e.neutral==='centaur'?1.5:0,slow:e.neutral==='hellbear'?3:0,kind:e.neutral==='centaur'?'stomp':'clap'});
+    const d=Math.max(1,distance(e,target));addHazard(w,e,{x:target.x,y:target.y,fromX:e.x,fromY:e.y,toX:e.x+(target.x-e.x)/d*750,toY:e.y+(target.y-e.y)/d*750,radius:55,delay:1,damage:e.damage*2.1,kind:'shockwave'});
+  }else if(e.neutral==='mindstealer')addHazard(w,e,{x:target.x,y:target.y,radius:100,delay:.9,damage:e.damage*1.5,manaBurn:55,kind:'manaBurn'});
+  else if(e.neutral==='banisher'){launchEnemyShot(w,e,target,{damage:0,speed:500,slow:2.2,purge:true,ability:true});}
+  else addHazard(w,e,{x:e.x,y:e.y,radius:e.neutral==='centaur'?185:215,delay:1,damage:e.damage*1.8,stun:e.neutral==='centaur'?1.5:0,slow:e.neutral==='hellbear'?3:0,kind:e.neutral==='centaur'?'stomp':'clap'});
   return true;
 }
 function resolveHazards(w,dt){
@@ -404,7 +633,7 @@ function resolveHazards(w,dt){
         d=Math.hypot(p.x-h.fromX-dx*t,p.y-h.fromY-dy*t);
       }
       if(d>h.radius)continue;
-      hurt(w,p,h.damage);p.stun=Math.max(p.stun,h.stun||0);p.slow=Math.max(p.slow,h.slow||0);p.mana=Math.max(0,p.mana-(h.manaBurn||0));
+      hurt(w,p,h.damage,true,h.owner);control(p,h);if(p.bkbLeft<=0&&p.spawnShield<=0)p.mana=Math.max(0,p.mana-(h.manaBurn||0));
     }
     emit(w,'hazardHit',{kind:h.kind,x:h.x,y:h.y,fromX:h.fromX,fromY:h.fromY,toX:h.toX,toY:h.toY,radius:h.radius});
   }
@@ -420,7 +649,7 @@ export function hostCommand(w,action){
     }
     case 'shuffle':{
       const pool=HEROES.map(h=>h.id);for(let i=pool.length-1;i>0;i--){const j=Math.floor(random(w)*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]];}
-      HEROES.forEach((h,i)=>{w.players[h.id].skill=pool[i];w.players[h.id].cooldown=Math.min(3,w.players[h.id].cooldown);});emit(w,'prank',{message:'Способности перемешались. Проверяйте Q!'});break;
+      HEROES.forEach((h,i)=>{w.players[h.id].skill=pool[i];w.players[h.id].cooldown=Math.min(3,w.players[h.id].cooldown);});emit(w,'prank',{message:'Способности перемешались. Проверяйте умения!'});break;
     }
     case 'resetSkills':for(const p of Object.values(w.players))p.skill=p.id;emit(w,'prank',{message:'Способности вернулись к владельцам.'});break;
     case 'goldRain':for(const p of Object.values(w.players))p.gold+=300;emit(w,'prank',{message:'Золотой дождь! Всем +300 G.'});break;
@@ -432,40 +661,46 @@ export function hostCommand(w,action){
   return {ok:true};
 }
 export function step(w,dt,bots=[]) {
-  if(!w.started)return;
+  if(!w.started||w.gameOver)return;
   dt=Math.max(0,Math.min(.1,dt));w.seconds+=dt;
   const rules=waveRules(w.wave);
   for(const p of Object.values(w.players)){
-    for(const key of ['eulCooldown','ultCooldown','slow'])p[key]=Math.max(0,p[key]-dt);
+    p.prevX=p.x;p.prevY=p.y;
+    for(const key of ['eulCooldown','ultCooldown','shrapnelCooldown','slow','guard','razeNearCooldown','razeMidCooldown','razeFarCooldown','bkbLeft','bkbCooldown','staticLeft','mjollnirCooldown','lightningTimer','staticTimer','spawnShield','controlGuard','shopTimer'])p[key]=Math.max(0,p[key]-dt);
+    p.recentHits=p.recentHits.filter(h=>w.seconds-h.at<5);p.dps=p.recentHits.reduce((sum,h)=>sum+h.amount,0)/Math.max(.1,Math.min(5,w.seconds));
     p.mana=Math.min(maxMana(p),p.mana+manaRegen(p)*dt);
     if(p.channel>0){if(p.stun>0||p.hex>0||p.respawn>0){p.channel=0;emit(w,'channelCancel',{hero:p.id});}else{p.channel=Math.max(0,p.channel-dt);if(p.channel===0)releaseRequiem(w,p);}}
     p.cooldown=Math.max(0,p.cooldown-dt);p.attackTimer-=dt;p.manualTimer=Math.max(0,p.manualTimer-dt);p.pose=Math.max(0,p.pose-dt);p.stun=Math.max(0,p.stun-dt);p.hex=Math.max(0,p.hex-dt);p.haste=Math.max(0,p.haste-dt);
+    if(p.lives<=0)continue;
     if(p.respawn>0){
       p.respawn=Math.max(0,p.respawn-dt);
-      if(p.respawn===0){const seat=SEATS[HEROES.findIndex(h=>h.id===p.id)];p.hp=maxHP(p);p.mana=maxMana(p);p.x=p.moveX=seat.x;p.y=p.moveY=seat.y;p.walkUntil=0;p.moving=false;}
+      if(p.respawn===0){const seat=SEATS[HEROES.findIndex(h=>h.id===p.id)];recover(p);p.x=p.moveX=seat.x;p.y=p.moveY=seat.y;p.walkUntil=0;p.moving=false;}
       continue;
     }
-    p.hp=Math.min(maxHP(p),p.hp+maxHP(p)*.006*dt);
+    p.hp=Math.min(maxHP(p),p.hp+hpRegen(w,p)*dt);
     if(bots.includes(p.id))botMove(w,p);
     movePlayer(w,p,dt);
     if(p.paused||p.stun>0||p.hex>0||p.channel>0)continue;
-    if(p.auto&&p.attackTimer<=0){fire(w,p);p.attackTimer=1/attackSpeed(p);}
-    if(bots.includes(p.id)&&p.cooldown<=0&&w.enemies.length)fire(w,p,true);
+    if((p.auto||bots.includes(p.id))&&p.attackTimer<=0){if(!bots.includes(p.id)||botAim(w,p))fire(w,p);p.attackTimer=1/attackSpeed(p);}
+    if(bots.includes(p.id)&&w.enemies.length)botCast(w,p);
     if(bots.includes(p.id)&&p.id==='sf'&&w.enemies.some(e=>distance(p,e)<320)&&p.mana>175&&p.ultCooldown<=0)sfSpell(w,p,{type:'ultimate'});
-    if(bots.includes(p.id)){const item=['damage','speed','wisdom'][Math.floor(p.level+p.damage+p.speed+p.wisdom)%3];if(p.gold>=upgradeCost(p,item))command(w,p.id,{type:'upgrade',upgrade:item});}
+    if(bots.includes(p.id)&&p.id==='sniper'&&p.shrapnelCooldown<=0&&w.enemies.some(e=>distance(p,e)<1000)){const e=w.enemies.filter(e=>e.hp>0).sort((a,b)=>distance(p,a)-distance(p,b))[0];if(e)castShrapnel(w,p,{x:e.x,y:e.y});}
+    if(bots.includes(p.id)&&p.shopTimer<=0){p.shopTimer=.5;const purchase=shoppingPlan(p);if(purchase&&p.gold>=purchase.cost)command(w,p.id,purchase);}
+    if(bots.includes(p.id)&&w.enemies.some(e=>distance(p,e)<600)){if(p.hp<maxHP(p)*.7||w.hazards.some(h=>distance(h,p)<h.radius+30))activateItem(w,p,'bkb');activateItem(w,p,'mjollnir');}
   }
   if(w.breakTime>0){w.breakTime-=dt;return;}
   if(w.phase==='farm'){
     w.spawnTimer-=dt;
-    if(w.spawned<rules.count && w.spawnTimer<=0 && w.enemies.length<80){spawnEnemy(w);w.spawned++;w.spawnTimer=rules.interval;}
+    if(w.spawned<rules.count && w.spawnTimer<=0 && w.enemies.length<rules.activeCap){spawnEnemy(w);w.spawned++;w.spawnTimer=rules.interval;}
   }else{
     w.fightTime+=dt;
     if(w.pendingStrike>0){w.pendingStrike-=dt;if(w.pendingStrike<=0){for(const p of Object.values(w.players))hurt(w,p,rules.damage*3.8);emit(w,'sunStrike',{points:playerPoints(w)});}}
   }
   for(const e of w.enemies){
     if(e.hp<=0)continue;
-    e.step+=dt;e.hit=Math.max(0,e.hit-dt);e.mana=Math.min(e.maxMana||0,(e.mana||0)+(e.boss?14:7)*dt);
-    for(const key of ['cyclone','fear','slow'])e[key]=Math.max(0,(e[key]||0)-dt);
+    e.prevX=e.x;e.prevY=e.y;
+    e.step+=dt;e.hit=Math.max(0,e.hit-dt);e.mana=Math.min(e.maxMana||0,(e.mana||0)+(e.boss?4.5:2)*dt);
+    for(const key of ['cyclone','fear','slow','weaken'])e[key]=Math.max(0,(e[key]||0)-dt);
     if(e.cyclone>0)continue;
     if(e.neutral&&e.fear<=0){e.abilityTimer-=dt;if(e.abilityTimer<=0)neutralAbility(w,e);}
     if(e.boss)roshanStep(w,e,dt);
@@ -475,22 +710,16 @@ export function step(w,dt,bots=[]) {
     const range=e.boss?110:e.ranged||e.neutral==='satyr'||e.neutral==='mindstealer'||e.neutral==='banisher'||['lina','cm','lion','wd','invoker','dazzle'].includes(e.kit)?390:80;
     const d=distance(target,e),dx=target.x-e.x,dy=target.y-e.y;
     if(e.fear>0||d>range){const amount=Math.min(e.speed*(e.slow>0?.55:1)*dt,Math.max(0,e.fear>0?10000:d-range));if(d>0){e.x=clamp(e.x+dx/d*amount*(e.fear>0?-1:1),ARENA.minX,ARENA.maxX);e.y=clamp(e.y+dy/d*amount*(e.fear>0?-1:1),ARENA.minY,ARENA.maxY);}}
+    e.moveVX=(e.x-e.prevX)/dt||0;e.moveVY=(e.y-e.prevY)/dt||0;
     e.attackTimer-=dt;
     if(e.fear<=0&&d<=range+8&&e.attackTimer<=0){
-      hurt(w,target,e.damage*(e.enraged?1.6:e.buff>0?2:1));
-      e.attackTimer=e.boss?(e.enraged?.65:.95):e.hero?.85:.9;
-      emit(w,'enemyAttack',{x:e.x,y:e.y-30,points:[{x:target.x,y:target.y-30}],ranged:range>150});
+      launchEnemyShot(w,e,target);
+      e.attackTimer=e.boss?(e.enraged?.65:.95):e.hero?1.15:1.3;
     }
   }
-  resolveHazards(w,dt);
-  for(const shot of w.projectiles){
-    if(shot.delay>0){shot.delay-=dt;continue;}
-    let e=w.enemies.find(e=>e.id===shot.target&&e.hp>0);
-    if(!e){e=targets(w,w.players[shot.hero],shot.execute&&shot.threshold>.18)[0];if(!e){shot.done=true;continue;}shot.target=e.id;}
-    const dx=e.x-shot.x,dy=e.y-35-shot.y,length=Math.hypot(dx,dy),move=(shot.execute?1100:700)*dt;
-    if(length<=move){if(e.cyclone>0){shot.done=true;continue;}hit(w,shot,e);shot.done=true;}else{shot.x+=dx/length*move;shot.y+=dy/length*move;}
-  }
-  w.projectiles=w.projectiles.filter(s=>!s.done);w.enemies=w.enemies.filter(e=>e.hp>0);
+  resolveHazards(w,dt);resolveCasts(w,dt);stepZones(w,dt);stepProjectiles(w,dt);
+  w.enemies=w.enemies.filter(e=>e.hp>0);
+  if(Object.values(w.players).every(p=>p.lives<=0)){w.gameOver=true;emit(w,'gameOver',{wave:w.wave});return;}
   if(w.phase==='boss'){
     if(!w.enemies.length)finishRoshan(w,true);
     else if(Object.values(w.players).every(p=>p.respawn>0)||w.fightTime>=180)finishRoshan(w,false);
@@ -505,18 +734,25 @@ export function restoreWorld(saved) {
   if(!saved||saved.version!==2)return w;
   // Save only bounded, typed progression; discard transient combat on reload.
   for(const h of HEROES){const p=w.players[h.id],old=saved.players?.[h.id];if(!old)continue;
-    for(const key of ['level','xp','gold','kills','heroKills','damage','speed','wisdom'])if(Number.isFinite(old[key])&&old[key]>=0)p[key]=Math.min(1e9,Math.floor(old[key]));
+    for(const key of ['level','xp','gold','kills','heroKills','damage','speed','wisdom','deaths','assists','bossKills'])if(Number.isFinite(old[key])&&old[key]>=0)p[key]=Math.min(1e9,Math.floor(old[key]));
+    for(const key of ['damageDealt','heroDamage','creepDamage','bossDamage','spellDamage','damageTaken'])if(Number.isFinite(old[key])&&old[key]>=0)p[key]=Math.min(1e15,old[key]);
+    for(const key of SKILL_UPGRADES)if(Number.isFinite(old[key])&&old[key]>=0)p[key]=Math.min(MAX_SKILL_RANK,Math.floor(old[key]));
     p.level=Math.max(1,p.level);p.xp=Math.min(requiredXP(p)-1,p.xp);p.hp=maxHP(p);p.mana=maxMana(p);if(typeof old.auto==='boolean')p.auto=old.auto;
+    if(Number.isInteger(old.inventory)&&old.inventory>=0)p.inventory=old.inventory&15;
+    if(Number.isInteger(old.lives))p.lives=clamp(old.lives,0,5);
+    for(const [key,limit] of [['bkbCooldown',35],['mjollnirCooldown',24],['cooldown',12],['eulCooldown',23],['ultCooldown',65],['shrapnelCooldown',16],['razeNearCooldown',8],['razeMidCooldown',8],['razeFarCooldown',8]])if(Number.isFinite(old[key]))p[key]=clamp(old[key],0,limit);
+    for(const key of ['goldEarned','goldSpent','itemDamage'])if(Number.isFinite(old[key])&&old[key]>=0)p[key]=Math.min(1e15,old[key]);
+    p.hp=p.lives>0?maxHP(p):0;p.respawn=p.lives>0?0:999999;
   }
   for(const key of ['wave','kills','heroKills','bossKills','wins','losses','seconds'])if(Number.isFinite(saved[key])&&saved[key]>=0)w[key]=Math.min(1e9,Math.floor(saved[key]));
-  w.wave=Math.max(1,w.wave);return w;
+  w.wave=Math.max(1,w.wave);w.gameOver=Object.values(w.players).every(p=>p.lives<=0);return w;
 }
 
 // Shared compact wire format. Combat stays authoritative; these values are for display.
-const WORLD_KEYS=['version','started','wave','phase','seconds','kills','heroKills','bossKills','wins','losses','fightTime','pendingStrike','enemyTeam','spawned','breakTime','bigHeadsUntil','eventId','hazards'];
-const PLAYER_KEYS=['id','skill','level','xp','gold','kills','heroKills','damage','speed','wisdom','auto','paused','hp','respawn','stun','hex','haste','cooldown','pose','x','y','moveX','moveY','moving','mana','eulCooldown','ultCooldown','channel','slow','target'];
+const WORLD_KEYS=['version','runId','gameOver','started','wave','phase','seconds','kills','heroKills','bossKills','wins','losses','fightTime','pendingStrike','enemyTeam','spawned','breakTime','bigHeadsUntil','eventId','hazards','zones','casts'];
+const PLAYER_KEYS=['id','skill','level','xp','gold','kills','heroKills','damage','speed','wisdom','auto','paused','hp','respawn','stun','hex','haste','cooldown','pose','x','y','moveX','moveY','moving','mana','eulCooldown','ultCooldown','channel','slow','target','skillPower','skillHaste','skillTalent','shrapnelCooldown','guard','deaths','assists','bossKills','damageDealt','heroDamage','creepDamage','bossDamage','spellDamage','damageTaken','dps','aimX','aimY','razeNearCooldown','razeMidCooldown','razeFarCooldown','lives','inventory','bkbLeft','bkbCooldown','staticLeft','mjollnirCooldown','spawnShield','itemDamage','goldEarned','goldSpent'];
 const ENEMY_KEYS=['id','x','y','hp','maxHP','hero','boss','ranged','speed','hit','kit','heroName','color','armor','spin','buff','grave','enraged','neutral','name','mana','maxMana','cyclone','fear','slow'];
-const SHOT_KEYS=['id','hero','skill','ability','target','x','y','delay','execute'];
+const SHOT_KEYS=['id','hero','skill','ability','target','x','y','delay','execute','hostile','source','targetPlayer','speed','vx','vy','kind','radius'];
 const ENEMY_CHANGES=['x','y','hp','hit','armor','spin','buff','grave','enraged','mana','cyclone','fear','slow'];
 const SHOT_CHANGES=['x','y','delay','target'];
 function pick(source,keys){const out={};for(const key of keys)if(source[key]!==undefined)out[key]=typeof source[key]==='number'?(Math.round(source[key]*100)/100||0):(source[key]&&typeof source[key]==='object'?structuredClone(source[key]):source[key]);return out;}
@@ -583,9 +819,59 @@ function flame(c,x,y,size,t){
   c.fillStyle='#391324';c.beginPath();c.ellipse(x,y,size*.7,size*.25,0,0,Math.PI*2);c.fill();
   for(let i=0;i<7;i++){const dx=(i-3)*size*.2,h=size*(.6+Math.sin(i*4+t*18)*.2);c.fillStyle=i%2?'#d52430':'#ff5d35';c.fillRect(x+dx-3,y-h,6,h);c.fillStyle='#ffb66a';c.fillRect(x+dx-1,y-h*.7,3,h*.6);}
 }
+function blade(c,x,y,r,angle){
+  c.save();c.translate(x,y);c.rotate(angle);c.fillStyle='#343e3b';c.strokeStyle='#fff0b6';c.lineWidth=1.5;c.beginPath();
+  for(let i=0;i<48;i++){const a=i*Math.PI/24,d=i%4<2?r:r*.76;c.lineTo(Math.cos(a)*d,Math.sin(a)*d);}c.closePath();c.fill();c.stroke();
+  c.fillStyle='#bfc8bc';c.beginPath();c.arc(0,0,r*.65,0,Math.PI*2);c.fill();
+  for(let j=0;j<3;j++){c.rotate(Math.PI*2/3);c.fillStyle='#61776c';c.beginPath();c.moveTo(3,-2);c.lineTo(r*.55,-r*.18);c.lineTo(r*.25,r*.3);c.fill();}
+  c.fillStyle='#d6a458';c.fillRect(-3,-3,6,6);c.restore();
+}
+function soul(c,x,y,angle,size,time,color='#ff584b'){
+  c.save();c.translate(x,y);c.rotate(angle);c.scale(size,size);
+  c.fillStyle=color;c.beginPath();c.moveTo(8,-7);for(let i=0;i<7;i++)c.lineTo(-i*9,Math.sin(time*14+i)*4+(7-i)*2);for(let i=6;i>=0;i--)c.lineTo(-i*9,Math.sin(time*14+i)*4-(7-i)*2);c.closePath();c.fill();
+  line(c,[{x:-40,y:Math.sin(time*14)*5},{x:-20,y:3},{x:-4,y:0}],'#ffd6a6',2);
+  c.fillStyle='#f3d9c4';c.beginPath();[[-7,-9],[5,-11],[11,-5],[11,5],[6,8],[5,13],[-3,13],[-6,7],[-10,3],[-10,-4]].forEach(([a,b],i)=>i?c.lineTo(a,b):c.moveTo(a,b));c.closePath();c.fill();
+  c.fillStyle='#361c2b';c.fillRect(-5,-4,5,5);c.fillRect(3,-5,5,5);c.fillRect(0,3,3,3);c.fillRect(-1,9,2,4);c.fillRect(3,8,2,4);c.fillStyle='#ff6452';c.fillRect(-3,-2,2,2);c.fillRect(4,-3,2,2);
+  c.fillStyle='#ffb094';c.fillRect(-17,-11,12,3);c.fillRect(-19,10,12,3);c.restore();
+}
+export function drawChannel(c,p,time){
+  for(let i=0;i<6;i++){const a=time*2+i*Math.PI/3,r=48+Math.sin(time*4+i)*9;soul(c,p.x+Math.cos(a)*r,p.y-30+Math.sin(a)*r*.55,a+Math.PI/2,.6,time+i);}
+}
+export function drawZones(c,zones,time){
+  for(const zone of zones||[]){
+    c.save();c.fillStyle='#ba8e4220';c.beginPath();c.ellipse(zone.x,zone.y,zone.radius,zone.radius,0,0,Math.PI*2);c.fill();c.strokeStyle='#c8ab6555';c.lineWidth=1;c.setLineDash([4,12]);c.stroke();c.setLineDash([]);
+    for(let i=0;i<42;i++){
+      const a=i*2.399963+zone.id,r=zone.radius*Math.sqrt((i+.5)/42),phase=(time*1.6+i*.173)%1,tx=zone.x+Math.cos(a)*r,ty=zone.y+Math.sin(a)*r,x=tx-(1-phase)*55,y=ty-(1-phase)*235;
+      line(c,[{x:x-5,y:y-18},{x,y}],'#c78c44',3);line(c,[{x:x-3,y:y-13},{x,y}],'#ffe4a3',1);c.fillStyle='#fff0b6';c.fillRect(x-1,y-1,3,5);
+      if(phase>.78){const t=(phase-.78)/.22;c.fillStyle='#ca9b69';for(let j=0;j<4;j++)c.fillRect(tx+Math.cos(j*1.8)*t*16,ty+Math.sin(j*1.8)*t*11,3,3);c.fillStyle='#9a795a77';c.fillRect(tx-4-t*7,ty-3-t*12,7+t*9,6);}
+    }
+    c.restore();
+  }
+}
+function enemyProjectile(c,s,target,time){
+  const angle=Number.isFinite(s.vx)?Math.atan2(s.vy,s.vx):0,kit=s.skill;c.save();c.translate(s.x,s.y);c.rotate(angle);
+  if(['axe','pa','sven','jugger','centaur','creepMelee'].includes(kit)){
+    c.rotate(time*(kit==='pa'?3:13));c.fillStyle='#9a7052';c.fillRect(-13,-2,25,5);c.fillStyle='#dbe3d3';c.beginPath();c.moveTo(9,-13);c.lineTo(20,-6);c.lineTo(20,8);c.lineTo(9,13);c.lineTo(13,0);c.closePath();c.fill();c.fillStyle='#7f958a';c.fillRect(10,-5,7,9);
+  }else if(kit==='roshan'||kit==='hellbear'){
+    c.rotate(time*4);c.fillStyle='#665c4b';c.beginPath();for(let i=0;i<7;i++){const a=i*Math.PI*2/7;c.lineTo(Math.cos(a)*16,Math.sin(a)*13);}c.closePath();c.fill();c.fillStyle='#b6a382';c.fillRect(-9,-8,11,6);c.fillStyle='#3d4238';c.fillRect(2,0,10,6);
+  }else if(['lion','wd','dazzle','pudge'].includes(kit)){
+    c.restore();soul(c,s.x,s.y,angle,.75,time,kit==='lion'||kit==='dazzle'?'#b78de9':'#8ca95d');return;
+  }else if(kit==='cm'||kit==='mindstealer'){
+    line(c,[{x:-32,y:0},{x:0,y:0}],'#4c8aa8',4);c.fillStyle='#bae9fa';c.beginPath();c.moveTo(17,0);c.lineTo(0,-9);c.lineTo(-10,0);c.lineTo(0,9);c.closePath();c.fill();c.fillStyle='#f4ffff';c.fillRect(0,-2,10,3);
+  }else if(kit==='lina'||kit==='satyr'||kit==='invoker'){
+    c.fillStyle=kit==='satyr'?'#b569b0':'#d65532';c.beginPath();c.moveTo(-30,-8);c.lineTo(-9,-4);c.lineTo(-19,-13);c.lineTo(10,-8);c.lineTo(17,0);c.lineTo(9,10);c.lineTo(-25,9);c.lineTo(-12,3);c.closePath();c.fill();c.fillStyle='#ffd586';c.fillRect(-4,-5,13,10);c.fillStyle='#fff2b2';c.fillRect(4,-2,8,4);
+    if(kit==='invoker'){c.fillStyle='#9bc8ef';c.fillRect(-10,-17,7,7);c.fillStyle='#e1acec';c.fillRect(-17,10,7,7);}
+  }else if(kit==='tide'||kit==='banisher'){
+    c.fillStyle='#518e75';c.beginPath();c.ellipse(0,0,15,10,0,0,Math.PI*2);c.fill();c.fillStyle='#bce5ae';c.fillRect(2,-5,9,5);line(c,[{x:-27,y:3},{x:-18,y:-5},{x:-8,y:2}],'#89c89b',3);
+  }else{
+    line(c,[{x:-28,y:0},{x:9,y:0}],'#b7b28a',3);c.fillStyle='#e3d6a9';c.beginPath();c.moveTo(16,0);c.lineTo(5,-5);c.lineTo(5,5);c.closePath();c.fill();line(c,[{x:-22,y:-5},{x:-16,y:0},{x:-22,y:5}],'#ad7760',2);
+  }
+  c.restore();
+}
 export function drawProjectile(c,s,target,time){
-  const skill=s.skill||s.hero;if(s.ability&&(skill==='sf'||skill==='rubick'))return;
-  const angle=target?Math.atan2(target.y-35-s.y,target.x-s.x):0;
+  if(s.hostile){enemyProjectile(c,s,target,time);return;}
+  const skill=s.skill||s.hero,angle=Number.isFinite(s.vx)?Math.atan2(s.vy,s.vx):0;
+  if(s.kind==='soul'){soul(c,s.x,s.y,angle,1.1,time);return;}
   c.save();c.translate(s.x,s.y);c.rotate(angle);
   if(skill==='drow'){
     line(c,[{x:-25,y:0},{x:7,y:0}],'#7ac6df',3);line(c,[{x:-18,y:0},{x:9,y:0}],'#ddfbff',1);
@@ -593,7 +879,7 @@ export function drawProjectile(c,s,target,time){
   }else if(skill==='sf'){
     c.fillStyle='#62142a';c.fillRect(-28,-3,20,6);c.fillStyle='#bb2335';c.fillRect(-20,-5,20,10);c.fillStyle='#fa4b3b';c.fillRect(-7,-6,13,12);c.fillStyle='#301122';c.fillRect(-3,-3,7,6);c.fillStyle='#ffad61';c.fillRect(4,-2,5,4);
   }else if(skill==='timber'){
-    c.rotate(time*15);const radius=s.ability?13:8;c.fillStyle='#e2d7a5';c.beginPath();for(let i=0;i<24;i++){const a=i*Math.PI/12,r=i%2?radius*.72:radius;c.lineTo(Math.cos(a)*r,Math.sin(a)*r);}c.closePath();c.fill();ring(c,0,0,radius*.55,'#617363',1);c.fillStyle='#90633e';c.fillRect(-2,-2,4,4);
+    blade(c,0,0,s.ability?22:12,time*17);
   }else if(skill==='rubick'){
     line(c,[{x:-23,y:2},{x:-12,y:-4},{x:-5,y:3},{x:8,y:0}],'#73d856',3);c.fillStyle='#c2ffad';c.fillRect(-3,-4,8,8);c.fillStyle='#4c9d55';c.fillRect(-14,-1,5,3);
   }else{
@@ -608,40 +894,47 @@ export class BattleEffects {
     const skill=event.skill||event.hero;this.add('muzzle',{...event,color:FX_COLORS[skill]||'#ffffff'},.18);
     if(!event.ability)return;
     const kind={sf:'raze',timber:'saws',rubick:'chain',sniper:'scope',drow:'frost'}[skill];
-    if(kind)this.add(kind,event,skill==='sniper'?.65:skill==='sf'?.8:.55);
+    if(kind)this.add(kind,event,skill==='timber'?1:skill==='sniper'?.65:skill==='sf'?.8:.55);
   }
   impact(event){this.add('impact',{...event,color:FX_COLORS[event.skill]||'#d9efba'},.23);}
   enemy(event){this.add('enemy',event,event.kit==='invoker'?1.5:event.kit==='cm'||event.kit==='dazzle'?1.1:.65);}
   sun(event){this.add('sun',event,.7);}
-  requiem(event){this.add('requiem',event,1.1);}
+  requiem(event){this.add('requiem',event,.3);}
+  raze(event){this.add('raze',{...event,points:[{x:event.x,y:event.y}]},.8);}
   hazard(event){this.add('hazard',{...event,hazardKind:event.kind},.55);}
   neutral(event){this.add('neutral',event,.35);}
+  lightning(event){this.add('lightning',event,.28);}
+  item(event){this.add('itemActive',event,.5);}
+  enemyImpact(event){this.add('enemyImpact',event,.28);}
   clear(){this.items=[];}
   draw(c,dt,time){
     dt=Math.max(0,Math.min(.1,dt));
     this.items=this.items.filter(e=>(e.age+=dt)<e.life);
     for(const e of this.items){
       const t=e.age/e.life,alpha=Math.min(1,(1-t)*2);c.save();c.globalAlpha=alpha;
-      if(e.kind==='requiem'){
-        const r=e.radius*Math.min(1,t*1.8);ring(c,e.x,e.y,r,'#ff5647',1);ring(c,e.x,e.y,r*.75,'#8d293a',1);
-        for(let j=0;j<18;j++){const a=j*Math.PI/9,px=e.x+Math.cos(a)*r,py=e.y+Math.sin(a)*r;line(c,[{x:e.x+Math.cos(a)*r*.35,y:e.y+Math.sin(a)*r*.35},{x:px,y:py}],'#e23942',5);c.fillStyle='#ffc0a0';c.fillRect(px-6,py-7,12,12);c.fillStyle='#461a2a';c.fillRect(px-4,py-4,3,3);c.fillRect(px+1,py-4,3,3);}
+      if(e.kind==='lightning'){let from={x:e.x,y:e.y};for(const point of e.points){const pts=[from];for(let j=1;j<6;j++)pts.push({x:from.x+(point.x-from.x)*j/6,y:from.y+(point.y-from.y)*j/6+Math.sin(j*11+e.age*30)*12});pts.push(point);line(c,pts,'#528dc4',6);line(c,pts,'#dcf5ff',2);from=point;}}else if(e.kind==='itemActive'){ring(c,e.x,e.y-30,20+t*45,e.item==='bkb'?'#ffe19b':'#a1ddff',1);
+      }else if(e.kind==='requiem'){
+        flame(c,e.x,e.y,30*(1-t),time);
+      }else if(e.kind==='enemyImpact'){
+        for(let j=0;j<7;j++){const a=j*Math.PI*2/7;c.fillStyle=j%2?'#d49a76':'#f4d3a3';c.fillRect(e.x+Math.cos(a)*t*22,e.y+Math.sin(a)*t*18,4*(1-t)+1,3);}
       }else if(e.kind==='hazard'){
         const color=e.hazardKind==='manaBurn'?'#9ec2ff':'#f1ad73';
         if(e.fromX!==undefined)line(c,[{x:e.fromX,y:e.fromY},{x:e.toX,y:e.toY}],color,10*(1-t));
         else ring(c,e.x,e.y,e.radius*(.4+t*.8),color,1);
       }else if(e.kind==='neutral'){
         const color=e.kit==='banisher'?'#bfdc8d':e.ranged?'#e0a875':'#a48573';
-        for(const p of e.points||[])line(c,[{x:e.x,y:e.y},{x:p.x,y:p.y}],color,e.kit?4:2);
+        ring(c,e.x,e.y,8+t*14,color,1);
       }else if(e.kind==='muzzle'){
         const r=5+e.age*35;c.fillStyle=e.color;c.fillRect(e.x-r*.5,e.y-2,r,4);c.fillRect(e.x-2,e.y-r*.5,4,r);
       }else if(e.kind==='raze'){
-        (e.points||[]).forEach((p,i)=>{const age=e.age-i*.035;if(age>=0)flame(c,p.x,p.y,16+Math.sin(Math.min(1,age/.55)*Math.PI)*22,time+i);});
+        (e.points||[]).forEach((p,i)=>{const age=e.age-i*.035;if(age>=0)flame(c,p.x,p.y,(e.radius||60)*(.25+Math.sin(Math.min(1,age/.55)*Math.PI)*.5),time+i);});
       }else if(e.kind==='chain'){
-        let from={x:e.x,y:e.y};for(const [i,p] of (e.points||[]).entries()){const chain=[];for(let j=0;j<=8;j++){const a=j/8;chain.push({x:from.x+(p.x-from.x)*a,y:from.y+(p.y-20-from.y)*a+(j===0||j===8?0:Math.sin(j*9+i*3+e.age*70)*10)});}line(c,chain,'#458743',6);line(c,chain,'#a8ff87',2);ring(c,p.x,p.y-20,8+t*15,'#b8ffa0',1);from={x:p.x,y:p.y-20};}
+        let from={x:e.x,y:e.y};for(const [i,p] of (e.points||[]).entries()){const chain=[];for(let j=0;j<=8;j++){const a=j/8;chain.push({x:from.x+(p.x-from.x)*a,y:from.y+(p.y-20-from.y)*a+(j===0||j===8?0:Math.sin(j*9+i*3+e.age*70)*10)});}line(c,chain,'#458743',6);line(c,chain,'#a8ff87',2);line(c,[{x:p.x-12,y:p.y-25},{x:p.x,y:p.y-40},{x:p.x+12,y:p.y-25},{x:p.x,y:p.y-10},{x:p.x-12,y:p.y-25}],'#b8ffa0',2);from={x:p.x,y:p.y-20};}
       }else if(e.kind==='saws'){
-        ring(c,e.x-20,e.y+30,20+t*55,'#e6bc79');for(const p of e.points||[]){ring(c,p.x,p.y-10,12+t*24,'#dedcba',.7);for(let j=0;j<6;j++){const a=j*Math.PI/3+time*8;c.fillStyle='#ebbe79';c.fillRect(p.x+Math.cos(a)*22,p.y-10+Math.sin(a)*12,4,4);}}
+        for(let j=0;j<4;j++){const a=time*7+j*Math.PI/2,r=38+t*35;blade(c,e.x+Math.cos(a)*r,e.y+Math.sin(a)*r*.7,22,time*19+j);}
+
       }else if(e.kind==='scope'){
-        for(const p of e.points||[]){ring(c,p.x,p.y-25,19-t*10,'#ffcf89',1);line(c,[{x:p.x-28,y:p.y-25},{x:p.x+28,y:p.y-25}],'#ffe3a2');line(c,[{x:p.x,y:p.y-54},{x:p.x,y:p.y+4}],'#ffe3a2');if(t>.25)line(c,[{x:e.x,y:e.y},{x:p.x,y:p.y-25}],'#fff0cc',t>.65?1:3);}
+        for(const p of e.points||[]){ring(c,p.x,p.y-25,19-t*10,'#ffcf89',1);line(c,[{x:p.x-28,y:p.y-25},{x:p.x+28,y:p.y-25}],'#ffe3a2');line(c,[{x:p.x,y:p.y-54},{x:p.x,y:p.y+4}],'#ffe3a2');}
       }else if(e.kind==='frost'){
         ring(c,e.x,e.y,10+t*28,'#c4f8ff',.7);for(let j=0;j<5;j++){const a=(j-2)*.16;line(c,[{x:e.x,y:e.y},{x:e.x+Math.cos(a)*t*80,y:e.y+Math.sin(a)*t*80}],'#a6e7f6',1);}
       }else if(e.kind==='impact'){
@@ -659,7 +952,7 @@ export class BattleEffects {
         for(const p of e.points||[]){
           if(e.kit==='invoker'){ring(c,p.x,p.y+10,25,color,.5);ring(c,p.x,p.y+10,12+Math.sin(time*8)*4,'#f8dca7',.5);}
           else if(e.kit==='wd'||e.kit==='dazzle'){c.fillStyle=color;c.fillRect(p.x-9,p.y-15-t*25,18,4);c.fillRect(p.x-2,p.y-22-t*25,4,18);ring(c,p.x,p.y+25,17+t*14,color);}
-          else if(['lina','pudge','lion'].includes(e.kit)){line(c,[{x:e.x,y:e.y},{x:(e.x+p.x)/2,y:(e.y+p.y)/2-12},{x:p.x,y:p.y}],color,e.kit==='pudge'?5:3);ring(c,p.x,p.y,8+t*22,color,1);}
+          else if(['lina','pudge','lion'].includes(e.kit)){c.fillStyle=color;c.fillRect(e.x-6,e.y-6,12*(1-t),12*(1-t));}
           else if(e.kit==='cm'){ring(c,p.x,p.y,18,color,1);for(let j=0;j<6;j++){const a=j*Math.PI/3;line(c,[{x:p.x,y:p.y},{x:p.x+Math.cos(a)*26,y:p.y+Math.sin(a)*26}],color);}}
           else if(e.kit==='pa'){line(c,[{x:p.x-25,y:p.y-30},{x:p.x+20,y:p.y+20}],color,4);}
         }
@@ -667,6 +960,47 @@ export class BattleEffects {
       c.restore();
     }
   }
+}
+
+export function drawSkillIcon(c,kit){
+  c.clearRect(0,0,48,48);c.save();
+  if(kit==='timber')blade(c,24,24,18,.3);
+  else if(kit==='sf'||kit==='requiem'){
+    if(kit==='requiem'){for(let i=0;i<3;i++){const a=i*Math.PI*2/3;soul(c,24+Math.cos(a)*11,24+Math.sin(a)*11,a,.57,i);}}
+    else soul(c,28,25,-.3,1,0);
+  }else if(kit==='drow'){
+    for(let i=0;i<3;i++){const y=12+i*11;line(c,[{x:6,y:y+8},{x:37,y:y-5}],'#ace9f6',2);c.fillStyle='#edffff';c.beginPath();c.moveTo(42,y-8);c.lineTo(31,y-7);c.lineTo(36,y);c.fill();}
+  }else if(kit==='rubick'){
+    line(c,[{x:6,y:12},{x:22,y:20},{x:12,y:29},{x:38,y:37}],'#59954f',7);line(c,[{x:6,y:12},{x:22,y:20},{x:12,y:29},{x:38,y:37}],'#c1ffa4',3);for(const p of [{x:7,y:10},{x:38,y:37}]){c.fillStyle='#d0ffac';c.fillRect(p.x-3,p.y-3,6,6);}
+  }else if(kit==='eul'){
+    for(let i=0;i<5;i++)ring(c,24,9+i*7,5+i*3,'#c7e8e7',.3);
+  }else if(kit==='shrapnel'){
+    for(let i=0;i<7;i++){const x=8+(i*11)%32,y=4+(i*7)%27;line(c,[{x:x-4,y},{x:x+3,y:y+13}],'#ffe2a0',3);c.fillStyle='#d29c5b';c.fillRect(x+2,y+12,3,6);}
+  }else{
+    ring(c,24,24,15,'#ecd59c',1);line(c,[{x:24,y:3},{x:24,y:45}],'#ecd59c',2);line(c,[{x:3,y:24},{x:45,y:24}],'#ecd59c',2);
+  }
+  c.restore();
+}
+
+export function drawItemIcon(c,id,size=48){
+  c.clearRect(0,0,size,size);c.save();c.scale(size/48,size/48);c.fillStyle='#15201d';c.fillRect(0,0,48,48);
+  if(id==='bkb'){
+    c.fillStyle='#6f4f26';c.fillRect(20,6,10,36);c.fillStyle='#d69e42';c.fillRect(17,12,16,24);c.fillStyle='#ffe9a0';c.fillRect(22,13,6,20);c.fillStyle='#b57b32';c.fillRect(10,6,28,7);c.fillRect(13,37,23,6);c.fillStyle='#f7cf72';c.fillRect(10,6,28,3);c.fillRect(14,37,22,3);
+  }else if(id==='heart'){
+    c.fillStyle='#732a3a';polygonIcon(c,[[24,41],[5,23],[5,12],[11,6],[20,6],[24,12],[29,5],[38,7],[43,15],[41,27]]);c.fillStyle='#df6771';polygonIcon(c,[[24,35],[10,20],[12,12],[19,13],[24,19],[29,11],[36,13],[36,23]]);c.fillStyle='#ffb6a1';c.fillRect(13,13,6,7);c.fillStyle='#8c6039';c.fillRect(25,0,5,12);c.fillRect(32,1,4,8);
+  }else if(id==='daedalus'){
+    c.save();c.translate(24,24);c.rotate(-.65);c.fillStyle='#985149';c.fillRect(-19,-3,37,6);c.fillRect(-3,-18,6,38);c.fillStyle='#eab385';c.fillRect(-17,-13,4,25);c.fillRect(12,-13,4,25);c.fillRect(-16,-16,30,4);c.fillRect(-16,12,30,4);c.fillStyle='#f2d7a6';c.fillRect(-2,-22,3,33);c.fillStyle='#ec6664';c.fillRect(-4,14,8,8);c.restore();
+  }else{
+    c.save();c.translate(25,25);c.rotate(-.55);c.fillStyle='#997c52';c.fillRect(-3,-1,6,24);c.fillStyle='#415c82';c.fillRect(-17,-16,34,20);c.fillStyle='#90c8ec';c.fillRect(-17,-16,34,5);c.fillStyle='#d6f2ff';c.fillRect(-17,-16,5,20);c.fillStyle='#6f9dc7';c.fillRect(12,-16,5,20);c.restore();line(c,[{x:34,y:4},{x:28,y:17},{x:38,y:13},{x:28,y:31}],'#d3f1ff',2);
+  }
+  c.restore();
+}
+function polygonIcon(c,points){c.beginPath();points.forEach(([x,y],i)=>i?c.lineTo(x,y):c.moveTo(x,y));c.closePath();c.fill();}
+export function drawItemAuras(c,p,time){
+  if(p.respawn>0||p.lives<=0)return;
+  if(p.bkbLeft>0){c.save();c.globalAlpha=.75;c.strokeStyle='#f5d270';c.lineWidth=3;c.beginPath();c.ellipse(p.x,p.y-35,38,58,0,0,Math.PI*2);c.stroke();for(let i=0;i<6;i++){const a=time*2+i*Math.PI/3;c.fillStyle='#ffe4a1';c.fillRect(p.x+Math.cos(a)*36,p.y-35+Math.sin(a)*53,4,4);}c.restore();}
+  if(p.staticLeft>0){c.save();c.strokeStyle='#9ddafa';c.lineWidth=2;c.beginPath();for(let i=0;i<=16;i++){const a=i*Math.PI/8,r=43+Math.sin(i*9+time*18)*5,x=p.x+Math.cos(a)*r,y=p.y-30+Math.sin(a)*r;i?c.lineTo(x,y):c.moveTo(x,y);}c.stroke();c.restore();}
+  if(p.spawnShield>0)ring(c,p.x,p.y-35,42,'#dbeac075',1);
 }
 
 (() => {
@@ -679,7 +1013,7 @@ export class BattleEffects {
   let lastTime=0,elapsed=0,uiTimer=0,saveTimer=0,lastEvent=0,toastTimer;
   const effects=new BattleEffects(),motion=new MotionBuffer();
 
-  let fps=0,fpsFrames=0,fpsStart=0,enemyTeamKey='';
+  let fps=0,fpsFrames=0,fpsStart=0,enemyTeamKey='',iconKit='';let aimPoint=null,aimSent=0,shootHeld=false,mouseShotAt=0;
   let particles=[],floating=[],saveAvailable=true;
   const held=new Set();let walkSent=0,lastWalk='',localMotion=null,moveMarker=null;
   function setTheme(theme){document.documentElement.dataset.theme=theme;document.querySelector('meta[name="theme-color"]').content=theme==='dark'?'#101613':'#f4f2e9';$('themeButton').textContent=theme==='dark'?'☀ Светлая тема':'☾ Тёмная тема';$('themeButton').setAttribute('aria-pressed',String(theme==='dark'));try{localStorage.setItem('oscar-theme',theme);}catch{}}
@@ -696,7 +1030,7 @@ export class BattleEffects {
   } catch { /* Local play also works with restricted storage. */ }
   const number=n=>Math.floor(n).toLocaleString('ru-RU');
   const me=()=>world.players[chosen]||world.players.drow;
-  function save(){if(online)return;try{localStorage.setItem(SAVE_KEY,JSON.stringify({version:2,players:world.players,wave:world.wave,kills:world.kills,heroKills:world.heroKills,bossKills:world.bossKills,wins:world.wins,losses:world.losses,seconds:world.seconds}));localStorage.setItem('oscar-hero',chosen);localStorage.setItem('oscar-sound',String(sound));saveAvailable=true;}catch{saveAvailable=false;}}
+  function save(){if(online)return;try{localStorage.setItem(SAVE_KEY,JSON.stringify({version:2,players:Object.fromEntries(Object.entries(world.players).map(([id,p])=>[id,{...p,recentHits:[],dps:0}])),wave:world.wave,kills:world.kills,heroKills:world.heroKills,bossKills:world.bossKills,wins:world.wins,losses:world.losses,seconds:world.seconds}));localStorage.setItem('oscar-hero',chosen);localStorage.setItem('oscar-sound',String(sound));saveAvailable=true;}catch{saveAvailable=false;}}
   function tone(f=440,d=.06,type='sine'){
     if(!sound)return;try{audio||=new(window.AudioContext||window.webkitAudioContext)();if(audio.state==='suspended')audio.resume();const o=audio.createOscillator(),g=audio.createGain();o.type=type;o.frequency.value=f;g.gain.setValueAtTime(.025,audio.currentTime);g.gain.exponentialRampToValueAtTime(.001,audio.currentTime+d);o.connect(g);g.connect(audio.destination);o.start();o.stop(audio.currentTime+d);}catch{}
   }
@@ -715,14 +1049,21 @@ export class BattleEffects {
       if(event.type==='bossKill')tone(130,.45,'sawtooth');
       if(event.type==='enemyAbility')floating.push({x:750,y:165+(event.id%4)*17,text:ENEMY_HEROES.find(h=>h.id===event.kit).name+': '+event.skill,color:'#e9bca6',life:1.8});
       if(event.type==='heroKill'){toast(heroInfo(event.hero).name+' '+(event.hero==='sniper'?'УКРАЛ ФРАГ: ':'ДОБИЛ: ')+event.name);tone(220,.18,'triangle');}
-      if(event.type==='down'&&event.hero===chosen)toast('Передышка 8 секунд. Потом снова фарм.');
+      if(event.type==='down'&&event.hero===chosen)toast(event.lives>0?'Потеряна жизнь · осталось '+event.lives+'/5 · возвращение через 8 сек':'Жизни закончились. Наблюдай за отрядом.');
+      if(event.type==='purchase'&&event.hero===chosen)toast('Куплено: '+ITEMS.find(i=>i.id===event.item).name);
+      if(event.type==='lightning')effects.lightning(event);
+      if(event.type==='itemActive')effects.item(event);
+      if(event.type==='gameOver')toast('Пять жизней исчерпаны. Забег завершён.');
+      if(event.type==='crit')floating.push({x:event.x,y:event.y-75,text:'КРИТ '+event.damage,color:'#ffc675',life:.7});
       if(event.type==='shot'){const predicted=event.hero===chosen&&event.inputSeq&&online?.predicted.delete(event.inputSeq);if(!predicted){effects.cast(event);if(event.hero===chosen)tone(event.ability?900:550,.04,'triangle');}}
       if(event.type==='impact')effects.impact(event);
       if(event.type==='requiem')effects.requiem(event);
+      if(event.type==='raze')effects.raze(event);
       if(event.type==='hazardHit')effects.hazard(event);
       if(event.type==='neutralSpell'||event.type==='enemyAttack')effects.neutral(event);
       if(event.type==='channelCancel'&&event.hero===chosen)toast('Requiem прерван оглушением!');
       if(event.type==='enemyAbility')effects.enemy(event);
+      if(event.type==='enemyImpact')effects.enemyImpact(event);
       if(event.type==='sunStrike')effects.sun(event);
       if(event.type==='kill'||event.type==='heroKill'||event.type==='bossKill'){
         floating.push({x:event.x,y:event.y-65,text:'+'+event.gold+' G',color:'#e6d199',life:1.3});
@@ -733,14 +1074,15 @@ export class BattleEffects {
     lastEvent=world.eventId;
   }
   function action(type,extra={}){
+    if(['attack','ability','raze','eul','shrapnel'].includes(type))extra={...currentAim(),...extra};
     if(['move','walk'].includes(type))startLocalMotion(type,extra);
-    if(online){if(!online.up){toast('Восстанавливаем связь с сервером…');return;}if(online.queue.length>=12)return;const seq=++online.nextSeq;online.queue.push({type,...extra,seq});predictCast(type,seq);flushCommands();return;}
-    if(chosen==='host'&&['attack','ability','auto','upgrade','move','walk','target','eul','ultimate'].includes(type))return;
-    if(!world.started&&['attack','ability'].includes(type))command(world,chosen,{type:'start'});
-    if(soloPaused&&['attack','ability'].includes(type))return;
-    const result=type==='host'&&chosen==='host'?hostCommand(world,extra):command(world,chosen==='host'?'drow':chosen,{type,...extra});if(!result.ok&&['ability','eul','ultimate'].includes(type))toast(result.message);processEvents();updateUI();save();
+    if(online){if(!online.up){toast('Восстанавливаем связь с сервером…');return;}if(online.queue.length>=12)return;const seq=++online.nextSeq;online.queue.push({type,...extra,seq});predictCast(type,seq,extra);flushCommands();return;}
+    if(chosen==='host'&&['attack','ability','auto','upgrade','move','walk','aim','raze','eul','ultimate','shrapnel','buy','item'].includes(type))return;
+    if(!world.started&&['attack','ability','raze'].includes(type))command(world,chosen,{type:'start'});
+    if(soloPaused&&['attack','ability','raze','item','eul','ultimate','shrapnel','move','walk'].includes(type))return;
+    const result=type==='host'&&chosen==='host'?hostCommand(world,extra):command(world,chosen==='host'?'drow':chosen,{type,...extra});if(!result.ok&&['ability','raze','eul','ultimate','shrapnel','buy','item'].includes(type))toast(result.message);processEvents();updateUI();save();
   }
-  function choose(id){if(online)return;held.clear();localMotion=null;chosen=id;save();updateUI();renderPortraits();}
+  function choose(id){if(online)return;held.clear();shootHeld=false;aimPoint=null;localMotion=null;chosen=id;save();updateUI();renderPortraits();}
   function togglePause(){if(!world.started||online&&chosen==='host')return;if(online)action('pause',{value:!me().paused});else{soloPaused=!soloPaused;updateUI();save();}}
   async function request(path,body){
     const response=await fetch(path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body),signal:AbortSignal.timeout(6000)});
@@ -786,6 +1128,7 @@ export class BattleEffects {
       if(data.type!=='state')return;
       if(!data.full&&data.seq!==current.frameSeq+1){if(!current.resync){current.resync=true;socket.send(JSON.stringify({type:'resync'}));}return;}
       try{current.rawWorld=applyNetFrame(current.rawWorld,data);}catch{if(!current.resync){current.resync=true;socket.send(JSON.stringify({type:'resync'}));}return;}
+      if(world.runId!==current.rawWorld.runId){effects.clear();motion.clear();localMotion=null;shootHeld=false;held.clear();lastEvent=0;}
       world=current.rawWorld;current.frameSeq=data.seq;current.lastAt=performance.now();current.up=true;current.failures=0;
       if(data.full){localMotion=null;motion.clear();current.resync=false;lastEvent=world.eventId;if(Number.isSafeInteger(data.lastSeq))acknowledge(current,data);}
       if(data.roster)current.roster=data.roster;if(data.inviteBase)current.inviteBase=data.inviteBase;
@@ -801,18 +1144,23 @@ export class BattleEffects {
       current.failures++;current.retryTimer=setTimeout(()=>openLive(current),Math.min(3000,250*current.failures));updateUI();
     };
   }
-  function predictCast(type,seq){
+  function currentAim(){const p=me();return aimPoint||{x:p.aimX??p.x+500,y:p.aimY??p.y-35};}
+  function predictCast(type,seq,extra={}){
     if(chosen==='host'||!['attack','ability'].includes(type))return;
     const p=me(),now=performance.now(),ability=type==='ability';
-    if(!world.started||p.paused||p.respawn>0||p.stun>0||p.hex>0||p.channel>0||ability&&p.mana<manaCost(p)||ability&&(p.cooldown>0||online.predictedAbilityUntil>now))return;
+    if(!world.started||p.paused||p.respawn>0||p.stun>0||p.hex>0||p.channel>0||ability&&(p.skill==='sf'||p.mana<manaCost(p)||p.cooldown>0||online.predictedAbilityUntil>now))return;
     if(!ability&&now<(online.nextLocalShot||0))return;
-    const targets=world.enemies.filter(e=>allowedTarget(p,e,ability)&&Math.hypot(e.x-p.x,e.y-p.y)<=attackRange(p)+(ability?100:0)).sort((a,b)=>Math.hypot(a.x-p.x,a.y-p.y)-Math.hypot(b.x-p.x,b.y-p.y));if(!targets.length)return;
-    const skill=ability?p.skill:p.id,index=HEROES.findIndex(h=>h.id===chosen),seat={x:p.x-30,y:p.y+15};
-    const count=ability?({drow:5,timber:8,sf:6,rubick:6,sniper:1}[skill]):1;
-    effects.cast({hero:chosen,skill,ability,x:seat.x+50,y:seat.y-60,points:targets.slice(0,count).map(e=>({x:e.x,y:e.y-15}))});
+    const aim=extra.x===undefined?currentAim():extra,dx=aim.x-p.x,dy=aim.y-(p.y-35),len=Math.hypot(dx,dy)||1;
+    const skill=ability?p.skill:p.id;
+    effects.cast({hero:chosen,skill,ability,x:p.x,y:p.y-35,points:[{x:p.x+dx/len*120,y:p.y-35+dy/len*120}]});
     online.predicted.add(seq);if(online.predicted.size>32)online.predicted.delete(online.predicted.values().next().value);
-    online.localPoseUntil=now+220;online.nextLocalShot=now+250;if(ability)online.predictedAbilityUntil=now+heroInfo(skill).cooldown*1000;tone(ability?900:550,.04,'triangle');
+    online.localPoseUntil=now+220;online.nextLocalShot=now+1000/attackSpeed(p);if(ability)online.predictedAbilityUntil=now+abilityCooldown(p)*1000;tone(ability?900:550,.04,'triangle');
   }
+  function sendAim(force=false){
+    if(chosen==='host'||!world.started||soloPaused||!aimPoint)return;
+    if(!force&&performance.now()-aimSent<100)return;aimSent=performance.now();action('aim',currentAim());
+  }
+
   function leaveRoom(notify=true){
     const old=online;if(!old)return;if(notify)request('/api/rooms/'+old.code+'/leave',{token:old.token}).catch(()=>{});
     online=null;localMotion=null;held.clear();old.socket?.close(4000,'Left room');clearTimeout(old.retryTimer);clearInterval(old.pingTimer);motion.clear();effects.clear();world=soloWorld;lastEvent=world.eventId;location.hash='';soloPaused=false;updateUI();renderPortraits();
@@ -827,42 +1175,70 @@ export class BattleEffects {
     $('saveStatus').textContent=online?'Комната '+online.code:saveAvailable?'Прогресс сохранён':'Сохранение недоступно';
     $('sessionTime').textContent=String(Math.floor(world.seconds/60)).padStart(2,'0')+':'+String(Math.floor(world.seconds%60)).padStart(2,'0');
     $('heroName').textContent=h.name.toUpperCase();$('heroClass').textContent=h.hero.toUpperCase();
-    $('heroStatus').textContent=chosen==='host'?'Следит за отрядом':p.respawn>0?'Встанет через '+Math.ceil(p.respawn)+' сек':personalPause?'На перекуре':chosen==='sniper'?(world.phase==='boss'?'Рошан: авто ≤4% · Q ≤8% HP':'Не трогает крипов. Стилит героев.'):p.channel>0?'Готовит Requiem of Souls':p.moving?'Меняет позицию':p.auto?'Фармит. Следит за маной.':'Ручной фарм';
-    $('sceneStatus').textContent=online?(online.up?'WS · '+online.ping+' MS · '+fps+' FPS':'ПЕРЕПОДКЛЮЧЕНИЕ…'):world.started?'ОТРЯД ФАРМИТ':'ОТРЯД ЖДЁТ';
-    $('autoButton').disabled=chosen==='host';$('autoButton').setAttribute('aria-pressed',String(p.auto));$('soundButton').setAttribute('aria-pressed',String(sound));
+    $('heroStatus').textContent=chosen==='host'?'Следит за отрядом':p.lives<=0?'ВЫБЫЛ · ЖИЗНИ ИСЧЕРПАНЫ':p.respawn>0?'Встанет через '+Math.ceil(p.respawn)+' сек':personalPause?'На перекуре':chosen==='sniper'?('Стил: авто ≤'+Math.round(stealThreshold(p,false,world.phase==='boss')*100)+'% · Q ≤'+Math.round(stealThreshold(p,true,world.phase==='boss')*100)+'% · E: Шрапнель'):p.channel>0?'Готовит Requiem of Souls':p.moving?'Меняет позицию':p.auto?'Автоогонь по направлению прицела':'Целится вручную';
+    $('sceneStatus').textContent=world.gameOver?'ЗАБЕГ ЗАВЕРШЁН':online?(online.up?'WS · '+online.ping+' MS · '+fps+' FPS':'ПЕРЕПОДКЛЮЧЕНИЕ…'):world.started?'ОТРЯД ФАРМИТ':'ОТРЯД ЖДЁТ';
+    canvas.style.cursor=chosen==='host'||!world.started||p.lives<=0?'default':'none';
+    $('autoButton').disabled=chosen==='host'||p.lives<=0||world.gameOver;$('autoButton').setAttribute('aria-pressed',String(p.auto));$('soundButton').setAttribute('aria-pressed',String(sound));
     $('soundButton').setAttribute('aria-label',sound?'Выключить звук':'Включить звук');$('soundButton').querySelector('use').setAttribute('href',sound?'#sound':'#mute');
     $('pauseButton').disabled=!!online&&chosen==='host';$('pauseButton').setAttribute('aria-pressed',String(personalPause));$('pauseButton').setAttribute('aria-label',personalPause?'Продолжить':'Пауза');$('pauseButton').querySelector('use').setAttribute('href',personalPause?'#play':'#pause');
-    $('pausedOverlay').hidden=online||!soloPaused;$('startOverlay').hidden=world.started;
+    $('pausedOverlay').hidden=online||!soloPaused;$('startOverlay').hidden=world.started||world.gameOver;
+    $('gameOverOverlay').hidden=!world.gameOver;$('gameOverSummary').textContent='Волна '+world.wave+' · '+number(world.kills)+' крипов · '+world.wins+' побед в тимфайтах';$('restartRunButton').disabled=!!online&&!online.host;$('restartRunHint').textContent=online&&!online.host?'Новый забег запускает ведущий. Места игроков сохранятся.':'У всех снова будет по 5 жизней. Предметы и прокачка начнутся с нуля.';
     $('startButtonText').textContent=world.seconds>0?'ПРОДОЛЖИТЬ ФАРМ':'СЕСТЬ И КАЧАТЬСЯ';
     const cooldown=Math.max(p.cooldown,online?.predictedAbilityUntil?(online.predictedAbilityUntil-performance.now())/1000:0);$('abilityName').textContent=skill.skill;$('multiStatus').textContent=cooldown>0?'Ещё '+Math.ceil(cooldown)+' сек':skill.hint;$('manaCost').textContent=manaCost(p)+' MP';
-    $('multiButton').title=skill.skill+' (Q)';$('multiButton').disabled=chosen==='host'||cooldown>0||p.mana<manaCost(p)||p.channel>0||p.stun>0||p.hex>0||personalPause||p.respawn>0||!!(online&&!online.up);
+    if(iconKit!==p.skill){iconKit=p.skill;drawSkillIcon($('abilityIcon').getContext('2d'),p.skill);}
+    $('multiButton').hidden=p.skill==='sf';$('razeAbilities').hidden=p.skill!=='sf';
+    for(const r of RAZES){const rules=razeRules(p,r.id),button=$('raze-'+r.id);button.disabled=chosen==='host'||p[r.cooldown]>0||p.mana<rules.cost||p.channel>0||p.stun>0||p.hex>0||p.respawn>0||personalPause||!!(online&&!online.up);$('raze-'+r.id+'-status').textContent=p[r.cooldown]>0?Math.ceil(p[r.cooldown])+' сек':rules.cost+' MP · '+r.distance;button.title=r.name+' ('+r.key+') · '+rules.cost+' MP · '+rules.cd.toFixed(1)+' сек · радиус '+rules.radius;}
+    $('multiButton').title=skill.skill+' (Q) · '+manaCost(p)+' MP · '+abilityCooldown(p).toFixed(1)+' сек';$('multiButton').disabled=chosen==='host'||cooldown>0||p.mana<manaCost(p)||p.channel>0||p.stun>0||p.hex>0||personalPause||p.respawn>0||!!(online&&!online.up);
     $('attackButton').disabled=chosen==='host'||personalPause||p.respawn>0||!!(online&&!online.up);
-    $('heroHealth').textContent=number(p.hp)+' / '+number(maxHP(p))+' HP · Фрагов: '+p.heroKills;
+    $('heroHealth').textContent=number(p.hp)+' / '+number(maxHP(p))+' HP · K/D/A '+p.heroKills+'/'+(p.deaths||0)+'/'+(p.assists||0);
+    $('heroLives').textContent=chosen==='host'?'Жизни отряда: '+Object.values(world.players).reduce((n,p)=>n+p.lives,0)+'/25':'♥'.repeat(p.lives)+'♡'.repeat(5-p.lives)+' · '+p.lives+'/5';
+    $('combatStats').textContent='Урон: '+number(p.damageDealt||0)+' · Магия: '+number(p.spellDamage||0)+' · DPS (5с): '+number(p.dps||0);
+    for(const h of HEROES){const member=world.players[h.id];$('stats-lives-'+h.id).textContent='Жизни: '+member.lives+'/5';$('stats-'+h.id).classList.toggle('your-stats',h.id===chosen);for(const [col,value] of Object.entries({kda:member.heroKills+'/'+(member.deaths||0)+'/'+(member.assists||0),lh:number(member.kills),total:number(member.damageDealt||0),spell:number(member.spellDamage||0),heroes:number(member.heroDamage||0),creeps:number(member.creepDamage||0),boss:number(member.bossDamage||0),taken:number(member.damageTaken||0),dps:number(member.dps||0)}))$('stat-'+h.id+'-'+col).textContent=value;}
     $('manaText').textContent=number(p.mana)+' / '+number(maxMana(p))+' MP · +'+manaRegen(p).toFixed(1)+'/сек';$('manaFill').style.width=(100*p.mana/maxMana(p))+'%';
-    $('sfAbilities').hidden=chosen!=='sf';
+    $('sfAbilities').hidden=chosen!=='sf';$('sniperAbilities').hidden=chosen!=='sniper';
+    const shrapnel=shrapnelRules(p);$('shrapnelButtonStatus').textContent=p.shrapnelCooldown>0?Math.ceil(p.shrapnelCooldown)+' сек':shrapnel.cost+' MP';
+    $('shrapnelButton').title='Шрапнель (E) · '+shrapnel.cost+' MP · '+shrapnel.cooldown.toFixed(1)+' сек · '+shrapnel.duration.toFixed(1)+' сек обстрела';
+    $('shrapnelButton').disabled=chosen!=='sniper'||p.shrapnelCooldown>0||p.mana<shrapnel.cost||p.channel>0||p.stun>0||p.hex>0||p.respawn>0||personalPause||!!(online&&!online.up);
     for(const [key,button,label,cost] of [['eulCooldown','eulButton','Eul',75],['ultCooldown','ultButton','Requiem',175]]){
       $(button).disabled=chosen!=='sf'||p[key]>0||p.mana<cost||p.channel>0||p.stun>0||p.hex>0||p.respawn>0||personalPause||!!(online&&!online.up);
       $(button+'Status').textContent=p[key]>0?Math.ceil(p[key])+' сек':cost+' MP';
     }
-    $('channelStatus').textContent=p.channel>0?'REQUIEM: '+p.channel.toFixed(1)+' сек · не двигайся':p.slow>0?'ЗАМЕДЛЕНИЕ · '+Math.ceil(p.slow)+' сек':'WASD / стрелки · клик по земле — идти · клик по врагу — выбрать цель';
-    const selected=world.enemies.find(e=>e.id===p.target&&e.hp>0);$('targetStatus').textContent=selected?(selected.heroName||selected.name||'Крип')+' · '+number(selected.hp)+' HP':'Автоматический выбор ближайшей цели';
+    $('channelStatus').textContent=p.lives<=0?'Наблюдатель до нового забега':p.channel>0?'REQUIEM: '+p.channel.toFixed(1)+' сек · не двигайся':p.slow>0?'ЗАМЕДЛЕНИЕ · '+Math.ceil(p.slow)+' сек':'Мышь — прицел · ЛКМ / Пробел — огонь · ПКМ / WASD — идти · SF: Z / X / C';
+    const aim=currentAim();$('targetStatus').textContent='Ручной прицел: '+Math.round(aim.x)+', '+Math.round(aim.y)+' · снаряды без доворачивания';
     $('waveDetails').textContent=world.phase==='boss'?'РОШАН · −35% входящего урона · регенерация · лимит 180 сек':world.phase==='teamfight'?'Враги: усиленное HP · −28% входящего урона · быстрые способности':rules.count+' крипов · '+rules.hp+' HP · '+rules.damage+' урона · '+rules.speed+' скорость';
-    for(const type of ['damage','speed','wisdom']){$(type+'Price').textContent=number(upgradeCost(p,type))+' G';$(type+'Rank').textContent=p[type]?'УР. '+p[type]:'I';document.querySelector('[data-upgrade="'+type+'"]').disabled=chosen==='host'||p.gold<upgradeCost(p,type)||!!(online&&!online.up);}
+    for(const type of SKILL_UPGRADES){const rank=p[type]||0,info=upgradeInfo(p,type),cost=upgradeCost(p,type);$(type+'Name').textContent=info.name;$(type+'Hint').textContent=info.hint;$(type+'Price').textContent=Number.isFinite(cost)?number(cost)+' G':'МАКС';$(type+'Rank').textContent='УР. '+rank+' / '+MAX_SKILL_RANK;document.querySelector('[data-upgrade="'+type+'"]').disabled=chosen==='host'||p.lives<=0||world.gameOver||!Number.isFinite(cost)||p.gold<cost||!!(online&&!online.up);}
+
     $('hostPanelButton').hidden=!(online?.host||!online&&chosen==='host');
     $('roomLobby').hidden=!!online;$('roomConnected').hidden=!online;
     if(online){$('roomCode').textContent=online.code;$('connectionStatus').textContent=online.up?'WebSocket · '+online.ping+' мс · '+fps+' FPS':'Связь потеряна. Переподключаемся…';}
+    updateShop(p,personalPause);
     $('resetButton').disabled=!!online;$('resetButton').title=online?'Сброс доступен только в одиночной игре':'Сбросить одиночную игру';
-    for(const hero of PICKS){const card=$('pick-'+hero.id),player=world.players[hero.id]||world.players.drow;card.classList.toggle('selected',chosen===hero.id);card.setAttribute('aria-pressed',String(chosen===hero.id));card.disabled=!!online;const human=online?.roster.find(r=>r.id===hero.id)?.human;$('status-'+hero.id).textContent=hero.id==='host'?(chosen==='host'?'ТЫ · ВЕДУЩИЙ':human?'ВЕДУЩИЙ ОНЛАЙН':'НАБЛЮДАТЕЛЬ'):hero.id===chosen?'ТЫ · УР. '+player.level:human?'ИГРОК · УР. '+player.level:'БОТ · УР. '+player.level;$('hp-'+hero.id).style.width=(100*player.hp/maxHP(player))+'%';}
+    for(const hero of PICKS){const card=$('pick-'+hero.id),player=world.players[hero.id]||world.players.drow;card.classList.toggle('selected',chosen===hero.id);card.setAttribute('aria-pressed',String(chosen===hero.id));card.disabled=!!online;const human=online?.roster.find(r=>r.id===hero.id)?.human;$('status-'+hero.id).textContent=hero.id==='host'?(chosen==='host'?'ТЫ · ВЕДУЩИЙ':human?'ВЕДУЩИЙ ОНЛАЙН':'НАБЛЮДАТЕЛЬ'):hero.id===chosen?'ТЫ · УР. '+player.level:human?'ИГРОК · УР. '+player.level:'БОТ · УР. '+player.level;if(hero.id!=='host')$('status-'+hero.id).textContent+=(player.lives<=0?' · ВЫБЫЛ':' · ♥ '+player.lives+'/5');$('hp-'+hero.id).style.width=(100*player.hp/maxHP(player))+'%';}
     const boss=world.phase==='boss',fighting=boss||world.phase==='teamfight';$('fightPanel').hidden=!fighting;$('enemyLineup').hidden=!fighting;
     $('fightTitle').textContent=boss?'ФИНАЛЬНЫЙ БОСС · РОШАН':'ТИМФАЙТ 5 × 5';
     $('fightScore').textContent='Тимфайты: '+world.wins+' побед · '+world.losses+' поражений'+(world.bossKills?' · Рошан убит':'' );
     if(fighting){
       const roshan=world.enemies.find(e=>e.boss);
       $('fightAlive').textContent=boss&&roshan?number(roshan.hp)+' / '+number(roshan.maxHP)+' HP · '+Math.max(0,Math.ceil(180-world.fightTime))+' СЕК':Object.values(world.players).filter(p=>p.respawn<=0).length+' НАШИХ / '+world.enemies.length+' ВРАГОВ';
-      $('fightHint').textContent=boss?(world.breakTime>0?'НОВАЯ ПОПЫТКА ЧЕРЕЗ '+Math.ceil(world.breakTime)+' СЕК':roshan?.enraged?'ЯРОСТЬ! ЭМИР ЖДЁТ 8% HP':'BASH · THUNDER CLAP · ЭМИР ЖДЁТ 8% HP'):world.enemies.some(e=>e.hero&&e.hp/e.maxHP<=.3)?'ЭМИР, ТВОЙ ВЫХОД!':'ЭМИР ЖДЁТ 30% HP';
+      const emir=world.players.sniper,limit=Math.round(stealThreshold(emir,true,boss)*100);
+      $('fightHint').textContent=boss?(world.breakTime>0?'НОВАЯ ПОПЫТКА ЧЕРЕЗ '+Math.ceil(world.breakTime)+' СЕК':(roshan?.enraged?'ЯРОСТЬ! ':'')+'ЭМИР: Q ПРИ ≤'+limit+'% HP'):world.enemies.some(e=>e.hero&&e.hp/e.maxHP<=stealThreshold(emir,true))?'ЭМИР, ТВОЙ ВЫХОД!':'ЭМИР ЖДЁТ '+limit+'% HP';
       const teamKey=world.phase+':'+world.wave+':'+world.enemyTeam.join(',');
       if(enemyTeamKey!==teamKey){enemyTeamKey=teamKey;$('enemyLineup').innerHTML=world.enemyTeam.map(id=>{const h=id==='roshan'?ROSHAN:ENEMY_HEROES.find(h=>h.id===id);return '<div id="enemy-card-'+id+'" class="enemy-card"><strong>'+h.name+'</strong><span>'+h.skill+'</span><small>'+h.description+'</small><div class="enemy-hp"><i id="enemy-hp-'+id+'"></i></div></div>';}).join('');}
       for(const id of world.enemyTeam){const e=world.enemies.find(e=>e.kit===id&&e.hp>0);$('enemy-card-'+id).classList.toggle('defeated',!e);$('enemy-hp-'+id).style.width=(e?e.hp/e.maxHP*100:0)+'%';}
+    }
+  }
+  function updateShop(p,personalPause){
+    const purchase=shoppingPlan(p),canBuy=chosen!=='host'&&p.lives>0&&!world.gameOver&&!(online&&!online.up);
+    $('shopSummary').textContent=chosen==='host'?'Предметы покупает каждый игрок':ITEMS.filter(item=>hasItem(p,item.id)).length+' / 4 предмета · '+number(p.gold)+' G';
+    for(const item of ITEMS){
+      const owned=hasItem(p,item.id),button=$('buy-'+item.id);button.disabled=!canBuy||owned||p.gold<item.cost;button.closest('.shop-card').classList.toggle('owned',owned);
+      button.textContent=owned?'✓ В инвентаре':number(item.cost)+' G · Купить';
+      $('item-note-'+item.id).textContent=item.id==='daedalus'&&p.id==='sniper'?'Эмиру: +3 п.п. к порогу стила (до лимита)':owned?'Предмет куплен · не занимает слот умения':'Один экземпляр на героя';
+    }
+    $('shopAdvice').textContent=chosen==='host'?'У каждого героя 5 жизней на весь забег. Защитные предметы помогают их сохранить.':p.lives<=0?'У героя закончились жизни. Предметы сохранятся до конца забега.':purchase?'Совет: '+(purchase.type==='buy'?ITEMS.find(i=>i.id===purchase.item).short:upgradeInfo(p,purchase.upgrade).name)+' · '+number(purchase.cost)+' G. Покупать можно между атаками; жизней в продаже нет.':'Все предметы и улучшения куплены.';
+    for(const [id,key,left,label] of [['bkb','bkbCooldown','bkbLeft','BKB'],['mjollnir','mjollnirCooldown','staticLeft','Щит']]){
+      $(id+'Button').hidden=!hasItem(p,id)||chosen==='host';$(id+'Button').disabled=!canBuy||!world.started||personalPause||p.respawn>0||p.stun>0||p.hex>0||p[key]>0||world.breakTime>0;
+      $(id+'Status').textContent=p[left]>0?label+' '+Math.ceil(p[left])+' сек':p[key]>0?Math.ceil(p[key])+' сек':'Готов';
     }
   }
   // Pixel art is drawn locally: no image downloads or spritesheet dependencies.
@@ -1043,12 +1419,25 @@ export class BattleEffects {
     rect(ctx,x-28,y-108,56,4,'#25372b');rect(ctx,x-28,y-108,56*e.hp/e.maxHP,4,e.grave>0?'#dfa5e2':'#d99179');
     if(e.armor>0||e.spin>0||e.grave>0){ctx.strokeStyle=e.grave>0?'#e7a5e5':e.spin>0?'#edb17c':'#bfc3a4';ctx.beginPath();ctx.ellipse(x,y-40,41,57,0,0,Math.PI*2);ctx.stroke();}
   }
+  function drawAim(){
+    if(chosen==='host'||!world.started||me().lives<=0)return;
+    const raw=me(),p=online&&localMotion?{...raw,x:localMotion.x,y:localMotion.y}:raw,aim=currentAim(),dx=aim.x-p.x,dy=aim.y-(p.y-35),len=Math.hypot(dx,dy)||1,ux=dx/len,uy=dy/len;
+    ctx.save();ctx.lineWidth=1.5;ctx.setLineDash([9,9]);ctx.strokeStyle='#cfdf9c70';ctx.beginPath();ctx.moveTo(p.x,p.y-35);ctx.lineTo(p.x+ux*Math.min(len,attackRange(p)),p.y-35+uy*Math.min(len,attackRange(p)));ctx.stroke();
+    if(p.skill==='sf')for(const [i,r] of RAZES.entries()){
+      const rules=razeRules(p,r.id),x=p.x+ux*r.distance,y=p.y+uy*r.distance;ctx.strokeStyle=raw[r.cooldown]>0?'#78847b66':['#ffb16e88','#e68b7c88','#d898c788'][i];ctx.fillStyle=['#ffad6010','#ed735b10','#c67bb010'][i];ctx.beginPath();ctx.ellipse(x,y,rules.radius,rules.radius,0,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.setLineDash([]);ctx.textAlign='center';ctx.font='bold 15px monospace';ctx.fillStyle='#e5c2a0';ctx.fillText(r.key+' · '+r.distance,x,y);ctx.setLineDash([9,9]);
+    }
+    if(p.id==='sniper'){ctx.strokeStyle=len<=1100?'#dcbf6d66':'#dc775c66';ctx.beginPath();ctx.ellipse(aim.x,aim.y,shrapnelRules(p).radius,shrapnelRules(p).radius,0,0,Math.PI*2);ctx.stroke();}
+    ctx.setLineDash([]);ctx.strokeStyle='#e4eeb7';ctx.lineWidth=2;ctx.beginPath();ctx.ellipse(aim.x,aim.y,10,10,0,0,Math.PI*2);ctx.moveTo(aim.x-19,aim.y);ctx.lineTo(aim.x-8,aim.y);ctx.moveTo(aim.x+8,aim.y);ctx.lineTo(aim.x+19,aim.y);ctx.moveTo(aim.x,aim.y-19);ctx.lineTo(aim.x,aim.y-8);ctx.moveTo(aim.x,aim.y+8);ctx.lineTo(aim.x,aim.y+19);ctx.stroke();ctx.restore();
+  }
+  function drawCasts(){
+    for(const cast of world.casts||[]){ctx.save();ctx.strokeStyle='#ff9a67';ctx.fillStyle='#d44d4025';ctx.lineWidth=3;ctx.setLineDash([7,7]);ctx.beginPath();ctx.ellipse(cast.x,cast.y,cast.radius,cast.radius,0,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.setLineDash([]);ctx.font='bold 16px monospace';ctx.textAlign='center';ctx.fillStyle='#ffd0a0';ctx.fillText((RAZES.find(r=>r.id===cast.raze)?.key||'')+' · '+Math.max(0,cast.left).toFixed(1),cast.x,cast.y);ctx.restore();}
+  }
   function draw(dt){
     ctx.imageSmoothingEnabled=false;ctx.drawImage(bg,0,0);
     for(let i=0;i<16;i++){ctx.globalAlpha=.2+Math.sin(elapsed+i)*.15;rect(ctx,(i*73+Math.sin(elapsed*.3+i)*28)%W,130+(i*39)%220+Math.sin(elapsed*.65+i)*12,2,2,'#e4e8a9');}ctx.globalAlpha=1;
     const sample=online?motion.sample(performance.now()):null;
     const units=world.started?(sample?.enemies||world.enemies):[{id:0,x:1250,y:460,step:elapsed,hp:100,maxHP:100,ranged:false},{id:1,x:1450,y:660,step:elapsed,hp:100,maxHP:100,ranged:true}];
-    drawHazards();
+    drawZones(ctx,world.zones,elapsed);drawHazards();drawCasts();
     for(const original of [...units].sort((a,b)=>a.y-b.y)){
       const e=original.cyclone>0?{...original,y:original.y-60-Math.sin(elapsed*8)*12}:original;
       if(e.boss)roshanDraw(e);else if(e.hero)enemyHeroDraw(e);else if(e.neutral)neutralDraw(e);else creep(e);
@@ -1065,22 +1454,23 @@ export class BattleEffects {
       if(p.hex>0){rect(ctx,x-18,y-22,36,20,'#7d9f58');rect(ctx,x-14,y-28,7,7,'#b5ce77');rect(ctx,x+9,y-28,7,7,'#b5ce77');}
       else{
         if(!walking){rect(ctx,x-15,y-12,36,15,'#514e39');rect(ctx,x-17,y-16,40,6,'#82784f');}
-        otherHero(ctx,h.id,x-15,y-66+bob,1.12,pose);
+        ctx.save();if((h.id===chosen?currentAim().x:p.aimX)<x){ctx.translate(x*2,0);ctx.scale(-1,1);}otherHero(ctx,h.id,x-15,y-66+bob,1.12,pose);ctx.restore();
         if(walking){const stride=Math.sin(elapsed*13)*5;rect(ctx,x-8,y-14+stride,8,13,'#273b31');rect(ctx,x+6,y-14-stride,8,13,'#273b31');rect(ctx,x-10,y-3+stride,12,4,'#17271f');rect(ctx,x+5,y-3-stride,12,4,'#17271f');}
       }
       if(world.bigHeadsUntil>world.seconds){const face=$('portrait-'+h.id);ctx.drawImage(face,7,0,42,29,x-22,y-90,58,40);}
       ctx.textAlign='center';ctx.font='bold 12px monospace';ctx.fillStyle=h.id===chosen?'#e7f5b6':h.color;ctx.fillText(h.name.toUpperCase(),x,y-94);
       rect(ctx,x-25,y-86,50,4,'#11251d');rect(ctx,x-25,y-86,50*p.hp/maxHP(p),4,h.color);rect(ctx,x-25,y-79,50*p.mana/maxMana(p),3,'#76a7df');
       if(p.stun>0){ctx.fillStyle='#e7db86';ctx.font='20px monospace';ctx.fillText('✦',x,y-105);}
-      if(p.channel>0){ctx.strokeStyle='#ff684e';ctx.lineWidth=3;ctx.beginPath();ctx.ellipse(x,y,Math.max(0,60+Math.sin(elapsed*8)*10),30,0,0,Math.PI*2);ctx.stroke();ctx.fillStyle='#ffbca0';ctx.fillText('REQUIEM '+p.channel.toFixed(1),x,y-112);}
-      if(p.respawn>0){ctx.font='bold 16px monospace';ctx.fillStyle='#efdeb7';ctx.fillText(Math.ceil(p.respawn)+'с',x,y-40);}ctx.globalAlpha=1;
+      if(p.channel>0){drawChannel(ctx,{...p,x,y},elapsed);ctx.fillStyle='#ffbca0';ctx.fillText('REQUIEM '+p.channel.toFixed(1),x,y-112);}
+      drawItemAuras(ctx,{...p,x,y},elapsed);
+      if(p.lives<=0){ctx.font='bold 14px monospace';ctx.fillStyle='#d59286';ctx.fillText('ВЫБЫЛ',x,y-40);}
+      else if(p.respawn>0){ctx.font='bold 16px monospace';ctx.fillStyle='#efdeb7';ctx.fillText(Math.ceil(p.respawn)+'с',x,y-40);}ctx.globalAlpha=1;
       if(h.id===chosen){ctx.strokeStyle='#d6e9a5';ctx.lineWidth=2;ctx.beginPath();ctx.ellipse(x,y+8,30,9,0,0,Math.PI*2);ctx.stroke();}
     }
-    const selected=world.enemies.find(e=>e.id===me().target&&e.hp>0);
-    if(selected){ctx.strokeStyle='#f4c681';ctx.lineWidth=2;ctx.beginPath();ctx.ellipse(selected.x,selected.y+5,35,12,0,0,Math.PI*2);ctx.stroke();}
+    drawAim();
     if(moveMarker&&elapsed-moveMarker.at<1){ctx.strokeStyle='#c2e58b';ctx.lineWidth=2;ctx.beginPath();ctx.ellipse(moveMarker.x,moveMarker.y,12+(elapsed-moveMarker.at)*15,6+(elapsed-moveMarker.at)*8,0,0,Math.PI*2);ctx.stroke();}
     const visibleShots=sample?.projectiles||world.projectiles,visibleEnemies=new Map(units.map(e=>[e.id,e]));
-    for(const shot of visibleShots)if(shot.delay<=0)drawProjectile(ctx,shot,visibleEnemies.get(shot.target),elapsed);
+    for(const shot of visibleShots)if(shot.delay<=0)drawProjectile(ctx,shot,shot.hostile?world.players[shot.targetPlayer]:visibleEnemies.get(shot.target),elapsed);
     effects.draw(ctx,dt,elapsed);
     for(const p of particles){p.x+=p.vx*dt;p.y+=p.vy*dt;p.vy+=100*dt;p.life-=dt;ctx.globalAlpha=Math.min(1,p.life*2);rect(ctx,p.x,p.y,3,3,p.color);}particles=particles.filter(p=>p.life>0);ctx.globalAlpha=1;
     ctx.font='bold 11px monospace';ctx.textAlign='center';for(const f of floating){f.y-=22*dt;f.life-=dt;ctx.globalAlpha=Math.min(1,f.life*2);ctx.fillStyle=f.color;ctx.fillText(f.text,f.x,f.y);}floating=floating.filter(f=>f.life>0);ctx.globalAlpha=1;
@@ -1098,7 +1488,8 @@ export class BattleEffects {
     if(key==='0:0'&&lastWalk===key)return;lastWalk=key;walkSent=performance.now();action('walk',{dx,dy});
   }
   function updateMovement(dt,time){
-    if(document.querySelector('dialog[open]')){if(held.size||lastWalk!=='0:0'){held.clear();lastWalk='0:0';if(chosen!=='host'&&world.started)action('walk',{dx:0,dy:0});}if(localMotion){localMotion.dx=0;localMotion.dy=0;localMotion.destination=null;}}
+    if(shootHeld&&performance.now()-mouseShotAt>=1000/attackSpeed(me())&&!document.querySelector('dialog[open]')){mouseShotAt=performance.now();action('attack');}
+    if(document.querySelector('dialog[open]')){shootHeld=false;if(held.size||lastWalk!=='0:0'){held.clear();lastWalk='0:0';if(chosen!=='host'&&world.started)action('walk',{dx:0,dy:0});}if(localMotion){localMotion.dx=0;localMotion.dy=0;localMotion.destination=null;}}
     if(held.size)sendWalk();
     if(!online||!localMotion)return;
     const p=me();if(!online.up||p.respawn>0||p.paused){localMotion=null;return;}
@@ -1110,19 +1501,30 @@ export class BattleEffects {
     const error=Math.hypot(p.x-localMotion.x,p.y-localMotion.y);if(error>300){localMotion.x=p.x;localMotion.y=p.y;}else{const blend=Math.min(1,dt*8);localMotion.x+=(authoritativeX-localMotion.x)*blend;localMotion.y+=(authoritativeY-localMotion.y)*blend;}
   }
   function frame(time){const dt=Math.max(0,Math.min((time-lastTime)/1000||0,.05));lastTime=time;fpsFrames++;if(time-fpsStart>=1000){fps=Math.round(fpsFrames*1000/(time-fpsStart));fpsFrames=0;fpsStart=time;}if(!document.hidden){updateMovement(dt,time);elapsed+=dt;if(!online&&!soloPaused){step(world,dt,HEROES.filter(h=>h.id!==chosen).map(h=>h.id));processEvents();}draw(dt);uiTimer+=dt;saveTimer+=dt;if(uiTimer>.15){updateUI();uiTimer=0;}if(saveTimer>3){save();saveTimer=0;}}requestAnimationFrame(frame);}
+  $('shopCards').innerHTML=ITEMS.map(item=>'<article class="shop-card"><div class="shop-item-title"><canvas id="shop-icon-'+item.id+'" width="64" height="64" aria-hidden="true"></canvas><div><h3>'+item.name+'</h3><span>'+item.short+'</span></div></div><p>'+item.hint+'</p><small id="item-note-'+item.id+'"></small><button id="buy-'+item.id+'">'+item.cost+' G · Купить</button></article>').join('');
+  for(const item of ITEMS){drawItemIcon($('shop-icon-'+item.id).getContext('2d'),item.id,64);$('buy-'+item.id).addEventListener('click',()=>action('buy',{item:item.id}));}
+  for(const id of ['bkb','mjollnir']){drawItemIcon($(id+'Icon').getContext('2d'),id,48);$(id+'Button').addEventListener('click',()=>action('item',{item:id}));}
+  $('restartRunButton').addEventListener('click',()=>{if(online){if(online.host)action('restart');}else $('resetDialog').showModal();});
+  $('statsBody').innerHTML=HEROES.map(h=>'<tr id="stats-'+h.id+'"><th scope="row"><span style="color:'+h.color+'">'+h.name+'</span><small>'+h.hero+'</small><small id="stats-lives-'+h.id+'"></small></th>'+['kda','lh','total','spell','heroes','creeps','boss','taken','dps'].map(col=>'<td id="stat-'+h.id+'-'+col+'">0</td>').join('')+'</tr>').join('');
+  for(const [id,kit] of [['eulIcon','eul'],['ultIcon','requiem'],['shrapnelIcon','shrapnel']])drawSkillIcon($(id).getContext('2d'),kit);
   $('heroPicker').innerHTML=PICKS.map(h=>'<button class="hero-pick" id="pick-'+h.id+'" aria-pressed="false"><canvas id="portrait-'+h.id+'" width="64" height="64" aria-hidden="true"></canvas><span class="pick-info"><strong>'+h.name+'</strong><span>'+h.hero+'</span><small id="status-'+h.id+'"></small><span class="pick-health"><i id="hp-'+h.id+'"></i></span></span><span class="pick-trait">'+h.icon+'</span></button>').join('');
   for(const h of PICKS)$('pick-'+h.id).addEventListener('click',()=>choose(h.id));
   $('startButton').addEventListener('click',()=>action('start'));
   $('attackButton').addEventListener('click',()=>action('attack'));
+  canvas.addEventListener('pointermove',event=>{const r=canvas.getBoundingClientRect();aimPoint={x:(event.clientX-r.left)*W/r.width,y:(event.clientY-r.top)*H/r.height};sendAim();});
   canvas.addEventListener('contextmenu',event=>event.preventDefault());
   canvas.addEventListener('pointerdown',event=>{
     if(chosen==='host'||!world.started)return;event.preventDefault();canvas.focus({preventScroll:true});
     const bounds=canvas.getBoundingClientRect(),x=(event.clientX-bounds.left)*W/bounds.width,y=(event.clientY-bounds.top)*H/bounds.height;
-    const enemy=world.enemies.filter(e=>e.hp>0&&Math.hypot(e.x-x,e.y-35-y)<(e.boss?110:65)).sort((a,b)=>Math.hypot(a.x-x,a.y-y)-Math.hypot(b.x-x,b.y-y))[0];
-    if(event.button!==2&&enemy){action('target',{enemy:enemy.id});return;}
-    action('move',{x,y});moveMarker={x,y,at:elapsed};
+    aimPoint={x,y};sendAim(true);
+    if(event.button===2){action('move',{x,y});moveMarker={x,y,at:elapsed};return;}
+    if(event.button!==0)return;
+    shootHeld=true;mouseShotAt=performance.now();try{canvas.setPointerCapture?.(event.pointerId);}catch{}action('attack');
   });
+  for(const event of ['pointerup','pointercancel','lostpointercapture'])canvas.addEventListener(event,()=>{shootHeld=false;});
+  for(const r of RAZES)$('raze-'+r.id).addEventListener('click',()=>action('raze',{raze:r.id}));
   $('multiButton').addEventListener('click',()=>action('ability'));
+  $('shrapnelButton').addEventListener('click',()=>action('shrapnel'));
   $('eulButton').addEventListener('click',()=>action('eul'));$('ultButton').addEventListener('click',()=>action('ultimate'));
   $('themeButton').addEventListener('click',()=>setTheme(document.documentElement.dataset.theme==='dark'?'light':'dark'));
   $('fullscreenButton').addEventListener('click',()=>{if(document.fullscreenElement)document.exitFullscreen();else $('game-frame').requestFullscreen?.().catch(()=>toast('Полный экран недоступен в этом браузере'));});
@@ -1133,13 +1535,15 @@ export class BattleEffects {
   document.addEventListener('keydown',event=>{
     if(event.repeat||event.ctrlKey||event.metaKey||event.altKey||document.querySelector('dialog[open]')||['INPUT','TEXTAREA','SELECT'].includes(document.activeElement?.tagName))return;
     if(['KeyW','KeyA','KeyS','KeyD','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(event.code)){event.preventDefault();held.add(event.code);sendWalk();return;}
-    if(event.code==='KeyE'){event.preventDefault();action('eul');}if(event.code==='KeyR'){event.preventDefault();action('ultimate');}
+    if(event.code==='KeyF'||event.code==='KeyG'){event.preventDefault();action('item',{item:event.code==='KeyF'?'bkb':'mjollnir'});return;}
+    const raze=RAZES.find(r=>'Key'+r.key===event.code);if(raze){event.preventDefault();action('raze',{raze:raze.id});return;}
+    if(event.code==='KeyE'){event.preventDefault();action(chosen==='sniper'?'shrapnel':'eul',chosen==='sniper'?(aimPoint||{}):{});}if(event.code==='KeyR'){event.preventDefault();action('ultimate');}
     if(event.code==='Space'&&document.activeElement?.tagName==='BUTTON')return;
     if(event.code==='Space'){event.preventDefault();action('attack');}
     if(event.code==='KeyQ'){event.preventDefault();action('ability');}if(event.code==='KeyP'){event.preventDefault();togglePause();}
   });
   document.addEventListener('keyup',event=>{if(held.delete(event.code)){event.preventDefault();sendWalk();}});
-  window.addEventListener('blur',()=>{held.clear();sendWalk();});
+  window.addEventListener('blur',()=>{shootHeld=false;held.clear();sendWalk();});
   for(const button of document.querySelectorAll('[data-walk]')){
     const key=button.dataset.walk;button.addEventListener('pointerdown',event=>{event.preventDefault();button.setPointerCapture(event.pointerId);held.add(key);sendWalk();});
     for(const type of ['pointerup','pointercancel','lostpointercapture'])button.addEventListener(type,()=>{if(held.delete(key))sendWalk();});
@@ -1154,7 +1558,7 @@ export class BattleEffects {
   for(const id of ['prankTarget','prankOther'])$(id).innerHTML=HEROES.map(h=>'<option value="'+h.id+'">'+h.name+' · '+h.hero+'</option>').join('');$('prankOther').value='sf';
   $('leaveRoomButton').addEventListener('click',()=>leaveRoom());
   $('copyRoomButton').addEventListener('click',async()=>{if(!online)return;if(['localhost','127.0.0.1'].includes(location.hostname)&&online.inviteBase===location.origin){toast('Запусти npm run online и дождись внешней ссылки в терминале.');return;}const url=(online.inviteBase||location.origin)+'/#room='+online.code;try{await navigator.clipboard.writeText(url);toast('Ссылка скопирована. Отправь друзьям!');}catch{$('shareLink').value=url;$('shareDialog').showModal();$('shareLink').select();}});
-  document.addEventListener('visibilitychange',()=>{lastTime=performance.now();if(document.hidden){held.clear();localMotion=null;lastWalk='0:0';if(chosen!=='host'&&world.started)action('walk',{dx:0,dy:0});save();}});window.addEventListener('pagehide',save);
+  document.addEventListener('visibilitychange',()=>{lastTime=performance.now();if(document.hidden){shootHeld=false;held.clear();localMotion=null;lastWalk='0:0';if(chosen!=='host'&&world.started)action('walk',{dx:0,dy:0});save();}});window.addEventListener('pagehide',save);
   const invited=location.hash.match(/room=([A-F0-9]{6})/i);if(invited){$('roomCodeInput').value=invited[1].toUpperCase();$('roomHint').textContent='Тебя пригласили! Выбери свободного героя и нажми «Войти».';}
   setTheme(document.documentElement.dataset.theme||'dark');renderPortraits();updateUI();draw(0);requestAnimationFrame(frame);
   if(invited&&/^https?:$/.test(location.protocol)&&credentials())connect(false);

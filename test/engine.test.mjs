@@ -13,23 +13,24 @@ test('spell swaps carry the new visual kit while normal attacks keep the hero id
 test('waves add stronger, faster, more frequent creeps',()=>{
   for(let wave=1;wave<25;wave++){const a=waveRules(wave),b=waveRules(wave+1);assert.ok(b.count>a.count);assert.ok(b.hp>a.hp);assert.ok(b.damage>a.damage);assert.ok(b.speed>a.speed);assert.ok(b.interval<=a.interval);}
 });
-test('four regular heroes have different abilities, Sniper waits for heroes',()=>{
-  for(const [id,count] of [['drow',5],['timber',8],['sf',6],['rubick',6]]){const w=createWorld();w.started=true;spawnEnemy(w);assert.equal(command(w,id,{type:'ability'}).ok,true);assert.equal(w.projectiles.length,count);assert.ok(w.players[id].cooldown>0);}
+test('regular Qs launch distinct missiles, Sniper projectiles cannot kill creeps',()=>{
+  for(const [id,count] of [['drow',5],['timber',8],['rubick',6]]){const w=createWorld();w.started=true;spawnEnemy(w);assert.equal(command(w,id,{type:'ability'}).ok,true);assert.equal(w.projectiles.length,count);assert.ok(w.players[id].cooldown>0);}
   const w=createWorld();w.started=true;const e=spawnEnemy(w);e.hp=1;
-  assert.equal(command(w,'sniper',{type:'ability'}).ok,false);assert.equal(command(w,'sniper',{type:'attack'}).ok,false);
+  assert.equal(command(w,'sniper',{type:'ability'}).ok,true);assert.equal(command(w,'sniper',{type:'attack'}).ok,true);
   hit(w,{hero:'sniper',damage:1e9,execute:true,threshold:1},e);assert.equal(e.hp,1);assert.equal(w.players.sniper.kills,0);
 });
 test('Emir executes low enemy heroes and receives last-hit reward exactly once',()=>{
   const w=createWorld();w.started=true;w.wave=3;startTeamfight(w);const e=w.enemies[0];e.x=550;e.y=550;e.hp=e.maxHP*.25;
-  assert.equal(command(w,'sniper',{type:'attack'}).ok,false);assert.equal(command(w,'sniper',{type:'ability'}).ok,true);
-  const shot=w.projectiles[0];hit(w,shot,e);const gold=w.players.sniper.gold;
+  assert.equal(command(w,'sniper',{type:'attack'}).ok,true);hit(w,w.projectiles[0],e);assert.ok(e.hp>0);assert.equal(command(w,'sniper',{type:'ability'}).ok,true);
+  const shot=w.projectiles.at(-1);hit(w,shot,e);const gold=w.players.sniper.gold;
   assert.equal(e.hp,0);assert.equal(w.players.sniper.heroKills,1);assert.ok(gold>100);hit(w,shot,e);assert.equal(w.players.sniper.gold,gold);
 });
 test('swapping spells never removes Emir’s creep restriction',()=>{
-  const w=createWorld();w.started=true;spawnEnemy(w);
+  const w=createWorld();w.started=true;const e=spawnEnemy(w),hp=e.hp;
   assert.equal(hostCommand(w,{prank:'swapSkills',target:'sniper',other:'timber'}).ok,true);
-  assert.equal(w.players.sniper.skill,'timber');assert.equal(command(w,'sniper',{type:'ability'}).ok,false);
-  assert.equal(command(w,'timber',{type:'ability'}).ok,false);
+  assert.equal(w.players.sniper.skill,'timber');assert.equal(command(w,'sniper',{type:'ability'}).ok,true);
+  assert.equal(command(w,'timber',{type:'ability'}).ok,true);
+  for(const shot of w.projectiles)hit(w,shot,e);assert.equal(e.hp,hp);
   hostCommand(w,{prank:'resetSkills'});assert.equal(w.players.sniper.skill,'sniper');
 });
 test('every third wave enters a random five-hero fight',()=>{
@@ -83,25 +84,25 @@ test('wave 30 spawns Roshan instead of five heroes, other third waves keep teamf
 });
 test('Roshan resists hits, regenerates, bashes, claps and enrages at low HP',()=>{
   const w=createWorld();w.started=true;w.wave=30;startRoshan(w);const e=w.enemies[0];
-  for(const p of Object.values(w.players)){p.auto=false;p.x=e.x-180;p.y=e.y;p.moveX=p.x;p.moveY=p.y;}
+  for(const p of Object.values(w.players)){p.auto=false;p.spawnShield=0;p.x=e.x-180;p.y=e.y;p.moveX=p.x;p.moveY=p.y;}
   hit(w,{hero:'drow',damage:100},e);assert.equal(e.maxHP-e.hp,65);
   e.hp=e.maxHP*.5;const before=e.hp;step(w,.1);assert.ok(e.hp>before);
-  e.abilityTimer=0;step(w,.1);assert.ok(w.players.sf.stun>0||Object.values(w.players).some(p=>p.stun>0));
+  e.abilityTimer=0;step(w,.1);assert.equal(Object.values(w.players).some(p=>p.stun>0),false);for(let i=0;i<6;i++)step(w,.1);assert.ok(Object.values(w.players).some(p=>p.stun>0));
   assert.ok(w.events.some(e=>e.type==='bossAbility'&&e.skill==='Bash'));
-  e.clapTimer=0;step(w,.1);assert.ok(w.events.some(e=>e.type==='bossAbility'&&e.skill==='Thunder Clap'));
+  e.clapTimer=0;step(w,.1);for(let i=0;i<9;i++)step(w,.1);assert.ok(w.events.some(e=>e.type==='bossAbility'&&e.skill==='Thunder Clap'));
   assert.ok(Object.values(w.players).every(p=>p.hp<maxHP(p)));
   e.hp=e.maxHP*.34;step(w,.1);assert.equal(e.enraged,true);assert.ok(w.events.some(e=>e.type==='bossEnrage'));
 });
 test('Emir cannot bypass Roshan protection even with a swapped skill or stale shot',()=>{
   const w=createWorld();w.started=true;w.wave=30;startRoshan(w);const e=w.enemies[0],p=w.players.sniper;e.x=550;e.y=550;
   e.hp=e.maxHP*.25;
-  assert.equal(allowedTarget(p,e,true),false);assert.equal(command(w,'sniper',{type:'ability'}).ok,false);
+  assert.equal(allowedTarget(p,e,true),false);assert.equal(command(w,'sniper',{type:'ability'}).ok,true);hit(w,w.projectiles[0],e);assert.equal(e.hp,e.maxHP*.25);p.cooldown=0;
   hit(w,{hero:'sniper',execute:true,threshold:.3,damage:1e9},e);assert.equal(e.hp,e.maxHP*.25);
   hostCommand(w,{prank:'swapSkills',target:'sniper',other:'timber'});
-  assert.equal(command(w,'sniper',{type:'ability'}).ok,false);
-  e.hp=e.maxHP*.07;assert.equal(command(w,'sniper',{type:'attack'}).ok,false);
+  assert.equal(command(w,'sniper',{type:'ability'}).ok,true);hit(w,w.projectiles.at(-1),e);assert.equal(e.hp,e.maxHP*.25);p.cooldown=0;
+  e.hp=e.maxHP*.07;assert.equal(command(w,'sniper',{type:'attack'}).ok,true);hit(w,w.projectiles.at(-1),e);assert.ok(e.hp>0);
   assert.equal(command(w,'sniper',{type:'ability'}).ok,true);
-  const shot=w.projectiles[0];hit(w,shot,e);const gold=p.gold;
+  const shot=w.projectiles.at(-1);hit(w,shot,e);const gold=p.gold;
   assert.equal(e.hp,0);assert.equal(w.bossKills,1);assert.equal(w.heroKills,0);assert.equal(w.kills,0);
   hit(w,shot,e);assert.equal(p.gold,gold);
   step(w,.05);assert.equal(w.wave,31);assert.equal(w.phase,'farm');assert.equal(w.started,true);

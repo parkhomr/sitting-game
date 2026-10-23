@@ -11,7 +11,7 @@ import {wireWorld,deltaFrame} from './dist/netcode.js';
 const root=path.dirname(fileURLToPath(import.meta.url));
 const files=new Map(['index.html','style.css','game.js','engine.js','netcode.js','effects.js'].map(name=>['/'+(name==='index.html'?'':name),{data:readFileSync(path.join(root,'dist',name)),type:name.endsWith('.html')?'text/html; charset=utf-8':name.endsWith('.css')?'text/css; charset=utf-8':'text/javascript; charset=utf-8'}]));
 const token=()=>randomBytes(24).toString('base64url');
-export function createGameServer(){
+export function createGameServer({worldFactory=createWorld}={}){
   const rooms=new Map(),limits=new Map();
   const instanceId=randomBytes(12).toString('hex');
   let publicOrigin='';
@@ -31,14 +31,14 @@ export function createGameServer(){
     for(const item of Array.isArray(commands)?commands.slice(0,12):[]){
       if(!item||typeof item!=='object'||!Number.isSafeInteger(item.seq)||item.seq<=session.seq)continue;
       if(item.seq!==session.seq+1)break;
-      const result=item.type==='host'?(session.host?hostCommand(room.world,item):{ok:false,message:'Только ведущий может это делать'}):item.type==='start'?command(room.world,'drow',item):command(room.world,session.hero,item);
+      const result=item.type==='restart'?(session.host&&room.world.gameOver?(room.world=worldFactory(),room.wirePrevious=null,{ok:true}):{ok:false,message:'Новый забег после поражения может начать только ведущий'}):item.type==='host'?(session.host?hostCommand(room.world,item):{ok:false,message:'Только ведущий может это делать'}):item.type==='start'?command(room.world,'drow',item):command(room.world,session.hero,item);
       session.seq=item.seq;session.ack.push({seq:item.seq,...result});if(session.ack.length>24)session.ack.shift();
     }
   }
   const server=http.createServer(async(req,res)=>{
     try {
       const url=new URL(req.url,'http://localhost');
-      if(url.pathname==='/health'){json(req,res,200,{ok:true,version:4,transport:'websocket',snapshotHz:20,publicOrigin,instanceId});return;}
+      if(url.pathname==='/health'){json(req,res,200,{ok:true,version:7,transport:'websocket',snapshotHz:20,publicOrigin,instanceId});return;}
       if(url.pathname.startsWith('/api/')){
         if(req.method!=='POST'){json(req,res,405,{error:'Используй POST'});return;}
         const origin=req.headers.origin;
@@ -52,7 +52,7 @@ export function createGameServer(){
           if(input.hero!=='host'&&!HEROES.some(h=>h.id===input.hero)){json(req,res,400,{error:'Выбери героя'});return;}
           let code;do{code=randomBytes(4).toString('hex').slice(0,6).toUpperCase();}while(rooms.has(code));
           const session={hero:input.hero,host:true,seen:now,seq:0,ack:[],token:token()};
-          const room={code,world:createWorld(),sessions:new Map([[session.token,session]]),sockets:new Set(),frameSeq:0,lastActive:now};rooms.set(code,room);
+          const room={code,world:worldFactory(),sessions:new Map([[session.token,session]]),sockets:new Set(),frameSeq:0,lastActive:now};rooms.set(code,room);
           json(req,res,201,{code,token:session.token,...snapshot(room,session)});return;
         }
         const match=url.pathname.match(/^\/api\/rooms\/([A-F0-9]{6})\/(join|sync|leave)$/);

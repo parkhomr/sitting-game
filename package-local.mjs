@@ -40,7 +40,8 @@ function zip(entries,destination){
 }
 const guide=readFileSync(path.join(root,'КАК-ИГРАТЬ.txt'));
 zip([['СИДИ-КАЧАЙСЯ.html',html],['КАК-ИГРАТЬ.txt',guide]],path.resolve(root,'..','oscar-farm-local.zip'));
-const sourceFiles=['package.json','server.mjs','start-online.mjs','tunnel-ready.mjs','README.md','КАК-ИГРАТЬ.txt','dist/index.html','dist/style.css','dist/game.js','dist/engine.js','dist/netcode.js','dist/effects.js','vendor/ws/LICENSE','vendor/ws/package.json','vendor/ws/wrapper.mjs','vendor/ws/index.js'];
+const sourceFiles=['package.json','server.mjs','start-online.mjs','tunnel-ready.mjs','README.md','КАК-ИГРАТЬ.txt','balance/simulate.mjs','balance/run-audit.mjs','balance/REPORT.md','balance/report.json','dist/index.html','dist/style.css','dist/game.js','dist/engine.js','dist/netcode.js','dist/effects.js','vendor/ws/LICENSE','vendor/ws/package.json','vendor/ws/wrapper.mjs','vendor/ws/index.js'];
+sourceFiles.push(...readdirSync(path.join(root,'test')).filter(file=>file.endsWith('.test.mjs')).map(file=>'test/'+file));
 sourceFiles.push(...readdirSync(path.join(root,'vendor/ws/lib')).filter(file=>file.endsWith('.js')).map(file=>'vendor/ws/lib/'+file));
 zip([...sourceFiles.map(file=>['oscar-farm/'+file,readFileSync(path.join(root,file))]),['oscar-farm/СИДИ-КАЧАЙСЯ.html',html]],path.resolve(root,'..','oscar-farm-multiplayer.zip'));
 

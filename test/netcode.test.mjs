@@ -1,6 +1,6 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {createWorld,HEROES,step,startRoshan,hit} from '../dist/engine.js';
+import {createWorld,HEROES,step,startRoshan,hit,command,spawnEnemy} from '../dist/engine.js';
 import {wireWorld,deltaFrame,applyNetFrame,MotionBuffer} from '../dist/netcode.js';
 test('compact deltas reconstruct changing battles, hero skills and entity removals',()=>{
   const w=createWorld();w.started=true;let previous=wireWorld(w),view=applyNetFrame(null,{full:previous}),bytes=0,fullBytes=0;
@@ -27,4 +27,14 @@ test('Roshan flags, rage, death and the reward reach clients through compact del
   startRoshan(w);sync();assert.equal(view.enemies[0].boss,true);assert.equal(view.phase,'boss');
   w.enemies[0].hp=w.enemies[0].maxHP*.3;step(w,.05);sync();assert.equal(view.enemies[0].enraged,true);
   hit(w,{hero:'drow',damage:1e9},w.enemies[0]);step(w,.05);sync();assert.equal(view.bossKills,1);assert.equal(view.wave,31);assert.equal(view.enemies.length,0);
+});
+
+test('hostile missiles, shrapnel, skill ranks and combat stats survive wire deltas',()=>{
+ const w=createWorld();w.started=true;w.spawnTimer=1e6;for(const p of Object.values(w.players))p.auto=false;
+ const p=w.players.sniper;p.gold=10000;const e=spawnEnemy(w);Object.assign(e,{x:800,y:550,ranged:true,damage:5,attackTimer:0,speed:0});
+ let before=wireWorld(w),view=applyNetFrame(null,{full:before}),sawHostile=false;
+ command(w,'sniper',{type:'upgrade',upgrade:'skillPower'});command(w,'sniper',{type:'shrapnel',x:e.x,y:e.y});
+ for(let i=0;i<80;i++){step(w,.05);const current=wireWorld(w);view=applyNetFrame(view,JSON.parse(JSON.stringify(deltaFrame(before,current,w.events))));assert.deepEqual({...view,events:[]},current);sawHostile||=view.projectiles.some(s=>s.hostile&&s.targetPlayer);before=current;}
+ assert.ok(sawHostile);assert.equal(view.players.sniper.skillPower,1);assert.ok(view.players.sniper.creepDamage>0);assert.ok(view.players.sniper.damageDealt>0);assert.ok(view.zones.length>0);
+ assert.equal('recentHits' in view.players.sniper,false,'damage history stays on the server');
 });

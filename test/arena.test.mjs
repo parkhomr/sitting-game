@@ -13,14 +13,16 @@ test('movement has bounded speed, normalized diagonals, map limits and a dead-ma
  assert.equal(command(w,'drow',{type:'move',x:NaN,y:0}).ok,false);
  p.stun=1;command(w,'drow',{type:'move',x:1200,y:300});const x=p.x;step(w,.1);assert.equal(p.x,x);
 });
-test('an attack needs range and its projectile originates at the moving hero',()=>{
+test('an aimed attack can miss in empty space and originates at the moving hero',()=>{
  const w=arena(),p=w.players.drow,e=foe(w,p);e.x=1500;
- assert.equal(command(w,p.id,{type:'attack'}).ok,false);
- p.x=1250;p.y=e.y;assert.equal(command(w,p.id,{type:'attack'}).ok,true);
- assert.equal(w.projectiles[0].x,p.x+20);assert.equal(w.projectiles[0].y,p.y-45);
+ assert.equal(command(w,p.id,{type:'attack',x:e.x,y:e.y-35}).ok,true);
+ advance(w,1.5);assert.equal(e.hp,e.maxHP);assert.equal(w.projectiles.length,0);
+ p.x=p.moveX=1250;p.y=p.moveY=e.y;assert.equal(command(w,p.id,{type:'attack',x:e.x,y:e.y-35}).ok,true);
+ assert.equal(w.projectiles[0].x,p.x);assert.equal(w.projectiles[0].y,p.y-35);
+ advance(w,.5);assert.ok(e.hp<e.maxHP);
 });
 test('every Q consumes mana once, respects cooldown, recovers mana and keeps autos free',()=>{
- for(const id of ['drow','timber','sf','rubick','sniper']){
+ for(const id of ['drow','timber','rubick','sniper']){
   const w=arena(),p=w.players[id],e=foe(w,p);if(id==='sniper'){e.hero=true;e.hp=e.maxHP*.2;}
   const before=p.mana,cost=manaCost(p);assert.equal(command(w,id,{type:'ability'}).ok,true,id);assert.equal(p.mana,before-cost);
   assert.equal(command(w,id,{type:'ability'}).ok,false);assert.equal(p.mana,before-cost);
@@ -31,7 +33,7 @@ test('every Q consumes mana once, respects cooldown, recovers mana and keeps aut
  }
 });
 test('SF can Eul then Requiem the landing target; cyclone is invulnerable and spells have separate costs',()=>{
- const w=arena(),p=w.players.sf,e=foe(w);command(w,'sf',{type:'target',enemy:e.id});
+ const w=arena(),p=w.players.sf,e=foe(w);command(w,'sf',{type:'aim',x:e.x,y:e.y-35});
  assert.equal(command(w,'sf',{type:'eul'}).ok,true);assert.equal(p.mana,maxMana(p)-75);assert.equal(e.cyclone,2.5);
  const hp=e.hp;hit(w,{hero:'drow',damage:1000},e);assert.equal(e.hp,hp);
  assert.equal(command(w,'sf',{type:'eul'}).ok,false);
@@ -54,14 +56,14 @@ test('five neutral species spawn with extra HP, mana and real spell effects',()=
   target.x=800;target.y=500;target.moveX=target.x;target.moveY=target.y;target.haste=5;
   const e=foe(test,target);e.neutral=kit.id;e.x=target.x+100;e.y=target.y;e.mana=e.maxMana=180;e.damage=30;
   const mana=e.mana;assert.equal(neutralAbility(test,e),true);assert.equal(e.mana,mana-kit.mana);assert.ok(e.abilityTimer>0);
-  if(kit.id==='banisher'){assert.equal(target.haste,0);assert.ok(target.slow>0);}
-  else{const mp=target.mana;advance(test,1.1);assert.ok(target.hp<450,kit.id);if(kit.id==='mindstealer')assert.ok(target.mana<mp-60);if(kit.id==='centaur')assert.ok(target.stun>0);if(kit.id==='hellbear')assert.ok(target.slow>0);}
+  if(kit.id==='banisher'){assert.equal(target.haste,5);advance(test,.4);assert.equal(target.haste,0);assert.ok(target.slow>0);}
+  else{const mp=target.mana;advance(test,1.1);assert.ok(target.hp<650,kit.id);if(kit.id==='mindstealer')assert.ok(target.mana<mp-45);if(kit.id==='centaur')assert.ok(target.stun>0);if(kit.id==='hellbear')assert.ok(target.slow>0);}
  }
 });
 test('telegraphed Shockwave can be dodged by walking perpendicular to its path',()=>{
  const w=arena(),p=w.players.drow;for(const other of Object.values(w.players)){other.x=1700;other.y=900;}
  p.x=800;p.y=500;p.moveX=p.x;p.moveY=p.y;const e=foe(w,p);e.neutral='satyr';e.x=1000;e.mana=e.maxMana=180;e.damage=30;
- assert.equal(neutralAbility(w,e),true);command(w,p.id,{type:'move',x:800,y:800});advance(w,1.1);assert.equal(p.hp,450);assert.equal(w.hazards.length,0);
+ assert.equal(neutralAbility(w,e),true);command(w,p.id,{type:'move',x:800,y:800});advance(w,1.1);assert.equal(p.hp,650);assert.equal(w.hazards.length,0);
 });
 test('old saves preserve progress and initialize valid mana and positions',()=>{
  const old={version:2,wave:20,players:{sf:{level:25,gold:8000,kills:200,damage:12}}},w=restoreWorld(old),p=w.players.sf;

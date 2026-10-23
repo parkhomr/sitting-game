@@ -1,6 +1,6 @@
-import {HEROES,ENEMY_HEROES,ROSHAN,NEUTRALS,ARENA,SEATS,maxMana,manaRegen,manaCost,moveSpeed,attackRange,heroInfo,createWorld,restoreWorld,requiredXP,damage,attackSpeed,upgradeCost,maxHP,waveRules,command,hostCommand,step,allowedTarget} from './engine.js';
+import {ITEMS,hasItem,shoppingPlan,HEROES,ENEMY_HEROES,ROSHAN,NEUTRALS,ARENA,SEATS,maxMana,manaRegen,manaCost,moveSpeed,attackRange,SKILL_UPGRADES,MAX_SKILL_RANK,upgradeInfo,abilityCount,abilityCooldown,stealThreshold,shrapnelRules,RAZES,razeRules,heroInfo,createWorld,restoreWorld,requiredXP,damage,attackSpeed,upgradeCost,maxHP,waveRules,command,hostCommand,step,allowedTarget} from './engine.js';
 import {applyNetFrame,MotionBuffer} from './netcode.js';
-import {BattleEffects,drawProjectile} from './effects.js';
+import {BattleEffects,drawProjectile,drawZones,drawChannel,drawSkillIcon,drawItemIcon,drawItemAuras} from './effects.js';
 (() => {
   'use strict';
   const $=id=>document.getElementById(id),canvas=$('game'),ctx=canvas.getContext('2d'),W=ARENA.width,H=ARENA.height;
@@ -11,7 +11,7 @@ import {BattleEffects,drawProjectile} from './effects.js';
   let lastTime=0,elapsed=0,uiTimer=0,saveTimer=0,lastEvent=0,toastTimer;
   const effects=new BattleEffects(),motion=new MotionBuffer();
 
-  let fps=0,fpsFrames=0,fpsStart=0,enemyTeamKey='';
+  let fps=0,fpsFrames=0,fpsStart=0,enemyTeamKey='',iconKit='';let aimPoint=null,aimSent=0,shootHeld=false,mouseShotAt=0;
   let particles=[],floating=[],saveAvailable=true;
   const held=new Set();let walkSent=0,lastWalk='',localMotion=null,moveMarker=null;
   function setTheme(theme){document.documentElement.dataset.theme=theme;document.querySelector('meta[name="theme-color"]').content=theme==='dark'?'#101613':'#f4f2e9';$('themeButton').textContent=theme==='dark'?'☀ Светлая тема':'☾ Тёмная тема';$('themeButton').setAttribute('aria-pressed',String(theme==='dark'));try{localStorage.setItem('oscar-theme',theme);}catch{}}
@@ -28,7 +28,7 @@ import {BattleEffects,drawProjectile} from './effects.js';
   } catch { /* Local play also works with restricted storage. */ }
   const number=n=>Math.floor(n).toLocaleString('ru-RU');
   const me=()=>world.players[chosen]||world.players.drow;
-  function save(){if(online)return;try{localStorage.setItem(SAVE_KEY,JSON.stringify({version:2,players:world.players,wave:world.wave,kills:world.kills,heroKills:world.heroKills,bossKills:world.bossKills,wins:world.wins,losses:world.losses,seconds:world.seconds}));localStorage.setItem('oscar-hero',chosen);localStorage.setItem('oscar-sound',String(sound));saveAvailable=true;}catch{saveAvailable=false;}}
+  function save(){if(online)return;try{localStorage.setItem(SAVE_KEY,JSON.stringify({version:2,players:Object.fromEntries(Object.entries(world.players).map(([id,p])=>[id,{...p,recentHits:[],dps:0}])),wave:world.wave,kills:world.kills,heroKills:world.heroKills,bossKills:world.bossKills,wins:world.wins,losses:world.losses,seconds:world.seconds}));localStorage.setItem('oscar-hero',chosen);localStorage.setItem('oscar-sound',String(sound));saveAvailable=true;}catch{saveAvailable=false;}}
   function tone(f=440,d=.06,type='sine'){
     if(!sound)return;try{audio||=new(window.AudioContext||window.webkitAudioContext)();if(audio.state==='suspended')audio.resume();const o=audio.createOscillator(),g=audio.createGain();o.type=type;o.frequency.value=f;g.gain.setValueAtTime(.025,audio.currentTime);g.gain.exponentialRampToValueAtTime(.001,audio.currentTime+d);o.connect(g);g.connect(audio.destination);o.start();o.stop(audio.currentTime+d);}catch{}
   }
@@ -47,14 +47,21 @@ import {BattleEffects,drawProjectile} from './effects.js';
       if(event.type==='bossKill')tone(130,.45,'sawtooth');
       if(event.type==='enemyAbility')floating.push({x:750,y:165+(event.id%4)*17,text:ENEMY_HEROES.find(h=>h.id===event.kit).name+': '+event.skill,color:'#e9bca6',life:1.8});
       if(event.type==='heroKill'){toast(heroInfo(event.hero).name+' '+(event.hero==='sniper'?'УКРАЛ ФРАГ: ':'ДОБИЛ: ')+event.name);tone(220,.18,'triangle');}
-      if(event.type==='down'&&event.hero===chosen)toast('Передышка 8 секунд. Потом снова фарм.');
+      if(event.type==='down'&&event.hero===chosen)toast(event.lives>0?'Потеряна жизнь · осталось '+event.lives+'/5 · возвращение через 8 сек':'Жизни закончились. Наблюдай за отрядом.');
+      if(event.type==='purchase'&&event.hero===chosen)toast('Куплено: '+ITEMS.find(i=>i.id===event.item).name);
+      if(event.type==='lightning')effects.lightning(event);
+      if(event.type==='itemActive')effects.item(event);
+      if(event.type==='gameOver')toast('Пять жизней исчерпаны. Забег завершён.');
+      if(event.type==='crit')floating.push({x:event.x,y:event.y-75,text:'КРИТ '+event.damage,color:'#ffc675',life:.7});
       if(event.type==='shot'){const predicted=event.hero===chosen&&event.inputSeq&&online?.predicted.delete(event.inputSeq);if(!predicted){effects.cast(event);if(event.hero===chosen)tone(event.ability?900:550,.04,'triangle');}}
       if(event.type==='impact')effects.impact(event);
       if(event.type==='requiem')effects.requiem(event);
+      if(event.type==='raze')effects.raze(event);
       if(event.type==='hazardHit')effects.hazard(event);
       if(event.type==='neutralSpell'||event.type==='enemyAttack')effects.neutral(event);
       if(event.type==='channelCancel'&&event.hero===chosen)toast('Requiem прерван оглушением!');
       if(event.type==='enemyAbility')effects.enemy(event);
+      if(event.type==='enemyImpact')effects.enemyImpact(event);
       if(event.type==='sunStrike')effects.sun(event);
       if(event.type==='kill'||event.type==='heroKill'||event.type==='bossKill'){
         floating.push({x:event.x,y:event.y-65,text:'+'+event.gold+' G',color:'#e6d199',life:1.3});
@@ -65,14 +72,15 @@ import {BattleEffects,drawProjectile} from './effects.js';
     lastEvent=world.eventId;
   }
   function action(type,extra={}){
+    if(['attack','ability','raze','eul','shrapnel'].includes(type))extra={...currentAim(),...extra};
     if(['move','walk'].includes(type))startLocalMotion(type,extra);
-    if(online){if(!online.up){toast('Восстанавливаем связь с сервером…');return;}if(online.queue.length>=12)return;const seq=++online.nextSeq;online.queue.push({type,...extra,seq});predictCast(type,seq);flushCommands();return;}
-    if(chosen==='host'&&['attack','ability','auto','upgrade','move','walk','target','eul','ultimate'].includes(type))return;
-    if(!world.started&&['attack','ability'].includes(type))command(world,chosen,{type:'start'});
-    if(soloPaused&&['attack','ability'].includes(type))return;
-    const result=type==='host'&&chosen==='host'?hostCommand(world,extra):command(world,chosen==='host'?'drow':chosen,{type,...extra});if(!result.ok&&['ability','eul','ultimate'].includes(type))toast(result.message);processEvents();updateUI();save();
+    if(online){if(!online.up){toast('Восстанавливаем связь с сервером…');return;}if(online.queue.length>=12)return;const seq=++online.nextSeq;online.queue.push({type,...extra,seq});predictCast(type,seq,extra);flushCommands();return;}
+    if(chosen==='host'&&['attack','ability','auto','upgrade','move','walk','aim','raze','eul','ultimate','shrapnel','buy','item'].includes(type))return;
+    if(!world.started&&['attack','ability','raze'].includes(type))command(world,chosen,{type:'start'});
+    if(soloPaused&&['attack','ability','raze','item','eul','ultimate','shrapnel','move','walk'].includes(type))return;
+    const result=type==='host'&&chosen==='host'?hostCommand(world,extra):command(world,chosen==='host'?'drow':chosen,{type,...extra});if(!result.ok&&['ability','raze','eul','ultimate','shrapnel','buy','item'].includes(type))toast(result.message);processEvents();updateUI();save();
   }
-  function choose(id){if(online)return;held.clear();localMotion=null;chosen=id;save();updateUI();renderPortraits();}
+  function choose(id){if(online)return;held.clear();shootHeld=false;aimPoint=null;localMotion=null;chosen=id;save();updateUI();renderPortraits();}
   function togglePause(){if(!world.started||online&&chosen==='host')return;if(online)action('pause',{value:!me().paused});else{soloPaused=!soloPaused;updateUI();save();}}
   async function request(path,body){
     const response=await fetch(path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body),signal:AbortSignal.timeout(6000)});
@@ -118,6 +126,7 @@ import {BattleEffects,drawProjectile} from './effects.js';
       if(data.type!=='state')return;
       if(!data.full&&data.seq!==current.frameSeq+1){if(!current.resync){current.resync=true;socket.send(JSON.stringify({type:'resync'}));}return;}
       try{current.rawWorld=applyNetFrame(current.rawWorld,data);}catch{if(!current.resync){current.resync=true;socket.send(JSON.stringify({type:'resync'}));}return;}
+      if(world.runId!==current.rawWorld.runId){effects.clear();motion.clear();localMotion=null;shootHeld=false;held.clear();lastEvent=0;}
       world=current.rawWorld;current.frameSeq=data.seq;current.lastAt=performance.now();current.up=true;current.failures=0;
       if(data.full){localMotion=null;motion.clear();current.resync=false;lastEvent=world.eventId;if(Number.isSafeInteger(data.lastSeq))acknowledge(current,data);}
       if(data.roster)current.roster=data.roster;if(data.inviteBase)current.inviteBase=data.inviteBase;
@@ -133,18 +142,23 @@ import {BattleEffects,drawProjectile} from './effects.js';
       current.failures++;current.retryTimer=setTimeout(()=>openLive(current),Math.min(3000,250*current.failures));updateUI();
     };
   }
-  function predictCast(type,seq){
+  function currentAim(){const p=me();return aimPoint||{x:p.aimX??p.x+500,y:p.aimY??p.y-35};}
+  function predictCast(type,seq,extra={}){
     if(chosen==='host'||!['attack','ability'].includes(type))return;
     const p=me(),now=performance.now(),ability=type==='ability';
-    if(!world.started||p.paused||p.respawn>0||p.stun>0||p.hex>0||p.channel>0||ability&&p.mana<manaCost(p)||ability&&(p.cooldown>0||online.predictedAbilityUntil>now))return;
+    if(!world.started||p.paused||p.respawn>0||p.stun>0||p.hex>0||p.channel>0||ability&&(p.skill==='sf'||p.mana<manaCost(p)||p.cooldown>0||online.predictedAbilityUntil>now))return;
     if(!ability&&now<(online.nextLocalShot||0))return;
-    const targets=world.enemies.filter(e=>allowedTarget(p,e,ability)&&Math.hypot(e.x-p.x,e.y-p.y)<=attackRange(p)+(ability?100:0)).sort((a,b)=>Math.hypot(a.x-p.x,a.y-p.y)-Math.hypot(b.x-p.x,b.y-p.y));if(!targets.length)return;
-    const skill=ability?p.skill:p.id,index=HEROES.findIndex(h=>h.id===chosen),seat={x:p.x-30,y:p.y+15};
-    const count=ability?({drow:5,timber:8,sf:6,rubick:6,sniper:1}[skill]):1;
-    effects.cast({hero:chosen,skill,ability,x:seat.x+50,y:seat.y-60,points:targets.slice(0,count).map(e=>({x:e.x,y:e.y-15}))});
+    const aim=extra.x===undefined?currentAim():extra,dx=aim.x-p.x,dy=aim.y-(p.y-35),len=Math.hypot(dx,dy)||1;
+    const skill=ability?p.skill:p.id;
+    effects.cast({hero:chosen,skill,ability,x:p.x,y:p.y-35,points:[{x:p.x+dx/len*120,y:p.y-35+dy/len*120}]});
     online.predicted.add(seq);if(online.predicted.size>32)online.predicted.delete(online.predicted.values().next().value);
-    online.localPoseUntil=now+220;online.nextLocalShot=now+250;if(ability)online.predictedAbilityUntil=now+heroInfo(skill).cooldown*1000;tone(ability?900:550,.04,'triangle');
+    online.localPoseUntil=now+220;online.nextLocalShot=now+1000/attackSpeed(p);if(ability)online.predictedAbilityUntil=now+abilityCooldown(p)*1000;tone(ability?900:550,.04,'triangle');
   }
+  function sendAim(force=false){
+    if(chosen==='host'||!world.started||soloPaused||!aimPoint)return;
+    if(!force&&performance.now()-aimSent<100)return;aimSent=performance.now();action('aim',currentAim());
+  }
+
   function leaveRoom(notify=true){
     const old=online;if(!old)return;if(notify)request('/api/rooms/'+old.code+'/leave',{token:old.token}).catch(()=>{});
     online=null;localMotion=null;held.clear();old.socket?.close(4000,'Left room');clearTimeout(old.retryTimer);clearInterval(old.pingTimer);motion.clear();effects.clear();world=soloWorld;lastEvent=world.eventId;location.hash='';soloPaused=false;updateUI();renderPortraits();
@@ -159,42 +173,70 @@ import {BattleEffects,drawProjectile} from './effects.js';
     $('saveStatus').textContent=online?'Комната '+online.code:saveAvailable?'Прогресс сохранён':'Сохранение недоступно';
     $('sessionTime').textContent=String(Math.floor(world.seconds/60)).padStart(2,'0')+':'+String(Math.floor(world.seconds%60)).padStart(2,'0');
     $('heroName').textContent=h.name.toUpperCase();$('heroClass').textContent=h.hero.toUpperCase();
-    $('heroStatus').textContent=chosen==='host'?'Следит за отрядом':p.respawn>0?'Встанет через '+Math.ceil(p.respawn)+' сек':personalPause?'На перекуре':chosen==='sniper'?(world.phase==='boss'?'Рошан: авто ≤4% · Q ≤8% HP':'Не трогает крипов. Стилит героев.'):p.channel>0?'Готовит Requiem of Souls':p.moving?'Меняет позицию':p.auto?'Фармит. Следит за маной.':'Ручной фарм';
-    $('sceneStatus').textContent=online?(online.up?'WS · '+online.ping+' MS · '+fps+' FPS':'ПЕРЕПОДКЛЮЧЕНИЕ…'):world.started?'ОТРЯД ФАРМИТ':'ОТРЯД ЖДЁТ';
-    $('autoButton').disabled=chosen==='host';$('autoButton').setAttribute('aria-pressed',String(p.auto));$('soundButton').setAttribute('aria-pressed',String(sound));
+    $('heroStatus').textContent=chosen==='host'?'Следит за отрядом':p.lives<=0?'ВЫБЫЛ · ЖИЗНИ ИСЧЕРПАНЫ':p.respawn>0?'Встанет через '+Math.ceil(p.respawn)+' сек':personalPause?'На перекуре':chosen==='sniper'?('Стил: авто ≤'+Math.round(stealThreshold(p,false,world.phase==='boss')*100)+'% · Q ≤'+Math.round(stealThreshold(p,true,world.phase==='boss')*100)+'% · E: Шрапнель'):p.channel>0?'Готовит Requiem of Souls':p.moving?'Меняет позицию':p.auto?'Автоогонь по направлению прицела':'Целится вручную';
+    $('sceneStatus').textContent=world.gameOver?'ЗАБЕГ ЗАВЕРШЁН':online?(online.up?'WS · '+online.ping+' MS · '+fps+' FPS':'ПЕРЕПОДКЛЮЧЕНИЕ…'):world.started?'ОТРЯД ФАРМИТ':'ОТРЯД ЖДЁТ';
+    canvas.style.cursor=chosen==='host'||!world.started||p.lives<=0?'default':'none';
+    $('autoButton').disabled=chosen==='host'||p.lives<=0||world.gameOver;$('autoButton').setAttribute('aria-pressed',String(p.auto));$('soundButton').setAttribute('aria-pressed',String(sound));
     $('soundButton').setAttribute('aria-label',sound?'Выключить звук':'Включить звук');$('soundButton').querySelector('use').setAttribute('href',sound?'#sound':'#mute');
     $('pauseButton').disabled=!!online&&chosen==='host';$('pauseButton').setAttribute('aria-pressed',String(personalPause));$('pauseButton').setAttribute('aria-label',personalPause?'Продолжить':'Пауза');$('pauseButton').querySelector('use').setAttribute('href',personalPause?'#play':'#pause');
-    $('pausedOverlay').hidden=online||!soloPaused;$('startOverlay').hidden=world.started;
+    $('pausedOverlay').hidden=online||!soloPaused;$('startOverlay').hidden=world.started||world.gameOver;
+    $('gameOverOverlay').hidden=!world.gameOver;$('gameOverSummary').textContent='Волна '+world.wave+' · '+number(world.kills)+' крипов · '+world.wins+' побед в тимфайтах';$('restartRunButton').disabled=!!online&&!online.host;$('restartRunHint').textContent=online&&!online.host?'Новый забег запускает ведущий. Места игроков сохранятся.':'У всех снова будет по 5 жизней. Предметы и прокачка начнутся с нуля.';
     $('startButtonText').textContent=world.seconds>0?'ПРОДОЛЖИТЬ ФАРМ':'СЕСТЬ И КАЧАТЬСЯ';
     const cooldown=Math.max(p.cooldown,online?.predictedAbilityUntil?(online.predictedAbilityUntil-performance.now())/1000:0);$('abilityName').textContent=skill.skill;$('multiStatus').textContent=cooldown>0?'Ещё '+Math.ceil(cooldown)+' сек':skill.hint;$('manaCost').textContent=manaCost(p)+' MP';
-    $('multiButton').title=skill.skill+' (Q)';$('multiButton').disabled=chosen==='host'||cooldown>0||p.mana<manaCost(p)||p.channel>0||p.stun>0||p.hex>0||personalPause||p.respawn>0||!!(online&&!online.up);
+    if(iconKit!==p.skill){iconKit=p.skill;drawSkillIcon($('abilityIcon').getContext('2d'),p.skill);}
+    $('multiButton').hidden=p.skill==='sf';$('razeAbilities').hidden=p.skill!=='sf';
+    for(const r of RAZES){const rules=razeRules(p,r.id),button=$('raze-'+r.id);button.disabled=chosen==='host'||p[r.cooldown]>0||p.mana<rules.cost||p.channel>0||p.stun>0||p.hex>0||p.respawn>0||personalPause||!!(online&&!online.up);$('raze-'+r.id+'-status').textContent=p[r.cooldown]>0?Math.ceil(p[r.cooldown])+' сек':rules.cost+' MP · '+r.distance;button.title=r.name+' ('+r.key+') · '+rules.cost+' MP · '+rules.cd.toFixed(1)+' сек · радиус '+rules.radius;}
+    $('multiButton').title=skill.skill+' (Q) · '+manaCost(p)+' MP · '+abilityCooldown(p).toFixed(1)+' сек';$('multiButton').disabled=chosen==='host'||cooldown>0||p.mana<manaCost(p)||p.channel>0||p.stun>0||p.hex>0||personalPause||p.respawn>0||!!(online&&!online.up);
     $('attackButton').disabled=chosen==='host'||personalPause||p.respawn>0||!!(online&&!online.up);
-    $('heroHealth').textContent=number(p.hp)+' / '+number(maxHP(p))+' HP · Фрагов: '+p.heroKills;
+    $('heroHealth').textContent=number(p.hp)+' / '+number(maxHP(p))+' HP · K/D/A '+p.heroKills+'/'+(p.deaths||0)+'/'+(p.assists||0);
+    $('heroLives').textContent=chosen==='host'?'Жизни отряда: '+Object.values(world.players).reduce((n,p)=>n+p.lives,0)+'/25':'♥'.repeat(p.lives)+'♡'.repeat(5-p.lives)+' · '+p.lives+'/5';
+    $('combatStats').textContent='Урон: '+number(p.damageDealt||0)+' · Магия: '+number(p.spellDamage||0)+' · DPS (5с): '+number(p.dps||0);
+    for(const h of HEROES){const member=world.players[h.id];$('stats-lives-'+h.id).textContent='Жизни: '+member.lives+'/5';$('stats-'+h.id).classList.toggle('your-stats',h.id===chosen);for(const [col,value] of Object.entries({kda:member.heroKills+'/'+(member.deaths||0)+'/'+(member.assists||0),lh:number(member.kills),total:number(member.damageDealt||0),spell:number(member.spellDamage||0),heroes:number(member.heroDamage||0),creeps:number(member.creepDamage||0),boss:number(member.bossDamage||0),taken:number(member.damageTaken||0),dps:number(member.dps||0)}))$('stat-'+h.id+'-'+col).textContent=value;}
     $('manaText').textContent=number(p.mana)+' / '+number(maxMana(p))+' MP · +'+manaRegen(p).toFixed(1)+'/сек';$('manaFill').style.width=(100*p.mana/maxMana(p))+'%';
-    $('sfAbilities').hidden=chosen!=='sf';
+    $('sfAbilities').hidden=chosen!=='sf';$('sniperAbilities').hidden=chosen!=='sniper';
+    const shrapnel=shrapnelRules(p);$('shrapnelButtonStatus').textContent=p.shrapnelCooldown>0?Math.ceil(p.shrapnelCooldown)+' сек':shrapnel.cost+' MP';
+    $('shrapnelButton').title='Шрапнель (E) · '+shrapnel.cost+' MP · '+shrapnel.cooldown.toFixed(1)+' сек · '+shrapnel.duration.toFixed(1)+' сек обстрела';
+    $('shrapnelButton').disabled=chosen!=='sniper'||p.shrapnelCooldown>0||p.mana<shrapnel.cost||p.channel>0||p.stun>0||p.hex>0||p.respawn>0||personalPause||!!(online&&!online.up);
     for(const [key,button,label,cost] of [['eulCooldown','eulButton','Eul',75],['ultCooldown','ultButton','Requiem',175]]){
       $(button).disabled=chosen!=='sf'||p[key]>0||p.mana<cost||p.channel>0||p.stun>0||p.hex>0||p.respawn>0||personalPause||!!(online&&!online.up);
       $(button+'Status').textContent=p[key]>0?Math.ceil(p[key])+' сек':cost+' MP';
     }
-    $('channelStatus').textContent=p.channel>0?'REQUIEM: '+p.channel.toFixed(1)+' сек · не двигайся':p.slow>0?'ЗАМЕДЛЕНИЕ · '+Math.ceil(p.slow)+' сек':'WASD / стрелки · клик по земле — идти · клик по врагу — выбрать цель';
-    const selected=world.enemies.find(e=>e.id===p.target&&e.hp>0);$('targetStatus').textContent=selected?(selected.heroName||selected.name||'Крип')+' · '+number(selected.hp)+' HP':'Автоматический выбор ближайшей цели';
+    $('channelStatus').textContent=p.lives<=0?'Наблюдатель до нового забега':p.channel>0?'REQUIEM: '+p.channel.toFixed(1)+' сек · не двигайся':p.slow>0?'ЗАМЕДЛЕНИЕ · '+Math.ceil(p.slow)+' сек':'Мышь — прицел · ЛКМ / Пробел — огонь · ПКМ / WASD — идти · SF: Z / X / C';
+    const aim=currentAim();$('targetStatus').textContent='Ручной прицел: '+Math.round(aim.x)+', '+Math.round(aim.y)+' · снаряды без доворачивания';
     $('waveDetails').textContent=world.phase==='boss'?'РОШАН · −35% входящего урона · регенерация · лимит 180 сек':world.phase==='teamfight'?'Враги: усиленное HP · −28% входящего урона · быстрые способности':rules.count+' крипов · '+rules.hp+' HP · '+rules.damage+' урона · '+rules.speed+' скорость';
-    for(const type of ['damage','speed','wisdom']){$(type+'Price').textContent=number(upgradeCost(p,type))+' G';$(type+'Rank').textContent=p[type]?'УР. '+p[type]:'I';document.querySelector('[data-upgrade="'+type+'"]').disabled=chosen==='host'||p.gold<upgradeCost(p,type)||!!(online&&!online.up);}
+    for(const type of SKILL_UPGRADES){const rank=p[type]||0,info=upgradeInfo(p,type),cost=upgradeCost(p,type);$(type+'Name').textContent=info.name;$(type+'Hint').textContent=info.hint;$(type+'Price').textContent=Number.isFinite(cost)?number(cost)+' G':'МАКС';$(type+'Rank').textContent='УР. '+rank+' / '+MAX_SKILL_RANK;document.querySelector('[data-upgrade="'+type+'"]').disabled=chosen==='host'||p.lives<=0||world.gameOver||!Number.isFinite(cost)||p.gold<cost||!!(online&&!online.up);}
+
     $('hostPanelButton').hidden=!(online?.host||!online&&chosen==='host');
     $('roomLobby').hidden=!!online;$('roomConnected').hidden=!online;
     if(online){$('roomCode').textContent=online.code;$('connectionStatus').textContent=online.up?'WebSocket · '+online.ping+' мс · '+fps+' FPS':'Связь потеряна. Переподключаемся…';}
+    updateShop(p,personalPause);
     $('resetButton').disabled=!!online;$('resetButton').title=online?'Сброс доступен только в одиночной игре':'Сбросить одиночную игру';
-    for(const hero of PICKS){const card=$('pick-'+hero.id),player=world.players[hero.id]||world.players.drow;card.classList.toggle('selected',chosen===hero.id);card.setAttribute('aria-pressed',String(chosen===hero.id));card.disabled=!!online;const human=online?.roster.find(r=>r.id===hero.id)?.human;$('status-'+hero.id).textContent=hero.id==='host'?(chosen==='host'?'ТЫ · ВЕДУЩИЙ':human?'ВЕДУЩИЙ ОНЛАЙН':'НАБЛЮДАТЕЛЬ'):hero.id===chosen?'ТЫ · УР. '+player.level:human?'ИГРОК · УР. '+player.level:'БОТ · УР. '+player.level;$('hp-'+hero.id).style.width=(100*player.hp/maxHP(player))+'%';}
+    for(const hero of PICKS){const card=$('pick-'+hero.id),player=world.players[hero.id]||world.players.drow;card.classList.toggle('selected',chosen===hero.id);card.setAttribute('aria-pressed',String(chosen===hero.id));card.disabled=!!online;const human=online?.roster.find(r=>r.id===hero.id)?.human;$('status-'+hero.id).textContent=hero.id==='host'?(chosen==='host'?'ТЫ · ВЕДУЩИЙ':human?'ВЕДУЩИЙ ОНЛАЙН':'НАБЛЮДАТЕЛЬ'):hero.id===chosen?'ТЫ · УР. '+player.level:human?'ИГРОК · УР. '+player.level:'БОТ · УР. '+player.level;if(hero.id!=='host')$('status-'+hero.id).textContent+=(player.lives<=0?' · ВЫБЫЛ':' · ♥ '+player.lives+'/5');$('hp-'+hero.id).style.width=(100*player.hp/maxHP(player))+'%';}
     const boss=world.phase==='boss',fighting=boss||world.phase==='teamfight';$('fightPanel').hidden=!fighting;$('enemyLineup').hidden=!fighting;
     $('fightTitle').textContent=boss?'ФИНАЛЬНЫЙ БОСС · РОШАН':'ТИМФАЙТ 5 × 5';
     $('fightScore').textContent='Тимфайты: '+world.wins+' побед · '+world.losses+' поражений'+(world.bossKills?' · Рошан убит':'' );
     if(fighting){
       const roshan=world.enemies.find(e=>e.boss);
       $('fightAlive').textContent=boss&&roshan?number(roshan.hp)+' / '+number(roshan.maxHP)+' HP · '+Math.max(0,Math.ceil(180-world.fightTime))+' СЕК':Object.values(world.players).filter(p=>p.respawn<=0).length+' НАШИХ / '+world.enemies.length+' ВРАГОВ';
-      $('fightHint').textContent=boss?(world.breakTime>0?'НОВАЯ ПОПЫТКА ЧЕРЕЗ '+Math.ceil(world.breakTime)+' СЕК':roshan?.enraged?'ЯРОСТЬ! ЭМИР ЖДЁТ 8% HP':'BASH · THUNDER CLAP · ЭМИР ЖДЁТ 8% HP'):world.enemies.some(e=>e.hero&&e.hp/e.maxHP<=.3)?'ЭМИР, ТВОЙ ВЫХОД!':'ЭМИР ЖДЁТ 30% HP';
+      const emir=world.players.sniper,limit=Math.round(stealThreshold(emir,true,boss)*100);
+      $('fightHint').textContent=boss?(world.breakTime>0?'НОВАЯ ПОПЫТКА ЧЕРЕЗ '+Math.ceil(world.breakTime)+' СЕК':(roshan?.enraged?'ЯРОСТЬ! ':'')+'ЭМИР: Q ПРИ ≤'+limit+'% HP'):world.enemies.some(e=>e.hero&&e.hp/e.maxHP<=stealThreshold(emir,true))?'ЭМИР, ТВОЙ ВЫХОД!':'ЭМИР ЖДЁТ '+limit+'% HP';
       const teamKey=world.phase+':'+world.wave+':'+world.enemyTeam.join(',');
       if(enemyTeamKey!==teamKey){enemyTeamKey=teamKey;$('enemyLineup').innerHTML=world.enemyTeam.map(id=>{const h=id==='roshan'?ROSHAN:ENEMY_HEROES.find(h=>h.id===id);return '<div id="enemy-card-'+id+'" class="enemy-card"><strong>'+h.name+'</strong><span>'+h.skill+'</span><small>'+h.description+'</small><div class="enemy-hp"><i id="enemy-hp-'+id+'"></i></div></div>';}).join('');}
       for(const id of world.enemyTeam){const e=world.enemies.find(e=>e.kit===id&&e.hp>0);$('enemy-card-'+id).classList.toggle('defeated',!e);$('enemy-hp-'+id).style.width=(e?e.hp/e.maxHP*100:0)+'%';}
+    }
+  }
+  function updateShop(p,personalPause){
+    const purchase=shoppingPlan(p),canBuy=chosen!=='host'&&p.lives>0&&!world.gameOver&&!(online&&!online.up);
+    $('shopSummary').textContent=chosen==='host'?'Предметы покупает каждый игрок':ITEMS.filter(item=>hasItem(p,item.id)).length+' / 4 предмета · '+number(p.gold)+' G';
+    for(const item of ITEMS){
+      const owned=hasItem(p,item.id),button=$('buy-'+item.id);button.disabled=!canBuy||owned||p.gold<item.cost;button.closest('.shop-card').classList.toggle('owned',owned);
+      button.textContent=owned?'✓ В инвентаре':number(item.cost)+' G · Купить';
+      $('item-note-'+item.id).textContent=item.id==='daedalus'&&p.id==='sniper'?'Эмиру: +3 п.п. к порогу стила (до лимита)':owned?'Предмет куплен · не занимает слот умения':'Один экземпляр на героя';
+    }
+    $('shopAdvice').textContent=chosen==='host'?'У каждого героя 5 жизней на весь забег. Защитные предметы помогают их сохранить.':p.lives<=0?'У героя закончились жизни. Предметы сохранятся до конца забега.':purchase?'Совет: '+(purchase.type==='buy'?ITEMS.find(i=>i.id===purchase.item).short:upgradeInfo(p,purchase.upgrade).name)+' · '+number(purchase.cost)+' G. Покупать можно между атаками; жизней в продаже нет.':'Все предметы и улучшения куплены.';
+    for(const [id,key,left,label] of [['bkb','bkbCooldown','bkbLeft','BKB'],['mjollnir','mjollnirCooldown','staticLeft','Щит']]){
+      $(id+'Button').hidden=!hasItem(p,id)||chosen==='host';$(id+'Button').disabled=!canBuy||!world.started||personalPause||p.respawn>0||p.stun>0||p.hex>0||p[key]>0||world.breakTime>0;
+      $(id+'Status').textContent=p[left]>0?label+' '+Math.ceil(p[left])+' сек':p[key]>0?Math.ceil(p[key])+' сек':'Готов';
     }
   }
   // Pixel art is drawn locally: no image downloads or spritesheet dependencies.
@@ -375,12 +417,25 @@ import {BattleEffects,drawProjectile} from './effects.js';
     rect(ctx,x-28,y-108,56,4,'#25372b');rect(ctx,x-28,y-108,56*e.hp/e.maxHP,4,e.grave>0?'#dfa5e2':'#d99179');
     if(e.armor>0||e.spin>0||e.grave>0){ctx.strokeStyle=e.grave>0?'#e7a5e5':e.spin>0?'#edb17c':'#bfc3a4';ctx.beginPath();ctx.ellipse(x,y-40,41,57,0,0,Math.PI*2);ctx.stroke();}
   }
+  function drawAim(){
+    if(chosen==='host'||!world.started||me().lives<=0)return;
+    const raw=me(),p=online&&localMotion?{...raw,x:localMotion.x,y:localMotion.y}:raw,aim=currentAim(),dx=aim.x-p.x,dy=aim.y-(p.y-35),len=Math.hypot(dx,dy)||1,ux=dx/len,uy=dy/len;
+    ctx.save();ctx.lineWidth=1.5;ctx.setLineDash([9,9]);ctx.strokeStyle='#cfdf9c70';ctx.beginPath();ctx.moveTo(p.x,p.y-35);ctx.lineTo(p.x+ux*Math.min(len,attackRange(p)),p.y-35+uy*Math.min(len,attackRange(p)));ctx.stroke();
+    if(p.skill==='sf')for(const [i,r] of RAZES.entries()){
+      const rules=razeRules(p,r.id),x=p.x+ux*r.distance,y=p.y+uy*r.distance;ctx.strokeStyle=raw[r.cooldown]>0?'#78847b66':['#ffb16e88','#e68b7c88','#d898c788'][i];ctx.fillStyle=['#ffad6010','#ed735b10','#c67bb010'][i];ctx.beginPath();ctx.ellipse(x,y,rules.radius,rules.radius,0,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.setLineDash([]);ctx.textAlign='center';ctx.font='bold 15px monospace';ctx.fillStyle='#e5c2a0';ctx.fillText(r.key+' · '+r.distance,x,y);ctx.setLineDash([9,9]);
+    }
+    if(p.id==='sniper'){ctx.strokeStyle=len<=1100?'#dcbf6d66':'#dc775c66';ctx.beginPath();ctx.ellipse(aim.x,aim.y,shrapnelRules(p).radius,shrapnelRules(p).radius,0,0,Math.PI*2);ctx.stroke();}
+    ctx.setLineDash([]);ctx.strokeStyle='#e4eeb7';ctx.lineWidth=2;ctx.beginPath();ctx.ellipse(aim.x,aim.y,10,10,0,0,Math.PI*2);ctx.moveTo(aim.x-19,aim.y);ctx.lineTo(aim.x-8,aim.y);ctx.moveTo(aim.x+8,aim.y);ctx.lineTo(aim.x+19,aim.y);ctx.moveTo(aim.x,aim.y-19);ctx.lineTo(aim.x,aim.y-8);ctx.moveTo(aim.x,aim.y+8);ctx.lineTo(aim.x,aim.y+19);ctx.stroke();ctx.restore();
+  }
+  function drawCasts(){
+    for(const cast of world.casts||[]){ctx.save();ctx.strokeStyle='#ff9a67';ctx.fillStyle='#d44d4025';ctx.lineWidth=3;ctx.setLineDash([7,7]);ctx.beginPath();ctx.ellipse(cast.x,cast.y,cast.radius,cast.radius,0,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.setLineDash([]);ctx.font='bold 16px monospace';ctx.textAlign='center';ctx.fillStyle='#ffd0a0';ctx.fillText((RAZES.find(r=>r.id===cast.raze)?.key||'')+' · '+Math.max(0,cast.left).toFixed(1),cast.x,cast.y);ctx.restore();}
+  }
   function draw(dt){
     ctx.imageSmoothingEnabled=false;ctx.drawImage(bg,0,0);
     for(let i=0;i<16;i++){ctx.globalAlpha=.2+Math.sin(elapsed+i)*.15;rect(ctx,(i*73+Math.sin(elapsed*.3+i)*28)%W,130+(i*39)%220+Math.sin(elapsed*.65+i)*12,2,2,'#e4e8a9');}ctx.globalAlpha=1;
     const sample=online?motion.sample(performance.now()):null;
     const units=world.started?(sample?.enemies||world.enemies):[{id:0,x:1250,y:460,step:elapsed,hp:100,maxHP:100,ranged:false},{id:1,x:1450,y:660,step:elapsed,hp:100,maxHP:100,ranged:true}];
-    drawHazards();
+    drawZones(ctx,world.zones,elapsed);drawHazards();drawCasts();
     for(const original of [...units].sort((a,b)=>a.y-b.y)){
       const e=original.cyclone>0?{...original,y:original.y-60-Math.sin(elapsed*8)*12}:original;
       if(e.boss)roshanDraw(e);else if(e.hero)enemyHeroDraw(e);else if(e.neutral)neutralDraw(e);else creep(e);
@@ -397,22 +452,23 @@ import {BattleEffects,drawProjectile} from './effects.js';
       if(p.hex>0){rect(ctx,x-18,y-22,36,20,'#7d9f58');rect(ctx,x-14,y-28,7,7,'#b5ce77');rect(ctx,x+9,y-28,7,7,'#b5ce77');}
       else{
         if(!walking){rect(ctx,x-15,y-12,36,15,'#514e39');rect(ctx,x-17,y-16,40,6,'#82784f');}
-        otherHero(ctx,h.id,x-15,y-66+bob,1.12,pose);
+        ctx.save();if((h.id===chosen?currentAim().x:p.aimX)<x){ctx.translate(x*2,0);ctx.scale(-1,1);}otherHero(ctx,h.id,x-15,y-66+bob,1.12,pose);ctx.restore();
         if(walking){const stride=Math.sin(elapsed*13)*5;rect(ctx,x-8,y-14+stride,8,13,'#273b31');rect(ctx,x+6,y-14-stride,8,13,'#273b31');rect(ctx,x-10,y-3+stride,12,4,'#17271f');rect(ctx,x+5,y-3-stride,12,4,'#17271f');}
       }
       if(world.bigHeadsUntil>world.seconds){const face=$('portrait-'+h.id);ctx.drawImage(face,7,0,42,29,x-22,y-90,58,40);}
       ctx.textAlign='center';ctx.font='bold 12px monospace';ctx.fillStyle=h.id===chosen?'#e7f5b6':h.color;ctx.fillText(h.name.toUpperCase(),x,y-94);
       rect(ctx,x-25,y-86,50,4,'#11251d');rect(ctx,x-25,y-86,50*p.hp/maxHP(p),4,h.color);rect(ctx,x-25,y-79,50*p.mana/maxMana(p),3,'#76a7df');
       if(p.stun>0){ctx.fillStyle='#e7db86';ctx.font='20px monospace';ctx.fillText('✦',x,y-105);}
-      if(p.channel>0){ctx.strokeStyle='#ff684e';ctx.lineWidth=3;ctx.beginPath();ctx.ellipse(x,y,Math.max(0,60+Math.sin(elapsed*8)*10),30,0,0,Math.PI*2);ctx.stroke();ctx.fillStyle='#ffbca0';ctx.fillText('REQUIEM '+p.channel.toFixed(1),x,y-112);}
-      if(p.respawn>0){ctx.font='bold 16px monospace';ctx.fillStyle='#efdeb7';ctx.fillText(Math.ceil(p.respawn)+'с',x,y-40);}ctx.globalAlpha=1;
+      if(p.channel>0){drawChannel(ctx,{...p,x,y},elapsed);ctx.fillStyle='#ffbca0';ctx.fillText('REQUIEM '+p.channel.toFixed(1),x,y-112);}
+      drawItemAuras(ctx,{...p,x,y},elapsed);
+      if(p.lives<=0){ctx.font='bold 14px monospace';ctx.fillStyle='#d59286';ctx.fillText('ВЫБЫЛ',x,y-40);}
+      else if(p.respawn>0){ctx.font='bold 16px monospace';ctx.fillStyle='#efdeb7';ctx.fillText(Math.ceil(p.respawn)+'с',x,y-40);}ctx.globalAlpha=1;
       if(h.id===chosen){ctx.strokeStyle='#d6e9a5';ctx.lineWidth=2;ctx.beginPath();ctx.ellipse(x,y+8,30,9,0,0,Math.PI*2);ctx.stroke();}
     }
-    const selected=world.enemies.find(e=>e.id===me().target&&e.hp>0);
-    if(selected){ctx.strokeStyle='#f4c681';ctx.lineWidth=2;ctx.beginPath();ctx.ellipse(selected.x,selected.y+5,35,12,0,0,Math.PI*2);ctx.stroke();}
+    drawAim();
     if(moveMarker&&elapsed-moveMarker.at<1){ctx.strokeStyle='#c2e58b';ctx.lineWidth=2;ctx.beginPath();ctx.ellipse(moveMarker.x,moveMarker.y,12+(elapsed-moveMarker.at)*15,6+(elapsed-moveMarker.at)*8,0,0,Math.PI*2);ctx.stroke();}
     const visibleShots=sample?.projectiles||world.projectiles,visibleEnemies=new Map(units.map(e=>[e.id,e]));
-    for(const shot of visibleShots)if(shot.delay<=0)drawProjectile(ctx,shot,visibleEnemies.get(shot.target),elapsed);
+    for(const shot of visibleShots)if(shot.delay<=0)drawProjectile(ctx,shot,shot.hostile?world.players[shot.targetPlayer]:visibleEnemies.get(shot.target),elapsed);
     effects.draw(ctx,dt,elapsed);
     for(const p of particles){p.x+=p.vx*dt;p.y+=p.vy*dt;p.vy+=100*dt;p.life-=dt;ctx.globalAlpha=Math.min(1,p.life*2);rect(ctx,p.x,p.y,3,3,p.color);}particles=particles.filter(p=>p.life>0);ctx.globalAlpha=1;
     ctx.font='bold 11px monospace';ctx.textAlign='center';for(const f of floating){f.y-=22*dt;f.life-=dt;ctx.globalAlpha=Math.min(1,f.life*2);ctx.fillStyle=f.color;ctx.fillText(f.text,f.x,f.y);}floating=floating.filter(f=>f.life>0);ctx.globalAlpha=1;
@@ -430,7 +486,8 @@ import {BattleEffects,drawProjectile} from './effects.js';
     if(key==='0:0'&&lastWalk===key)return;lastWalk=key;walkSent=performance.now();action('walk',{dx,dy});
   }
   function updateMovement(dt,time){
-    if(document.querySelector('dialog[open]')){if(held.size||lastWalk!=='0:0'){held.clear();lastWalk='0:0';if(chosen!=='host'&&world.started)action('walk',{dx:0,dy:0});}if(localMotion){localMotion.dx=0;localMotion.dy=0;localMotion.destination=null;}}
+    if(shootHeld&&performance.now()-mouseShotAt>=1000/attackSpeed(me())&&!document.querySelector('dialog[open]')){mouseShotAt=performance.now();action('attack');}
+    if(document.querySelector('dialog[open]')){shootHeld=false;if(held.size||lastWalk!=='0:0'){held.clear();lastWalk='0:0';if(chosen!=='host'&&world.started)action('walk',{dx:0,dy:0});}if(localMotion){localMotion.dx=0;localMotion.dy=0;localMotion.destination=null;}}
     if(held.size)sendWalk();
     if(!online||!localMotion)return;
     const p=me();if(!online.up||p.respawn>0||p.paused){localMotion=null;return;}
@@ -442,19 +499,30 @@ import {BattleEffects,drawProjectile} from './effects.js';
     const error=Math.hypot(p.x-localMotion.x,p.y-localMotion.y);if(error>300){localMotion.x=p.x;localMotion.y=p.y;}else{const blend=Math.min(1,dt*8);localMotion.x+=(authoritativeX-localMotion.x)*blend;localMotion.y+=(authoritativeY-localMotion.y)*blend;}
   }
   function frame(time){const dt=Math.max(0,Math.min((time-lastTime)/1000||0,.05));lastTime=time;fpsFrames++;if(time-fpsStart>=1000){fps=Math.round(fpsFrames*1000/(time-fpsStart));fpsFrames=0;fpsStart=time;}if(!document.hidden){updateMovement(dt,time);elapsed+=dt;if(!online&&!soloPaused){step(world,dt,HEROES.filter(h=>h.id!==chosen).map(h=>h.id));processEvents();}draw(dt);uiTimer+=dt;saveTimer+=dt;if(uiTimer>.15){updateUI();uiTimer=0;}if(saveTimer>3){save();saveTimer=0;}}requestAnimationFrame(frame);}
+  $('shopCards').innerHTML=ITEMS.map(item=>'<article class="shop-card"><div class="shop-item-title"><canvas id="shop-icon-'+item.id+'" width="64" height="64" aria-hidden="true"></canvas><div><h3>'+item.name+'</h3><span>'+item.short+'</span></div></div><p>'+item.hint+'</p><small id="item-note-'+item.id+'"></small><button id="buy-'+item.id+'">'+item.cost+' G · Купить</button></article>').join('');
+  for(const item of ITEMS){drawItemIcon($('shop-icon-'+item.id).getContext('2d'),item.id,64);$('buy-'+item.id).addEventListener('click',()=>action('buy',{item:item.id}));}
+  for(const id of ['bkb','mjollnir']){drawItemIcon($(id+'Icon').getContext('2d'),id,48);$(id+'Button').addEventListener('click',()=>action('item',{item:id}));}
+  $('restartRunButton').addEventListener('click',()=>{if(online){if(online.host)action('restart');}else $('resetDialog').showModal();});
+  $('statsBody').innerHTML=HEROES.map(h=>'<tr id="stats-'+h.id+'"><th scope="row"><span style="color:'+h.color+'">'+h.name+'</span><small>'+h.hero+'</small><small id="stats-lives-'+h.id+'"></small></th>'+['kda','lh','total','spell','heroes','creeps','boss','taken','dps'].map(col=>'<td id="stat-'+h.id+'-'+col+'">0</td>').join('')+'</tr>').join('');
+  for(const [id,kit] of [['eulIcon','eul'],['ultIcon','requiem'],['shrapnelIcon','shrapnel']])drawSkillIcon($(id).getContext('2d'),kit);
   $('heroPicker').innerHTML=PICKS.map(h=>'<button class="hero-pick" id="pick-'+h.id+'" aria-pressed="false"><canvas id="portrait-'+h.id+'" width="64" height="64" aria-hidden="true"></canvas><span class="pick-info"><strong>'+h.name+'</strong><span>'+h.hero+'</span><small id="status-'+h.id+'"></small><span class="pick-health"><i id="hp-'+h.id+'"></i></span></span><span class="pick-trait">'+h.icon+'</span></button>').join('');
   for(const h of PICKS)$('pick-'+h.id).addEventListener('click',()=>choose(h.id));
   $('startButton').addEventListener('click',()=>action('start'));
   $('attackButton').addEventListener('click',()=>action('attack'));
+  canvas.addEventListener('pointermove',event=>{const r=canvas.getBoundingClientRect();aimPoint={x:(event.clientX-r.left)*W/r.width,y:(event.clientY-r.top)*H/r.height};sendAim();});
   canvas.addEventListener('contextmenu',event=>event.preventDefault());
   canvas.addEventListener('pointerdown',event=>{
     if(chosen==='host'||!world.started)return;event.preventDefault();canvas.focus({preventScroll:true});
     const bounds=canvas.getBoundingClientRect(),x=(event.clientX-bounds.left)*W/bounds.width,y=(event.clientY-bounds.top)*H/bounds.height;
-    const enemy=world.enemies.filter(e=>e.hp>0&&Math.hypot(e.x-x,e.y-35-y)<(e.boss?110:65)).sort((a,b)=>Math.hypot(a.x-x,a.y-y)-Math.hypot(b.x-x,b.y-y))[0];
-    if(event.button!==2&&enemy){action('target',{enemy:enemy.id});return;}
-    action('move',{x,y});moveMarker={x,y,at:elapsed};
+    aimPoint={x,y};sendAim(true);
+    if(event.button===2){action('move',{x,y});moveMarker={x,y,at:elapsed};return;}
+    if(event.button!==0)return;
+    shootHeld=true;mouseShotAt=performance.now();try{canvas.setPointerCapture?.(event.pointerId);}catch{}action('attack');
   });
+  for(const event of ['pointerup','pointercancel','lostpointercapture'])canvas.addEventListener(event,()=>{shootHeld=false;});
+  for(const r of RAZES)$('raze-'+r.id).addEventListener('click',()=>action('raze',{raze:r.id}));
   $('multiButton').addEventListener('click',()=>action('ability'));
+  $('shrapnelButton').addEventListener('click',()=>action('shrapnel'));
   $('eulButton').addEventListener('click',()=>action('eul'));$('ultButton').addEventListener('click',()=>action('ultimate'));
   $('themeButton').addEventListener('click',()=>setTheme(document.documentElement.dataset.theme==='dark'?'light':'dark'));
   $('fullscreenButton').addEventListener('click',()=>{if(document.fullscreenElement)document.exitFullscreen();else $('game-frame').requestFullscreen?.().catch(()=>toast('Полный экран недоступен в этом браузере'));});
@@ -465,13 +533,15 @@ import {BattleEffects,drawProjectile} from './effects.js';
   document.addEventListener('keydown',event=>{
     if(event.repeat||event.ctrlKey||event.metaKey||event.altKey||document.querySelector('dialog[open]')||['INPUT','TEXTAREA','SELECT'].includes(document.activeElement?.tagName))return;
     if(['KeyW','KeyA','KeyS','KeyD','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(event.code)){event.preventDefault();held.add(event.code);sendWalk();return;}
-    if(event.code==='KeyE'){event.preventDefault();action('eul');}if(event.code==='KeyR'){event.preventDefault();action('ultimate');}
+    if(event.code==='KeyF'||event.code==='KeyG'){event.preventDefault();action('item',{item:event.code==='KeyF'?'bkb':'mjollnir'});return;}
+    const raze=RAZES.find(r=>'Key'+r.key===event.code);if(raze){event.preventDefault();action('raze',{raze:raze.id});return;}
+    if(event.code==='KeyE'){event.preventDefault();action(chosen==='sniper'?'shrapnel':'eul',chosen==='sniper'?(aimPoint||{}):{});}if(event.code==='KeyR'){event.preventDefault();action('ultimate');}
     if(event.code==='Space'&&document.activeElement?.tagName==='BUTTON')return;
     if(event.code==='Space'){event.preventDefault();action('attack');}
     if(event.code==='KeyQ'){event.preventDefault();action('ability');}if(event.code==='KeyP'){event.preventDefault();togglePause();}
   });
   document.addEventListener('keyup',event=>{if(held.delete(event.code)){event.preventDefault();sendWalk();}});
-  window.addEventListener('blur',()=>{held.clear();sendWalk();});
+  window.addEventListener('blur',()=>{shootHeld=false;held.clear();sendWalk();});
   for(const button of document.querySelectorAll('[data-walk]')){
     const key=button.dataset.walk;button.addEventListener('pointerdown',event=>{event.preventDefault();button.setPointerCapture(event.pointerId);held.add(key);sendWalk();});
     for(const type of ['pointerup','pointercancel','lostpointercapture'])button.addEventListener(type,()=>{if(held.delete(key))sendWalk();});
@@ -486,7 +556,7 @@ import {BattleEffects,drawProjectile} from './effects.js';
   for(const id of ['prankTarget','prankOther'])$(id).innerHTML=HEROES.map(h=>'<option value="'+h.id+'">'+h.name+' · '+h.hero+'</option>').join('');$('prankOther').value='sf';
   $('leaveRoomButton').addEventListener('click',()=>leaveRoom());
   $('copyRoomButton').addEventListener('click',async()=>{if(!online)return;if(['localhost','127.0.0.1'].includes(location.hostname)&&online.inviteBase===location.origin){toast('Запусти npm run online и дождись внешней ссылки в терминале.');return;}const url=(online.inviteBase||location.origin)+'/#room='+online.code;try{await navigator.clipboard.writeText(url);toast('Ссылка скопирована. Отправь друзьям!');}catch{$('shareLink').value=url;$('shareDialog').showModal();$('shareLink').select();}});
-  document.addEventListener('visibilitychange',()=>{lastTime=performance.now();if(document.hidden){held.clear();localMotion=null;lastWalk='0:0';if(chosen!=='host'&&world.started)action('walk',{dx:0,dy:0});save();}});window.addEventListener('pagehide',save);
+  document.addEventListener('visibilitychange',()=>{lastTime=performance.now();if(document.hidden){shootHeld=false;held.clear();localMotion=null;lastWalk='0:0';if(chosen!=='host'&&world.started)action('walk',{dx:0,dy:0});save();}});window.addEventListener('pagehide',save);
   const invited=location.hash.match(/room=([A-F0-9]{6})/i);if(invited){$('roomCodeInput').value=invited[1].toUpperCase();$('roomHint').textContent='Тебя пригласили! Выбери свободного героя и нажми «Войти».';}
   setTheme(document.documentElement.dataset.theme||'dark');renderPortraits();updateUI();draw(0);requestAnimationFrame(frame);
   if(invited&&/^https?:$/.test(location.protocol)&&credentials())connect(false);

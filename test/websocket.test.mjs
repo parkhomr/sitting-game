@@ -25,11 +25,17 @@ test('six WebSocket clients get continuous compact frames, immediate commands an
   for(const identity of identities)clients.push(await live('ws://127.0.0.1:'+port+'/live',host.code,identity.token));
   clients[0].send({type:'commands',commands:[{seq:1,type:'start'},{seq:2,type:'host',prank:'swapSkills',target:'timber',other:'sf'}]});
   const ack=await clients[0].wait(p=>p.type==='ack'&&p.lastSeq===2);assert.equal(ack.ack.at(-1).ok,true);
+  clients[2].send({type:'commands',commands:[{seq:1,type:'aim',x:1360,y:525},...['near','mid','far'].map((raze,i)=>({seq:i+2,type:'raze',raze,x:1360,y:525}))]});
+  const razeAck=await clients[2].wait(p=>p.type==='ack'&&p.lastSeq===4);assert.ok(razeAck.ack.every(a=>a.ok));
+  const warning=await clients[1].wait(p=>p.type==='state'&&p.state?.casts?.length===3);assert.deepEqual(warning.state.casts.map(c=>c.x),[660,910,1160]);
+  clients[3].send({type:'commands',commands:[{seq:1,type:'attack',x:1200,y:635}]});await clients[3].wait(p=>p.type==='ack'&&p.lastSeq===1);
+  const ballistic=await clients[1].wait(p=>p.type==='state'&&p.projectiles?.add?.some(s=>s.hero==='sf'));
+  const shot=ballistic.projectiles.add.find(s=>s.hero==='sf');assert.ok(shot.vx>0);assert.equal(shot.vy,0);assert.equal(shot.target,undefined);
   clients[1].send({type:'commands',commands:[{seq:1,type:'host',prank:'goldRain'}]});const rejected=await clients[1].wait(p=>p.type==='ack');assert.equal(rejected.ack.at(-1).ok,false);
   clients[1].send({type:'commands',commands:[{seq:2,type:'walk',dx:1,dy:0}]});await clients[1].wait(p=>p.type==='ack'&&p.lastSeq===2);
   const start=performance.now();clients[0].send({type:'ping',time:start});const pong=await clients[0].wait(p=>p.type==='pong');assert.equal(pong.echo,start);
   await sleep(1100);
-  for(const c of clients){assert.ok(c.frames.length>=16,`streaming updates: ${c.frames.length}`);assert.equal(c.view.players.timber.skill,'sf');assert.ok(c.view.players.drow.x>350,'movement is shared with every client');assert.ok(c.view.players.drow.mana>0);}
+  for(const c of clients){assert.ok(c.frames.length>=16,`streaming updates: ${c.frames.length}`);assert.equal(c.view.players.timber.skill,'sf');assert.ok(c.view.players.timber.razeNearCooldown>0);assert.ok(c.view.players.timber.razeMidCooldown>0);assert.ok(c.view.players.timber.razeFarCooldown>0);assert.ok(c.view.players.drow.x>350,'movement is shared with every client');assert.ok(c.view.players.drow.mana>0);}
   const last=clients[2].view.seconds;clients[2].send({type:'resync'});await clients[2].wait(p=>p.type==='state'&&p.full&&p.full.seconds>=last);
   console.log(`Six clients: ${clients[0].frames.length} frames in ~1.1s; mean ${Math.round(clients[0].frames.reduce((n,f)=>n+f.size,0)/clients[0].frames.length)} bytes/frame`);
 });
