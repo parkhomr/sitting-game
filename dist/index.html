@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f2e9">
+  <meta name="description" content="Oscar Farm Club. Бесконечный пиксельный фарм за Drow Ranger. Сиди, убивай крипов, качайся.">
+  <title>СИДИ КАЧАЙСЯ — Oscar Farm Club</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23293625'/%3E%3Cpath d='M16 46L46 16M24 16h22v22' stroke='%23d5ec89' stroke-width='6' fill='none'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="game.js"></script>
+</head>
+<body>
+  <svg class="svg-library" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
+    <symbol id="arrow" viewBox="0 0 24 24"><path d="M5 19 19 5M7 5h12v12M4 13l7 7"/></symbol>
+    <symbol id="sound" viewBox="0 0 24 24"><path d="m11 5-6 5H2v4h3l6 5V5Zm5 3a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></symbol>
+    <symbol id="mute" viewBox="0 0 24 24"><path d="m11 5-6 5H2v4h3l6 5V5Zm5 4 6 6m0-6-6 6"/></symbol>
+    <symbol id="pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol>
+    <symbol id="play" viewBox="0 0 24 24"><path d="m8 5 11 7-11 7V5Z"/></symbol>
+    <symbol id="bolt" viewBox="0 0 24 24"><path d="m13 2-9 12h7l-1 8 10-13h-8l1-7Z"/></symbol>
+    <symbol id="coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 7v10m3-8h-4a2 2 0 0 0 0 4h2a2 2 0 0 1 0 4H9"/></symbol>
+    <symbol id="cross" viewBox="0 0 24 24"><path d="M5 4 19 18m-3 2 5-5M19 4 5 18m-2-3 5 5M5 4l1 6 4-4m9-2-1 6-4-4"/></symbol>
+    <symbol id="leaf" viewBox="0 0 24 24"><path d="M20 3C7 2 1 10 7 16s14 0 13-13ZM4 21 16 9M9 16V9m0 7h7"/></symbol>
+    <symbol id="reset" viewBox="0 0 24 24"><path d="M4 10a8 8 0 1 1 1 8M4 4v6h6"/></symbol>
+    <symbol id="snow" viewBox="0 0 24 24"><path d="M12 2v20M3 7l18 10M3 17 21 7M9 4l3 3 3-3M9 20l3-3 3 3M3 11l4-1-1-4M21 13l-4 1 1 4M6 18l1-4-4-1M18 6l-1 4 4 1"/></symbol>
+  </defs></svg>
+  <div class="shell">
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="Oscar Farm Club — главная"><span class="brand-mark"><svg><use href="#arrow"/></svg></span><span>OSCAR<span class="brand-sub">FARM CLUB</span></span></a>
+      <span class="header-note"><span class="live-dot"></span> Никуда не спешим. Просто фармим.</span>
+      <span class="edition">EST. 2026 <span>↗</span></span>
+    </header>
+    <main>
+      <section class="intro" aria-labelledby="title">
+        <div><div class="eyebrow"><span class="tiny-square"></span> БЕСКОНЕЧНЫЙ ФАРМ · НОЛЬ СУЕТЫ</div><h1 id="title">СИДИ <span>КАЧАЙСЯ</span><span class="title-period">.</span></h1><p>Крипы приходят. Опыт растёт. Оскар сидит.</p></div>
+        <div class="intro-aside"><svg><use href="#leaf"/></svg><span>Твоя единственная задача —<br><strong>стать чуть сильнее.</strong></span></div>
+      </section>
+
+      <section class="game-frame" aria-label="Бесконечный фарм за Drow Ranger">
+        <div class="game-topline"><span class="scene-location"><span class="live-dot"></span> ЛЕС СВЕТА <span class="muted-separator">/</span> <span class="scene-mode">ENDLESS MODE</span></span><div class="game-settings"><span class="session-time" id="sessionTime">00:00</span><button id="soundButton" class="icon-button" title="Включить звук" aria-label="Включить звук" aria-pressed="false"><svg><use href="#mute"/></svg></button><button id="pauseButton" class="icon-button" title="Пауза (P)" aria-label="Пауза" aria-pressed="false"><svg><use href="#pause"/></svg></button></div></div>
+        <div class="viewport" id="viewport">
+          <canvas id="game" width="1100" height="452" aria-label="Пиксельный лес. Оскар в образе Drow Ranger сидит на пне и стреляет в крипов. Нажмите для выстрела.">Для игры нужен браузер с поддержкой Canvas.</canvas>
+          <div class="wave-badge"><span class="wave-dot"></span> ВОЛНА <strong id="wave">01</strong><span class="wave-divider"></span><span id="waveDescription">Лёгкая разминка</span></div>
+          <div class="start-overlay" id="startOverlay"><span class="start-kicker">ЛЕС САМ СЕБЯ НЕ ЗАФАРМИТ</span><button class="start-button" id="startButton"><svg><use href="#arrow"/></svg> СЕСТЬ И КАЧАТЬСЯ <span>↗</span></button><span class="start-hint">Устраивайся поудобнее. Это надолго.</span></div>
+          <div class="paused-overlay" id="pausedOverlay" hidden><span>ПЕРЕКУР.</span><button id="resumeButton">Продолжить фарм →</button></div>
+          <div class="level-toast" id="levelToast" role="status" aria-live="polite"></div>
+          <div class="scene-footer"><span><span class="scene-coordinates">36° 08′ N &nbsp; 52° 14′ E</span><span class="scene-caption">Хорошее место, чтобы посидеть.</span></span><span class="auto-indicator"><span class="live-dot"></span> <span id="sceneStatus">ОСКАР ЖДЁТ</span></span></div>
+        </div>
+        <div class="control-bar"><div class="hero-identity"><div class="portrait"><canvas id="portrait" width="56" height="56" aria-hidden="true"></canvas></div><div><div class="hero-name">OSCAR <span>DROW RANGER</span></div><div class="hero-tag"><span class="live-dot"></span> <span id="heroStatus">Готов сидеть</span></div></div></div><div class="combat-controls"><button id="attackButton" class="ability" title="Выстрел (Пробел)"><span class="ability-icon"><svg><use href="#arrow"/></svg></span><span class="ability-text">Выстрел<small>+ один к спокойствию</small></span><kbd>SPACE</kbd></button><button id="multiButton" class="ability" title="Мультивыстрел (Q)"><span class="ability-icon frost"><svg><use href="#snow"/></svg></span><span class="ability-text">Мультивыстрел<small id="multiStatus">Пять ледяных стрел</small></span><kbd>Q</kbd></button><button id="autoButton" class="auto-button" aria-pressed="true"><span class="toggle"><span></span></span><span>Автофарм</span></button></div></div>
+      </section>
+
+      <section class="dashboard" aria-label="Прогресс и улучшения">
+        <div class="progress-panel"><div class="panel-label">МАЛЕНЬКИЕ ШАГИ. БОЛЬШИЕ ЦИФРЫ.</div><div class="stats-row"><div class="level-stat"><span class="stat-label">Уровень</span><span class="stat-number" id="level">1<span class="level-star">✳</span></span></div><div><span class="stat-label"><svg><use href="#cross"/></svg> Крипов убито</span><span class="stat-number" id="kills">0</span></div><div><span class="stat-label"><svg><use href="#coin"/></svg> Золото</span><span class="stat-number gold" id="gold">0<span class="gold-unit">G</span></span></div></div><div class="xp-label"><span>До следующего уровня</span><span><strong id="xp">0</strong> / <span id="xpNeeded">100</span> XP</span></div><div class="xp-track" role="progressbar" id="xpBar" aria-label="Опыт до следующего уровня" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="xpFill"></span></div><div class="progress-foot"><span id="damageStat">Урон: 24</span><span id="speedStat">Атака: 1.0/сек</span><span class="save-status" id="saveStatus">Прогресс сохраняется</span></div></div>
+        <div class="upgrades-panel"><div class="upgrade-heading"><h2>ЧУТЬ СИЛЬНЕЕ</h2><span>Вложись в себя ↗</span></div><div class="upgrades"><button class="upgrade" data-upgrade="damage"><span class="upgrade-icon"><svg><use href="#arrow"/></svg></span><span class="upgrade-info"><strong>Острые стрелы <span id="damageRank">I</span></strong><small>+12 к урону</small></span><span class="upgrade-price" id="damagePrice">60 G</span></button><button class="upgrade" data-upgrade="speed"><span class="upgrade-icon"><svg><use href="#bolt"/></svg></span><span class="upgrade-info"><strong>Ловкие руки <span id="speedRank">I</span></strong><small>+15% к скорости атаки</small></span><span class="upgrade-price" id="speedPrice">90 G</span></button><button class="upgrade" data-upgrade="wisdom"><span class="upgrade-icon"><svg><use href="#leaf"/></svg></span><span class="upgrade-info"><strong>Мудрый Оскар <span id="wisdomRank">I</span></strong><small>+20% получаемого опыта</small></span><span class="upgrade-price" id="wisdomPrice">120 G</span></button></div></div>
+      </section>
+      <div class="bottom-note"><span><span class="note-spark">✳</span> Здесь нет финального босса. Есть только следующий уровень.</span><button id="helpButton">Как играть <span>?</span></button></div>
+    </main>
+    <footer><span>MADE FOR OSCAR. BUILT FOR THE LONG RUN.</span><span class="footer-right">Неофициальная фан-игра по Dota 2 <span>·</span> <button id="resetButton" title="Сбросить прогресс"><svg><use href="#reset"/></svg> Начать заново</button></span></footer>
+  </div>
+  <dialog id="helpDialog"><button class="dialog-close" data-close aria-label="Закрыть">×</button><span class="eyebrow">ПРОСТО УСАЖИВАЙСЯ</span><h2>СИДИ КАЧАЙСЯ.</h2><p>Оскар — Drow Ranger. Он сидит на пне, фармит крипов и становится сильнее. И так бесконечно.</p><ul><li><strong>Автофарм</strong> стреляет за тебя. Можно просто смотреть.</li><li><strong>Пробел или клик по лесу</strong> — дополнительный выстрел.</li><li><strong>Q</strong> — пять ледяных стрел. Перезарядка 12 секунд.</li><li>За крипов получаешь <strong>опыт и золото</strong>. Покупай улучшения под лесом.</li><li><strong>P</strong> — пауза. Прогресс сохраняется в этом браузере.</li></ul><button class="dialog-primary" data-close>Всё понял. Пора фармить.</button></dialog>
+  <dialog id="resetDialog"><button class="dialog-close" data-close aria-label="Закрыть">×</button><span class="eyebrow">НОВОЕ НАЧАЛО</span><h2>С чистого пня?</h2><p>Уровень, золото и улучшения будут сброшены. Сохранённый прогресс восстановить не получится.</p><div class="dialog-actions"><button data-close>Оставить как есть</button><button class="dialog-primary" id="confirmReset">Начать заново</button></div></dialog>
+</body>
+</html>
