@@ -1,0 +1,24 @@
+// Display snapshots omit simulation internals. Entity changes are sent only when values change.
+const AC_WORLD=['version','mode','runId','seconds','started','gameOver','winner','phase','phaseTime','wave','score','targetScore','duel','bets','settings','eventId'];
+const AC_PLAYER=['id','seat','name','team','hero','heroOptions','heroRerolled','abilities','offer','offerSlot','offerRank','skillSlots','picks','points','items','itemCD','cd','statuses','stacks','orbs','invoked','stolen','level','xp','gold','earned','spent','creepKills','kills','deaths','assists','damageDealt','damageTaken','healing','clearedWaves','duelWins','duelLosses','duels','lives','eliminated','failedRound','cleared','clearTime','roundElapsed','x','y','moveX','moveY','aimX','aimY','hp','mana','attackCD','respawn','spawnShield','shield','channel','channelLeft','hookDamage','hookRange','hookSpeed','hookRadius','hookPoints','hookCD','hookHits','hooksThrown','pullBy','frozen'];
+const AC_ENTITY=['id','owner','enemyTo','kind','hero','x','y','vx','vy','hp','maxHP','mana','maxMana','radius','range','rangeLeft','speed','damage','type','boss','ranged','isCreep','color','statuses','frozen','spawnShield','left','life','delay','duration','returning','target','startX','startY','pulling','tick','angle','invulnerable','hostile','source','skill','destination','dirX','dirY','oneShot'];
+const AC_LISTS=['enemies','projectiles','zones','summons','hooks','runes'];
+const acClean=v=>typeof v==='number'?(Math.round(v*10)/10||0):Array.isArray(v)?v.map(acClean):v&&typeof v==='object'?Object.fromEntries(Object.entries(v).filter(([,x])=>x!==undefined).map(([k,x])=>[k,acClean(x)])):v;
+function acPickWire(source,keys){return Object.fromEntries(keys.filter(k=>source[k]!==undefined).map(k=>[k,acClean(source[k])]));}
+const acEqual=(a,b)=>a===b||JSON.stringify(a)===JSON.stringify(b);
+function acChanges(a,b){return Object.fromEntries(Object.entries(b).filter(([k,v])=>!acEqual(a?.[k],v)));}
+export function arcadeWireWorld(w){const out={...acPickWire(w,AC_WORLD),players:Object.fromEntries(Object.entries(w.players).map(([id,p])=>[id,acPickWire(p,AC_PLAYER)])),events:[]};for(const key of AC_LISTS)out[key]=w[key].map(e=>acPickWire(e,AC_ENTITY));return out;}
+export function arcadeDelta(before,after,events=[]){const packet={type:'state',arcade:true,state:acChanges(acPickWire(before,AC_WORLD),acPickWire(after,AC_WORLD)),players:{},entities:{},events:events.filter(e=>e.id>before.eventId)};
+ for(const [id,p] of Object.entries(after.players)){const d=acChanges(before.players[id],p);if(Object.keys(d).length)packet.players[id]=d;}
+ for(const key of AC_LISTS){const old=new Map(before[key].map(e=>[e.id,e])),ids=new Set(after[key].map(e=>e.id)),add=[],update=[];for(const e of after[key]){if(!old.has(e.id))add.push(e);else{const d=acChanges(old.get(e.id),e);if(Object.keys(d).length)update.push([e.id,d]);}}const remove=before[key].filter(e=>!ids.has(e.id)).map(e=>e.id);if(add.length||update.length||remove.length)packet.entities[key]={add,update,remove};}
+ return packet;
+}
+export function applyArcadeFrame(previous,packet){if(packet.full)return {...packet.full,events:[]};if(!previous)throw Error('Full snapshot required');const out={...previous,...packet.state,players:{...previous.players},events:packet.events||[]};for(const [id,p] of Object.entries(packet.players||{}))out.players[id]={...out.players[id],...p};for(const [key,d] of Object.entries(packet.entities||{})){const map=new Map(out[key].map(e=>[e.id,e]));for(const id of d.remove)map.delete(id);for(const e of d.add)map.set(e.id,e);for(const [id,change] of d.update){if(!map.has(id))throw Error('Entity snapshot required');map.set(id,{...map.get(id),...change});}out[key]=[...map.values()];}return out;}
+export class ArcadeMotionBuffer {
+ constructor(){this.frames=[];this.delay=75;}
+ clear(){this.frames=[];}
+ push(world,time){this.frames.push({world,time});if(this.frames.length>10)this.frames.shift();}
+ sample(time){if(!this.frames.length)return null;const target=time-this.delay;let a=this.frames[0],b=a;for(const f of this.frames){if(f.time<=target)a=f;else{b=f;break;}b=f;}let ratio=a===b?1:Math.max(0,Math.min(1,(target-a.time)/(b.time-a.time)));let extrapolate=false;if(a===b&&this.frames.length>1&&target>a.time){b=a;a=this.frames.at(-2);ratio=1+Math.min(100,target-b.time)/Math.max(1,b.time-a.time);extrapolate=true;}
+ const lerp=(old,p)=>!old||Math.hypot(p.x-old.x,p.y-old.y)>250?p:{...p,x:old.x+(p.x-old.x)*ratio,y:old.y+(p.y-old.y)*ratio};const out={...b.world,players:{}};for(const [id,p] of Object.entries(b.world.players))out.players[id]=lerp(a.world.players[id],p);for(const key of AC_LISTS){const old=new Map(a.world[key].map(e=>[e.id,e]));out[key]=b.world[key].map(e=>lerp(old.get(e.id),e));}return out;
+ }
+}

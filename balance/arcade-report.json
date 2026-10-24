@@ -1,0 +1,1655 @@
+{
+  "generated": "2026-10-24T01:09:38.579Z",
+  "sourceHash": "f73ceb92bec25fe24181441603efd2e72a71872fb64c4783507a993cef57b7fe",
+  "method": "All seats controlled by built-in bots, manual ballistic aiming with small error, purchases, normal cooldown/mana and PVE life rules. 0.1s ticks, maximum 5400 simulated seconds. This measures deterministic balance and completion, not human playtesting or internet latency.",
+  "scenarios": [
+    {
+      "mode": "pudge",
+      "seed": 40,
+      "finished": true,
+      "wave": 0,
+      "seconds": 151,
+      "winner": 1,
+      "score": [
+        18,
+        25
+      ],
+      "firstLifeLostAtWave": null,
+      "livesAt15": null,
+      "livesAt30": null,
+      "lives": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "duels": 0,
+      "peakProjectiles": 0,
+      "peakSummons": 0,
+      "cpuMs": 61,
+      "builds": [
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 3,
+          "gold": 935,
+          "spent": 350,
+          "damage": 4745,
+          "deaths": 4
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 3,
+          "gold": 935,
+          "spent": 350,
+          "damage": 4646,
+          "deaths": 8
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 4,
+          "gold": 1050,
+          "spent": 350,
+          "damage": 3920,
+          "deaths": 6
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 4,
+          "gold": 1165,
+          "spent": 350,
+          "damage": 4556,
+          "deaths": 5
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 3,
+          "gold": 935,
+          "spent": 350,
+          "damage": 2947,
+          "deaths": 2
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 4,
+          "gold": 255,
+          "spent": 1550,
+          "damage": 4439,
+          "deaths": 4
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 4,
+          "gold": 1225,
+          "spent": 350,
+          "damage": 5651,
+          "deaths": 5
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 4,
+          "gold": 1225,
+          "spent": 350,
+          "damage": 4741,
+          "deaths": 5
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 4,
+          "gold": 255,
+          "spent": 1550,
+          "damage": 5198,
+          "deaths": 2
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 4,
+          "gold": 140,
+          "spent": 1550,
+          "damage": 4253,
+          "deaths": 2
+        }
+      ]
+    },
+    {
+      "mode": "pudge",
+      "seed": 41,
+      "finished": true,
+      "wave": 0,
+      "seconds": 138,
+      "winner": 0,
+      "score": [
+        25,
+        22
+      ],
+      "firstLifeLostAtWave": null,
+      "livesAt15": null,
+      "livesAt30": null,
+      "lives": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "duels": 0,
+      "peakProjectiles": 0,
+      "peakSummons": 0,
+      "cpuMs": 30,
+      "builds": [
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 4,
+          "gold": 116,
+          "spent": 1550,
+          "damage": 6308,
+          "deaths": 4
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 2,
+          "gold": 971,
+          "spent": 350,
+          "damage": 5021,
+          "deaths": 5
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 4,
+          "gold": 1201,
+          "spent": 350,
+          "damage": 4533,
+          "deaths": 5
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 6,
+          "gold": 576,
+          "spent": 1550,
+          "damage": 5566,
+          "deaths": 5
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 4,
+          "gold": 116,
+          "spent": 1550,
+          "damage": 4414,
+          "deaths": 3
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 2,
+          "gold": 896,
+          "spent": 350,
+          "damage": 2714,
+          "deaths": 4
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 2,
+          "gold": 781,
+          "spent": 350,
+          "damage": 4532,
+          "deaths": 6
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 3,
+          "gold": 1011,
+          "spent": 350,
+          "damage": 5030,
+          "deaths": 5
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 5,
+          "gold": 271,
+          "spent": 1550,
+          "damage": 6228,
+          "deaths": 7
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 6,
+          "gold": 501,
+          "spent": 1550,
+          "damage": 5634,
+          "deaths": 3
+        }
+      ]
+    },
+    {
+      "mode": "pudge",
+      "seed": 42,
+      "finished": true,
+      "wave": 0,
+      "seconds": 150,
+      "winner": 1,
+      "score": [
+        21,
+        25
+      ],
+      "firstLifeLostAtWave": null,
+      "livesAt15": null,
+      "livesAt30": null,
+      "lives": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "duels": 0,
+      "peakProjectiles": 0,
+      "peakSummons": 0,
+      "cpuMs": 29,
+      "builds": [
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 2,
+          "gold": 887,
+          "spent": 350,
+          "damage": 4646,
+          "deaths": 5
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 4,
+          "gold": 32,
+          "spent": 1550,
+          "damage": 4373,
+          "deaths": 4
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 4,
+          "gold": 147,
+          "spent": 1550,
+          "damage": 4627,
+          "deaths": 5
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 4,
+          "gold": 32,
+          "spent": 1550,
+          "damage": 6047,
+          "deaths": 7
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 3,
+          "gold": 1002,
+          "spent": 350,
+          "damage": 3724,
+          "deaths": 4
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 4,
+          "gold": 247,
+          "spent": 1550,
+          "damage": 3837,
+          "deaths": 3
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 4,
+          "gold": 132,
+          "spent": 1550,
+          "damage": 5896,
+          "deaths": 3
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 4,
+          "gold": 132,
+          "spent": 1550,
+          "damage": 6399,
+          "deaths": 5
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 3,
+          "gold": 1102,
+          "spent": 350,
+          "damage": 3580,
+          "deaths": 3
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 4,
+          "gold": 247,
+          "spent": 1550,
+          "damage": 6820,
+          "deaths": 7
+        }
+      ]
+    },
+    {
+      "mode": "pudge",
+      "seed": 58,
+      "finished": true,
+      "wave": 0,
+      "seconds": 138,
+      "winner": 0,
+      "score": [
+        25,
+        22
+      ],
+      "firstLifeLostAtWave": null,
+      "livesAt15": null,
+      "livesAt30": null,
+      "lives": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "duels": 0,
+      "peakProjectiles": 0,
+      "peakSummons": 0,
+      "cpuMs": 24,
+      "builds": [
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 4,
+          "gold": 116,
+          "spent": 1550,
+          "damage": 6620,
+          "deaths": 4
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 4,
+          "gold": 116,
+          "spent": 1550,
+          "damage": 5352,
+          "deaths": 5
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 2,
+          "gold": 971,
+          "spent": 350,
+          "damage": 4310,
+          "deaths": 5
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 6,
+          "gold": 576,
+          "spent": 1550,
+          "damage": 3404,
+          "deaths": 2
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 4,
+          "gold": 1201,
+          "spent": 350,
+          "damage": 5535,
+          "deaths": 6
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 2,
+          "gold": 896,
+          "spent": 350,
+          "damage": 3492,
+          "deaths": 5
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 4,
+          "gold": 41,
+          "spent": 1550,
+          "damage": 4615,
+          "deaths": 5
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 3,
+          "gold": 1011,
+          "spent": 350,
+          "damage": 6242,
+          "deaths": 6
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 4,
+          "gold": 156,
+          "spent": 1550,
+          "damage": 4933,
+          "deaths": 3
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 4,
+          "gold": 156,
+          "spent": 1550,
+          "damage": 4883,
+          "deaths": 6
+        }
+      ]
+    },
+    {
+      "mode": "chaos",
+      "seed": 40,
+      "finished": true,
+      "wave": 38,
+      "seconds": 1730,
+      "winner": "s3",
+      "score": [
+        0,
+        0
+      ],
+      "firstLifeLostAtWave": 27,
+      "livesAt15": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "livesAt30": [
+        5,
+        2,
+        5,
+        3,
+        5,
+        5,
+        5,
+        5
+      ],
+      "lives": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "duels": 18,
+      "peakProjectiles": 65,
+      "peakSummons": 33,
+      "cpuMs": 1357,
+      "builds": [
+        {
+          "hero": "furion",
+          "skills": [
+            {
+              "id": "treants",
+              "rank": 4
+            },
+            {
+              "id": "eidolons",
+              "rank": 4
+            },
+            {
+              "id": "multishot",
+              "rank": 4
+            },
+            {
+              "id": "shrapnel",
+              "rank": 4
+            },
+            {
+              "id": "sprout",
+              "rank": 4
+            }
+          ],
+          "level": 22,
+          "gold": 18441,
+          "spent": 13550,
+          "damage": 1150265,
+          "deaths": 9
+        },
+        {
+          "hero": "lion",
+          "skills": [
+            {
+              "id": "march",
+              "rank": 4
+            },
+            {
+              "id": "decay",
+              "rank": 4
+            },
+            {
+              "id": "mines",
+              "rank": 3
+            },
+            {
+              "id": "eidolons",
+              "rank": 4
+            },
+            {
+              "id": "malefice",
+              "rank": 4
+            }
+          ],
+          "level": 18,
+          "gold": 10591,
+          "spent": 13550,
+          "damage": 544464,
+          "deaths": 7
+        },
+        {
+          "hero": "rubick",
+          "skills": [
+            {
+              "id": "blade_fury",
+              "rank": 4
+            },
+            {
+              "id": "spell_steal",
+              "rank": 3
+            },
+            {
+              "id": "telekinesis",
+              "rank": 4
+            },
+            {
+              "id": "decay",
+              "rank": 4
+            },
+            {
+              "id": "march",
+              "rank": 4
+            }
+          ],
+          "level": 22,
+          "gold": 25249,
+          "spent": 13550,
+          "damage": 1198118,
+          "deaths": 6
+        },
+        {
+          "hero": "techies",
+          "skills": [
+            {
+              "id": "mines",
+              "rank": 3
+            },
+            {
+              "id": "malefice",
+              "rank": 4
+            },
+            {
+              "id": "multishot",
+              "rank": 4
+            },
+            {
+              "id": "blade_fury",
+              "rank": 4
+            },
+            {
+              "id": "decay",
+              "rank": 4
+            }
+          ],
+          "level": 19,
+          "gold": 14762,
+          "spent": 13550,
+          "damage": 594668,
+          "deaths": 6
+        },
+        {
+          "hero": "undying",
+          "skills": [
+            {
+              "id": "decay",
+              "rank": 4
+            },
+            {
+              "id": "blade_fury",
+              "rank": 4
+            },
+            {
+              "id": "blast_off",
+              "rank": 4
+            },
+            {
+              "id": "tombstone",
+              "rank": 4
+            },
+            {
+              "id": "mines",
+              "rank": 3
+            }
+          ],
+          "level": 21,
+          "gold": 18144,
+          "spent": 13550,
+          "damage": 905356,
+          "deaths": 7
+        },
+        {
+          "hero": "invoker",
+          "skills": [
+            {
+              "id": "ghost_walk",
+              "rank": 4
+            },
+            {
+              "id": "meteor",
+              "rank": 4
+            },
+            {
+              "id": "tornado",
+              "rank": 4
+            },
+            {
+              "id": "emp",
+              "rank": 4
+            },
+            {
+              "id": "decay",
+              "rank": 4
+            }
+          ],
+          "level": 20,
+          "gold": 14101,
+          "spent": 13550,
+          "damage": 749828,
+          "deaths": 7
+        },
+        {
+          "hero": "magnus",
+          "skills": [
+            {
+              "id": "mines",
+              "rank": 3
+            },
+            {
+              "id": "multishot",
+              "rank": 4
+            },
+            {
+              "id": "shrapnel",
+              "rank": 4
+            },
+            {
+              "id": "treants",
+              "rank": 4
+            },
+            {
+              "id": "blade_fury",
+              "rank": 4
+            }
+          ],
+          "level": 21,
+          "gold": 15058,
+          "spent": 13550,
+          "damage": 929113,
+          "deaths": 8
+        },
+        {
+          "hero": "jugger",
+          "skills": [
+            {
+              "id": "multishot",
+              "rank": 4
+            },
+            {
+              "id": "blade_fury",
+              "rank": 4
+            },
+            {
+              "id": "treants",
+              "rank": 4
+            },
+            {
+              "id": "healing_ward",
+              "rank": 4
+            },
+            {
+              "id": "omnislash",
+              "rank": 3
+            }
+          ],
+          "level": 21,
+          "gold": 19712,
+          "spent": 13550,
+          "damage": 841560,
+          "deaths": 7
+        }
+      ]
+    },
+    {
+      "mode": "chaos",
+      "seed": 41,
+      "finished": true,
+      "wave": 36,
+      "seconds": 1526,
+      "winner": "s7",
+      "score": [
+        0,
+        0
+      ],
+      "firstLifeLostAtWave": 26,
+      "livesAt15": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "livesAt30": [
+        2,
+        2,
+        4,
+        4,
+        1,
+        5,
+        5,
+        5
+      ],
+      "lives": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        0
+      ],
+      "duels": 17,
+      "peakProjectiles": 70,
+      "peakSummons": 41,
+      "cpuMs": 1409,
+      "builds": [
+        {
+          "hero": "terrorblade",
+          "skills": [
+            {
+              "id": "eidolons",
+              "rank": 4
+            },
+            {
+              "id": "treants",
+              "rank": 4
+            },
+            {
+              "id": "malefice",
+              "rank": 4
+            },
+            {
+              "id": "march",
+              "rank": 4
+            },
+            {
+              "id": "conjure",
+              "rank": 4
+            }
+          ],
+          "level": 18,
+          "gold": 10487,
+          "spent": 13550,
+          "damage": 504689,
+          "deaths": 8
+        },
+        {
+          "hero": "tinker",
+          "skills": [
+            {
+              "id": "eidolons",
+              "rank": 4
+            },
+            {
+              "id": "missile",
+              "rank": 4
+            },
+            {
+              "id": "march",
+              "rank": 4
+            },
+            {
+              "id": "decay",
+              "rank": 4
+            },
+            {
+              "id": "matrix",
+              "rank": 4
+            }
+          ],
+          "level": 19,
+          "gold": 10268,
+          "spent": 13550,
+          "damage": 649665,
+          "deaths": 7
+        },
+        {
+          "hero": "jugger",
+          "skills": [
+            {
+              "id": "shockwave",
+              "rank": 4
+            },
+            {
+              "id": "omnislash",
+              "rank": 3
+            },
+            {
+              "id": "multishot",
+              "rank": 4
+            },
+            {
+              "id": "healing_ward",
+              "rank": 4
+            },
+            {
+              "id": "march",
+              "rank": 4
+            }
+          ],
+          "level": 20,
+          "gold": 19745,
+          "spent": 13550,
+          "damage": 896884,
+          "deaths": 6
+        },
+        {
+          "hero": "drow",
+          "skills": [
+            {
+              "id": "multishot",
+              "rank": 4
+            },
+            {
+              "id": "treants",
+              "rank": 4
+            },
+            {
+              "id": "gust",
+              "rank": 4
+            },
+            {
+              "id": "frost",
+              "rank": 4
+            },
+            {
+              "id": "rp",
+              "rank": 3
+            }
+          ],
+          "level": 20,
+          "gold": 11735,
+          "spent": 13550,
+          "damage": 712725,
+          "deaths": 8
+        },
+        {
+          "hero": "cm",
+          "skills": [
+            {
+              "id": "decay",
+              "rank": 4
+            },
+            {
+              "id": "mines",
+              "rank": 3
+            },
+            {
+              "id": "malefice",
+              "rank": 4
+            },
+            {
+              "id": "freezing_field",
+              "rank": 3
+            },
+            {
+              "id": "nova",
+              "rank": 4
+            }
+          ],
+          "level": 17,
+          "gold": 13728,
+          "spent": 13550,
+          "damage": 459124,
+          "deaths": 6
+        },
+        {
+          "hero": "pa",
+          "skills": [
+            {
+              "id": "dagger",
+              "rank": 4
+            },
+            {
+              "id": "phantom_strike",
+              "rank": 4
+            },
+            {
+              "id": "shrapnel",
+              "rank": 4
+            },
+            {
+              "id": "blade_fury",
+              "rank": 4
+            },
+            {
+              "id": "multishot",
+              "rank": 4
+            }
+          ],
+          "level": 21,
+          "gold": 15745,
+          "spent": 13550,
+          "damage": 888770,
+          "deaths": 8
+        },
+        {
+          "hero": "tinker",
+          "skills": [
+            {
+              "id": "treants",
+              "rank": 4
+            },
+            {
+              "id": "march",
+              "rank": 4
+            },
+            {
+              "id": "decay",
+              "rank": 4
+            },
+            {
+              "id": "shrapnel",
+              "rank": 4
+            },
+            {
+              "id": "multishot",
+              "rank": 4
+            }
+          ],
+          "level": 23,
+          "gold": 30151,
+          "spent": 13550,
+          "damage": 1046402,
+          "deaths": 5
+        },
+        {
+          "hero": "lifestealer",
+          "skills": [
+            {
+              "id": "treants",
+              "rank": 4
+            },
+            {
+              "id": "blade_fury",
+              "rank": 4
+            },
+            {
+              "id": "sprout",
+              "rank": 4
+            },
+            {
+              "id": "march",
+              "rank": 4
+            },
+            {
+              "id": "eidolons",
+              "rank": 4
+            }
+          ],
+          "level": 21,
+          "gold": 19080,
+          "spent": 13550,
+          "damage": 921746,
+          "deaths": 5
+        }
+      ]
+    },
+    {
+      "mode": "chaos",
+      "seed": 42,
+      "finished": true,
+      "wave": 36,
+      "seconds": 1651,
+      "winner": "s2",
+      "score": [
+        0,
+        0
+      ],
+      "firstLifeLostAtWave": 5,
+      "livesAt15": [
+        5,
+        5,
+        2,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "livesAt30": [
+        4,
+        5,
+        0,
+        5,
+        0,
+        5,
+        1,
+        5
+      ],
+      "lives": [
+        0,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "duels": 17,
+      "peakProjectiles": 52,
+      "peakSummons": 38,
+      "cpuMs": 1037,
+      "builds": [
+        {
+          "hero": "lifestealer",
+          "skills": [
+            {
+              "id": "rage",
+              "rank": 4
+            },
+            {
+              "id": "march",
+              "rank": 4
+            },
+            {
+              "id": "treants",
+              "rank": 4
+            },
+            {
+              "id": "timber_chain",
+              "rank": 4
+            },
+            {
+              "id": "mines",
+              "rank": 3
+            }
+          ],
+          "level": 19,
+          "gold": 16833,
+          "spent": 13550,
+          "damage": 639686,
+          "deaths": 8
+        },
+        {
+          "hero": "drow",
+          "skills": [
+            {
+              "id": "march",
+              "rank": 4
+            },
+            {
+              "id": "treants",
+              "rank": 4
+            },
+            {
+              "id": "multishot",
+              "rank": 4
+            },
+            {
+              "id": "decay",
+              "rank": 4
+            },
+            {
+              "id": "gust",
+              "rank": 4
+            }
+          ],
+          "level": 22,
+          "gold": 21964,
+          "spent": 13550,
+          "damage": 1026101,
+          "deaths": 4
+        },
+        {
+          "hero": "cm",
+          "skills": [
+            {
+              "id": "brilliance",
+              "rank": 4
+            },
+            {
+              "id": "frostbite",
+              "rank": 4
+            },
+            {
+              "id": "blade_fury",
+              "rank": 4
+            },
+            {
+              "id": "march",
+              "rank": 1
+            },
+            {
+              "id": "malefice",
+              "rank": 1
+            }
+          ],
+          "level": 9,
+          "gold": 1481,
+          "spent": 5850,
+          "damage": 67132,
+          "deaths": 7
+        },
+        {
+          "hero": "timber",
+          "skills": [
+            {
+              "id": "mines",
+              "rank": 3
+            },
+            {
+              "id": "timber_chain",
+              "rank": 4
+            },
+            {
+              "id": "raze_mid",
+              "rank": 4
+            },
+            {
+              "id": "whirling",
+              "rank": 4
+            },
+            {
+              "id": "march",
+              "rank": 4
+            }
+          ],
+          "level": 21,
+          "gold": 15830,
+          "spent": 13550,
+          "damage": 965321,
+          "deaths": 6
+        },
+        {
+          "hero": "sniper",
+          "skills": [
+            {
+              "id": "shrapnel",
+              "rank": 4
+            },
+            {
+              "id": "assassinate",
+              "rank": 3
+            },
+            {
+              "id": "treants",
+              "rank": 4
+            },
+            {
+              "id": "take_aim",
+              "rank": 4
+            },
+            {
+              "id": "malefice",
+              "rank": 4
+            }
+          ],
+          "level": 17,
+          "gold": 7991,
+          "spent": 13550,
+          "damage": 400342,
+          "deaths": 8
+        },
+        {
+          "hero": "lina",
+          "skills": [
+            {
+              "id": "dragon_slave",
+              "rank": 4
+            },
+            {
+              "id": "treants",
+              "rank": 4
+            },
+            {
+              "id": "laguna",
+              "rank": 3
+            },
+            {
+              "id": "march",
+              "rank": 4
+            },
+            {
+              "id": "light_strike",
+              "rank": 4
+            }
+          ],
+          "level": 21,
+          "gold": 22339,
+          "spent": 13550,
+          "damage": 951773,
+          "deaths": 7
+        },
+        {
+          "hero": "jugger",
+          "skills": [
+            {
+              "id": "treants",
+              "rank": 4
+            },
+            {
+              "id": "ether",
+              "rank": 4
+            },
+            {
+              "id": "blade_fury",
+              "rank": 4
+            },
+            {
+              "id": "healing_ward",
+              "rank": 4
+            },
+            {
+              "id": "malefice",
+              "rank": 4
+            }
+          ],
+          "level": 18,
+          "gold": 12019,
+          "spent": 13550,
+          "damage": 466145,
+          "deaths": 7
+        },
+        {
+          "hero": "terrorblade",
+          "skills": [
+            {
+              "id": "mines",
+              "rank": 3
+            },
+            {
+              "id": "eidolons",
+              "rank": 4
+            },
+            {
+              "id": "shrapnel",
+              "rank": 4
+            },
+            {
+              "id": "metamorphosis",
+              "rank": 4
+            },
+            {
+              "id": "decay",
+              "rank": 4
+            }
+          ],
+          "level": 20,
+          "gold": 14086,
+          "spent": 13550,
+          "damage": 799087,
+          "deaths": 7
+        }
+      ]
+    },
+    {
+      "mode": "chaos",
+      "seed": 58,
+      "finished": true,
+      "wave": 34,
+      "seconds": 1600,
+      "winner": "s6",
+      "score": [
+        0,
+        0
+      ],
+      "firstLifeLostAtWave": 12,
+      "livesAt15": [
+        5,
+        5,
+        5,
+        5,
+        2,
+        5,
+        5,
+        5
+      ],
+      "livesAt30": [
+        0,
+        1,
+        3,
+        4,
+        0,
+        5,
+        3,
+        3
+      ],
+      "lives": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      "duels": 16,
+      "peakProjectiles": 57,
+      "peakSummons": 40,
+      "cpuMs": 1119,
+      "builds": [
+        {
+          "hero": "io",
+          "skills": [
+            {
+              "id": "eidolons",
+              "rank": 4
+            },
+            {
+              "id": "overcharge",
+              "rank": 4
+            },
+            {
+              "id": "reactive",
+              "rank": 4
+            },
+            {
+              "id": "multishot",
+              "rank": 4
+            },
+            {
+              "id": "malefice",
+              "rank": 4
+            }
+          ],
+          "level": 17,
+          "gold": 10116,
+          "spent": 12050,
+          "damage": 413238,
+          "deaths": 8
+        },
+        {
+          "hero": "lina",
+          "skills": [
+            {
+              "id": "dragon_slave",
+              "rank": 4
+            },
+            {
+              "id": "laguna",
+              "rank": 3
+            },
+            {
+              "id": "mines",
+              "rank": 3
+            },
+            {
+              "id": "multishot",
+              "rank": 4
+            },
+            {
+              "id": "eidolons",
+              "rank": 4
+            }
+          ],
+          "level": 18,
+          "gold": 11160,
+          "spent": 13550,
+          "damage": 472956,
+          "deaths": 5
+        },
+        {
+          "hero": "shaman",
+          "skills": [
+            {
+              "id": "wards",
+              "rank": 3
+            },
+            {
+              "id": "requiem",
+              "rank": 3
+            },
+            {
+              "id": "malefice",
+              "rank": 4
+            },
+            {
+              "id": "shrapnel",
+              "rank": 4
+            },
+            {
+              "id": "blade_fury",
+              "rank": 4
+            }
+          ],
+          "level": 18,
+          "gold": 13637,
+          "spent": 13550,
+          "damage": 548421,
+          "deaths": 5
+        },
+        {
+          "hero": "lina",
+          "skills": [
+            {
+              "id": "decay",
+              "rank": 4
+            },
+            {
+              "id": "blade_fury",
+              "rank": 4
+            },
+            {
+              "id": "mines",
+              "rank": 3
+            },
+            {
+              "id": "light_strike",
+              "rank": 4
+            },
+            {
+              "id": "malefice",
+              "rank": 4
+            }
+          ],
+          "level": 19,
+          "gold": 17272,
+          "spent": 13550,
+          "damage": 715705,
+          "deaths": 8
+        },
+        {
+          "hero": "enigma",
+          "skills": [
+            {
+              "id": "malefice",
+              "rank": 4
+            },
+            {
+              "id": "midnight",
+              "rank": 4
+            },
+            {
+              "id": "blade_fury",
+              "rank": 4
+            },
+            {
+              "id": "eidolons",
+              "rank": 1
+            },
+            {
+              "id": "frostbite",
+              "rank": 1
+            }
+          ],
+          "level": 9,
+          "gold": 995,
+          "spent": 5850,
+          "damage": 54119,
+          "deaths": 7
+        },
+        {
+          "hero": "sniper",
+          "skills": [
+            {
+              "id": "shrapnel",
+              "rank": 4
+            },
+            {
+              "id": "mines",
+              "rank": 3
+            },
+            {
+              "id": "blade_fury",
+              "rank": 4
+            },
+            {
+              "id": "take_aim",
+              "rank": 4
+            },
+            {
+              "id": "decay",
+              "rank": 4
+            }
+          ],
+          "level": 20,
+          "gold": 14419,
+          "spent": 13550,
+          "damage": 736533,
+          "deaths": 7
+        },
+        {
+          "hero": "shaman",
+          "skills": [
+            {
+              "id": "multishot",
+              "rank": 4
+            },
+            {
+              "id": "mines",
+              "rank": 3
+            },
+            {
+              "id": "shackles",
+              "rank": 4
+            },
+            {
+              "id": "shrapnel",
+              "rank": 4
+            },
+            {
+              "id": "eidolons",
+              "rank": 4
+            }
+          ],
+          "level": 20,
+          "gold": 15632,
+          "spent": 13550,
+          "damage": 713966,
+          "deaths": 7
+        },
+        {
+          "hero": "void",
+          "skills": [
+            {
+              "id": "march",
+              "rank": 4
+            },
+            {
+              "id": "dilation",
+              "rank": 4
+            },
+            {
+              "id": "treants",
+              "rank": 4
+            },
+            {
+              "id": "eidolons",
+              "rank": 4
+            },
+            {
+              "id": "tornado",
+              "rank": 4
+            }
+          ],
+          "level": 18,
+          "gold": 11487,
+          "spent": 13550,
+          "damage": 534809,
+          "deaths": 8
+        }
+      ]
+    }
+  ]
+}

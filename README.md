@@ -169,3 +169,103 @@ npm run package
 
 Неофициальная фан-игра; числа и механики адаптированы к этому режиму.
 Dota 2 и персонажи принадлежат Valve.
+
+## New modes: Pudge Wars and Custom Hero Chaos
+
+The home page now has three mode cards. The original **СИДИ КАЧАЙСЯ** campaign is
+still available. Select the mode **before** creating a multiplayer room.
+
+1. Run `npm run online` and wait for the terminal to confirm that the external
+   link is ready. Open the printed localhost address on the hosting computer.
+2. Choose **Pudge Wars** or **Custom Hero Chaos** on the home page.
+3. Set your name and seat. A host may play a hero or use the observer seat.
+   Pudge score targets (25/50/75/100) are set before room creation.
+4. Click **Создать комнату в этом режиме**, then **Скопировать приглашение**.
+5. Friends open the invite and take a free seat. They need only a browser.
+   Chaos players choose their hero and first spell before the host starts.
+6. The host clicks **Начать матч**. Empty seats use bots. The host can switch to
+   an unoccupied seat using the seat selector, including after the match starts.
+
+Invites point to `/arcade.html#room=CODE`. The server resolves and locks the
+room's mode. An incorrect `?mode=` query cannot override it. Guest UI has no mode
+selector, room creation, or start button. Start/restart and seat possession are
+also checked on the server. Reconnecting uses the same session, hero, draft and
+progress. A host restart after victory retains names and seat reservations but
+starts a fresh match in the same mode.
+
+For offline play, open `../СИДИ-КАЧАЙСЯ.html` or the copy in `downloads/`.
+All three games, sprites, spell icons and rules are embedded in that one file.
+No installation, fonts, CDN, or network is required. Local progress is saved
+separately for each mode. Opening another mode pauses the original local farm.
+Mid-wave saves replay the unfinished wave with lives and purchases preserved.
+Reloading during a duel refunds unresolved stakes and restarts its countdown.
+
+### Pudge Wars
+
+- Ten seats, five Radiant versus five Dire, plus an optional observer host.
+- Uncrossable river; straight outgoing hooks catch the first body or rune and
+  physically return. Enemy hits damage and pull; allied hooks rescue without
+  damage. A hooked player may land on the opposite bank.
+- Four hook upgrade branches (damage/range/speed/width), gold, experience,
+  item shop, runes, four-second respawns and first-to-score victory.
+- **WASD / arrows / right click:** move. **Left click / Space / Q:** hook toward
+  the cursor. **B:** Hook Guard. **E:** Blink (bought items required).
+- Respawns are unlimited, as in the classic team mode; the five-life rule
+  applies to Chaos and the original farm campaign.
+
+### Custom Hero Chaos
+
+- Eight competitors, private creep arenas, five PVE lives, last survivor wins.
+- Four distinct random hero options; one free reroll keeps the first hero and
+  changes the other three. Each native spell has **4× the sampling weight** of
+  each foreign spell. This is our explicit adaptation value, not a verified
+  original-map percentage.
+- **24 heroes and 111 abilities**, covering the selected heroes' main kits,
+  Invoker's ten combinations, and historical/secondary Tinker/Ogre spells.
+  Tinker, Ogre Magi, Terrorblade, Pudge, Shadow Fiend, Rubick, Timbersaw,
+  Drow Ranger, Sniper, Crystal Maiden, Lion, Lina, Juggernaut, Phantom Assassin,
+  Faceless Void, Enigma, Nature's Prophet, Lifestealer, Undying, Techies, Io,
+  Magnus, Shadow Shaman, and Invoker.
+- Sixteen unique skill offers, five normal slots (initial / after waves
+  1, 3, 5, 8); sixth slot for 13,000 gold. Level points upgrade skills. Basic
+  ranks cap at four; ultimate ranks cap at three, with rank 2/3 at levels 6/12.
+- Random replacement token: 1,200 gold. Chosen replacement: 2,900. A replacement
+  retains the old rank up to the new skill's rank cap. Weaker economies can
+  receive a free catch-up replacement after every tenth wave.
+- Duels after every two waves: 15-second preparation, full HP/MP, existing
+  cooldowns retained, 50-second fight. Duels do not consume PVE lives.
+  Nonparticipants may bet game gold, once, up to half their available gold.
+  Winners proportionally split the pool; draws refund stakes.
+- Shops include attack, magic, defense and summon options. Maelstrom upgrades
+  into Mjollnir for the difference. Scepter/Shard use disclosed universal
+  arena bonuses, rather than every Dota-specific upgrade interaction.
+- Real interactions include Rearm, Multicast, Metamorphosis/illusions/Sunder,
+  Spell Steal, channels and interrupts, damageable summons, mines, Time Walk,
+  Chronosphere, Black Hole and Invoker orbs/Invoke. Tether and Infest need an
+  owned summon, so awkward and support-heavy random builds are possible.
+- **WASD / arrows / right click:** move. **Left click / Space:** aimed attack.
+  **Q E R F G T:** learned spell slots. **Z / C:** invoked spells.
+  **V:** stolen spell. **B:** BKB. **M:** Mjollnir. **P:** local pause.
+  Unit-target spells require pointing at a valid unit; projectiles travel
+  straight and can be dodged. Spell buttons show mana, cooldown and rank.
+
+Both modes use authoritative 20 Hz WebSockets, compact entity deltas, motion
+interpolation and display-only movement prediction. Damage, casts, bets,
+upgrades, slot permissions and cooldowns remain server controlled. Internet
+latency still depends on the host and route; the client cannot remove distance.
+No third-party relay service or account is required beyond the existing
+Cloudflare tunnel launcher.
+
+### Research and validation
+
+See [research/MODES.md](research/MODES.md) for source links and deliberate
+adaptations. These are independent browser recreations, not full Dota-engine
+ports or claims of exact current Workshop balance. Facets, all innates, the
+entire Dota roster and every Aghanim-specific interaction are outside this build.
+
+Run `npm test` for both original and arcade mechanics, complete active-spell
+smoke coverage, native draft odds, netcode reconstruction, permission checks
+and real 8-/10-seat WebSocket sessions. Run `npm run balance:arcade` for
+reproducible campaigns and [balance/ARCADE-REPORT.md](balance/ARCADE-REPORT.md).
+The audit records bot matches, not human playtesting. `npm run package`
+regenerates the offline HTML and both ZIPs, including the new source files.

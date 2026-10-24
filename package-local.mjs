@@ -8,6 +8,9 @@ const output = path.resolve(root, '..', 'СИДИ-КАЧАЙСЯ.html');
 const css = readFileSync(path.join(root, 'dist/style.css'), 'utf8');
 const engine = ['engine.js','netcode.js','effects.js'].map(file=>readFileSync(path.join(root,'dist',file),'utf8')).join('\n');
 const js = readFileSync(path.join(root, 'dist/game.js'), 'utf8').replace(/^import[^\n]+from ['"]\.\/(?:engine|netcode|effects)\.js['"];?\s*/gm, '');
+const arcadeModules=['chaos-data.js','arcade-engine.js','arcade-wire.js','arcade-art.js','arcade-prediction.js','arcade-client.js'];
+const arcadeJS=arcadeModules.map(file=>readFileSync(path.join(root,'dist',file),'utf8').replace(/^import[^\n]+from ['"]\.\/[^'"]+['"];?\s*/gm,'')).join('\n');
+let arcadeHTML=readFileSync(path.join(root,'dist/arcade.html'),'utf8').replace('<link rel="stylesheet" href="arcade.css">',()=>'<style>'+readFileSync(path.join(root,'dist/arcade.css'),'utf8')+'</style>').replace('<script type="module" src="arcade-client.js"></script>','').replace('</body>',()=>'<script type="module">'+arcadeJS.replace(/<\/script/gi,'<\\/script')+'</script></body>');
 let html = readFileSync(path.join(root, 'dist/index.html'), 'utf8');
 
 // Everything needed to play travels inside one file. No server or network.
@@ -15,6 +18,7 @@ html = html.replace(/^\s*<link[^>]+https:\/\/fonts\.[^>]+>\s*$/gm, '');
 html = html.replace('<link rel="stylesheet" href="style.css">', () => '<style>\n' + css + '\n</style>');
 html = html.replace('<script type="module" src="game.js"></script>', '');
 html = html.replace('class="brand" href="./"', 'class="brand" href="#"');
+html = html.replace('</body>',()=>'<script type="application/json" id="arcadeBundle">'+JSON.stringify(arcadeHTML).replace(/</g,'\\u003c')+'</script></body>');
 html = html.replace('</body>', () => '<script type="module">\n' + (engine+'\n'+js).replace(/<\/script/gi, '<\\/script') + '\n</script>\n</body>');
 
 if (/<(?:script|link)\b[^>]*(?:src|href)=["']https?:/i.test(html)) {
@@ -40,7 +44,7 @@ function zip(entries,destination){
 }
 const guide=readFileSync(path.join(root,'КАК-ИГРАТЬ.txt'));
 zip([['СИДИ-КАЧАЙСЯ.html',html],['КАК-ИГРАТЬ.txt',guide]],path.resolve(root,'..','oscar-farm-local.zip'));
-const sourceFiles=['package.json','server.mjs','start-online.mjs','tunnel-ready.mjs','README.md','КАК-ИГРАТЬ.txt','balance/simulate.mjs','balance/run-audit.mjs','balance/REPORT.md','balance/report.json','dist/index.html','dist/style.css','dist/game.js','dist/engine.js','dist/netcode.js','dist/effects.js','vendor/ws/LICENSE','vendor/ws/package.json','vendor/ws/wrapper.mjs','vendor/ws/index.js'];
+const sourceFiles=['package-local.mjs','package.json','server.mjs','start-online.mjs','tunnel-ready.mjs','README.md','КАК-ИГРАТЬ.txt','balance/simulate.mjs','balance/run-audit.mjs','balance/REPORT.md','balance/report.json','balance/arcade-audit.mjs','balance/ARCADE-REPORT.md','balance/arcade-report.json','dist/index.html','dist/style.css','dist/game.js','dist/engine.js','dist/netcode.js','dist/effects.js',...arcadeModules.map(file=>'dist/'+file),'dist/arcade.html','dist/arcade.css','research/MODES.md','research/VALIDATION.md','vendor/ws/LICENSE','vendor/ws/package.json','vendor/ws/wrapper.mjs','vendor/ws/index.js'];
 sourceFiles.push(...readdirSync(path.join(root,'test')).filter(file=>file.endsWith('.test.mjs')).map(file=>'test/'+file));
 sourceFiles.push(...readdirSync(path.join(root,'vendor/ws/lib')).filter(file=>file.endsWith('.js')).map(file=>'vendor/ws/lib/'+file));
 zip([...sourceFiles.map(file=>['oscar-farm/'+file,readFileSync(path.join(root,file))]),['oscar-farm/СИДИ-КАЧАЙСЯ.html',html]],path.resolve(root,'..','oscar-farm-multiplayer.zip'));

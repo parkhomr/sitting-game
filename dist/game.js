@@ -7,6 +7,7 @@ import {BattleEffects,drawProjectile,drawZones,drawChannel,drawSkillIcon,drawIte
   const HOST={id:'host',name:'Ведущий',hero:'Наблюдатель',color:'#e6d59a',icon:'♛'};
   const PICKS=[...HEROES,HOST];
   const SAVE_KEY='oscar-farm-club-v2';
+  let arcadeActive=false;
   let chosen='drow',world=createWorld(),soloWorld=world,online=null,soloPaused=false,sound=false,audio=null;
   let lastTime=0,elapsed=0,uiTimer=0,saveTimer=0,lastEvent=0,toastTimer;
   const effects=new BattleEffects(),motion=new MotionBuffer();
@@ -95,6 +96,7 @@ import {BattleEffects,drawProjectile,drawZones,drawChannel,drawSkillIcon,drawIte
     if(!create&&!/^[A-F0-9]{6}$/.test(code)){toast('Введи код комнаты: 6 символов');return;}
     $('createRoomButton').disabled=true;$('joinRoomButton').disabled=true;
     try{
+      if(!create){const meta=await fetch('/api/rooms/'+code+'/info').then(r=>r.json());if(meta.mode&&meta.mode!=='farm'){location.href='arcade.html#room='+code;return;}}
       const prior=credentials();
       const data=await request(create?'/api/rooms':'/api/rooms/'+code+'/join',{hero:chosen,...(!create&&prior?{token:prior.token}:{})});
       save();soloWorld=world;chosen=data.hero;world=data.world;lastEvent=world.eventId;soloPaused=false;
@@ -164,6 +166,7 @@ import {BattleEffects,drawProjectile,drawZones,drawChannel,drawSkillIcon,drawIte
     online=null;localMotion=null;held.clear();old.socket?.close(4000,'Left room');clearTimeout(old.retryTimer);clearInterval(old.pingTimer);motion.clear();effects.clear();world=soloWorld;lastEvent=world.eventId;location.hash='';soloPaused=false;updateUI();renderPortraits();
   }
   function updateUI(){
+    if($('modeHub'))$('modeHub').hidden=!!online||/room=/.test(location.hash);
     const p=me(),h=chosen==='host'?HOST:heroInfo(chosen),skill=heroInfo(p.skill),rules=waveRules(world.wave),personalPause=online?p.paused:soloPaused;
     $('level').innerHTML=number(p.level)+'<span class="level-star">✳</span>';$('kills').textContent=number(world.kills);
     $('gold').innerHTML=number(p.gold)+'<span class="gold-unit">G</span>';$('xp').textContent=number(p.xp);$('xpNeeded').textContent=number(requiredXP(p));
@@ -498,7 +501,7 @@ import {BattleEffects,drawProjectile,drawZones,drawChannel,drawSkillIcon,drawIte
     const age=Math.min(.2,(performance.now()-online.lastAt)/1000),authoritativeX=p.x+(p.moving&&len?dx/len*moveSpeed(p)*age:0),authoritativeY=p.y+(p.moving&&len?dy/len*moveSpeed(p)*age:0);
     const error=Math.hypot(p.x-localMotion.x,p.y-localMotion.y);if(error>300){localMotion.x=p.x;localMotion.y=p.y;}else{const blend=Math.min(1,dt*8);localMotion.x+=(authoritativeX-localMotion.x)*blend;localMotion.y+=(authoritativeY-localMotion.y)*blend;}
   }
-  function frame(time){const dt=Math.max(0,Math.min((time-lastTime)/1000||0,.05));lastTime=time;fpsFrames++;if(time-fpsStart>=1000){fps=Math.round(fpsFrames*1000/(time-fpsStart));fpsFrames=0;fpsStart=time;}if(!document.hidden){updateMovement(dt,time);elapsed+=dt;if(!online&&!soloPaused){step(world,dt,HEROES.filter(h=>h.id!==chosen).map(h=>h.id));processEvents();}draw(dt);uiTimer+=dt;saveTimer+=dt;if(uiTimer>.15){updateUI();uiTimer=0;}if(saveTimer>3){save();saveTimer=0;}}requestAnimationFrame(frame);}
+  function frame(time){const dt=Math.max(0,Math.min((time-lastTime)/1000||0,.05));lastTime=time;fpsFrames++;if(time-fpsStart>=1000){fps=Math.round(fpsFrames*1000/(time-fpsStart));fpsFrames=0;fpsStart=time;}if(!document.hidden&&!arcadeActive){updateMovement(dt,time);elapsed+=dt;if(!online&&!soloPaused){step(world,dt,HEROES.filter(h=>h.id!==chosen).map(h=>h.id));processEvents();}draw(dt);uiTimer+=dt;saveTimer+=dt;if(uiTimer>.15){updateUI();uiTimer=0;}if(saveTimer>3){save();saveTimer=0;}}requestAnimationFrame(frame);}
   $('shopCards').innerHTML=ITEMS.map(item=>'<article class="shop-card"><div class="shop-item-title"><canvas id="shop-icon-'+item.id+'" width="64" height="64" aria-hidden="true"></canvas><div><h3>'+item.name+'</h3><span>'+item.short+'</span></div></div><p>'+item.hint+'</p><small id="item-note-'+item.id+'"></small><button id="buy-'+item.id+'">'+item.cost+' G · Купить</button></article>').join('');
   for(const item of ITEMS){drawItemIcon($('shop-icon-'+item.id).getContext('2d'),item.id,64);$('buy-'+item.id).addEventListener('click',()=>action('buy',{item:item.id}));}
   for(const id of ['bkb','mjollnir']){drawItemIcon($(id+'Icon').getContext('2d'),id,48);$(id+'Button').addEventListener('click',()=>action('item',{item:id}));}
@@ -557,6 +560,17 @@ import {BattleEffects,drawProjectile,drawZones,drawChannel,drawSkillIcon,drawIte
   $('leaveRoomButton').addEventListener('click',()=>leaveRoom());
   $('copyRoomButton').addEventListener('click',async()=>{if(!online)return;if(['localhost','127.0.0.1'].includes(location.hostname)&&online.inviteBase===location.origin){toast('Запусти npm run online и дождись внешней ссылки в терминале.');return;}const url=(online.inviteBase||location.origin)+'/#room='+online.code;try{await navigator.clipboard.writeText(url);toast('Ссылка скопирована. Отправь друзьям!');}catch{$('shareLink').value=url;$('shareDialog').showModal();$('shareLink').select();}});
   document.addEventListener('visibilitychange',()=>{lastTime=performance.now();if(document.hidden){shootHeld=false;held.clear();localMotion=null;lastWalk='0:0';if(chosen!=='host'&&world.started)action('walk',{dx:0,dy:0});save();}});window.addEventListener('pagehide',save);
+  let arcadeFrame=null;
+  function openLocalArcade(mode){
+    const bundle=$('arcadeBundle');if(!bundle)return;
+    save();soloPaused=true;arcadeActive=true;held.clear();shootHeld=false;
+    document.querySelector('.shell').hidden=true;
+    arcadeFrame?.remove();arcadeFrame=document.createElement('iframe');arcadeFrame.id='arcadeLocalFrame';arcadeFrame.title=mode==='pudge'?'Pudge Wars':'Custom Hero Chaos';
+    arcadeFrame.srcdoc=JSON.parse(bundle.textContent).replace('<head>','<head><script>window.OSCAR_ARCADE_MODE='+JSON.stringify(mode)+'<\/script>');
+    document.body.append(arcadeFrame);window.scrollTo(0,0);
+  }
+  for(const link of document.querySelectorAll('[data-arcade-mode]'))link.addEventListener('click',event=>{if($('arcadeBundle')){event.preventDefault();openLocalArcade(link.dataset.arcadeMode);}});
+  window.addEventListener('message',event=>{if(event.source!==arcadeFrame?.contentWindow)return;const msg=event.data;if(msg?.type==='oscar-arcade-height'&&Number.isFinite(msg.height))arcadeFrame.style.height=Math.max(700,Math.min(16000,msg.height))+'px';if(msg?.type==='oscar-arcade-mode'&&['pudge','chaos'].includes(msg.mode))openLocalArcade(msg.mode);if(msg?.type==='oscar-arcade-back'){arcadeFrame.remove();arcadeFrame=null;arcadeActive=false;soloPaused=false;document.querySelector('.shell').hidden=false;window.scrollTo(0,0);}});
   const invited=location.hash.match(/room=([A-F0-9]{6})/i);if(invited){$('roomCodeInput').value=invited[1].toUpperCase();$('roomHint').textContent='Тебя пригласили! Выбери свободного героя и нажми «Войти».';}
   setTheme(document.documentElement.dataset.theme||'dark');renderPortraits();updateUI();draw(0);requestAnimationFrame(frame);
   if(invited&&/^https?:$/.test(location.protocol)&&credentials())connect(false);
