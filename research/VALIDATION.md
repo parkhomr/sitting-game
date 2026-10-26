@@ -1,6 +1,6 @@
-# Arcade validation — 2026-10-24
+# Arcade validation — 2026-10-27
 
-- Full suite: **110 passing tests**, including the existing 78 farm regressions.
+- Full suite: **124 passing tests**, including the existing 78 farm regressions.
 - The full suite also passes from a fresh extraction of the multiplayer ZIP.
 - Chaos: four distinct hero choices, first-preserving reroll, 16 unique offers,
   measured native first-draw weighting, skill gates, rank-preserving tokens,
@@ -9,20 +9,28 @@
   skill icons** and **24 hero sprites** render without Canvas exceptions.
   Focused tests cover Rearm/interrupts, Multicast/mana, illusions/Metamorphosis/
   Sunder, Spell Steal, all ten Invoker orb combinations, lift/fear and invisibility.
-- Pudge: first-body hook collisions, allied rescue, enemy pulls, river bounds,
-  hook upgrades, rune handling, unlimited respawns and score-based victory.
+- Pudge: first-body one-hit executions, allied rescue, river bounds, optional
+  bots, pre-match team selection, 30 complete elimination rounds, no respawn
+  within a round, crossing-hook double wipes, timeout draws and final tied scores.
+- Phase Shift: three seconds, early cancellation, unchanged 15-second cooldown,
+  intangibility, movement/cast lock and hooks hitting an enemy behind the shifter.
+- Blade Mail: one purchase, two-second window, exactly two credited deaths,
+  expiration, cooldown, no recursive reflection, drawn double-wipe round.
 - Real authoritative WebSocket sessions: ten Pudge clients and eight Chaos
   clients. Shared movement and states agree. Compact deltas reconstruct state;
   representative bot sequences were 88–92% smaller than full snapshots.
 - Server checks reject guest start, mode changes, host impersonation and taking
   another player's reserved seat. A host can possess a free seat. Host-only
-  restart retains names, room mode, target score and session seats.
+  restart retains names, room mode, 30-round limit and session seats.
 - Real two-browser workflow: host creates room, a guest opens an invite with an
   intentionally wrong `?mode=` hint, joins the server-selected mode, drafts,
   starts with the host, and reconnects with the same hero and learned ability.
 - Offline browser check blocks network access: all three modes work inside the
   single HTML with **zero HTTP requests**. Verified hero/skill drafting, keyboard
   movement, the hook button, returning to the original farm, and 390px layout.
+- Pudge browser check: zero default bots, host-only bot buttons, guest team
+  selection/switching, shared phase/cancellation, reconnect cooldowns, Blade Mail
+  purchase/hotkey, visible spikes and purple sparkles, desktop and 390px layouts.
 - Duel browser check: preparation cards, legal game-gold stake, reload refund,
   restarted countdown, live duel and spectator camera.
 - Both ZIP archives pass CRC checks. The multiplayer archive includes all

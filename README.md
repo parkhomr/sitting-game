@@ -179,11 +179,13 @@ still available. Select the mode **before** creating a multiplayer room.
    link is ready. Open the printed localhost address on the hosting computer.
 2. Choose **Pudge Wars** or **Custom Hero Chaos** on the home page.
 3. Set your name and seat. A host may play a hero or use the observer seat.
-   Pudge score targets (25/50/75/100) are set before room creation.
+   In Pudge Wars, choose Radiant or Dire before the match. It always has 30 rounds.
 4. Click **Создать комнату в этом режиме**, then **Скопировать приглашение**.
 5. Friends open the invite and take a free seat. They need only a browser.
    Chaos players choose their hero and first spell before the host starts.
-6. The host clicks **Начать матч**. Empty seats use bots. The host can switch to
+6. The host clicks **Начать матч**. Chaos fills empty seats with bots. In Pudge
+   Wars seats stay empty unless the host explicitly adds bots in **Состав команд**.
+   The host can switch to
    an unoccupied seat using the seat selector, including after the match starts.
 
 Invites point to `/arcade.html#room=CODE`. The server resolves and locks the
@@ -202,16 +204,40 @@ Reloading during a duel refunds unresolved stakes and restarts its countdown.
 
 ### Pudge Wars
 
-- Ten seats, five Radiant versus five Dire, plus an optional observer host.
-- Uncrossable river; straight outgoing hooks catch the first body or rune and
-  physically return. Enemy hits damage and pull; allied hooks rescue without
-  damage. A hooked player may land on the opposite bank.
-- Four hook upgrade branches (damage/range/speed/width), gold, experience,
-  item shop, runes, four-second respawns and first-to-score victory.
-- **WASD / arrows / right click:** move. **Left click / Space / Q:** hook toward
-  the cursor. **B:** Hook Guard. **E:** Blink (bought items required).
-- Respawns are unlimited, as in the classic team mode; the five-life rule
-  applies to Chaos and the original farm campaign.
+- Choose Radiant (left bank) or Dire (right bank) before the host starts.
+  Up to five seats per team, plus an optional observer host. Guests may change
+  teams before the match if there is a free seat. Team switching preserves names
+  and purchases. Team selection locks when the match starts.
+- **Zero automatic bots.** Only the host can add/remove them per seat in
+  **Состав команд**, including during a match. A human's reserved seat cannot
+  be replaced with a bot. Disconnects do not automatically create bots.
+  New players/bots added during a round wait until the next round to spawn.
+- **One enemy hook kills immediately**, regardless of HP, armor or shields.
+  Friendly hooks still rescue without damage. Phased players are intangible,
+  so a hook passes through and can hit somebody behind them.
+- **Exactly 30 rounds**, with no mid-round respawns. A team wins a round by
+  eliminating the opposing team. Outgoing hooks resolve before a wipe result,
+  so crossing hooks or Blade Mail can produce a double wipe and a drawn round.
+  A 60-second standoff draws if both teams still have survivors. There is a
+  five-second break between rounds and a three-second countdown before round 1.
+  After round 30, more round wins decides the match; equal scores draw.
+- **F — Puck's Phase Shift:** disappear for three seconds with purple sparkles.
+  You cannot move or cast while shifted. Press F or the same spell button again
+  to cancel early. Free for everyone, no mana cost, 15-second cooldown from
+  activation. Cancelling does not reset the cooldown.
+- **Blade Mail, 900 G, B:** visible body spikes for two seconds. If an enemy hook
+  kills its owner during that window, the hooker also dies: exactly two deaths,
+  with no recursive reflection. It does not save the wearer. Cooldown: 18 seconds.
+- **WASD / arrows / right click:** move. **Left click / Space / Q:** aimed hook.
+  **E:** Blink (1,000 G, same bank, 14-second cooldown). Boots cost 350 G.
+- Three useful upgrade branches: hook range/speed/width. Damage upgrades, Heart,
+  Hook Guard and Thunder Chain were removed from this one-hit ruleset.
+  Rune pickups grant haste, reach or quicker hooks. Items, gold, points and
+  cooldowns persist between rounds; active effects end at round boundaries.
+- The surviving/dead/empty states, round results and effects are shared by the
+  server. Reconnecting preserves death and cooldowns. Offline reload also keeps
+  unfinished-round deaths, score and explicit bot settings. Older damage-based
+  Pudge saves keep valid progression but start a fresh 30-round match.
 
 ### Custom Hero Chaos
 

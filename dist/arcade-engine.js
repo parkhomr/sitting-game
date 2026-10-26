@@ -2,12 +2,12 @@ import {CHAOS_HEROES,CHAOS_ABILITIES,CHAOS_SKILL_BY_ID,CHAOS_HERO_BY_ID,CHAOS_NA
 export const ARCADE_MODES=['pudge','chaos'];
 export const PW_ARENA={x:0,y:0,w:1800,h:1000,riverLeft:820,riverRight:980};
 export const CHAOS_DUEL_ARENA={x:3800,y:100,w:1200,h:1000};
+export const PUDGE_RULES={version:2,rounds:30,roundSeconds:60,breakSeconds:5,prepSeconds:3,shiftSeconds:3,shiftCooldown:15,bladeSeconds:2,bladeCooldown:18};
+export const PUDGE_HOOK_UPGRADES=PUDGE_UPGRADES.filter(u=>u.id!=='hookDamage');
 export const ARCADE_PW_ITEMS=[
- {id:'boots',name:'Boots of Speed',cost:350,hint:'+15% movement speed.'},
- {id:'heart',name:'Heart',cost:1200,hint:'+350 HP and regeneration.'},
- {id:'shield',name:'Hook Guard',cost:900,hint:'B: absorb one incoming hook for 4 seconds; 22s cooldown.'},
- {id:'blink',name:'Blink Dagger',cost:1000,hint:'E: blink toward the cursor on your current bank; 14s cooldown.'},
- {id:'thunder',name:'Thunder Chain',cost:1400,hint:'Hooks splash lightning onto nearby enemies.'}
+ {id:'boots',name:'Boots of Speed',cost:350,hint:'+15% к скорости передвижения.'},
+ {id:'blink',name:'Blink Dagger',cost:1000,hint:'E: прыжок к прицелу на текущем берегу. КД 14 секунд.'},
+ {id:'blade_mail',name:'Blade Mail',cost:900,hint:'B: колючки на 2 секунды. Если в это время тебя убьют хуком, хукер тоже погибнет. КД 18 секунд.'}
 ];
 const acClamp=(n,a,b)=>Math.max(a,Math.min(b,n)),acDist=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
 export function arcadeRandom(w){w.seed=(Math.imul(w.seed,1664525)+1013904223)>>>0;return w.seed/4294967296;}
@@ -20,11 +20,12 @@ export function arcadeSlots(mode){return Array.from({length:mode==='pudge'?10:8}
 export function createArcadeWorld(mode='chaos',options={}){
  if(!ARCADE_MODES.includes(mode))throw Error('Unknown arcade mode');
  const w={version:1,mode,runId:Math.floor(Math.random()*2147483646)+1,seed:Number.isInteger(options.seed)?options.seed>>>0:Math.floor(Math.random()*2147483646)+1,seconds:0,started:false,gameOver:false,winner:null,phase:'lobby',phaseTime:0,wave:0,score:[0,0],targetScore:[25,50,75,100].includes(options.targetScore)?options.targetScore:50,players:{},enemies:[],projectiles:[],zones:[],summons:[],hooks:[],runes:[],pending:[],duel:null,duelHistory:[],bets:{},nextId:1,eventId:0,events:[],runeTimer:5,settings:{lives:5,nativeWeight:CHAOS_NATIVE_WEIGHT},bans:{heroes:[],abilities:[]},lastSurvivor:null};
+ if(mode==='pudge')Object.assign(w,{pudgeRules:PUDGE_RULES.version,round:0,roundLimit:PUDGE_RULES.rounds,roundHistory:[],roundResult:null,score:[0,0]});if(mode==='pudge')delete w.targetScore;
  for(const [seat,id] of arcadeSlots(mode).entries()){
-  const pen=arcadePen(seat),p={id,seat,name:['Oscar','Ержан','Артур','Санжар','Эмир','Игрок 6','Игрок 7','Игрок 8','Игрок 9','Игрок 10'][seat],team:seat<5?0:1,hero:mode==='pudge'?'pudge':null,heroOptions:[],heroRerolled:false,abilities:[],offer:[],offerSlot:-1,offerRank:1,skillSlots:5,picks:0,points:0,items:[],itemCD:{},cd:{},statuses:{},stacks:{},orbs:[],invoked:[],stolen:null,level:1,xp:0,gold:mode==='chaos'?600:250,earned:0,spent:0,creepKills:0,kills:0,deaths:0,assists:0,damageDealt:0,damageTaken:0,healing:0,clearedWaves:0,duelWins:0,duelLosses:0,duels:0,lives:5,eliminated:false,failedRound:false,cleared:false,clearTime:0,roundElapsed:0,x:mode==='pudge'?(seat<5?340:1460):pen.x+240,y:mode==='pudge'?220+(seat%5)*140:pen.y+460,moveX:0,moveY:0,walkX:0,walkY:0,walkUntil:0,aimX:0,aimY:0,hp:0,mana:0,attackCD:0,respawn:0,spawnShield:0,controlGuard:0,shield:0,channel:null,channelLeft:0,lastHurt:-100,regenClock:0,botClock:0,shoppingClock:0,recentDamage:[],contributors:{},hookDamage:0,hookRange:0,hookSpeed:0,hookRadius:0,hookPoints:1,hookCD:0,hookHits:0,hooksThrown:0,pullBy:0};
+  const pen=arcadePen(seat),p={id,seat,name:['Oscar','Ержан','Артур','Санжар','Эмир','Игрок 6','Игрок 7','Игрок 8','Игрок 9','Игрок 10'][seat],team:seat<5?0:1,hero:mode==='pudge'?'pudge':null,active:mode!=='pudge',bot:mode==='pudge'&&Array.isArray(options.bots)&&options.bots.includes(id),roundDead:false,waitingNextRound:false,heroOptions:[],heroRerolled:false,abilities:[],offer:[],offerSlot:-1,offerRank:1,skillSlots:5,picks:0,points:0,items:[],itemCD:{},cd:{},statuses:{},stacks:{},orbs:[],invoked:[],stolen:null,level:1,xp:0,gold:mode==='chaos'?600:250,earned:0,spent:0,creepKills:0,kills:0,deaths:0,assists:0,damageDealt:0,damageTaken:0,healing:0,clearedWaves:0,duelWins:0,duelLosses:0,duels:0,lives:5,eliminated:false,failedRound:false,cleared:false,clearTime:0,roundElapsed:0,x:mode==='pudge'?(seat<5?340:1460):pen.x+240,y:mode==='pudge'?220+(seat%5)*140:pen.y+460,moveX:0,moveY:0,walkX:0,walkY:0,walkUntil:0,aimX:0,aimY:0,hp:0,mana:0,attackCD:0,respawn:0,spawnShield:0,controlGuard:0,shield:0,channel:null,channelLeft:0,lastHurt:-100,regenClock:0,botClock:0,shoppingClock:0,recentDamage:[],contributors:{},hookDamage:0,hookRange:0,hookSpeed:0,hookRadius:0,hookPoints:1,hookCD:0,hookHits:0,hooksThrown:0,pullBy:0};
   p.moveX=p.x;p.moveY=p.y;p.aimX=p.x+(p.team===0?600:-600);p.aimY=p.y;
   if(mode==='chaos')p.heroOptions=acShuffle(w,CHAOS_HEROES).slice(0,4).map(h=>h.id);
-  p.hp=arcadeMaxHP(w,p);p.mana=arcadeMaxMana(w,p);w.players[id]=p;
+  if(mode==='pudge')p.active=p.bot;p.hp=p.active?arcadeMaxHP(w,p):0;p.mana=arcadeMaxMana(w,p);w.players[id]=p;
  }
  return w;
 }
@@ -37,7 +38,7 @@ export function arcadeAttack(w,p){if(w.mode==='pudge')return 0;let d=(CHAOS_HERO
  d*=1+(arcadeHas(p,'maelstrom')?.16:0)+(arcadeHas(p,'mjollnir')?.2:0)+(arcadeHas(p,'daedalus')?.3:0)+(p.statuses.metamorphosis>0?.6:0)+(p.statuses.empower>0?.3:0)+(p.statuses.alacrity>0?.3:0)+(p.statuses.golem>0?.25:0);return d*(p.statuses.weaken>0?.8:1);}
 export function arcadeAttackRate(w,p){let rate=1+(p.level-1)*.027+(arcadeHas(p,'boots')?.16:0)+(arcadeHas(p,'assault')?.2:0)+(arcadeHas(p,'mjollnir')?.3:0)+(p.statuses.bloodlust>0?.35:0)+(p.statuses.overcharge>0?.4:0)+(p.statuses.alacrity>0?.4:0)+(p.statuses.phantomStrike>0?.65:0)+(p.stacks.fiery||0)*.08+arcadeRank(p,'wex')*.07;return Math.min(5,rate);}
 export function arcadeMoveSpeed(w,p){if(w.mode==='pudge')return 250*(arcadeHas(p,'boots')?1.15:1)*(p.statuses.haste>0?1.3:1);let speed=CHAOS_HERO_BY_ID[p.hero]?.move||225;speed*=1+(arcadeHas(p,'boots')?.12:0)+arcadeRank(p,'wex')*.025+(p.statuses.bloodlust>0?.12:0)+(p.statuses.ghost_walk>0?.2:0);return speed*(p.statuses.slow>0?.65:1)*(p.statuses.metamorphosis>0?.9:1);}
-export function arcadeRange(w,p){return w.mode==='pudge'?850+p.hookRange*70:(p.statuses.metamorphosis>0?620:CHAOS_HERO_BY_ID[p.hero]?.range||500)+arcadeRank(p,'take_aim')*35;}
+export function arcadeRange(w,p){return w.mode==='pudge'?850+p.hookRange*70+(p.statuses.reach>0?140:0):(p.statuses.metamorphosis>0?620:CHAOS_HERO_BY_ID[p.hero]?.range||500)+arcadeRank(p,'take_aim')*35;}
 function acSpellAmp(p){return 1+arcadeRank(p,'supremacy')*.1+(arcadeHas(p,'bloodstone')?.18:0)+(arcadeHas(p,'scepter')?.15:0)+(arcadeHas(p,'shard')?.12:0);}
 export function arcadeSpellStats(w,p,id){const s=CHAOS_SKILL_BY_ID[id];if(!s)return null;const rank=Math.max(1,acEffRank(p,id)),level=1+(p.level-1)*.085;return {...s,rank,mana:Math.ceil(s.mana*(arcadeHas(p,'octarine')?.9:1)),cd:Math.max(.15,s.cd*(arcadeHas(p,'octarine')?.8:1)*Math.max(.7,1-(rank-1)*.045)),power:s.power*(s.power<1?1+(rank-1)*.2:1+(rank-1)*.45)*level*acSpellAmp(p),range:s.range*(1+arcadeRank(p,'supremacy')*.035),duration:s.duration*(1+(rank-1)*.07)};}
 export function chaosOffer(w,p,slot=-1,rank=1){
@@ -45,7 +46,7 @@ export function chaosOffer(w,p,slot=-1,rank=1){
  while(offer.length<16&&pool.length){const total=pool.reduce((n,s)=>n+(s.owner===p.hero?CHAOS_NATIVE_WEIGHT:1),0);let roll=arcadeRandom(w)*total,index=0;for(;index<pool.length-1;index++){roll-=pool[index].owner===p.hero?CHAOS_NATIVE_WEIGHT:1;if(roll<0)break;}offer.push(pool.splice(index,1)[0].id);}
  p.offer=offer;p.offerSlot=slot;p.offerRank=rank;return offer;
 }
-function acAlive(p){return p.hp>0&&p.respawn<=0&&!p.eliminated&&!p.failedRound;}
+function acAlive(p){return p.active!==false&&!p.roundDead&&!p.waitingNextRound&&p.hp>0&&p.respawn<=0&&!p.eliminated&&!p.failedRound;}
 function acUnit(w,id){return w.players[id]||w.enemies.find(e=>e.id===id)||w.summons.find(e=>e.id===id);}
 function acOwner(w,u){return w.players[u.owner||u.id];}
 function acEnemies(w,p){if(w.mode==='pudge')return Object.values(w.players).filter(e=>e.team!==p.team&&acAlive(e));if(w.phase==='duel'&&w.duel?.ids.includes(p.id)){const other=w.duel.ids.find(id=>id!==p.id);return [...(acAlive(w.players[other])?[w.players[other]]:[]),...w.summons.filter(s=>s.hp>0&&s.owner===other)];}return [...w.enemies.filter(e=>e.hp>0&&e.owner===p.id),...w.summons.filter(s=>s.hp>0&&s.enemyTo===p.id)];}
@@ -54,7 +55,7 @@ function acAim(p,a={}){if(a.x===undefined&&a.y===undefined)return true;if(!Numbe
 function acDirection(p){const dx=p.aimX-p.x,dy=p.aimY-p.y,len=Math.hypot(dx,dy);return len>.001?{x:dx/len,y:dy/len}:{x:1,y:0};}
 function acPoint(w,p,range=700){const b=arcadeBounds(w,p),dx=p.aimX-p.x,dy=p.aimY-p.y,d=Math.hypot(dx,dy)||1,k=Math.min(1,range/d);return {x:acClamp(p.x+dx*k,b.x+28,b.x+b.w-28),y:acClamp(p.y+dy*k,b.y+28,b.y+b.h-28)};}
 function acTarget(w,p,range=700,friendly=false){return (friendly?acAllies(w,p):acEnemies(w,p)).filter(e=>e.hp>0&&!(e.statuses.ghost_walk>0)&&acDist(p,e)<=range&&Math.hypot(e.x-p.aimX,e.y-p.aimY)<(e.boss?90:65)).sort((a,b)=>acDist(a,{x:p.aimX,y:p.aimY})-acDist(b,{x:p.aimX,y:p.aimY}))[0];}
-function acCanAct(w,p){return w.started&&!w.gameOver&&acAlive(p)&&!p.paused&&!(p.statuses.stun>0||p.statuses.hex>0||p.statuses.lift>0||p.statuses.fear>0||p.frozen)&&!p.pullBy;}
+function acCanAct(w,p){return w.started&&!w.gameOver&&(w.mode!=='pudge'||w.phase==='combat')&&!(p.statuses.phaseShift>0)&&acAlive(p)&&!p.paused&&!(p.statuses.stun>0||p.statuses.hex>0||p.statuses.lift>0||p.statuses.fear>0||p.frozen)&&!p.pullBy;}
 function acMoveTo(w,p,x,y){const b=arcadeBounds(w,p);if(w.mode==='pudge'){const left=p.x<PW_ARENA.riverLeft,right=p.x>PW_ARENA.riverRight;p.moveX=acClamp(x,left?35:right?PW_ARENA.riverRight+20:35,left?PW_ARENA.riverLeft-20:right?1765:1765);p.moveY=acClamp(y,45,955);}else{p.moveX=acClamp(x,b.x+35,b.x+b.w-35);p.moveY=acClamp(y,b.y+35,b.y+b.h-35);}}
 function acControl(w,target,data,source){if(target.hp<=0||target.spawnShield>0||target.statuses.invulnerable>0)return;const immune=target.statuses.bkb>0||target.statuses.rage>0||target.statuses.spin>0;if(immune&&!data.pierces)return;
  for(const key of ['slow','root','silence','disarm','blind','fear'])if(data[key]>0)target.statuses[key]=Math.max(target.statuses[key]||0,Math.min(key==='slow'?5:4,data[key]));
@@ -71,15 +72,16 @@ function acDeath(w,u,killer){
  if(!p){if(u.isCreep&&owner){acGold(owner,18+Math.floor(w.wave*.7));acLevel(w,owner,18+Math.floor(w.wave*.3));owner.creepKills++;if(arcadeRank(owner,'necromastery'))owner.stacks.souls=Math.min(30,1+(owner.stacks.souls||0));if(arcadeRank(owner,'flesh'))owner.stacks.flesh=Math.min(30,1+(owner.stacks.flesh||0));}arcadeEmit(w,'unit_death',{x:u.x,y:u.y,owner:killer,kind:u.kind});return;}
  p.deaths++;p.channel=null;p.channelLeft=0;p.pullBy=0;p.statuses={};p.shield=0;
  if(w.mode==='pudge'){
-  p.respawn=4;p.hookCD=0;if(owner&&owner.team!==p.team){owner.kills++;w.score[owner.team]++;acGold(owner,140);acLevel(w,owner,140);for(const ally of Object.values(w.players))if(ally.team===owner.team&&ally.id!==owner.id)acGold(ally,25);for(const [id,at] of Object.entries(p.contributors))if(id!==owner.id&&w.seconds-at<10&&w.players[id]?.team===owner.team)w.players[id].assists++;}
-  arcadeEmit(w,'kill',{killer,player:p.id,score:[...w.score],x:p.x,y:p.y});if(w.score.some(n=>n>=w.targetScore)){w.gameOver=true;w.phase='finished';w.winner=owner?.team??(w.score[0]>w.score[1]?0:1);arcadeEmit(w,'match_end',{winner:w.winner});}
+  p.roundDead=true;p.respawn=0;p.walkUntil=0;p.moveX=p.x;p.moveY=p.y;
+  if(owner&&owner.team!==p.team){owner.kills++;acGold(owner,140);acLevel(w,owner,140);for(const ally of Object.values(w.players))if(ally.active&&ally.team===owner.team&&ally.id!==owner.id)acGold(ally,25);for(const [id,at] of Object.entries(p.contributors))if(id!==owner.id&&w.seconds-at<10&&w.players[id]?.team===owner.team)w.players[id].assists++;}
+  arcadeEmit(w,'kill',{killer,player:p.id,score:[...w.score],round:w.round,x:p.x,y:p.y});
  }else if(w.phase==='duel'&&w.duel?.ids.includes(p.id)){if(owner&&owner.id!==p.id)owner.kills++;w.duel.finished=true;w.duel.winner=w.duel.ids.find(id=>id!==p.id);arcadeEmit(w,'duel_hit',{killer,player:p.id});}
  else{
   p.lives=Math.max(0,p.lives-1);p.failedRound=true;p.cleared=true;p.eliminated=p.lives===0;w.enemies=w.enemies.filter(e=>e.owner!==p.id);w.summons=w.summons.filter(e=>e.owner!==p.id);arcadeEmit(w,'wave_failed',{player:p.id,lives:p.lives,wave:w.wave});if(p.eliminated){const alive=Object.values(w.players).filter(q=>!q.eliminated);if(alive.length===1){w.gameOver=true;w.phase='finished';w.winner=alive[0].id;arcadeEmit(w,'match_end',{winner:w.winner});}}
  }
 }
 export function arcadeDeal(w,source,target,amount,type='magic',options={}){
- if(w.gameOver||!target||target.hp<=0||target.invulnerable||target.spawnShield>0||target.statuses?.invulnerable>0||!Number.isFinite(amount)||amount<=0)return 0;
+ if(w.gameOver||!target||target.hp<=0||target.invulnerable||target.spawnShield>0||target.statuses?.invulnerable>0||target.statuses?.phaseShift>0||!Number.isFinite(amount)||amount<=0)return 0;
  const p=w.players[source],victim=w.players[target.id];target.statuses||={};
  if(type==='physical'){
   if(p?.statuses.blind>0&&arcadeRandom(w)<.75)return 0;
@@ -231,8 +233,8 @@ function acCast(w,p,id,action={},repeated=false){
  return {ok:true};
 }
 function acLaunchHook(w,p,data={}){
- if(w.hooks.some(h=>h.owner===p.id))return false;const dir=acDirection(p),speed=data.speed||800+p.hookSpeed*65;
- w.hooks.push({id:w.nextId++,owner:p.id,x:p.x,y:p.y,vx:dir.x*speed,vy:dir.y*speed,speed,range:data.range||850+p.hookRange*70,radius:data.radius||20+p.hookRadius*3,damage:data.damage||245+p.hookDamage*32,travel:0,returning:false,target:null,...data});p.hooksThrown++;return true;
+ if(w.hooks.some(h=>h.owner===p.id))return false;const dir=acDirection(p),speed=data.speed||800+p.hookSpeed*65+(p.statuses.quickHook>0?160:0);
+ w.hooks.push({id:w.nextId++,owner:p.id,x:p.x,y:p.y,vx:dir.x*speed,vy:dir.y*speed,speed,range:data.range||arcadeRange(w,p),radius:data.radius||20+p.hookRadius*3,damage:data.damage||245+p.hookDamage*32,travel:0,returning:false,target:null,...data});p.hooksThrown++;return true;
 }
 function acChooseHero(w,p,hero){if(p.hero)return {ok:false,message:'Hero is already locked'};if(!p.heroOptions.includes(hero)||w.bans.heroes.includes(hero))return {ok:false,message:'Choose one of your four offered heroes'};p.hero=hero;p.hp=arcadeMaxHP(w,p);p.mana=arcadeMaxMana(w,p);p.points=1;chaosOffer(w,p);arcadeEmit(w,'hero_pick',{player:p.id,hero});return {ok:true};}
 function acLearn(w,p,id){if(!p.offer.includes(id)||!CHAOS_SKILL_BY_ID[id]||p.abilities.some(s=>s.id===id))return {ok:false,message:'Choose a spell from your current offer'};const rank=Math.min(p.offerRank||1,CHAOS_SKILL_BY_ID[id].maxRank),slot=p.offerSlot;
@@ -240,13 +242,50 @@ function acLearn(w,p,id){if(!p.offer.includes(id)||!CHAOS_SKILL_BY_ID[id]||p.abi
  else{if(p.abilities.length>=p.skillSlots)return {ok:false,message:'All skill slots are occupied'};p.abilities.push({id,rank});p.picks++;}
  p.offer=[];p.offerSlot=-1;p.offerRank=1;arcadeEmit(w,'learn',{player:p.id,skill:id,rank});return {ok:true};}
 function acAutoDraft(w,p){if(!p.hero)acChooseHero(w,p,acPick(w,p.heroOptions));if(p.offer.length){const scored=p.offer.map(id=>{const s=CHAOS_SKILL_BY_ID[id];return {id,score:(!s.passive&&!['quas','wex','exort','invoke','tether','relocate','teleport','mana_drain','infest'].includes(s.kind)?2:0)+(s.owner===p.hero?1.1:0)+(['fan','robots','shrapnel','spin','reactive','mana_aura','eidolons','treants','decay','malefice','mines'].includes(s.kind)?2:0)+arcadeRandom(w)};}).sort((a,b)=>b.score-a.score);acLearn(w,p,scored[0].id);}}
+// Seat membership is explicit in Pudge Wars. Empty seats never become bots.
+function pudgeClearHooks(w,id){for(const h of w.hooks)if(h.owner===id){const u=acUnit(w,h.target);if(u?.pullBy===h.id)u.pullBy=0;}w.hooks=w.hooks.filter(h=>h.owner!==id);}
+export function pudgeSetHuman(w,id,present){
+ const p=w.players[id];if(w.mode!=='pudge'||!Object.hasOwn(w.players,id)||!p)return;
+ const active=p.bot||present;if(p.active===active)return;p.active=active;
+ if(!active){p.hp=0;p.waitingNextRound=false;p.roundDead=false;p.statuses={};p.walkUntil=0;pudgeClearHooks(w,id);}
+ else if(w.started){p.hp=0;p.waitingNextRound=true;p.roundDead=false;}
+ else p.hp=arcadeMaxHP(w,p);
+}
+export function pudgeSetBot(w,id,enabled){
+ const p=w.players[id];if(w.mode!=='pudge'||!Object.hasOwn(w.players,id)||!p||typeof enabled!=='boolean')return {ok:false,message:'Неизвестное место бота'};
+ if(w.gameOver)return {ok:false,message:'Сначала начни новый матч'};
+ p.bot=enabled;pudgeSetHuman(w,id,false);arcadeEmit(w,'bot_change',{player:id,enabled});return {ok:true};
+}
+function pudgeBeginRound(w,initial=false){
+ w.round++;w.roundResult=null;w.phase=initial?'pw_prep':'combat';w.phaseTime=initial?PUDGE_RULES.prepSeconds:0;w.hooks=[];w.runes=[];w.runeTimer=5;
+ for(const p of Object.values(w.players)){
+  p.roundDead=false;p.waitingNextRound=false;p.respawn=0;p.statuses={};p.shield=0;p.channel=null;p.channelLeft=0;p.pullBy=0;p.frozen=false;p.spawnShield=0;p.controlGuard=0;p.walkUntil=0;p.walkX=p.walkY=0;p.hookCD=0;p.contributors={};
+  p.x=p.moveX=p.team===0?620:1180;p.y=p.moveY=180+(p.seat%5)*155;p.aimX=p.team===0?1180:620;p.aimY=p.y;
+  p.hp=p.active?arcadeMaxHP(w,p):0;p.mana=arcadeMaxMana(w,p);
+ }
+ arcadeEmit(w,'pudge_round_start',{round:w.round,limit:w.roundLimit});
+}
+function pudgeEndRound(w,winner){
+ const result={round:w.round,winner,seconds:+w.phaseTime.toFixed(1)};w.roundResult=result;w.roundHistory.push(result);if(winner!==null)w.score[winner]++;
+ for(const p of Object.values(w.players))if(p.active){acGold(p,winner===null?90:p.team===winner?140:100);acLevel(w,p,70);p.statuses={};p.walkUntil=0;}
+ for(const h of w.hooks){const u=acUnit(w,h.target);if(u)u.pullBy=0;}w.hooks=[];w.runes=[];arcadeEmit(w,'pudge_round_end',{...result,score:[...w.score]});
+ if(w.round>=w.roundLimit){w.gameOver=true;w.phase='finished';w.winner=w.score[0]===w.score[1]?null:w.score[0]>w.score[1]?0:1;arcadeEmit(w,'match_end',{winner:w.winner,score:[...w.score]});}
+ else{w.phase='pw_break';w.phaseTime=PUDGE_RULES.breakSeconds;}
+}
+function pudgeExecute(w,killer,victim){
+ if(victim.hp<=0)return;const actual=victim.hp;victim.hp=0;victim.damageTaken+=actual;killer.damageDealt+=actual;victim.contributors[killer.id]=w.seconds;acDeath(w,victim,killer.id);
+}
+function pudgeHookKill(w,source,target){
+ const reflect=target.statuses.bladeMail>0;pudgeExecute(w,source,target);
+ if(reflect&&source.hp>0){pudgeExecute(w,target,source);arcadeEmit(w,'blade_reflect',{player:target.id,target:source.id,x:target.x,y:target.y});}
+}
 export function startArcade(w,humanIds=[]){
  if(w.gameOver)return {ok:false,message:'Start a new match'};if(w.started)return {ok:false,message:'The match has already started'};
  if(w.mode==='chaos'){
   const unfinished=humanIds.map(id=>w.players[id]).filter(p=>p&&(!p.hero||!p.abilities.length));if(unfinished.length)return {ok:false,message:'Players are still choosing a hero / first ability: '+unfinished.map(p=>p.name).join(', ')};
   for(const p of Object.values(w.players))if(!humanIds.includes(p.id))acAutoDraft(w,p);
   w.started=true;if(w.resumeDuel){w.duel={ids:w.resumeDuel,round:w.wave,finished:false,winner:null,backup:{},pools:{}};delete w.resumeDuel;w.phase='duel_prep';w.phaseTime=15;return {ok:true};}if(w.resumeWave){w.wave=Math.max(0,w.wave-1);delete w.resumeWave;}acBeginWave(w);
- }else{w.started=true;w.phase='combat';w.phaseTime=0;for(const p of Object.values(w.players))p.spawnShield=2;arcadeEmit(w,'pudge_start',{target:w.targetScore});}
+ }else{for(const p of Object.values(w.players))pudgeSetHuman(w,p.id,humanIds.includes(p.id));if(![0,1].every(team=>Object.values(w.players).some(p=>p.active&&p.team===team)))return {ok:false,message:'Нужен хотя бы один игрок в каждой команде. Пригласи друга или добавь бота.'};w.started=true;if(w.resumePudge){delete w.resumePudge;if(w.round>=w.roundLimit){w.gameOver=true;w.phase='finished';return {ok:true};}}pudgeBeginRound(w,true);if(w.resumePudgeRound){const r=w.resumePudgeRound;delete w.resumePudgeRound;w.phase=r.phase;w.phaseTime=r.phaseTime;for(const [id,old] of Object.entries(r.players)){const p=w.players[id];if(!p.active)continue;p.roundDead=old.dead;p.waitingNextRound=old.waiting;p.hp=old.dead||old.waiting?0:Math.min(arcadeMaxHP(w,p),old.hp);p.x=p.moveX=old.x;p.y=p.moveY=old.y;p.statuses=old.statuses;}}}
  return {ok:true};
 }
 export function arcadeItemCost(w,p,id){const catalog=w.mode==='pudge'?ARCADE_PW_ITEMS:ARCADE_ITEMS,item=catalog.find(i=>i.id===id);if(!item)return Infinity;return id==='mjollnir'&&arcadeHas(p,'maelstrom')?item.cost-1700:item.cost;}
@@ -268,7 +307,7 @@ function acBuy(w,p,id,slot){
 function acItem(w,p,id,a){
  if(!arcadeHas(p,id)||!acCanAct(w,p))return {ok:false,message:'Item cannot be used now'};if((p.itemCD[id]||0)>0)return {ok:false,message:'Item is on cooldown'};
  if(w.mode==='pudge'){
-  if(id==='shield'){p.statuses.hookShield=4;p.itemCD[id]=22;}
+  if(id==='blade_mail'){p.statuses.bladeMail=PUDGE_RULES.bladeSeconds;p.itemCD[id]=PUDGE_RULES.bladeCooldown;}
   else if(id==='blink'){if(!acAim(p,a))return {ok:false,message:'Invalid aim'};const pt=acPoint(w,p,260);acMoveTo(w,p,pt.x,pt.y);p.x=p.moveX;p.y=p.moveY;p.itemCD[id]=14;}
   else return {ok:false,message:'Passive item'};
  }else{
@@ -294,7 +333,7 @@ export function arcadeCommand(w,id,a){
   if(def.ultimate&&p.level<(s.rank===1?6:12))return {ok:false,message:'Ultimate ranks 2/3 require level 6/12'};s.rank++;p.points--;return {ok:true};
  }
  if(a.type==='upgrade_hook'&&w.mode==='pudge'){
-  const up=PUDGE_UPGRADES.find(u=>u.id===a.upgrade);if(!up||p[up.id]>=up.max)return {ok:false,message:'Maximum or unknown upgrade'};
+  const up=PUDGE_HOOK_UPGRADES.find(u=>u.id===a.upgrade);if(!up||p[up.id]>=up.max)return {ok:false,message:'Maximum or unknown upgrade'};
   const cost=Math.ceil(up.base*Math.pow(1.3,p[up.id]));if(p.hookPoints>0)p.hookPoints--;else if(p.gold>=cost){p.gold-=cost;p.spent+=cost;}else return {ok:false,message:'Need an upgrade point or gold'};p[up.id]++;return {ok:true};
  }
  if(a.type==='bet'&&w.mode==='chaos'){
@@ -304,6 +343,12 @@ export function arcadeCommand(w,id,a){
  }
  if(a.type==='pause'){p.paused=!!a.value;return {ok:true};}
  if(a.type==='aim')return acAim(p,a)?{ok:true}:{ok:false,message:'Invalid aim'};
+ if(a.type==='phase_shift'&&w.mode==='pudge'){
+  if(w.phase!=='combat'||!acAlive(p))return {ok:false,message:'Phase Shift доступен только живым игрокам во время раунда'};
+  if(p.statuses.phaseShift>0){p.statuses.phaseShift=0;arcadeEmit(w,'phase_shift',{player:p.id,active:false,x:p.x,y:p.y});return {ok:true};}
+  if(!acCanAct(w,p)||(p.cd.phase_shift||0)>0)return {ok:false,message:'Phase Shift ещё перезаряжается'};
+  p.statuses.phaseShift=PUDGE_RULES.shiftSeconds;p.cd.phase_shift=PUDGE_RULES.shiftCooldown;p.walkUntil=0;p.moveX=p.x;p.moveY=p.y;arcadeEmit(w,'phase_shift',{player:p.id,active:true,x:p.x,y:p.y});return {ok:true};
+ }
  if(a.type==='item')return acItem(w,p,a.item,a);
  if(a.type==='cast'&&w.mode==='chaos')return acCast(w,p,a.skill,a);
  if(a.type==='move'||a.type==='walk'){
@@ -315,7 +360,7 @@ export function arcadeCommand(w,id,a){
   else{if(!Number.isFinite(a.x)||!Number.isFinite(a.y))return {ok:false,message:'Invalid point'};acMoveTo(w,p,a.x,a.y);p.walkUntil=0;}return {ok:true};
  }
  if(a.type==='hook'&&w.mode==='pudge'){
-  if(!acCanAct(w,p)||p.hookCD>0)return {ok:false,message:'Hook is not ready'};if(!acAim(p,a))return {ok:false,message:'Invalid aim'};if(!acLaunchHook(w,p))return {ok:false,message:'Your hook is still returning'};p.hookCD=1.9;arcadeEmit(w,'hook',{player:p.id,x:p.x,y:p.y});return {ok:true};
+  if(!acCanAct(w,p)||p.hookCD>0)return {ok:false,message:'Hook is not ready'};if(!acAim(p,a))return {ok:false,message:'Invalid aim'};if(!acLaunchHook(w,p))return {ok:false,message:'Your hook is still returning'};p.hookCD=p.statuses.quickHook>0?1.25:1.9;arcadeEmit(w,'hook',{player:p.id,x:p.x,y:p.y});return {ok:true};
  }
  if(a.type==='attack'&&w.mode==='chaos'){
   if(!acCanAct(w,p)||!['wave','duel'].includes(w.phase)||p.attackCD>0||p.statuses.disarm>0||p.channel)return {ok:false,message:'Attack is not ready'};
@@ -373,7 +418,7 @@ function acTickHooks(w,dt){
    const target=acUnit(w,h.target);if(target?.hp>0){target.x=h.x;target.y=h.y;if(h.done){target.pullBy=0;if(w.mode==='pudge'){target.x=acClamp(target.x,p.x<900?35:1000,p.x<900?800:1765);target.moveX=target.x;target.moveY=target.y;}}}else if(target)target.pullBy=0;continue;
   }
   const travel=Math.min(h.range-h.travel,h.speed*dt),len=Math.hypot(h.vx,h.vy)||1,x=h.x+h.vx/len*travel,y=h.y+h.vy/len*travel;
-  const units=w.mode==='pudge'?Object.values(w.players).filter(e=>e.id!==p.id&&acAlive(e)&&!e.pullBy):acEnemies(w,p).filter(e=>!e.pullBy);
+  const units=w.mode==='pudge'?Object.values(w.players).filter(e=>e.id!==p.id&&acAlive(e)&&!e.pullBy&&!(e.statuses.phaseShift>0)):acEnemies(w,p).filter(e=>!e.pullBy);
   const candidates=units.map(u=>({u,t:arcadeSweep(h.x,h.y,x,y,u.x,u.y,h.radius+(u.boss?40:20))}));
   if(w.mode==='pudge')for(const rune of w.runes)candidates.push({rune,t:arcadeSweep(h.x,h.y,x,y,rune.x,rune.y,h.radius+18)});
   const first=candidates.filter(c=>c.t!==null).sort((a,b)=>a.t-b.t)[0];
@@ -382,10 +427,10 @@ function acTickHooks(w,dt){
    if(first.rune){const rune=first.rune;w.runes=w.runes.filter(r=>r.id!==rune.id);if(rune.kind==='heal')acHeal(w,p,arcadeMaxHP(w,p)*.35);else p.statuses[rune.kind]=rune.kind==='hookShield'?12:10;arcadeEmit(w,'rune',{player:p.id,kind:rune.kind,x:rune.x,y:rune.y});}
    else{
     const u=first.u;h.x=u.x;h.y=u.y;
-    if(u.statuses.hookShield>0||u.spawnShield>0){u.statuses.hookShield=0;arcadeEmit(w,'blocked_hook',{player:u.id,x:u.x,y:u.y});}
+    if(w.mode!=='pudge'&&(u.statuses.hookShield>0||u.spawnShield>0)){u.statuses.hookShield=0;arcadeEmit(w,'blocked_hook',{player:u.id,x:u.x,y:u.y});}
     else{
      const friendly=w.mode==='pudge'&&u.team===p.team;
-     if(!friendly){arcadeDeal(w,p.id,u,h.damage*(p.statuses.double>0?1.65:1),'physical',{spell:true,kind:'hook'});p.hookHits++;if(p.statuses.thunder>0||arcadeHas(p,'thunder')){for(const other of units.filter(e=>e.team!==p.team&&e.id!==u.id&&acDist(e,u)<220).slice(0,2))arcadeDeal(w,p.id,other,70,'magic',{spell:true});arcadeEmit(w,'lightning',{player:p.id,x:u.x,y:u.y,points:units.filter(e=>e.team!==p.team&&acDist(e,u)<220).map(e=>({x:e.x,y:e.y}))});}}
+     if(!friendly){if(w.mode==='pudge')pudgeHookKill(w,p,u);else arcadeDeal(w,p.id,u,h.damage*(p.statuses.double>0?1.65:1),'physical',{spell:true,kind:'hook'});p.hookHits++;if(p.statuses.thunder>0||arcadeHas(p,'thunder')){for(const other of units.filter(e=>e.team!==p.team&&e.id!==u.id&&acDist(e,u)<220).slice(0,2))arcadeDeal(w,p.id,other,70,'magic',{spell:true});arcadeEmit(w,'lightning',{player:p.id,x:u.x,y:u.y,points:units.filter(e=>e.team!==p.team&&acDist(e,u)<220).map(e=>({x:e.x,y:e.y}))});}}
      if(u.hp>0){h.target=u.id;u.pullBy=h.id;u.channel=null;u.channelLeft=0;}arcadeEmit(w,friendly?'rescue':'hook_hit',{player:p.id,target:u.id,x:u.x,y:u.y});
     }
    }
@@ -462,15 +507,15 @@ function acTickPending(w){
 }
 function acTickStatuses(w,u,dt){
  u.frozen=false;u.prevX=u.x;u.prevY=u.y;
- for(const key of Object.keys(u.statuses||{})){const previous=u.statuses[key];u.statuses[key]=Math.max(0,previous-dt);if(previous>0&&u.statuses[key]===0){if(['reactive','fiery','decay'].includes(key))u.stacks[key]=0;if(key==='tazer'&&w.players[u.id])acArea(w,u,u,220,u.tazerPower||60,'magic',{disarm:1.5,kind:'bomb'});if(key==='relocate'&&u.relocateFrom){u.x=u.relocateFrom.x;u.y=u.relocateFrom.y;u.moveX=u.x;u.moveY=u.y;u.prevX=u.x;u.prevY=u.y;}}}
+ for(const key of Object.keys(u.statuses||{})){const previous=u.statuses[key];u.statuses[key]=Math.max(0,previous-dt);if(previous>0&&u.statuses[key]===0){if(key==='phaseShift'&&w.mode==='pudge')arcadeEmit(w,'phase_shift',{player:u.id,active:false,x:u.x,y:u.y});if(['reactive','fiery','decay'].includes(key))u.stacks[key]=0;if(key==='tazer'&&w.players[u.id])acArea(w,u,u,220,u.tazerPower||60,'magic',{disarm:1.5,kind:'bomb'});if(key==='relocate'&&u.relocateFrom){u.x=u.relocateFrom.x;u.y=u.relocateFrom.y;u.moveX=u.x;u.moveY=u.y;u.prevX=u.x;u.prevY=u.y;}}}
  u.controlGuard=Math.max(0,(u.controlGuard||0)-dt);u.coldTimer=Math.max(0,(u.coldTimer||0)-dt);u.bashCD=Math.max(0,(u.bashCD||0)-dt);u.lightningCD=Math.max(0,(u.lightningCD||0)-dt);u.staticCD=Math.max(0,(u.staticCD||0)-dt);u.attackCD=Math.max(0,(u.attackCD||0)-dt);u.spawnShield=Math.max(0,(u.spawnShield||0)-dt);
 }
 function acTickPlayer(w,p,dt){
  for(const key of Object.keys(p.cd))p.cd[key]=Math.max(0,p.cd[key]-dt);for(const key of Object.keys(p.itemCD))p.itemCD[key]=Math.max(0,p.itemCD[key]-dt);p.hookCD=Math.max(0,p.hookCD-dt);
  if(p.stolen){p.stolen.left-=dt;if(p.stolen.left<=0)p.stolen=null;}
- if(p.eliminated||p.failedRound)return;
+ if(p.active===false||p.eliminated||p.failedRound)return;
  if(p.respawn>0){p.respawn=Math.max(0,p.respawn-dt);if(p.respawn===0){p.x=p.moveX=p.team===0?330:1470;p.y=p.moveY=220+(p.seat%5)*140;p.hp=arcadeMaxHP(w,p);p.spawnShield=2.5;p.contributors={};}return;}
- if(p.hp<=0)return;
+ if(p.hp<=0||w.mode==='pudge'&&w.phase!=='combat')return;
  p.mana=Math.min(arcadeMaxMana(w,p),p.mana+(2+arcadeRank(p,'brilliance')*1.5+(arcadeHas(p,'octarine')?2:0))*dt);
  const regen=w.mode==='pudge'?(arcadeHas(p,'heart')?9:3):(arcadeMaxHP(w,p)*(.0025+(arcadeHas(p,'heart')?(w.seconds-p.lastHurt>4?.013:.004):0))+(p.stacks.reactive||0)*.5+arcadeRank(p,'quas')*2);
  acHeal(w,p,regen*dt);p.hp=Math.min(p.hp,arcadeMaxHP(w,p));
@@ -520,9 +565,9 @@ function acBot(w,p,dt){
  if(p.shoppingClock<=0){
   p.shoppingClock=1.2;
   if(w.mode==='pudge'){
-   const branch=PUDGE_UPGRADES.filter(u=>p[u.id]<u.max).sort((a,b)=>p[a.id]-p[b.id])[0];
+   const branch=PUDGE_HOOK_UPGRADES.filter(u=>p[u.id]<u.max).sort((a,b)=>p[a.id]-p[b.id])[0];
    if(p.hookPoints>0&&branch)arcadeCommand(w,p.id,{type:'upgrade_hook',upgrade:branch.id});
-   else{const item=['boots','heart','shield','blink','thunder'].find(id=>!arcadeHas(p,id));if(item)arcadeCommand(w,p.id,{type:'buy',item});else if(branch)arcadeCommand(w,p.id,{type:'upgrade_hook',upgrade:branch.id});}
+   else{const item=['boots','blade_mail','blink'].find(id=>!arcadeHas(p,id));if(item)arcadeCommand(w,p.id,{type:'buy',item});else if(branch)arcadeCommand(w,p.id,{type:'upgrade_hook',upgrade:branch.id});}
   }else{
    for(const s of p.abilities)if(p.points>0&&s.rank<CHAOS_SKILL_BY_ID[s.id].maxRank)arcadeCommand(w,p.id,{type:'upgrade_skill',skill:s.id});
    const magic=p.abilities.filter(s=>!CHAOS_SKILL_BY_ID[s.id].passive).length>=3,order=magic?['boots','octarine','heart','bloodstone','bkb','scepter']:['boots','maelstrom','heart','daedalus','bkb','assault'];
@@ -541,7 +586,7 @@ function acBot(w,p,dt){
    const rune=w.runes.length&&arcadeRandom(w)<.13?acPick(w,w.runes):null,chosen=rune||target,lead=Math.min(.6,acDist(p,chosen)/(800+p.hookSpeed*65)),dx=(target.moveX-target.x),dy=(target.moveY-target.y),len=Math.hypot(dx,dy)||1;
    const x=chosen.x+(rune?0:dx/len*arcadeMoveSpeed(w,target)*lead*.7)+(arcadeRandom(w)-.5)*55,y=chosen.y+(rune?0:dy/len*arcadeMoveSpeed(w,target)*lead*.7)+(arcadeRandom(w)-.5)*55;arcadeCommand(w,p.id,{type:'hook',x,y});
   }
-  if(incoming&&arcadeHas(p,'shield'))acItem(w,p,'shield',{});return;
+  if(incoming&&acDist(incoming,p)<220){if(arcadeHas(p,'blade_mail')&&!(p.itemCD.blade_mail>0))acItem(w,p,'blade_mail',{});else if(!(p.cd.phase_shift>0)&&arcadeRandom(w)<.35)arcadeCommand(w,p.id,{type:'phase_shift'});}return;
  }
  if(!['wave','duel'].includes(w.phase)||!target)return;
  const d=acDist(p,target),range=arcadeRange(w,p),desired=Math.max(145,range*.77),box=arcadeBounds(w,p),dx=(p.x-target.x)/(d||1),dy=(p.y-target.y)/(d||1);
@@ -572,15 +617,23 @@ function acBot(w,p,dt){
 }
 export function stepArcade(w,dt,bots=[]){
  if(w.gameOver)return;dt=acClamp(dt,0,.1);if(!w.started)return;
- w.seconds+=dt;w.phaseTime+=['prep','duel_prep'].includes(w.phase)?-dt:dt;
+ w.seconds+=dt;w.phaseTime+=['prep','duel_prep','pw_prep','pw_break'].includes(w.phase)?-dt:dt;
  for(const u of [...Object.values(w.players),...w.enemies,...w.summons])acTickStatuses(w,u,dt);
  acTickZones(w,dt);acTickPending(w);
- for(const p of Object.values(w.players)){acTickPlayer(w,p,dt);if(bots.includes(p.id))acBot(w,p,dt);}
+ // Alternate Pudge processing order so one bank does not always react to the other bank's newly launched hooks first.
+ const turnPlayers=Object.values(w.players);if(w.mode==='pudge'&&((w.pudgeTick=(w.pudgeTick||0)+1)%2))turnPlayers.reverse();
+ for(const p of turnPlayers){acTickPlayer(w,p,dt);if(bots.includes(p.id))acBot(w,p,dt);}
  if(w.mode==='pudge'){
-  w.runeTimer-=dt;if(w.runeTimer<=0){w.runeTimer=8;if(w.runes.length<4)w.runes.push({id:w.nextId++,kind:acPick(w,['haste','double','hookShield','thunder','heal']),x:860+arcadeRandom(w)*80,y:100+arcadeRandom(w)*800,left:25});}
+  if(w.phase==='pw_prep'){if(w.phaseTime<=0){w.phase='combat';w.phaseTime=0;}return;}
+  if(w.phase==='pw_break'){if(w.phaseTime<=0)pudgeBeginRound(w);return;}
+  if(w.phase!=='combat')return;
+  w.runeTimer-=dt;if(w.runeTimer<=0){w.runeTimer=8;if(w.runes.length<4)w.runes.push({id:w.nextId++,kind:acPick(w,['haste','reach','quickHook']),x:860+arcadeRandom(w)*80,y:100+arcadeRandom(w)*800,left:20});}
   for(const r of w.runes)r.left-=dt;w.runes=w.runes.filter(r=>r.left>0);
-  for(const p of Object.values(w.players)){p.regenClock+=dt;if(p.regenClock>=5){p.regenClock-=5;acGold(p,8);}}
-  acTickHooks(w,dt);return;
+  for(const p of Object.values(w.players))if(p.active){p.regenClock+=dt;if(p.regenClock>=5){p.regenClock-=5;acGold(p,8);}}
+  acTickHooks(w,dt);
+  const living=[0,1].map(team=>Object.values(w.players).filter(p=>p.active&&p.team===team&&acAlive(p)).length),pending=w.hooks.some(h=>!h.returning&&!h.done);
+  if((!living[0]||!living[1])&&!pending||w.phaseTime>=PUDGE_RULES.roundSeconds){const winner=living[0]&&!living[1]?0:living[1]&&!living[0]?1:null;pudgeEndRound(w,winner);}
+  return;
  }
  if(w.phase==='prep'&&w.phaseTime<=0){acBeginWave(w);return;}
  if(w.phase==='duel_prep'&&w.phaseTime<=0){acStartDuel(w);return;}
@@ -608,12 +661,17 @@ export function restoreArcadeWorld(saved,mode='chaos'){
   for(const key of ['souls','flesh','finger'])if(Number.isFinite(old.stacks?.[key]))p.stacks[key]=acClamp(Math.floor(old.stacks[key]),0,30);
   const owned=new Set(p.abilities.map(s=>s.id));p.offer=Array.isArray(old.offer)?[...new Set(old.offer)].filter(id=>CHAOS_SKILL_BY_ID[id]&&!owned.has(id)).slice(0,16):[];p.offerSlot=Number.isInteger(old.offerSlot)&&old.offerSlot>=0&&old.offerSlot<p.abilities.length?old.offerSlot:-1;p.offerRank=acClamp(Math.floor(old.offerRank)||1,1,4);
   if(mode==='chaos'&&p.hero&&!p.abilities.length&&!p.offer.length)chaosOffer(w,p);
-  p.hp=p.eliminated?0:arcadeMaxHP(w,p);p.mana=arcadeMaxMana(w,p);
-  for(const [key,value] of Object.entries(old.cd||{}))if(CHAOS_SKILL_BY_ID[key]&&Number.isFinite(value))p.cd[key]=acClamp(value,0,180);
+  if(mode==='pudge'){p.bot=saved.pudgeRules===PUDGE_RULES.version&&old.bot===true;p.active=p.bot;p.roundDead=false;p.waitingNextRound=false;}p.hp=p.eliminated||p.active===false?0:arcadeMaxHP(w,p);p.mana=arcadeMaxMana(w,p);
+  for(const [key,value] of Object.entries(old.cd||{}))if((CHAOS_SKILL_BY_ID[key]||mode==='pudge'&&key==='phase_shift')&&Number.isFinite(value))p.cd[key]=acClamp(value,0,180);
   if(Number.isFinite(old.hookCD))p.hookCD=acClamp(old.hookCD,0,3);
   for(const [key,value] of Object.entries(old.itemCD||{}))if(ARCADE_ITEMS.some(i=>i.id===key)||ARCADE_PW_ITEMS.some(i=>i.id===key))if(Number.isFinite(value))p.itemCD[key]=acClamp(value,0,60);
  }
  if(mode==='chaos'&&['duel','duel_prep'].includes(saved.phase)&&Array.isArray(saved.duel?.ids)&&saved.duel.ids.length===2&&new Set(saved.duel.ids).size===2&&saved.duel.ids.every(id=>w.players[id]&&!w.players[id].eliminated)){w.resumeDuel=[...saved.duel.ids];for(const [id,bet] of Object.entries(saved.bets||{}))if(w.players[id]&&Number.isSafeInteger(bet.amount)&&bet.amount>0&&bet.amount<=1e9&&w.resumeDuel.includes(bet.target))w.players[id].gold+=bet.amount;}
- const remaining=Object.values(w.players).filter(p=>!p.eliminated);if(mode==='chaos'&&remaining.length<=1&&w.wave>0){w.gameOver=true;w.phase='finished';w.winner=remaining[0]?.id||saved.winner||null;}else if(mode==='pudge'&&w.score.some(n=>n>=w.targetScore)){w.gameOver=true;w.phase='finished';w.winner=w.score[0]>w.score[1]?0:1;}
+ const remaining=Object.values(w.players).filter(p=>!p.eliminated);if(mode==='chaos'&&remaining.length<=1&&w.wave>0){w.gameOver=true;w.phase='finished';w.winner=remaining[0]?.id||saved.winner||null;}else if(mode==='pudge'){
+  delete w.targetScore;w.score=[0,0];if(saved.pudgeRules===PUDGE_RULES.version){w.roundHistory=Array.isArray(saved.roundHistory)?saved.roundHistory.slice(0,30).filter((r,i)=>r&&r.round===i+1&&(r.winner===0||r.winner===1||r.winner===null)).map(r=>({round:r.round,winner:r.winner,seconds:acClamp(Number(r.seconds)||0,0,61)})):[];for(const result of w.roundHistory)if(result.winner!==null)w.score[result.winner]++;w.round=w.roundHistory.length;w.roundResult=w.roundHistory.at(-1)||null;w.resumePudge=true;
+  if(saved.started&&['combat','pw_prep'].includes(saved.phase)&&saved.round===w.round+1){w.resumePudgeRound={phase:saved.phase,phaseTime:acClamp(Number(saved.phaseTime)||0,0,saved.phase==='pw_prep'?3:60),players:{}};for(const [id,p] of Object.entries(w.players)){const old=saved.players?.[id];if(!old)continue;w.resumePudgeRound.players[id]={dead:!!old.roundDead,waiting:!!old.waitingNextRound,hp:Math.max(1,Math.min(arcadeMaxHP(w,p),Number(old.hp)||1)),x:acClamp(Number(old.x)||620,p.team===0?35:1000,p.team===0?800:1765),y:acClamp(Number(old.y)||500,45,955),statuses:{phaseShift:acClamp(Number(old.statuses?.phaseShift)||0,0,3),bladeMail:acClamp(Number(old.statuses?.bladeMail)||0,0,2)}};}}
+  if(w.round>=30){w.gameOver=true;w.phase='finished';w.winner=w.score[0]===w.score[1]?null:w.score[0]>w.score[1]?0:1;}}
+ }
+
  return w;
 }

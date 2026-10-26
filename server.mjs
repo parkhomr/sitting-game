@@ -7,7 +7,7 @@ import { gzipSync } from 'node:zlib';
 import { HEROES, createWorld, command, hostCommand, step } from './dist/engine.js';
 import WebSocket,{WebSocketServer} from './vendor/ws/wrapper.mjs';
 import {wireWorld,deltaFrame} from './dist/netcode.js';
-import {ARCADE_MODES,arcadeSlots,createArcadeWorld,arcadeCommand,startArcade,stepArcade} from './dist/arcade-engine.js';
+import {ARCADE_MODES,arcadeSlots,createArcadeWorld,arcadeCommand,startArcade,stepArcade,pudgeSetHuman,pudgeSetBot} from './dist/arcade-engine.js';
 import {arcadeWireWorld,arcadeDelta} from './dist/arcade-wire.js';
 
 const root=path.dirname(fileURLToPath(import.meta.url));
@@ -28,7 +28,13 @@ export function createGameServer({worldFactory=createWorld,arcadeFactory=createA
   }
   function seats(room){return room.mode==='farm'?HEROES.map(h=>h.id):arcadeSlots(room.mode);}
   function roomWire(room){return room.mode==='farm'?wireWorld(room.world):arcadeWireWorld(room.world);}
-  function roster(room){const now=Date.now();return [...seats(room),'host'].map(id=>({id,human:[...room.sessions.values()].some(s=>s.hero===id&&now-s.seen<15000),reserved:[...room.sessions.values()].some(s=>s.hero===id&&now-s.seen<90000)}));}
+  function reserved(room,id){return [...room.sessions.values()].some(s=>s.hero===id&&Date.now()-s.seen<90000);}
+  function syncPudgeSeats(room){if(room.mode==='pudge')for(const id of seats(room))pudgeSetHuman(room.world,id,reserved(room,id));}
+  function roster(room){const now=Date.now();return [...seats(room),'host'].map(id=>({id,human:[...room.sessions.values()].some(s=>s.hero===id&&now-s.seen<15000),reserved:reserved(room,id),...(room.mode==='pudge'?{bot:!!room.world.players[id]?.bot,active:!!room.world.players[id]?.active}:{})}));}
+  function changeSeat(room,session,target){const old=room.world.players[session.hero],next=room.world.players[target];
+    if(room.mode==='pudge'&&!room.world.started&&old&&next&&old!==next){const from={id:old.id,seat:old.seat,team:old.team},to={id:next.id,seat:next.seat,team:next.team},unused={...next};Object.assign(next,old,to,{bot:false});Object.assign(old,unused,from,{bot:false,active:false,hp:0});}
+    session.hero=target;syncPudgeSeats(room);if(session.socket)session.socket.needsFull=true;return {ok:true};
+  }
   function snapshot(room,session,ack=[]){return {mode:room.mode,world:room.mode==='farm'?room.world:roomWire(room),roster:roster(room),hero:session.hero,host:!!session.host,ack,lastSeq:session.seq,serverTime:Date.now(),inviteBase:publicOrigin};}
   function limited(key,capacity,period){const now=Date.now(),v=limits.get(key)||{start:now,count:0};if(now-v.start>=period){v.start=now;v.count=0;}v.count++;limits.set(key,v);return v.count>capacity;}
   function applyActions(room,session,commands){
@@ -36,17 +42,27 @@ export function createGameServer({worldFactory=createWorld,arcadeFactory=createA
       if(!item||typeof item!=='object'||!Number.isSafeInteger(item.seq)||item.seq<=session.seq)continue;
       if(item.seq!==session.seq+1)break;
       let result;
-      if(item.type==='take_seat'&&room.mode!=='farm'){
+      if(item.type==='set_bot'){
+        if(room.mode!=='pudge'||!session.host)result={ok:false,message:'Только ведущий Pudge Wars может добавлять и убирать ботов'};
+        else if(reserved(room,item.seat))result={ok:false,message:'Это место занято или зарезервировано игроком'};
+        else result=pudgeSetBot(room.world,item.seat,item.enabled);
+      }else if(item.type==='join_team'&&room.mode==='pudge'){
+        if(room.world.started)result={ok:false,message:'Команда выбирается до начала матча'};
+        else if(item.team!==0&&item.team!==1)result={ok:false,message:'Выбери Radiant или Dire'};
+        else if(room.world.players[session.hero]?.team===item.team)result={ok:true};
+        else{const target=seats(room).find(id=>room.world.players[id].team===item.team&&!room.world.players[id].bot&&!reserved(room,id));result=target?changeSeat(room,session,target):{ok:false,message:'В этой команде нет свободных мест. Попроси ведущего убрать бота.'};}
+      }else if(item.type==='take_seat'&&room.mode!=='farm'){
         const target=item.seat;
         if(!session.host)result={ok:false,message:'Only the host can change seats'};
         else if(target!=='host'&&!seats(room).includes(target))result={ok:false,message:'Unknown seat'};
         else if([...room.sessions.values()].some(s=>s!==session&&s.hero===target&&Date.now()-s.seen<90000))result={ok:false,message:'That seat is reserved by another player'};
-        else{session.hero=target;session.socket&&(session.socket.needsFull=true);result={ok:true};}
+        else if(room.mode==='pudge'&&room.world.players[target]?.bot)result={ok:false,message:'Сначала убери бота с этого места'};
+        else result=changeSeat(room,session,target);
       }else if(item.type==='restart'){
         if(!session.host||!room.world.gameOver)result={ok:false,message:'Only the host can restart a finished match'};
-        else{const names=Object.fromEntries(Object.entries(room.world.players).map(([id,p])=>[id,p.name]));room.world=room.mode==='farm'?worldFactory():arcadeFactory(room.mode,{targetScore:room.world.targetScore});if(room.mode!=='farm')for(const [id,p] of Object.entries(room.world.players))if(names[id])p.name=names[id];room.wirePrevious=null;result={ok:true};}
+        else{const names=Object.fromEntries(Object.entries(room.world.players).map(([id,p])=>[id,p.name])),bots=Object.values(room.world.players).filter(p=>p.bot).map(p=>p.id);room.world=room.mode==='farm'?worldFactory():arcadeFactory(room.mode,{bots});if(room.mode!=='farm')for(const [id,p] of Object.entries(room.world.players))if(names[id])p.name=names[id];syncPudgeSeats(room);room.wirePrevious=null;result={ok:true};}
       }else if(room.mode!=='farm'){
-        if(item.type==='start')result=session.host?startArcade(room.world,[...room.sessions.values()].filter(s=>Date.now()-s.seen<15000&&s.hero!=='host').map(s=>s.hero)):{ok:false,message:'Only the host can start this mode'};
+        if(item.type==='start')result=session.host?startArcade(room.world,[...room.sessions.values()].filter(s=>Date.now()-s.seen<(room.mode==='pudge'?90000:15000)&&s.hero!=='host').map(s=>s.hero)):{ok:false,message:'Only the host can start this mode'};
         else if(['mode','set_mode','host','change_mode'].includes(item.type))result={ok:false,message:'The room mode is locked'};
         else result=arcadeCommand(room.world,session.hero,item);
       }else result=item.type==='host'?(session.host?hostCommand(room.world,item):{ok:false,message:'Только ведущий может это делать'}):item.type==='start'?command(room.world,'drow',item):command(room.world,session.hero,item);
@@ -58,7 +74,7 @@ export function createGameServer({worldFactory=createWorld,arcadeFactory=createA
       const url=new URL(req.url,'http://localhost');
       if(url.pathname==='/health'){json(req,res,200,{ok:true,version:8,transport:'websocket',snapshotHz:20,publicOrigin,instanceId});return;}
       const info=url.pathname.match(/^\/api\/rooms\/([A-F0-9]{6})\/info$/);
-      if(info&&req.method==='GET'){const room=rooms.get(info[1]);json(req,res,room?200:404,room?{code:room.code,mode:room.mode,started:room.world.started,roster:roster(room),targetScore:room.world.targetScore}:{error:'Room not found. The host may have restarted the server.'});return;}
+      if(info&&req.method==='GET'){const room=rooms.get(info[1]);json(req,res,room?200:404,room?{code:room.code,mode:room.mode,started:room.world.started,roster:roster(room),targetScore:room.world.targetScore,roundLimit:room.world.roundLimit}:{error:'Room not found. The host may have restarted the server.'});return;}
       if(url.pathname.startsWith('/api/')){
         if(req.method!=='POST'){json(req,res,405,{error:'Используй POST'});return;}
         const origin=req.headers.origin;
@@ -73,7 +89,7 @@ export function createGameServer({worldFactory=createWorld,arcadeFactory=createA
           if(input.hero!=='host'&&!(mode==='farm'?HEROES.map(h=>h.id):arcadeSlots(mode)).includes(input.hero)){json(req,res,400,{error:'Выбери героя'});return;}
           let code;do{code=randomBytes(4).toString('hex').slice(0,6).toUpperCase();}while(rooms.has(code));
           const session={hero:input.hero,host:true,seen:now,seq:0,ack:[],token:token()};
-          const room={code,mode,world:mode==='farm'?worldFactory():arcadeFactory(mode,{targetScore:input.targetScore}),sessions:new Map([[session.token,session]]),sockets:new Set(),frameSeq:0,lastActive:now};rooms.set(code,room);
+          const room={code,mode,world:mode==='farm'?worldFactory():arcadeFactory(mode,{bots:mode==='pudge'&&Array.isArray(input.bots)?input.bots.filter(id=>id!==input.hero):[]}),sessions:new Map([[session.token,session]]),sockets:new Set(),frameSeq:0,lastActive:now};rooms.set(code,room);syncPudgeSeats(room);
           json(req,res,201,{code,token:session.token,...snapshot(room,session)});return;
         }
         const match=url.pathname.match(/^\/api\/rooms\/([A-F0-9]{6})\/(join|sync|leave)$/);
@@ -83,17 +99,18 @@ export function createGameServer({worldFactory=createWorld,arcadeFactory=createA
           if(input.mode&&input.mode!==room.mode){json(req,res,409,{error:'This invite belongs to '+room.mode+'. The room mode cannot be changed.',mode:room.mode});return;}
           let session=typeof input.token==='string'&&room.sessions.get(input.token);
           if(!session){
+            if(room.mode==='pudge'&&room.world.players[input.hero]?.bot){json(req,res,409,{error:'Это место занято ботом. Только ведущий может его освободить.'});return;}
             if(!seats(room).includes(input.hero)){json(req,res,400,{error:'Выбери героя'});return;}
             if([...room.sessions.values()].some(s=>s.hero===input.hero&&now-s.seen<90000)){json(req,res,409,{error:'Этот герой уже занят. Выбери другого.'});return;}
             for(const [key,s] of room.sessions)if(!s.host&&(s.hero===input.hero||now-s.seen>90000))room.sessions.delete(key);
             session={hero:input.hero,host:false,seen:now,seq:0,ack:[],token:token()};room.sessions.set(session.token,session);
           }
-          session.seen=now;if(room.world.players[session.hero])room.world.players[session.hero].paused=false;
+          session.seen=now;syncPudgeSeats(room);if(room.world.players[session.hero])room.world.players[session.hero].paused=false;
           json(req,res,200,{code:room.code,token:session.token,...snapshot(room,session)});return;
         }
         const session=typeof input.token==='string'&&room.sessions.get(input.token);
         if(!session){json(req,res,401,{error:'Место в комнате потеряно. Войди заново.'});return;}
-        if(match[2]==='leave'){if(session.host&&session.hero==='host')session.seen=0;else room.sessions.delete(session.token);session.socket?.close(4000,'Left room');const p=room.world.players[session.hero];if(p){p.paused=false;p.auto=true;}json(req,res,200,{ok:true});return;}
+        if(match[2]==='leave'){if(session.host&&session.hero==='host')session.seen=0;else room.sessions.delete(session.token);session.socket?.close(4000,'Left room');syncPudgeSeats(room);const p=room.world.players[session.hero];if(p){p.paused=false;p.auto=true;}json(req,res,200,{ok:true});return;}
         if(limited('sync:'+session.token,30,1000)){json(req,res,429,{error:'Слишком много команд'});return;}
         session.seen=now;
         applyActions(room,session,input.commands);
@@ -159,7 +176,8 @@ export function createGameServer({worldFactory=createWorld,arcadeFactory=createA
       if(now-room.lastActive>3600000){for(const socket of room.sockets)socket.close(4003,'Room expired');rooms.delete(code);continue;}
       const active=[...room.sessions.values()].filter(s=>now-s.seen<15000);
       if(!active.length)continue;
-      const bots=seats(room).filter(id=>!active.some(s=>s.hero===id));
+      syncPudgeSeats(room);
+      const bots=seats(room).filter(id=>room.mode==='pudge'?room.world.players[id].bot&&!reserved(room,id):!active.some(s=>s.hero===id));
       for(const id of bots){room.world.players[id].paused=false;room.world.players[id].auto=true;}
       (room.mode==='farm'?step:stepArcade)(room.world,dt,bots);
       broadcast(room);
