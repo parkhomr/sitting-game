@@ -215,6 +215,9 @@ Reloading during a duel refunds unresolved stakes and restarts its countdown.
 - **One enemy hook kills immediately**, regardless of HP, armor or shields.
   Friendly hooks still rescue without damage. Phased players are intangible,
   so a hook passes through and can hit somebody behind them.
+- Every active player gets a fresh random spawn on their own bank each round.
+  Spawn bodies are separated and each new point is away from that player’s
+  previous round spawn. The server shares one layout with every client.
 - **Exactly 30 rounds**, with no mid-round respawns. A team wins a round by
   eliminating the opposing team. Outgoing hooks resolve before a wipe result,
   so crossing hooks or Blade Mail can produce a double wipe and a drawn round.
@@ -230,10 +233,14 @@ Reloading during a duel refunds unresolved stakes and restarts its countdown.
   with no recursive reflection. It does not save the wearer. Cooldown: 18 seconds.
 - **WASD / arrows / right click:** move. **Left click / Space / Q:** aimed hook.
   **E:** Blink (1,000 G, same bank, 14-second cooldown). Boots cost 350 G.
+  Walking is locked while your hook flies outward, including movement already
+  in progress. Phase Shift, Blade Mail and Blink stay usable. Walking unlocks
+  as soon as the hook returns; other players’ hooks do not lock your movement.
 - Three useful upgrade branches: hook range/speed/width. Damage upgrades, Heart,
   Hook Guard and Thunder Chain were removed from this one-hit ruleset.
   Rune pickups grant haste, reach or quicker hooks. Items, gold, points and
-  cooldowns persist between rounds; active effects end at round boundaries.
+  cooldowns of survivors persist between rounds; death resets all spell, item
+  and attack cooldowns. Active effects end at round boundaries.
 - The surviving/dead/empty states, round results and effects are shared by the
   server. Reconnecting preserves death and cooldowns. Offline reload also keeps
   unfinished-round deaths, score and explicit bot settings. Older damage-based

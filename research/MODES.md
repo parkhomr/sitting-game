@@ -23,6 +23,10 @@ Dota engine, maps, models, workshop scripts, or exact patch balance.
   round. A double wipe or 60-second standoff draws; breaks last 5 seconds.
   Final equal scores draw. These round rules are user-specified adaptation rules,
   not a claim about the classic Workshop map.
+- Pudge Wars Update v 1.1.1: deaths reset all spell/item/attack cooldowns;
+  outbound hooks lock walking but allow abilities and returning hooks unlock it.
+  Each round draws separated random spawns on each player’s own bank, away from
+  that player’s previous spawn. The server is authoritative for these rules.
 - Pudge has no automatic bots. The host explicitly adds/removes bots; reserved
   human seats cannot be displaced. Mid-round additions wait until the next round.
 - Pudge Phase Shift: free, 3 seconds, 15-second cooldown, cancellable with the

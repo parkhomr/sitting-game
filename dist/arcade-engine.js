@@ -55,6 +55,8 @@ function acAim(p,a={}){if(a.x===undefined&&a.y===undefined)return true;if(!Numbe
 function acDirection(p){const dx=p.aimX-p.x,dy=p.aimY-p.y,len=Math.hypot(dx,dy);return len>.001?{x:dx/len,y:dy/len}:{x:1,y:0};}
 function acPoint(w,p,range=700){const b=arcadeBounds(w,p),dx=p.aimX-p.x,dy=p.aimY-p.y,d=Math.hypot(dx,dy)||1,k=Math.min(1,range/d);return {x:acClamp(p.x+dx*k,b.x+28,b.x+b.w-28),y:acClamp(p.y+dy*k,b.y+28,b.y+b.h-28)};}
 function acTarget(w,p,range=700,friendly=false){return (friendly?acAllies(w,p):acEnemies(w,p)).filter(e=>e.hp>0&&!(e.statuses.ghost_walk>0)&&acDist(p,e)<=range&&Math.hypot(e.x-p.aimX,e.y-p.aimY)<(e.boss?90:65)).sort((a,b)=>acDist(a,{x:p.aimX,y:p.aimY})-acDist(b,{x:p.aimX,y:p.aimY}))[0];}
+export function pudgeHookOutbound(w,p){return w.mode==='pudge'&&!!p&&w.hooks.some(h=>h.owner===p.id&&!h.returning&&!h.done);}
+function pudgeResetCooldowns(p){p.cd={};p.itemCD={};p.hookCD=0;p.attackCD=0;p.bashCD=0;p.lightningCD=0;p.staticCD=0;}
 function acCanAct(w,p){return w.started&&!w.gameOver&&(w.mode!=='pudge'||w.phase==='combat')&&!(p.statuses.phaseShift>0)&&acAlive(p)&&!p.paused&&!(p.statuses.stun>0||p.statuses.hex>0||p.statuses.lift>0||p.statuses.fear>0||p.frozen)&&!p.pullBy;}
 function acMoveTo(w,p,x,y){const b=arcadeBounds(w,p);if(w.mode==='pudge'){const left=p.x<PW_ARENA.riverLeft,right=p.x>PW_ARENA.riverRight;p.moveX=acClamp(x,left?35:right?PW_ARENA.riverRight+20:35,left?PW_ARENA.riverLeft-20:right?1765:1765);p.moveY=acClamp(y,45,955);}else{p.moveX=acClamp(x,b.x+35,b.x+b.w-35);p.moveY=acClamp(y,b.y+35,b.y+b.h-35);}}
 function acControl(w,target,data,source){if(target.hp<=0||target.spawnShield>0||target.statuses.invulnerable>0)return;const immune=target.statuses.bkb>0||target.statuses.rage>0||target.statuses.spin>0;if(immune&&!data.pierces)return;
@@ -72,7 +74,7 @@ function acDeath(w,u,killer){
  if(!p){if(u.isCreep&&owner){acGold(owner,18+Math.floor(w.wave*.7));acLevel(w,owner,18+Math.floor(w.wave*.3));owner.creepKills++;if(arcadeRank(owner,'necromastery'))owner.stacks.souls=Math.min(30,1+(owner.stacks.souls||0));if(arcadeRank(owner,'flesh'))owner.stacks.flesh=Math.min(30,1+(owner.stacks.flesh||0));}arcadeEmit(w,'unit_death',{x:u.x,y:u.y,owner:killer,kind:u.kind});return;}
  p.deaths++;p.channel=null;p.channelLeft=0;p.pullBy=0;p.statuses={};p.shield=0;
  if(w.mode==='pudge'){
-  p.roundDead=true;p.respawn=0;p.walkUntil=0;p.moveX=p.x;p.moveY=p.y;
+  pudgeResetCooldowns(p);p.roundDead=true;p.respawn=0;p.walkUntil=0;p.moveX=p.x;p.moveY=p.y;
   if(owner&&owner.team!==p.team){owner.kills++;acGold(owner,140);acLevel(w,owner,140);for(const ally of Object.values(w.players))if(ally.active&&ally.team===owner.team&&ally.id!==owner.id)acGold(ally,25);for(const [id,at] of Object.entries(p.contributors))if(id!==owner.id&&w.seconds-at<10&&w.players[id]?.team===owner.team)w.players[id].assists++;}
   arcadeEmit(w,'kill',{killer,player:p.id,score:[...w.score],round:w.round,x:p.x,y:p.y});
  }else if(w.phase==='duel'&&w.duel?.ids.includes(p.id)){if(owner&&owner.id!==p.id)owner.kills++;w.duel.finished=true;w.duel.winner=w.duel.ids.find(id=>id!==p.id);arcadeEmit(w,'duel_hit',{killer,player:p.id});}
@@ -233,7 +235,7 @@ function acCast(w,p,id,action={},repeated=false){
  return {ok:true};
 }
 function acLaunchHook(w,p,data={}){
- if(w.hooks.some(h=>h.owner===p.id))return false;const dir=acDirection(p),speed=data.speed||800+p.hookSpeed*65+(p.statuses.quickHook>0?160:0);
+ if(w.hooks.some(h=>h.owner===p.id))return false;if(w.mode==='pudge'){p.moveX=p.x;p.moveY=p.y;p.walkX=p.walkY=0;p.walkUntil=0;}const dir=acDirection(p),speed=data.speed||800+p.hookSpeed*65+(p.statuses.quickHook>0?160:0);
  w.hooks.push({id:w.nextId++,owner:p.id,x:p.x,y:p.y,vx:dir.x*speed,vy:dir.y*speed,speed,range:data.range||arcadeRange(w,p),radius:data.radius||20+p.hookRadius*3,damage:data.damage||245+p.hookDamage*32,travel:0,returning:false,target:null,...data});p.hooksThrown++;return true;
 }
 function acChooseHero(w,p,hero){if(p.hero)return {ok:false,message:'Hero is already locked'};if(!p.heroOptions.includes(hero)||w.bans.heroes.includes(hero))return {ok:false,message:'Choose one of your four offered heroes'};p.hero=hero;p.hp=arcadeMaxHP(w,p);p.mana=arcadeMaxMana(w,p);p.points=1;chaosOffer(w,p);arcadeEmit(w,'hero_pick',{player:p.id,hero});return {ok:true};}
@@ -256,11 +258,25 @@ export function pudgeSetBot(w,id,enabled){
  if(w.gameOver)return {ok:false,message:'Сначала начни новый матч'};
  p.bot=enabled;pudgeSetHuman(w,id,false);arcadeEmit(w,'bot_change',{player:id,enabled});return {ok:true};
 }
+function pudgeSpawnPoints(w){
+ const result=new Map(),placed=[[],[]];
+ for(const p of Object.values(w.players).filter(p=>p.active)){
+  const left=p.team===0,minX=left?120:1060;
+  const valid=point=>placed[p.team].every(other=>acDist(point,other)>=120)&&(!Number.isFinite(p.spawnX)||!Number.isFinite(p.spawnY)||acDist(point,{x:p.spawnX,y:p.spawnY})>=180);
+  let point;
+  for(let attempt=0;attempt<64;attempt++){const candidate={x:minX+arcadeRandom(w)*620,y:100+arcadeRandom(w)*800};if(valid(candidate)){point=candidate;break;}}
+  if(!point){const fallback=[];for(const x of [160,330,500,670])for(const y of [140,320,500,680,860]){const candidate={x:left?x:1800-x,y};if(valid(candidate))fallback.push(candidate);}point=acPick(w,fallback);}
+  // Five bodies fit comfortably on each bank; the grid also keeps separation after unlucky random retries.
+  if(!point)throw Error('No free Pudge spawn point');
+  placed[p.team].push(point);result.set(p.id,point);
+ }
+ return result;
+}
 function pudgeBeginRound(w,initial=false){
- w.round++;w.roundResult=null;w.phase=initial?'pw_prep':'combat';w.phaseTime=initial?PUDGE_RULES.prepSeconds:0;w.hooks=[];w.runes=[];w.runeTimer=5;
+ w.round++;w.roundResult=null;w.phase=initial?'pw_prep':'combat';w.phaseTime=initial?PUDGE_RULES.prepSeconds:0;w.hooks=[];w.runes=[];w.runeTimer=5;const spawns=pudgeSpawnPoints(w);
  for(const p of Object.values(w.players)){
   p.roundDead=false;p.waitingNextRound=false;p.respawn=0;p.statuses={};p.shield=0;p.channel=null;p.channelLeft=0;p.pullBy=0;p.frozen=false;p.spawnShield=0;p.controlGuard=0;p.walkUntil=0;p.walkX=p.walkY=0;p.hookCD=0;p.contributors={};
-  p.x=p.moveX=p.team===0?620:1180;p.y=p.moveY=180+(p.seat%5)*155;p.aimX=p.team===0?1180:620;p.aimY=p.y;
+  const spawn=spawns.get(p.id)||{x:p.team===0?620:1180,y:500};p.x=p.moveX=spawn.x;p.y=p.moveY=spawn.y;if(p.active){p.spawnX=spawn.x;p.spawnY=spawn.y;}p.aimX=p.team===0?1180:620;p.aimY=p.y;
   p.hp=p.active?arcadeMaxHP(w,p):0;p.mana=arcadeMaxMana(w,p);
  }
  arcadeEmit(w,'pudge_round_start',{round:w.round,limit:w.roundLimit});
@@ -285,7 +301,7 @@ export function startArcade(w,humanIds=[]){
   const unfinished=humanIds.map(id=>w.players[id]).filter(p=>p&&(!p.hero||!p.abilities.length));if(unfinished.length)return {ok:false,message:'Players are still choosing a hero / first ability: '+unfinished.map(p=>p.name).join(', ')};
   for(const p of Object.values(w.players))if(!humanIds.includes(p.id))acAutoDraft(w,p);
   w.started=true;if(w.resumeDuel){w.duel={ids:w.resumeDuel,round:w.wave,finished:false,winner:null,backup:{},pools:{}};delete w.resumeDuel;w.phase='duel_prep';w.phaseTime=15;return {ok:true};}if(w.resumeWave){w.wave=Math.max(0,w.wave-1);delete w.resumeWave;}acBeginWave(w);
- }else{for(const p of Object.values(w.players))pudgeSetHuman(w,p.id,humanIds.includes(p.id));if(![0,1].every(team=>Object.values(w.players).some(p=>p.active&&p.team===team)))return {ok:false,message:'Нужен хотя бы один игрок в каждой команде. Пригласи друга или добавь бота.'};w.started=true;if(w.resumePudge){delete w.resumePudge;if(w.round>=w.roundLimit){w.gameOver=true;w.phase='finished';return {ok:true};}}pudgeBeginRound(w,true);if(w.resumePudgeRound){const r=w.resumePudgeRound;delete w.resumePudgeRound;w.phase=r.phase;w.phaseTime=r.phaseTime;for(const [id,old] of Object.entries(r.players)){const p=w.players[id];if(!p.active)continue;p.roundDead=old.dead;p.waitingNextRound=old.waiting;p.hp=old.dead||old.waiting?0:Math.min(arcadeMaxHP(w,p),old.hp);p.x=p.moveX=old.x;p.y=p.moveY=old.y;p.statuses=old.statuses;}}}
+ }else{for(const p of Object.values(w.players))pudgeSetHuman(w,p.id,humanIds.includes(p.id));if(![0,1].every(team=>Object.values(w.players).some(p=>p.active&&p.team===team)))return {ok:false,message:'Нужен хотя бы один игрок в каждой команде. Пригласи друга или добавь бота.'};w.started=true;if(w.resumePudge){delete w.resumePudge;if(w.round>=w.roundLimit){w.gameOver=true;w.phase='finished';return {ok:true};}}pudgeBeginRound(w,true);if(w.resumePudgeRound){const r=w.resumePudgeRound;delete w.resumePudgeRound;w.phase=r.phase;w.phaseTime=r.phaseTime;for(const [id,old] of Object.entries(r.players)){const p=w.players[id];if(!p.active)continue;p.roundDead=old.dead;p.waitingNextRound=old.waiting;p.hp=old.dead||old.waiting?0:Math.min(arcadeMaxHP(w,p),old.hp);p.x=p.moveX=old.x;p.y=p.moveY=old.y;p.spawnX=old.spawnX;p.spawnY=old.spawnY;p.statuses=old.statuses;}}}
  return {ok:true};
 }
 export function arcadeItemCost(w,p,id){const catalog=w.mode==='pudge'?ARCADE_PW_ITEMS:ARCADE_ITEMS,item=catalog.find(i=>i.id===id);if(!item)return Infinity;return id==='mjollnir'&&arcadeHas(p,'maelstrom')?item.cost-1700:item.cost;}
@@ -352,6 +368,7 @@ export function arcadeCommand(w,id,a){
  if(a.type==='item')return acItem(w,p,a.item,a);
  if(a.type==='cast'&&w.mode==='chaos')return acCast(w,p,a.skill,a);
  if(a.type==='move'||a.type==='walk'){
+  if(pudgeHookOutbound(w,p))return {ok:false,message:'Пока хук летит вперёд, двигаться нельзя. Способности доступны.'};
   if(!acCanAct(w,p)||w.mode==='chaos'&&!['wave','duel'].includes(w.phase))return {ok:false,message:'Cannot move now'};
   if(a.type==='walk'&&(!Number.isFinite(a.dx)||!Number.isFinite(a.dy)))return {ok:false,message:'Invalid direction'};
   if(a.type==='move'&&(!Number.isFinite(a.x)||!Number.isFinite(a.y)))return {ok:false,message:'Invalid point'};
@@ -524,7 +541,7 @@ function acTickPlayer(w,p,dt){
  if(p.statuses.spin>0)acArea(w,p,p,200,(p.spinPower||50)*dt,'magic',{kind:'saw'});
  if(p.statuses.spirits>0&&p.spirits>0){p.spiritCD=Math.max(0,p.spiritCD-dt);const e=acEnemies(w,p).find(e=>acDist(p,e)<235);if(e&&p.spiritCD===0){p.spirits--;p.spiritCD=.45;acArea(w,p,e,100,p.spiritPower||70,'magic',{kind:'spirit'});}}
  if(p.statuses.fear>0&&p.hp>0&&!p.pullBy&&!p.frozen&&!(p.statuses.root>0||p.statuses.stun>0||p.statuses.hex>0||p.statuses.lift>0)){const source=acUnit(w,p.fearSource);if(source){const dx=p.x-source.x,dy=p.y-source.y,d=Math.hypot(dx,dy)||1;acMoveTo(w,p,p.x+dx/d*arcadeMoveSpeed(w,p)*dt,p.y+dy/d*arcadeMoveSpeed(w,p)*dt);p.x=p.moveX;p.y=p.moveY;}return;}
- if(!acCanAct(w,p)||p.statuses.root>0||p.channel||w.mode==='chaos'&&!['wave','duel'].includes(w.phase))return;
+ if(pudgeHookOutbound(w,p)||!acCanAct(w,p)||p.statuses.root>0||p.channel||w.mode==='chaos'&&!['wave','duel'].includes(w.phase))return;
  let dx=p.moveX-p.x,dy=p.moveY-p.y;if(p.walkUntil>w.seconds){dx=p.walkX*1000;dy=p.walkY*1000;}
  const len=Math.hypot(dx,dy),amount=Math.min(len,arcadeMoveSpeed(w,p)*dt);if(len>1){const x=p.x+dx/len*amount,y=p.y+dy/len*amount;const oldX=p.moveX,oldY=p.moveY;acMoveTo(w,p,x,y);p.x=p.moveX;p.y=p.moveY;p.moveX=oldX;p.moveY=oldY;}
  if(p.walkUntil>w.seconds){p.moveX=p.x;p.moveY=p.y;}
@@ -663,13 +680,15 @@ export function restoreArcadeWorld(saved,mode='chaos'){
   if(mode==='chaos'&&p.hero&&!p.abilities.length&&!p.offer.length)chaosOffer(w,p);
   if(mode==='pudge'){p.bot=saved.pudgeRules===PUDGE_RULES.version&&old.bot===true;p.active=p.bot;p.roundDead=false;p.waitingNextRound=false;}p.hp=p.eliminated||p.active===false?0:arcadeMaxHP(w,p);p.mana=arcadeMaxMana(w,p);
   for(const [key,value] of Object.entries(old.cd||{}))if((CHAOS_SKILL_BY_ID[key]||mode==='pudge'&&key==='phase_shift')&&Number.isFinite(value))p.cd[key]=acClamp(value,0,180);
+  if(mode==='pudge'){if(Number.isFinite(old.spawnX))p.spawnX=acClamp(old.spawnX,p.team===0?120:1060,p.team===0?740:1680);if(Number.isFinite(old.spawnY))p.spawnY=acClamp(old.spawnY,100,900);}
   if(Number.isFinite(old.hookCD))p.hookCD=acClamp(old.hookCD,0,3);
   for(const [key,value] of Object.entries(old.itemCD||{}))if(ARCADE_ITEMS.some(i=>i.id===key)||ARCADE_PW_ITEMS.some(i=>i.id===key))if(Number.isFinite(value))p.itemCD[key]=acClamp(value,0,60);
+  if(mode==='pudge'&&old.roundDead)pudgeResetCooldowns(p);
  }
  if(mode==='chaos'&&['duel','duel_prep'].includes(saved.phase)&&Array.isArray(saved.duel?.ids)&&saved.duel.ids.length===2&&new Set(saved.duel.ids).size===2&&saved.duel.ids.every(id=>w.players[id]&&!w.players[id].eliminated)){w.resumeDuel=[...saved.duel.ids];for(const [id,bet] of Object.entries(saved.bets||{}))if(w.players[id]&&Number.isSafeInteger(bet.amount)&&bet.amount>0&&bet.amount<=1e9&&w.resumeDuel.includes(bet.target))w.players[id].gold+=bet.amount;}
  const remaining=Object.values(w.players).filter(p=>!p.eliminated);if(mode==='chaos'&&remaining.length<=1&&w.wave>0){w.gameOver=true;w.phase='finished';w.winner=remaining[0]?.id||saved.winner||null;}else if(mode==='pudge'){
   delete w.targetScore;w.score=[0,0];if(saved.pudgeRules===PUDGE_RULES.version){w.roundHistory=Array.isArray(saved.roundHistory)?saved.roundHistory.slice(0,30).filter((r,i)=>r&&r.round===i+1&&(r.winner===0||r.winner===1||r.winner===null)).map(r=>({round:r.round,winner:r.winner,seconds:acClamp(Number(r.seconds)||0,0,61)})):[];for(const result of w.roundHistory)if(result.winner!==null)w.score[result.winner]++;w.round=w.roundHistory.length;w.roundResult=w.roundHistory.at(-1)||null;w.resumePudge=true;
-  if(saved.started&&['combat','pw_prep'].includes(saved.phase)&&saved.round===w.round+1){w.resumePudgeRound={phase:saved.phase,phaseTime:acClamp(Number(saved.phaseTime)||0,0,saved.phase==='pw_prep'?3:60),players:{}};for(const [id,p] of Object.entries(w.players)){const old=saved.players?.[id];if(!old)continue;w.resumePudgeRound.players[id]={dead:!!old.roundDead,waiting:!!old.waitingNextRound,hp:Math.max(1,Math.min(arcadeMaxHP(w,p),Number(old.hp)||1)),x:acClamp(Number(old.x)||620,p.team===0?35:1000,p.team===0?800:1765),y:acClamp(Number(old.y)||500,45,955),statuses:{phaseShift:acClamp(Number(old.statuses?.phaseShift)||0,0,3),bladeMail:acClamp(Number(old.statuses?.bladeMail)||0,0,2)}};}}
+  if(saved.started&&['combat','pw_prep'].includes(saved.phase)&&saved.round===w.round+1){w.resumePudgeRound={phase:saved.phase,phaseTime:acClamp(Number(saved.phaseTime)||0,0,saved.phase==='pw_prep'?3:60),players:{}};for(const [id,p] of Object.entries(w.players)){const old=saved.players?.[id];if(!old)continue;w.resumePudgeRound.players[id]={spawnX:Number.isFinite(old.spawnX)?old.spawnX:old.x,spawnY:Number.isFinite(old.spawnY)?old.spawnY:old.y,dead:!!old.roundDead,waiting:!!old.waitingNextRound,hp:Math.max(1,Math.min(arcadeMaxHP(w,p),Number(old.hp)||1)),x:acClamp(Number(old.x)||620,p.team===0?35:1000,p.team===0?800:1765),y:acClamp(Number(old.y)||500,45,955),statuses:{phaseShift:acClamp(Number(old.statuses?.phaseShift)||0,0,3),bladeMail:acClamp(Number(old.statuses?.bladeMail)||0,0,2)}};}}
   if(w.round>=30){w.gameOver=true;w.phase='finished';w.winner=w.score[0]===w.score[1]?null:w.score[0]>w.score[1]?0:1;}}
  }
 

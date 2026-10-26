@@ -1,6 +1,6 @@
 # Arcade validation — 2026-10-27
 
-- Full suite: **124 passing tests**, including the existing 78 farm regressions.
+- Full suite: **131 passing tests**, including the existing 78 farm regressions.
 - The full suite also passes from a fresh extraction of the multiplayer ZIP.
 - Chaos: four distinct hero choices, first-preserving reroll, 16 unique offers,
   measured native first-draw weighting, skill gates, rank-preserving tokens,
@@ -12,6 +12,10 @@
 - Pudge: first-body one-hit executions, allied rescue, river bounds, optional
   bots, pre-match team selection, 30 complete elimination rounds, no respawn
   within a round, crossing-hook double wipes, timeout draws and final tied scores.
+- Pudge v1.1.1: full cooldown reset on deaths (including both Blade Mail victims),
+  outbound-only walking lock with spells/items allowed, prediction lock/release,
+  distinct nonoverlapping own-bank spawns across 30 rounds and 16 seeded games,
+  and typed save restoration of spawns and dead players’ cleared cooldowns.
 - Phase Shift: three seconds, early cancellation, unchanged 15-second cooldown,
   intangibility, movement/cast lock and hooks hitting an enemy behind the shifter.
 - Blade Mail: one purchase, two-second window, exactly two credited deaths,

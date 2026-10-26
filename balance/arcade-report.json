@@ -1,6 +1,6 @@
 {
-  "generated": "2026-10-26T23:10:49.036Z",
-  "sourceHash": "268cdd820edcb96beaf9c2d96224e15eb79419bdefbdc529c790c48091942e67",
+  "generated": "2026-10-26T23:38:19.101Z",
+  "sourceHash": "722d90f246b6de2269242cf2a012623746b76b312e89596caffe03bc20fd15d1",
   "method": "All seats controlled by built-in bots, manual ballistic aiming with small error, purchases, normal cooldown/mana and PVE life rules. Pudge explicitly enables ten bots and plays thirty one-hit elimination rounds with Phase Shift and Blade Mail. 0.1s ticks, maximum 5400 simulated seconds. This measures deterministic balance and completion, not human playtesting or internet latency.",
   "scenarios": [
     {
@@ -8,13 +8,13 @@
       "seed": 40,
       "finished": true,
       "wave": 0,
-      "seconds": 359,
-      "winner": 1,
+      "seconds": 452,
+      "winner": 0,
       "round": 30,
       "roundsPlayed": 30,
       "score": [
-        6,
-        19
+        17,
+        8
       ],
       "firstLifeLostAtWave": null,
       "livesAt15": null,
@@ -34,97 +34,97 @@
       "duels": 0,
       "peakProjectiles": 0,
       "peakSummons": 0,
-      "cpuMs": 65,
+      "cpuMs": 88,
       "builds": [
         {
           "hero": "pudge",
           "skills": [],
-          "level": 12,
-          "gold": 848,
-          "spent": 8550,
-          "damage": 24370,
-          "deaths": 29
-        },
-        {
-          "hero": "pudge",
-          "skills": [],
           "level": 13,
-          "gold": 1718,
-          "spent": 8370,
-          "damage": 31115,
-          "deaths": 29
-        },
-        {
-          "hero": "pudge",
-          "skills": [],
-          "level": 13,
-          "gold": 837,
-          "spent": 9481,
-          "damage": 33900,
-          "deaths": 29
+          "gold": 1317,
+          "spent": 9763,
+          "damage": 30310,
+          "deaths": 22
         },
         {
           "hero": "pudge",
           "skills": [],
           "level": 12,
-          "gold": 541,
-          "spent": 8742,
-          "damage": 22785,
-          "deaths": 30
-        },
-        {
-          "hero": "pudge",
-          "skills": [],
-          "level": 12,
-          "gold": 897,
-          "spent": 8616,
-          "damage": 25185,
-          "deaths": 26
-        },
-        {
-          "hero": "pudge",
-          "skills": [],
-          "level": 13,
-          "gold": 1406,
-          "spent": 9677,
-          "damage": 30415,
-          "deaths": 27
-        },
-        {
-          "hero": "pudge",
-          "skills": [],
-          "level": 13,
-          "gold": 1154,
-          "spent": 10159,
-          "damage": 32885,
-          "deaths": 26
-        },
-        {
-          "hero": "pudge",
-          "skills": [],
-          "level": 14,
-          "gold": 1396,
-          "spent": 10492,
-          "damage": 37695,
-          "deaths": 23
-        },
-        {
-          "hero": "pudge",
-          "skills": [],
-          "level": 12,
-          "gold": 1292,
-          "spent": 9561,
-          "damage": 28855,
+          "gold": 1047,
+          "spent": 9803,
+          "damage": 28155,
           "deaths": 21
         },
         {
           "hero": "pudge",
           "skills": [],
-          "level": 12,
-          "gold": 1012,
+          "level": 13,
+          "gold": 1814,
           "spent": 9611,
-          "damage": 26070,
-          "deaths": 27
+          "damage": 34715,
+          "deaths": 26
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 13,
+          "gold": 1232,
+          "spent": 10193,
+          "damage": 33210,
+          "deaths": 25
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 12,
+          "gold": 1009,
+          "spent": 9611,
+          "damage": 26420,
+          "deaths": 28
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 12,
+          "gold": 208,
+          "spent": 9717,
+          "damage": 27620,
+          "deaths": 25
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 13,
+          "gold": 1329,
+          "spent": 9286,
+          "damage": 33980,
+          "deaths": 29
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 11,
+          "gold": 734,
+          "spent": 8616,
+          "damage": 22005,
+          "deaths": 29
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 12,
+          "gold": 838,
+          "spent": 8742,
+          "damage": 24055,
+          "deaths": 28
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 12,
+          "gold": 1260,
+          "spent": 8550,
+          "damage": 27190,
+          "deaths": 29
         }
       ]
     },
@@ -133,137 +133,12 @@
       "seed": 41,
       "finished": true,
       "wave": 0,
-      "seconds": 294,
-      "winner": 0,
-      "round": 30,
-      "roundsPlayed": 30,
-      "score": [
-        15,
-        9
-      ],
-      "firstLifeLostAtWave": null,
-      "livesAt15": null,
-      "livesAt30": null,
-      "lives": [
-        5,
-        5,
-        5,
-        5,
-        5,
-        5,
-        5,
-        5,
-        5,
-        5
-      ],
-      "duels": 0,
-      "peakProjectiles": 0,
-      "peakSummons": 0,
-      "cpuMs": 28,
-      "builds": [
-        {
-          "hero": "pudge",
-          "skills": [],
-          "level": 12,
-          "gold": 497,
-          "spent": 9727,
-          "damage": 27155,
-          "deaths": 27
-        },
-        {
-          "hero": "pudge",
-          "skills": [],
-          "level": 13,
-          "gold": 1783,
-          "spent": 8901,
-          "damage": 31150,
-          "deaths": 23
-        },
-        {
-          "hero": "pudge",
-          "skills": [],
-          "level": 13,
-          "gold": 1326,
-          "spent": 9243,
-          "damage": 28830,
-          "deaths": 27
-        },
-        {
-          "hero": "pudge",
-          "skills": [],
-          "level": 14,
-          "gold": 1630,
-          "spent": 9744,
-          "damage": 36810,
-          "deaths": 26
-        },
-        {
-          "hero": "pudge",
-          "skills": [],
-          "level": 12,
-          "gold": 662,
-          "spent": 9677,
-          "damage": 27865,
-          "deaths": 24
-        },
-        {
-          "hero": "pudge",
-          "skills": [],
-          "level": 14,
-          "gold": 1313,
-          "spent": 9431,
-          "damage": 35470,
-          "deaths": 26
-        },
-        {
-          "hero": "pudge",
-          "skills": [],
-          "level": 12,
-          "gold": 802,
-          "spent": 8792,
-          "damage": 24765,
-          "deaths": 29
-        },
-        {
-          "hero": "pudge",
-          "skills": [],
-          "level": 11,
-          "gold": 469,
-          "spent": 8550,
-          "damage": 20200,
-          "deaths": 27
-        },
-        {
-          "hero": "pudge",
-          "skills": [],
-          "level": 13,
-          "gold": 919,
-          "spent": 9135,
-          "damage": 30090,
-          "deaths": 27
-        },
-        {
-          "hero": "pudge",
-          "skills": [],
-          "level": 12,
-          "gold": 458,
-          "spent": 9481,
-          "damage": 28470,
-          "deaths": 29
-        }
-      ]
-    },
-    {
-      "mode": "pudge",
-      "seed": 42,
-      "finished": true,
-      "wave": 0,
-      "seconds": 322,
+      "seconds": 394,
       "winner": 1,
       "round": 30,
       "roundsPlayed": 30,
       "score": [
-        13,
+        9,
         14
       ],
       "firstLifeLostAtWave": null,
@@ -284,112 +159,112 @@
       "duels": 0,
       "peakProjectiles": 0,
       "peakSummons": 0,
-      "cpuMs": 22,
+      "cpuMs": 41,
       "builds": [
         {
           "hero": "pudge",
           "skills": [],
-          "level": 11,
-          "gold": 502,
-          "spent": 8500,
-          "damage": 18220,
-          "deaths": 27
+          "level": 13,
+          "gold": 1418,
+          "spent": 8901,
+          "damage": 31605,
+          "deaths": 30
         },
         {
           "hero": "pudge",
           "skills": [],
           "level": 12,
-          "gold": 1050,
-          "spent": 8987,
-          "damage": 27585,
+          "gold": 887,
+          "spent": 8742,
+          "damage": 24300,
+          "deaths": 29
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 11,
+          "gold": 849,
+          "spent": 8550,
+          "damage": 22460,
           "deaths": 26
         },
         {
           "hero": "pudge",
           "skills": [],
-          "level": 13,
-          "gold": 1246,
-          "spent": 9481,
-          "damage": 34575,
-          "deaths": 25
-        },
-        {
-          "hero": "pudge",
-          "skills": [],
-          "level": 14,
-          "gold": 415,
-          "spent": 10542,
-          "damage": 36310,
+          "level": 12,
+          "gold": 872,
+          "spent": 8987,
+          "damage": 27120,
           "deaths": 27
         },
         {
           "hero": "pudge",
           "skills": [],
+          "level": 14,
+          "gold": 352,
+          "spent": 10542,
+          "damage": 35715,
+          "deaths": 26
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 14,
+          "gold": 992,
+          "spent": 10492,
+          "damage": 36810,
+          "deaths": 24
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 13,
+          "gold": 1102,
+          "spent": 9922,
+          "damage": 32290,
+          "deaths": 28
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
           "level": 12,
-          "gold": 875,
-          "spent": 8702,
-          "damage": 22890,
+          "gold": 1488,
+          "spent": 8616,
+          "damage": 23460,
           "deaths": 24
         },
         {
           "hero": "pudge",
           "skills": [],
           "level": 12,
-          "gold": 1246,
-          "spent": 8676,
-          "damage": 23995,
-          "deaths": 27
-        },
-        {
-          "hero": "pudge",
-          "skills": [],
-          "level": 14,
-          "gold": 1986,
-          "spent": 9431,
-          "damage": 38825,
-          "deaths": 23
-        },
-        {
-          "hero": "pudge",
-          "skills": [],
-          "level": 11,
-          "gold": 1027,
-          "spent": 8550,
-          "damage": 21795,
-          "deaths": 22
-        },
-        {
-          "hero": "pudge",
-          "skills": [],
-          "level": 12,
-          "gold": 386,
-          "spent": 9651,
-          "damage": 26525,
-          "deaths": 26
-        },
-        {
-          "hero": "pudge",
-          "skills": [],
-          "level": 12,
-          "gold": 550,
+          "gold": 847,
           "spent": 9717,
-          "damage": 28365,
-          "deaths": 28
+          "damage": 28015,
+          "deaths": 25
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 12,
+          "gold": 953,
+          "spent": 9611,
+          "damage": 28925,
+          "deaths": 26
         }
       ]
     },
     {
       "mode": "pudge",
-      "seed": 58,
+      "seed": 42,
       "finished": true,
       "wave": 0,
-      "seconds": 344,
-      "winner": 1,
+      "seconds": 360,
+      "winner": 0,
       "round": 30,
       "roundsPlayed": 30,
       "score": [
-        12,
-        15
+        18,
+        7
       ],
       "firstLifeLostAtWave": null,
       "livesAt15": null,
@@ -409,97 +284,222 @@
       "duels": 0,
       "peakProjectiles": 0,
       "peakSummons": 0,
-      "cpuMs": 26,
+      "cpuMs": 37,
       "builds": [
         {
           "hero": "pudge",
           "skills": [],
-          "level": 11,
-          "gold": 979,
-          "spent": 8500,
-          "damage": 22950,
-          "deaths": 27
+          "level": 14,
+          "gold": 1231,
+          "spent": 10542,
+          "damage": 37870,
+          "deaths": 25
         },
         {
           "hero": "pudge",
           "skills": [],
           "level": 12,
-          "gold": 1080,
-          "spent": 9089,
-          "damage": 28750,
+          "gold": 1177,
+          "spent": 9561,
+          "damage": 28785,
+          "deaths": 24
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 12,
+          "gold": 1046,
+          "spent": 9117,
+          "damage": 23940,
           "deaths": 25
         },
         {
           "hero": "pudge",
           "skills": [],
           "level": 14,
-          "gold": 1427,
-          "spent": 9547,
-          "damage": 35470,
-          "deaths": 27
+          "gold": 1001,
+          "spent": 10542,
+          "damage": 35715,
+          "deaths": 24
         },
         {
           "hero": "pudge",
           "skills": [],
-          "level": 14,
-          "gold": 1953,
-          "spent": 9481,
-          "damage": 39220,
-          "deaths": 25
+          "level": 12,
+          "gold": 820,
+          "spent": 9803,
+          "damage": 26465,
+          "deaths": 24
         },
         {
           "hero": "pudge",
           "skills": [],
-          "level": 10,
-          "gold": 580,
-          "spent": 7864,
-          "damage": 13095,
-          "deaths": 27
+          "level": 12,
+          "gold": 531,
+          "spent": 8742,
+          "damage": 23590,
+          "deaths": 29
         },
         {
           "hero": "pudge",
           "skills": [],
           "level": 13,
-          "gold": 788,
-          "spent": 9946,
-          "damage": 30145,
-          "deaths": 25
-        },
-        {
-          "hero": "pudge",
-          "skills": [],
-          "level": 12,
           "gold": 712,
-          "spent": 9677,
-          "damage": 28995,
-          "deaths": 27
+          "spent": 9481,
+          "damage": 31720,
+          "deaths": 29
         },
         {
           "hero": "pudge",
           "skills": [],
           "level": 12,
-          "gold": 778,
-          "spent": 9611,
-          "damage": 29660,
-          "deaths": 24
+          "gold": 962,
+          "spent": 8656,
+          "damage": 27015,
+          "deaths": 29
         },
         {
           "hero": "pudge",
           "skills": [],
           "level": 12,
-          "gold": 1198,
-          "spent": 8616,
-          "damage": 23485,
-          "deaths": 27
+          "gold": 686,
+          "spent": 8702,
+          "damage": 24475,
+          "deaths": 25
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 12,
+          "gold": 417,
+          "spent": 9431,
+          "damage": 28435,
+          "deaths": 28
+        }
+      ]
+    },
+    {
+      "mode": "pudge",
+      "seed": 58,
+      "finished": true,
+      "wave": 0,
+      "seconds": 424,
+      "winner": 0,
+      "round": 30,
+      "roundsPlayed": 30,
+      "score": [
+        16,
+        9
+      ],
+      "firstLifeLostAtWave": null,
+      "livesAt15": null,
+      "livesAt30": null,
+      "lives": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "duels": 0,
+      "peakProjectiles": 0,
+      "peakSummons": 0,
+      "cpuMs": 46,
+      "builds": [
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 13,
+          "gold": 745,
+          "spent": 10542,
+          "damage": 33175,
+          "deaths": 25
         },
         {
           "hero": "pudge",
           "skills": [],
           "level": 13,
-          "gold": 1057,
+          "gold": 1331,
+          "spent": 9611,
+          "damage": 31395,
+          "deaths": 25
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 13,
+          "gold": 680,
+          "spent": 10492,
+          "damage": 32535,
+          "deaths": 25
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 11,
+          "gold": 296,
+          "spent": 9611,
+          "damage": 20420,
+          "deaths": 21
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 13,
+          "gold": 1495,
           "spent": 9677,
-          "damage": 30355,
-          "deaths": 24
+          "damage": 33025,
+          "deaths": 26
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 12,
+          "gold": 936,
+          "spent": 8636,
+          "damage": 24895,
+          "deaths": 27
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 12,
+          "gold": 715,
+          "spent": 8742,
+          "damage": 22645,
+          "deaths": 30
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 14,
+          "gold": 1471,
+          "spent": 9481,
+          "damage": 36915,
+          "deaths": 28
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 12,
+          "gold": 907,
+          "spent": 8550,
+          "damage": 23555,
+          "deaths": 27
+        },
+        {
+          "hero": "pudge",
+          "skills": [],
+          "level": 12,
+          "gold": 125,
+          "spent": 9677,
+          "damage": 26490,
+          "deaths": 26
         }
       ]
     },
@@ -548,7 +548,7 @@
       "duels": 18,
       "peakProjectiles": 65,
       "peakSummons": 33,
-      "cpuMs": 1813,
+      "cpuMs": 1463,
       "builds": [
         {
           "hero": "furion",
@@ -837,7 +837,7 @@
       "duels": 17,
       "peakProjectiles": 70,
       "peakSummons": 41,
-      "cpuMs": 1882,
+      "cpuMs": 1362,
       "builds": [
         {
           "hero": "terrorblade",
@@ -1126,7 +1126,7 @@
       "duels": 17,
       "peakProjectiles": 52,
       "peakSummons": 38,
-      "cpuMs": 1420,
+      "cpuMs": 1038,
       "builds": [
         {
           "hero": "lifestealer",
@@ -1415,7 +1415,7 @@
       "duels": 16,
       "peakProjectiles": 57,
       "peakSummons": 40,
-      "cpuMs": 1462,
+      "cpuMs": 1079,
       "builds": [
         {
           "hero": "io",
