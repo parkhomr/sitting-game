@@ -1,0 +1,5860 @@
+{
+  "description": "Diagnostic bots; 2 seeds, 1-6 players, difficulties 0-4; not a human balance study",
+  "maxSeconds": 300,
+  "results": [
+    {
+      "seed": 1,
+      "heroes": [
+        "drow"
+      ],
+      "difficulty": 0,
+      "maxSeconds": 300,
+      "outcome": "timeout",
+      "room": 1,
+      "roomName": "Kobold Warrens",
+      "phase": "combat",
+      "seconds": 300,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        }
+      ],
+      "players": [
+        {
+          "hero": "drow",
+          "hp": 720,
+          "mana": 360,
+          "gold": 200,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 2298,
+            "healing": 0,
+            "deaths": 0
+          }
+        }
+      ]
+    },
+    {
+      "seed": 2,
+      "heroes": [
+        "timber"
+      ],
+      "difficulty": 0,
+      "maxSeconds": 300,
+      "outcome": "defeat",
+      "room": 4,
+      "roomName": "Elite Menagerie",
+      "phase": "defeat",
+      "seconds": 164.8,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "Kobold Warrens",
+          "entered": 40.9
+        },
+        {
+          "room": 3,
+          "name": "Kobold Warrens",
+          "entered": 81.9
+        },
+        {
+          "room": 4,
+          "name": "Elite Menagerie",
+          "entered": 123.8
+        }
+      ],
+      "players": [
+        {
+          "hero": "timber",
+          "hp": 0,
+          "mana": 35,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "execution"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 11570.109830508485,
+            "healing": 0,
+            "deaths": 1
+          }
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "heroes": [
+        "timber",
+        "sf"
+      ],
+      "difficulty": 0,
+      "maxSeconds": 300,
+      "outcome": "defeat",
+      "room": 5,
+      "roomName": "Primal Beast",
+      "phase": "defeat",
+      "seconds": 265,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "The Bone Yard",
+          "entered": 33.5
+        },
+        {
+          "room": 3,
+          "name": "Kobold Warrens",
+          "entered": 86.8
+        },
+        {
+          "room": 4,
+          "name": "Elite Butchery",
+          "entered": 119.4
+        },
+        {
+          "room": 5,
+          "name": "Primal Beast",
+          "entered": 193.3
+        }
+      ],
+      "players": [
+        {
+          "hero": "timber",
+          "hp": 0,
+          "mana": 21,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "execution",
+            "spell"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 15658.944505538286,
+            "healing": 0,
+            "deaths": 2
+          }
+        },
+        {
+          "hero": "sf",
+          "hp": 0,
+          "mana": 45,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "regen",
+            "regen"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 17061.425399180192,
+            "healing": 0,
+            "deaths": 2
+          }
+        }
+      ]
+    },
+    {
+      "seed": 2,
+      "heroes": [
+        "sf",
+        "rubick"
+      ],
+      "difficulty": 0,
+      "maxSeconds": 300,
+      "outcome": "defeat",
+      "room": 2,
+      "roomName": "The Bone Yard",
+      "phase": "defeat",
+      "seconds": 62.5,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "The Bone Yard",
+          "entered": 34.6
+        }
+      ],
+      "players": [
+        {
+          "hero": "sf",
+          "hp": 0,
+          "mana": 100,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 4209.665898617511,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "rubick",
+          "hp": 0,
+          "mana": 73,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 3374.6461105990797,
+            "healing": 0,
+            "deaths": 1
+          }
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "heroes": [
+        "sf",
+        "rubick",
+        "sniper"
+      ],
+      "difficulty": 0,
+      "maxSeconds": 300,
+      "outcome": "defeat",
+      "room": 2,
+      "roomName": "The Bone Yard",
+      "phase": "defeat",
+      "seconds": 90.3,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "The Bone Yard",
+          "entered": 36.6
+        }
+      ],
+      "players": [
+        {
+          "hero": "sf",
+          "hp": 0,
+          "mana": 9,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 3555.003456221198,
+            "healing": 0,
+            "deaths": 2
+          }
+        },
+        {
+          "hero": "rubick",
+          "hp": 0,
+          "mana": 77,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 3690.0964227703985,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "sniper",
+          "hp": 0,
+          "mana": 16,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 3581.420506912443,
+            "healing": 0,
+            "deaths": 2
+          }
+        }
+      ]
+    },
+    {
+      "seed": 2,
+      "heroes": [
+        "rubick",
+        "sniper",
+        "cm"
+      ],
+      "difficulty": 0,
+      "maxSeconds": 300,
+      "outcome": "defeat",
+      "room": 4,
+      "roomName": "Elite Ossuary",
+      "phase": "defeat",
+      "seconds": 159.3,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "Haunted Gallery",
+          "entered": 30.8
+        },
+        {
+          "room": 3,
+          "name": "Haunted Gallery",
+          "entered": 74.2
+        },
+        {
+          "room": 4,
+          "name": "Elite Ossuary",
+          "entered": 127.9
+        }
+      ],
+      "players": [
+        {
+          "hero": "rubick",
+          "hp": 0,
+          "mana": 43,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "mana_cost"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 7577.552752941177,
+            "healing": 0,
+            "deaths": 3
+          }
+        },
+        {
+          "hero": "sniper",
+          "hp": 0,
+          "mana": 156,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "attack"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 8514.114936297097,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "cm",
+          "hp": 0,
+          "mana": 41,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "regen"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 6897.712184873948,
+            "healing": 0,
+            "deaths": 3
+          }
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "heroes": [
+        "rubick",
+        "sniper",
+        "cm",
+        "jugger"
+      ],
+      "difficulty": 0,
+      "maxSeconds": 300,
+      "outcome": "defeat",
+      "room": 4,
+      "roomName": "Elite Workshop",
+      "phase": "defeat",
+      "seconds": 178.8,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "The Bone Yard",
+          "entered": 32.2
+        },
+        {
+          "room": 3,
+          "name": "Haunted Gallery",
+          "entered": 76
+        },
+        {
+          "room": 4,
+          "name": "Elite Workshop",
+          "entered": 112.9
+        }
+      ],
+      "players": [
+        {
+          "hero": "rubick",
+          "hp": 0,
+          "mana": 40,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "spell"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 6629.646750715421,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "sniper",
+          "hp": 0,
+          "mana": 25,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "cooldown"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 9265.258573699746,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "cm",
+          "hp": 0,
+          "mana": 38,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "attack"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 6568.0019305019405,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "jugger",
+          "hp": 0,
+          "mana": 21,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "reach"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 10566.336134453783,
+            "healing": 529.3777173912919,
+            "deaths": 2
+          }
+        }
+      ]
+    },
+    {
+      "seed": 2,
+      "heroes": [
+        "sniper",
+        "cm",
+        "jugger",
+        "mars"
+      ],
+      "difficulty": 0,
+      "maxSeconds": 300,
+      "outcome": "timeout",
+      "room": 7,
+      "roomName": "Venom Garden",
+      "phase": "combat",
+      "seconds": 300,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "The Bone Yard",
+          "entered": 30.3
+        },
+        {
+          "room": 3,
+          "name": "Kobold Warrens",
+          "entered": 80.7
+        },
+        {
+          "room": 4,
+          "name": "Elite Ossuary",
+          "entered": 105.3
+        },
+        {
+          "room": 5,
+          "name": "Primal Beast",
+          "entered": 161.1
+        },
+        {
+          "room": 6,
+          "name": "Rest & Shop",
+          "entered": 227.4
+        },
+        {
+          "room": 7,
+          "name": "Venom Garden",
+          "entered": 227.6
+        }
+      ],
+      "players": [
+        {
+          "hero": "sniper",
+          "hp": 1040,
+          "mana": 16,
+          "gold": 250,
+          "level": 4,
+          "items": [
+            "boots",
+            "bracer"
+          ],
+          "shards": [
+            "move",
+            "attack"
+          ],
+          "legendary": [
+            "Shrapnel Storm"
+          ],
+          "stats": {
+            "damage": 14743.829675489678,
+            "healing": 0,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "cm",
+          "hp": 994,
+          "mana": 28,
+          "gold": 250,
+          "level": 4,
+          "items": [
+            "boots",
+            "bracer"
+          ],
+          "shards": [
+            "speed",
+            "giant"
+          ],
+          "legendary": [
+            "Chain Frostbite"
+          ],
+          "stats": {
+            "damage": 12446.726412626715,
+            "healing": 0,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "jugger",
+          "hp": 1088,
+          "mana": 60,
+          "gold": 250,
+          "level": 4,
+          "items": [
+            "boots",
+            "bracer"
+          ],
+          "shards": [
+            "mana",
+            "hp"
+          ],
+          "legendary": [
+            "Long Omnislash"
+          ],
+          "stats": {
+            "damage": 20167.151337373944,
+            "healing": 2180.114336344859,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "mars",
+          "hp": 1099,
+          "mana": 11,
+          "gold": 250,
+          "level": 4,
+          "items": [
+            "boots",
+            "bracer"
+          ],
+          "shards": [
+            "last",
+            "cooldown"
+          ],
+          "legendary": [
+            "Unbreakable Arena"
+          ],
+          "stats": {
+            "damage": 17968.7298330991,
+            "healing": 0,
+            "deaths": 1
+          }
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "heroes": [
+        "sniper",
+        "cm",
+        "jugger",
+        "mars",
+        "witch"
+      ],
+      "difficulty": 0,
+      "maxSeconds": 300,
+      "outcome": "timeout",
+      "room": 7,
+      "roomName": "Venom Garden",
+      "phase": "combat",
+      "seconds": 300,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "The Bone Yard",
+          "entered": 33
+        },
+        {
+          "room": 3,
+          "name": "Venom Garden",
+          "entered": 88.2
+        },
+        {
+          "room": 4,
+          "name": "Elite Workshop",
+          "entered": 166.3
+        },
+        {
+          "room": 5,
+          "name": "Primal Beast",
+          "entered": 213.6
+        },
+        {
+          "room": 6,
+          "name": "Rest & Shop",
+          "entered": 290.9
+        },
+        {
+          "room": 7,
+          "name": "Venom Garden",
+          "entered": 291.1
+        }
+      ],
+      "players": [
+        {
+          "hero": "sniper",
+          "hp": 1040,
+          "mana": 180,
+          "gold": 250,
+          "level": 4,
+          "items": [
+            "boots",
+            "bracer"
+          ],
+          "shards": [
+            "spell",
+            "spell"
+          ],
+          "legendary": [
+            "Perfect Shot"
+          ],
+          "stats": {
+            "damage": 14292.171319996045,
+            "healing": 0,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "cm",
+          "hp": 1060,
+          "mana": 390,
+          "gold": 250,
+          "level": 4,
+          "items": [
+            "boots",
+            "bracer"
+          ],
+          "shards": [
+            "cooldown",
+            "mana"
+          ],
+          "legendary": [
+            "Chain Frostbite"
+          ],
+          "stats": {
+            "damage": 8716.737101881194,
+            "healing": 0,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "jugger",
+          "hp": 1210,
+          "mana": 89,
+          "gold": 250,
+          "level": 4,
+          "items": [
+            "boots",
+            "bracer"
+          ],
+          "shards": [
+            "attack",
+            "cooldown"
+          ],
+          "legendary": [
+            "Blade Storm"
+          ],
+          "stats": {
+            "damage": 17436.527355296806,
+            "healing": 1667.6409985415771,
+            "deaths": 2
+          }
+        },
+        {
+          "hero": "mars",
+          "hp": 1390,
+          "mana": 115,
+          "gold": 250,
+          "level": 4,
+          "items": [
+            "boots",
+            "bracer"
+          ],
+          "shards": [
+            "reach",
+            "armor"
+          ],
+          "legendary": [
+            "Shield Wall"
+          ],
+          "stats": {
+            "damage": 13957.164654388504,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "witch",
+          "hp": 1090,
+          "mana": 115,
+          "gold": 250,
+          "level": 4,
+          "items": [
+            "boots",
+            "bracer"
+          ],
+          "shards": [
+            "spell",
+            "attack"
+          ],
+          "legendary": [
+            "Deep Curse"
+          ],
+          "stats": {
+            "damage": 8534.383216504315,
+            "healing": 1426.0142624223265,
+            "deaths": 0
+          }
+        }
+      ]
+    },
+    {
+      "seed": 2,
+      "heroes": [
+        "cm",
+        "jugger",
+        "mars",
+        "witch",
+        "magnus"
+      ],
+      "difficulty": 0,
+      "maxSeconds": 300,
+      "outcome": "timeout",
+      "room": 7,
+      "roomName": "Ogre Kitchen",
+      "phase": "combat",
+      "seconds": 300,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "Kobold Warrens",
+          "entered": 30
+        },
+        {
+          "room": 3,
+          "name": "Haunted Gallery",
+          "entered": 66.1
+        },
+        {
+          "room": 4,
+          "name": "Elite Ossuary",
+          "entered": 104.7
+        },
+        {
+          "room": 5,
+          "name": "Primal Beast",
+          "entered": 174.3
+        },
+        {
+          "room": 6,
+          "name": "Rest & Shop",
+          "entered": 259.5
+        },
+        {
+          "room": 7,
+          "name": "Ogre Kitchen",
+          "entered": 259.7
+        }
+      ],
+      "players": [
+        {
+          "hero": "cm",
+          "hp": 1060,
+          "mana": 45,
+          "gold": 250,
+          "level": 4,
+          "items": [
+            "boots",
+            "bracer"
+          ],
+          "shards": [
+            "regen",
+            "move"
+          ],
+          "legendary": [
+            "Frozen Ground"
+          ],
+          "stats": {
+            "damage": 10913.189362345434,
+            "healing": 0,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "jugger",
+          "hp": 1210,
+          "mana": 58,
+          "gold": 250,
+          "level": 4,
+          "items": [
+            "boots",
+            "bracer"
+          ],
+          "shards": [
+            "attack",
+            "speed"
+          ],
+          "legendary": [
+            "Flurry"
+          ],
+          "stats": {
+            "damage": 19103.368474362494,
+            "healing": 1716.7159365805499,
+            "deaths": 3
+          }
+        },
+        {
+          "hero": "mars",
+          "hp": 1307,
+          "mana": 20,
+          "gold": 250,
+          "level": 4,
+          "items": [
+            "boots",
+            "bracer"
+          ],
+          "shards": [
+            "attack",
+            "speed"
+          ],
+          "legendary": [
+            "Twin Spears"
+          ],
+          "stats": {
+            "damage": 17461.628598796797,
+            "healing": 0,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "witch",
+          "hp": 1090,
+          "mana": 76,
+          "gold": 250,
+          "level": 4,
+          "items": [
+            "boots",
+            "bracer"
+          ],
+          "shards": [
+            "move",
+            "healing"
+          ],
+          "legendary": [
+            "Mobile Ward"
+          ],
+          "stats": {
+            "damage": 9706.58120149302,
+            "healing": 540.4287177890116,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "magnus",
+          "hp": 1323,
+          "mana": 3,
+          "gold": 250,
+          "level": 4,
+          "items": [
+            "boots",
+            "bracer"
+          ],
+          "shards": [
+            "reach",
+            "mana_cost"
+          ],
+          "legendary": [
+            "Polar Collapse"
+          ],
+          "stats": {
+            "damage": 15784.949359582522,
+            "healing": 0,
+            "deaths": 0
+          }
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "heroes": [
+        "cm",
+        "jugger",
+        "mars",
+        "witch",
+        "magnus",
+        "drow"
+      ],
+      "difficulty": 0,
+      "maxSeconds": 300,
+      "outcome": "timeout",
+      "room": 7,
+      "roomName": "Venom Garden",
+      "phase": "combat",
+      "seconds": 300,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "The Bone Yard",
+          "entered": 31.3
+        },
+        {
+          "room": 3,
+          "name": "Kobold Warrens",
+          "entered": 82.1
+        },
+        {
+          "room": 4,
+          "name": "Elite Butchery",
+          "entered": 113.9
+        },
+        {
+          "room": 5,
+          "name": "Primal Beast",
+          "entered": 185.7
+        },
+        {
+          "room": 6,
+          "name": "Rest & Shop",
+          "entered": 272.8
+        },
+        {
+          "room": 7,
+          "name": "Venom Garden",
+          "entered": 273
+        }
+      ],
+      "players": [
+        {
+          "hero": "cm",
+          "hp": 1052,
+          "mana": 198,
+          "gold": 250,
+          "level": 4,
+          "items": [
+            "boots",
+            "bracer"
+          ],
+          "shards": [
+            "attack",
+            "mana_cost"
+          ],
+          "legendary": [
+            "Brilliant Aura"
+          ],
+          "stats": {
+            "damage": 10171.898344389914,
+            "healing": 0,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "jugger",
+          "hp": 1143,
+          "mana": 221,
+          "gold": 250,
+          "level": 4,
+          "items": [
+            "boots",
+            "bracer"
+          ],
+          "shards": [
+            "resist",
+            "mana"
+          ],
+          "legendary": [
+            "Blade Storm"
+          ],
+          "stats": {
+            "damage": 21549.380344953996,
+            "healing": 1399.128285731336,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "mars",
+          "hp": 1181,
+          "mana": 61,
+          "gold": 250,
+          "level": 4,
+          "items": [
+            "boots",
+            "bracer"
+          ],
+          "shards": [
+            "armor",
+            "last"
+          ],
+          "legendary": [
+            "Rebuke Recovery"
+          ],
+          "stats": {
+            "damage": 16332.814342001497,
+            "healing": 50,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "witch",
+          "hp": 1090,
+          "mana": 62,
+          "gold": 250,
+          "level": 4,
+          "items": [
+            "boots",
+            "bracer"
+          ],
+          "shards": [
+            "reach",
+            "mana"
+          ],
+          "legendary": [
+            "Mobile Ward"
+          ],
+          "stats": {
+            "damage": 9815.072463340754,
+            "healing": 333.0827367622196,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "magnus",
+          "hp": 1370,
+          "mana": 58,
+          "gold": 250,
+          "level": 4,
+          "items": [
+            "boots",
+            "bracer"
+          ],
+          "shards": [
+            "execution",
+            "regen"
+          ],
+          "legendary": [
+            "Battle Horn"
+          ],
+          "stats": {
+            "damage": 14589.487332245,
+            "healing": 0,
+            "deaths": 2
+          }
+        },
+        {
+          "hero": "drow",
+          "hp": 1046,
+          "mana": 62,
+          "gold": 250,
+          "level": 4,
+          "items": [
+            "boots",
+            "bracer"
+          ],
+          "shards": [
+            "armor",
+            "move"
+          ],
+          "legendary": [
+            "Silencing Gale"
+          ],
+          "stats": {
+            "damage": 8478.585244321981,
+            "healing": 0,
+            "deaths": 0
+          }
+        }
+      ]
+    },
+    {
+      "seed": 2,
+      "heroes": [
+        "jugger",
+        "mars",
+        "witch",
+        "magnus",
+        "drow",
+        "timber"
+      ],
+      "difficulty": 0,
+      "maxSeconds": 300,
+      "outcome": "timeout",
+      "room": 5,
+      "roomName": "Primal Beast",
+      "phase": "combat",
+      "seconds": 300,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "Haunted Gallery",
+          "entered": 34.1
+        },
+        {
+          "room": 3,
+          "name": "Venom Garden",
+          "entered": 78.5
+        },
+        {
+          "room": 4,
+          "name": "Elite Ossuary",
+          "entered": 135.1
+        },
+        {
+          "room": 5,
+          "name": "Primal Beast",
+          "entered": 236.6
+        }
+      ],
+      "players": [
+        {
+          "hero": "jugger",
+          "hp": 671,
+          "mana": 30,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "attack",
+            "regen"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 20350.50679757085,
+            "healing": 1983.3439757394433,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "mars",
+          "hp": 1140,
+          "mana": 47,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "move",
+            "execution"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 12312.42634356768,
+            "healing": 0,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "witch",
+          "hp": 668,
+          "mana": 68,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "reach",
+            "attack"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 7940.958024720574,
+            "healing": 881.7900100540061,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "magnus",
+          "hp": 1120,
+          "mana": 33,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "last",
+            "spell"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 12698.482965514113,
+            "healing": 0,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "drow",
+          "hp": 608,
+          "mana": 4,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "move",
+            "reach"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 8576.465723814023,
+            "healing": 0,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "timber",
+          "hp": 0,
+          "mana": 27,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "resist",
+            "execution"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 14102.85141370022,
+            "healing": 0,
+            "deaths": 1
+          }
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "heroes": [
+        "drow"
+      ],
+      "difficulty": 1,
+      "maxSeconds": 300,
+      "outcome": "defeat",
+      "room": 2,
+      "roomName": "The Bone Yard",
+      "phase": "defeat",
+      "seconds": 90.3,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "The Bone Yard",
+          "entered": 55.3
+        }
+      ],
+      "players": [
+        {
+          "hero": "drow",
+          "hp": 0,
+          "mana": 23,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 4343.59663865546,
+            "healing": 0,
+            "deaths": 1
+          }
+        }
+      ]
+    },
+    {
+      "seed": 2,
+      "heroes": [
+        "timber"
+      ],
+      "difficulty": 1,
+      "maxSeconds": 300,
+      "outcome": "defeat",
+      "room": 4,
+      "roomName": "Elite Butchery",
+      "phase": "defeat",
+      "seconds": 165.3,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "Kobold Warrens",
+          "entered": 42.7
+        },
+        {
+          "room": 3,
+          "name": "Kobold Warrens",
+          "entered": 86.3
+        },
+        {
+          "room": 4,
+          "name": "Elite Butchery",
+          "entered": 124.4
+        }
+      ],
+      "players": [
+        {
+          "hero": "timber",
+          "hp": 0,
+          "mana": 6,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "execution"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 14502.062361486996,
+            "healing": 0,
+            "deaths": 1
+          }
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "heroes": [
+        "timber",
+        "sf"
+      ],
+      "difficulty": 1,
+      "maxSeconds": 300,
+      "outcome": "timeout",
+      "room": 5,
+      "roomName": "Primal Beast",
+      "phase": "combat",
+      "seconds": 300,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "The Bone Yard",
+          "entered": 43.3
+        },
+        {
+          "room": 3,
+          "name": "Kobold Warrens",
+          "entered": 99.1
+        },
+        {
+          "room": 4,
+          "name": "Elite Butchery",
+          "entered": 132.1
+        },
+        {
+          "room": 5,
+          "name": "Primal Beast",
+          "entered": 256.3
+        }
+      ],
+      "players": [
+        {
+          "hero": "timber",
+          "hp": 0,
+          "mana": 39,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "execution",
+            "spell"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 16727.964569644057,
+            "healing": 0,
+            "deaths": 2
+          }
+        },
+        {
+          "hero": "sf",
+          "hp": 193,
+          "mana": 29,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "regen",
+            "regen"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 16093.333239110947,
+            "healing": 0,
+            "deaths": 1
+          }
+        }
+      ]
+    },
+    {
+      "seed": 2,
+      "heroes": [
+        "sf",
+        "rubick"
+      ],
+      "difficulty": 1,
+      "maxSeconds": 300,
+      "outcome": "defeat",
+      "room": 3,
+      "roomName": "The Bone Yard",
+      "phase": "defeat",
+      "seconds": 119.2,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "Haunted Gallery",
+          "entered": 48.1
+        },
+        {
+          "room": 3,
+          "name": "The Bone Yard",
+          "entered": 97.1
+        }
+      ],
+      "players": [
+        {
+          "hero": "sf",
+          "hp": 0,
+          "mana": 48,
+          "gold": 500,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "mana_cost"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 8202.142857142855,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "rubick",
+          "hp": 0,
+          "mana": 71,
+          "gold": 500,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "attack"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 4361.775857142859,
+            "healing": 0,
+            "deaths": 1
+          }
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "heroes": [
+        "sf",
+        "rubick",
+        "sniper"
+      ],
+      "difficulty": 1,
+      "maxSeconds": 300,
+      "outcome": "defeat",
+      "room": 2,
+      "roomName": "The Bone Yard",
+      "phase": "defeat",
+      "seconds": 92.6,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "The Bone Yard",
+          "entered": 41.3
+        }
+      ],
+      "players": [
+        {
+          "hero": "sf",
+          "hp": 0,
+          "mana": 22,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 5529.617511520734,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "rubick",
+          "hp": 0,
+          "mana": 9,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 3952.8405643805922,
+            "healing": 0,
+            "deaths": 2
+          }
+        },
+        {
+          "hero": "sniper",
+          "hp": 0,
+          "mana": 66,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 4331.050691244239,
+            "healing": 0,
+            "deaths": 1
+          }
+        }
+      ]
+    },
+    {
+      "seed": 2,
+      "heroes": [
+        "rubick",
+        "sniper",
+        "cm"
+      ],
+      "difficulty": 1,
+      "maxSeconds": 300,
+      "outcome": "defeat",
+      "room": 3,
+      "roomName": "Haunted Gallery",
+      "phase": "defeat",
+      "seconds": 154.4,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "Haunted Gallery",
+          "entered": 42.1
+        },
+        {
+          "room": 3,
+          "name": "Haunted Gallery",
+          "entered": 118.7
+        }
+      ],
+      "players": [
+        {
+          "hero": "rubick",
+          "hp": 0,
+          "mana": 18,
+          "gold": 500,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "mana_cost"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 7079.592,
+            "healing": 0,
+            "deaths": 2
+          }
+        },
+        {
+          "hero": "sniper",
+          "hp": 0,
+          "mana": 82,
+          "gold": 500,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "attack"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 6806.999999999995,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "cm",
+          "hp": 0,
+          "mana": 19,
+          "gold": 500,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "regen"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 5743,
+            "healing": 0,
+            "deaths": 2
+          }
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "heroes": [
+        "rubick",
+        "sniper",
+        "cm",
+        "jugger"
+      ],
+      "difficulty": 1,
+      "maxSeconds": 300,
+      "outcome": "timeout",
+      "room": 5,
+      "roomName": "Primal Beast",
+      "phase": "combat",
+      "seconds": 300,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "The Bone Yard",
+          "entered": 38.3
+        },
+        {
+          "room": 3,
+          "name": "Kobold Warrens",
+          "entered": 97.3
+        },
+        {
+          "room": 4,
+          "name": "Elite Ossuary",
+          "entered": 131.9
+        },
+        {
+          "room": 5,
+          "name": "Primal Beast",
+          "entered": 273.1
+        }
+      ],
+      "players": [
+        {
+          "hero": "rubick",
+          "hp": 693,
+          "mana": 42,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "execution",
+            "mana_cost"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 10557.29599193444,
+            "healing": 0,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "sniper",
+          "hp": 736,
+          "mana": 69,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "regen",
+            "giant"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 12857.58050441019,
+            "healing": 0,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "cm",
+          "hp": 162,
+          "mana": 63,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "armor",
+            "execution"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 10348.420871822655,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "jugger",
+          "hp": 131,
+          "mana": 43,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "execution",
+            "move"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 16222.857433534204,
+            "healing": 420,
+            "deaths": 2
+          }
+        }
+      ]
+    },
+    {
+      "seed": 2,
+      "heroes": [
+        "sniper",
+        "cm",
+        "jugger",
+        "mars"
+      ],
+      "difficulty": 1,
+      "maxSeconds": 300,
+      "outcome": "timeout",
+      "room": 5,
+      "roomName": "Primal Beast",
+      "phase": "combat",
+      "seconds": 300,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "The Bone Yard",
+          "entered": 33
+        },
+        {
+          "room": 3,
+          "name": "Kobold Warrens",
+          "entered": 100.2
+        },
+        {
+          "room": 4,
+          "name": "Elite Ossuary",
+          "entered": 130.1
+        },
+        {
+          "room": 5,
+          "name": "Primal Beast",
+          "entered": 245.1
+        }
+      ],
+      "players": [
+        {
+          "hero": "sniper",
+          "hp": 400,
+          "mana": 57,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "move",
+            "mana"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 9533.305644082318,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "cm",
+          "hp": 544,
+          "mana": 42,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "speed",
+            "mana_cost"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 10183.087096555982,
+            "healing": 0,
+            "deaths": 2
+          }
+        },
+        {
+          "hero": "jugger",
+          "hp": 0,
+          "mana": 113,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "mana",
+            "hp"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 17173.52626614154,
+            "healing": 1170.7999999999995,
+            "deaths": 3
+          }
+        },
+        {
+          "hero": "mars",
+          "hp": 0,
+          "mana": 34,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "last",
+            "armor"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 14296.449993235243,
+            "healing": 0,
+            "deaths": 1
+          }
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "heroes": [
+        "sniper",
+        "cm",
+        "jugger",
+        "mars",
+        "witch"
+      ],
+      "difficulty": 1,
+      "maxSeconds": 300,
+      "outcome": "timeout",
+      "room": 7,
+      "roomName": "Venom Garden",
+      "phase": "combat",
+      "seconds": 300,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "Venom Garden",
+          "entered": 33.4
+        },
+        {
+          "room": 3,
+          "name": "Kobold Warrens",
+          "entered": 105
+        },
+        {
+          "room": 4,
+          "name": "Elite Menagerie",
+          "entered": 136.3
+        },
+        {
+          "room": 5,
+          "name": "Primal Beast",
+          "entered": 201.9
+        },
+        {
+          "room": 6,
+          "name": "Rest & Shop",
+          "entered": 284.6
+        },
+        {
+          "room": 7,
+          "name": "Venom Garden",
+          "entered": 284.8
+        }
+      ],
+      "players": [
+        {
+          "hero": "sniper",
+          "hp": 1040,
+          "mana": 210,
+          "gold": 250,
+          "level": 4,
+          "items": [
+            "boots",
+            "bracer"
+          ],
+          "shards": [
+            "healing",
+            "spell"
+          ],
+          "legendary": [
+            "Perfect Shot"
+          ],
+          "stats": {
+            "damage": 13261.756427640177,
+            "healing": 0,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "cm",
+          "hp": 1240,
+          "mana": 335,
+          "gold": 250,
+          "level": 4,
+          "items": [
+            "boots",
+            "bracer"
+          ],
+          "shards": [
+            "hp",
+            "mana"
+          ],
+          "legendary": [
+            "Chain Frostbite"
+          ],
+          "stats": {
+            "damage": 10696.784876140835,
+            "healing": 0,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "jugger",
+          "hp": 1210,
+          "mana": 118,
+          "gold": 250,
+          "level": 4,
+          "items": [
+            "boots",
+            "bracer"
+          ],
+          "shards": [
+            "execution",
+            "cooldown"
+          ],
+          "legendary": [
+            "Blade Storm"
+          ],
+          "stats": {
+            "damage": 19896.66422425035,
+            "healing": 2848.948043478258,
+            "deaths": 2
+          }
+        },
+        {
+          "hero": "mars",
+          "hp": 1390,
+          "mana": 143,
+          "gold": 250,
+          "level": 4,
+          "items": [
+            "boots",
+            "bracer"
+          ],
+          "shards": [
+            "attack",
+            "armor"
+          ],
+          "legendary": [
+            "Unbreakable Arena"
+          ],
+          "stats": {
+            "damage": 18786.2736636245,
+            "healing": 0,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "witch",
+          "hp": 1055,
+          "mana": 145,
+          "gold": 250,
+          "level": 4,
+          "items": [
+            "boots",
+            "bracer"
+          ],
+          "shards": [
+            "armor",
+            "attack"
+          ],
+          "legendary": [
+            "Deep Curse"
+          ],
+          "stats": {
+            "damage": 9939.429791395038,
+            "healing": 1580.349999999986,
+            "deaths": 0
+          }
+        }
+      ]
+    },
+    {
+      "seed": 2,
+      "heroes": [
+        "cm",
+        "jugger",
+        "mars",
+        "witch",
+        "magnus"
+      ],
+      "difficulty": 1,
+      "maxSeconds": 300,
+      "outcome": "timeout",
+      "room": 5,
+      "roomName": "Primal Beast",
+      "phase": "combat",
+      "seconds": 300,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "Venom Garden",
+          "entered": 34.3
+        },
+        {
+          "room": 3,
+          "name": "The Bone Yard",
+          "entered": 97.5
+        },
+        {
+          "room": 4,
+          "name": "Elite Butchery",
+          "entered": 157
+        },
+        {
+          "room": 5,
+          "name": "Primal Beast",
+          "entered": 219.9
+        }
+      ],
+      "players": [
+        {
+          "hero": "cm",
+          "hp": 662,
+          "mana": 43,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "attack",
+            "mana_cost"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 10996.108620703797,
+            "healing": 0,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "jugger",
+          "hp": 643,
+          "mana": 34,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "healing",
+            "speed"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 19813.30253401887,
+            "healing": 3722.8142265075835,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "mars",
+          "hp": 986,
+          "mana": 11,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "resist",
+            "last"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 14879.738016034336,
+            "healing": 0,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "witch",
+          "hp": 483,
+          "mana": 45,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "mana",
+            "armor"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 9470.910075816477,
+            "healing": 1989.5838025658063,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "magnus",
+          "hp": 0,
+          "mana": 22,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "attack",
+            "attack"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 15680.497722217957,
+            "healing": 0,
+            "deaths": 1
+          }
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "heroes": [
+        "cm",
+        "jugger",
+        "mars",
+        "witch",
+        "magnus",
+        "drow"
+      ],
+      "difficulty": 1,
+      "maxSeconds": 300,
+      "outcome": "timeout",
+      "room": 4,
+      "roomName": "Elite Ossuary",
+      "phase": "combat",
+      "seconds": 300,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "The Bone Yard",
+          "entered": 42.7
+        },
+        {
+          "room": 3,
+          "name": "Venom Garden",
+          "entered": 108
+        },
+        {
+          "room": 4,
+          "name": "Elite Ossuary",
+          "entered": 228.6
+        }
+      ],
+      "players": [
+        {
+          "hero": "cm",
+          "hp": 740,
+          "mana": 61,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "speed"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 6970.53955759449,
+            "healing": 0,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "jugger",
+          "hp": 462,
+          "mana": 37,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "move"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 16625.682971534723,
+            "healing": 1433.3145881376015,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "mars",
+          "hp": 845,
+          "mana": 22,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "move"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 12261.924177639929,
+            "healing": 0,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "witch",
+          "hp": 770,
+          "mana": 74,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "reach"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 5689.808375794274,
+            "healing": 812.0649656593091,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "magnus",
+          "hp": 515,
+          "mana": 9,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "speed"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 13998.715260971141,
+            "healing": 0,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "drow",
+          "hp": 693,
+          "mana": 44,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "mana"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 6355.422021952574,
+            "healing": 0,
+            "deaths": 0
+          }
+        }
+      ]
+    },
+    {
+      "seed": 2,
+      "heroes": [
+        "jugger",
+        "mars",
+        "witch",
+        "magnus",
+        "drow",
+        "timber"
+      ],
+      "difficulty": 1,
+      "maxSeconds": 300,
+      "outcome": "timeout",
+      "room": 5,
+      "roomName": "Primal Beast",
+      "phase": "prep",
+      "seconds": 300,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "Venom Garden",
+          "entered": 37.4
+        },
+        {
+          "room": 3,
+          "name": "Venom Garden",
+          "entered": 129.9
+        },
+        {
+          "room": 4,
+          "name": "Elite Ossuary",
+          "entered": 213.3
+        },
+        {
+          "room": 5,
+          "name": "Primal Beast",
+          "entered": 297.9
+        }
+      ],
+      "players": [
+        {
+          "hero": "jugger",
+          "hp": 539,
+          "mana": 166,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "execution",
+            "move"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 17598.388007245532,
+            "healing": 1757.5669480213974,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "mars",
+          "hp": 1087,
+          "mana": 115,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "hp",
+            "reach"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 11427.571690745748,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "witch",
+          "hp": 840,
+          "mana": 291,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "armor",
+            "mana"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 6081.524715714607,
+            "healing": 1192.2535714285673,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "magnus",
+          "hp": 635,
+          "mana": 121,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "move",
+            "attack"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 11848.516984932336,
+            "healing": 0,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "drow",
+          "hp": 860,
+          "mana": 121,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "spell",
+            "cooldown"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 5841.259925109465,
+            "healing": 0,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "timber",
+          "hp": 1005,
+          "mana": 101,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "mana_cost",
+            "giant"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 13882.601151614293,
+            "healing": 0,
+            "deaths": 0
+          }
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "heroes": [
+        "drow"
+      ],
+      "difficulty": 2,
+      "maxSeconds": 300,
+      "outcome": "defeat",
+      "room": 2,
+      "roomName": "The Bone Yard",
+      "phase": "defeat",
+      "seconds": 77.7,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "The Bone Yard",
+          "entered": 65.9
+        }
+      ],
+      "players": [
+        {
+          "hero": "drow",
+          "hp": 0,
+          "mana": 30,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 3646.2857142857133,
+            "healing": 0,
+            "deaths": 1
+          }
+        }
+      ]
+    },
+    {
+      "seed": 2,
+      "heroes": [
+        "timber"
+      ],
+      "difficulty": 2,
+      "maxSeconds": 300,
+      "outcome": "defeat",
+      "room": 2,
+      "roomName": "The Bone Yard",
+      "phase": "defeat",
+      "seconds": 115.6,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "The Bone Yard",
+          "entered": 47.5
+        }
+      ],
+      "players": [
+        {
+          "hero": "timber",
+          "hp": 0,
+          "mana": 19,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 8462.724789915954,
+            "healing": 0,
+            "deaths": 1
+          }
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "heroes": [
+        "timber",
+        "sf"
+      ],
+      "difficulty": 2,
+      "maxSeconds": 300,
+      "outcome": "defeat",
+      "room": 2,
+      "roomName": "The Bone Yard",
+      "phase": "defeat",
+      "seconds": 80.4,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "The Bone Yard",
+          "entered": 49.5
+        }
+      ],
+      "players": [
+        {
+          "hero": "timber",
+          "hp": 0,
+          "mana": 35,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 4444.6743697479,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "sf",
+          "hp": 0,
+          "mana": 48,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 3122.357142857143,
+            "healing": 0,
+            "deaths": 1
+          }
+        }
+      ]
+    },
+    {
+      "seed": 2,
+      "heroes": [
+        "sf",
+        "rubick"
+      ],
+      "difficulty": 2,
+      "maxSeconds": 300,
+      "outcome": "defeat",
+      "room": 2,
+      "roomName": "Haunted Gallery",
+      "phase": "defeat",
+      "seconds": 108.8,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "Haunted Gallery",
+          "entered": 42.7
+        }
+      ],
+      "players": [
+        {
+          "hero": "sf",
+          "hp": 0,
+          "mana": 101,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 4289.3214285714275,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "rubick",
+          "hp": 0,
+          "mana": 52,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 5226.926285714286,
+            "healing": 0,
+            "deaths": 1
+          }
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "heroes": [
+        "sf",
+        "rubick",
+        "sniper"
+      ],
+      "difficulty": 2,
+      "maxSeconds": 300,
+      "outcome": "defeat",
+      "room": 2,
+      "roomName": "The Bone Yard",
+      "phase": "defeat",
+      "seconds": 72.4,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "The Bone Yard",
+          "entered": 41.2
+        }
+      ],
+      "players": [
+        {
+          "hero": "sf",
+          "hp": 0,
+          "mana": 56,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 3943.3260368663596,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "rubick",
+          "hp": 0,
+          "mana": 23,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 3334.343367741937,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "sniper",
+          "hp": 0,
+          "mana": 85,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 3621.4377880184325,
+            "healing": 0,
+            "deaths": 1
+          }
+        }
+      ]
+    },
+    {
+      "seed": 2,
+      "heroes": [
+        "rubick",
+        "sniper",
+        "cm"
+      ],
+      "difficulty": 2,
+      "maxSeconds": 300,
+      "outcome": "defeat",
+      "room": 2,
+      "roomName": "Haunted Gallery",
+      "phase": "defeat",
+      "seconds": 77.8,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "Haunted Gallery",
+          "entered": 44.3
+        }
+      ],
+      "players": [
+        {
+          "hero": "rubick",
+          "hp": 0,
+          "mana": 53,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 3907.5464,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "sniper",
+          "hp": 0,
+          "mana": 171,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 4306,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "cm",
+          "hp": 0,
+          "mana": 51,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 3568,
+            "healing": 0,
+            "deaths": 1
+          }
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "heroes": [
+        "rubick",
+        "sniper",
+        "cm",
+        "jugger"
+      ],
+      "difficulty": 2,
+      "maxSeconds": 300,
+      "outcome": "defeat",
+      "room": 4,
+      "roomName": "Elite Ossuary",
+      "phase": "defeat",
+      "seconds": 251.6,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "The Bone Yard",
+          "entered": 44.1
+        },
+        {
+          "room": 3,
+          "name": "Kobold Warrens",
+          "entered": 119.3
+        },
+        {
+          "room": 4,
+          "name": "Elite Ossuary",
+          "entered": 156.8
+        }
+      ],
+      "players": [
+        {
+          "hero": "rubick",
+          "hp": 0,
+          "mana": 52,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "execution"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 8513.63407227975,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "sniper",
+          "hp": 0,
+          "mana": 94,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "regen"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 9686.18446733531,
+            "healing": 0,
+            "deaths": 2
+          }
+        },
+        {
+          "hero": "cm",
+          "hp": 0,
+          "mana": 68,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "armor"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 8225.379709948487,
+            "healing": 0,
+            "deaths": 2
+          }
+        },
+        {
+          "hero": "jugger",
+          "hp": 0,
+          "mana": 25,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "execution"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 18187.132534562195,
+            "healing": 540.012499999998,
+            "deaths": 3
+          }
+        }
+      ]
+    },
+    {
+      "seed": 2,
+      "heroes": [
+        "sniper",
+        "cm",
+        "jugger",
+        "mars"
+      ],
+      "difficulty": 2,
+      "maxSeconds": 300,
+      "outcome": "timeout",
+      "room": 5,
+      "roomName": "Primal Beast",
+      "phase": "combat",
+      "seconds": 300,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "The Bone Yard",
+          "entered": 33.4
+        },
+        {
+          "room": 3,
+          "name": "Kobold Warrens",
+          "entered": 99.8
+        },
+        {
+          "room": 4,
+          "name": "Elite Ossuary",
+          "entered": 133.1
+        },
+        {
+          "room": 5,
+          "name": "Primal Beast",
+          "entered": 254.3
+        }
+      ],
+      "players": [
+        {
+          "hero": "sniper",
+          "hp": 223,
+          "mana": 13,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "move",
+            "cooldown"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 10950.800416409846,
+            "healing": 0,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "cm",
+          "hp": 810,
+          "mana": 20,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "speed",
+            "spell"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 11009.226033282717,
+            "healing": 0,
+            "deaths": 2
+          }
+        },
+        {
+          "hero": "jugger",
+          "hp": 0,
+          "mana": 159,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "mana",
+            "armor"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 19621.154954826317,
+            "healing": 966.7999999999988,
+            "deaths": 2
+          }
+        },
+        {
+          "hero": "mars",
+          "hp": 0,
+          "mana": 55,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "last",
+            "spell"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 13693.936546353802,
+            "healing": 0,
+            "deaths": 2
+          }
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "heroes": [
+        "sniper",
+        "cm",
+        "jugger",
+        "mars",
+        "witch"
+      ],
+      "difficulty": 2,
+      "maxSeconds": 300,
+      "outcome": "defeat",
+      "room": 4,
+      "roomName": "Elite Menagerie",
+      "phase": "defeat",
+      "seconds": 268.7,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "The Bone Yard",
+          "entered": 45.8
+        },
+        {
+          "room": 3,
+          "name": "The Bone Yard",
+          "entered": 117.6
+        },
+        {
+          "room": 4,
+          "name": "Elite Menagerie",
+          "entered": 174.1
+        }
+      ],
+      "players": [
+        {
+          "hero": "sniper",
+          "hp": 0,
+          "mana": 41,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "attack"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 12296.579538321388,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "cm",
+          "hp": 0,
+          "mana": 55,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "execution"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 8623.975930950697,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "jugger",
+          "hp": 0,
+          "mana": 15,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "last"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 17410.730991191656,
+            "healing": 1122.0664961636721,
+            "deaths": 2
+          }
+        },
+        {
+          "hero": "mars",
+          "hp": 0,
+          "mana": 5,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "armor"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 12564.416396679177,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "witch",
+          "hp": 0,
+          "mana": 5,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "cooldown"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 10051.363369444163,
+            "healing": 1414.5973529411585,
+            "deaths": 1
+          }
+        }
+      ]
+    },
+    {
+      "seed": 2,
+      "heroes": [
+        "cm",
+        "jugger",
+        "mars",
+        "witch",
+        "magnus"
+      ],
+      "difficulty": 2,
+      "maxSeconds": 300,
+      "outcome": "timeout",
+      "room": 5,
+      "roomName": "Primal Beast",
+      "phase": "combat",
+      "seconds": 300,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "Venom Garden",
+          "entered": 35.2
+        },
+        {
+          "room": 3,
+          "name": "The Bone Yard",
+          "entered": 111.3
+        },
+        {
+          "room": 4,
+          "name": "Elite Ossuary",
+          "entered": 173.2
+        },
+        {
+          "room": 5,
+          "name": "Primal Beast",
+          "entered": 272.4
+        }
+      ],
+      "players": [
+        {
+          "hero": "cm",
+          "hp": 810,
+          "mana": 9,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "healing",
+            "spell"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 9030.374990070553,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "jugger",
+          "hp": 960,
+          "mana": 106,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "mana",
+            "move"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 21315.72244379935,
+            "healing": 2092.1102936171974,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "mars",
+          "hp": 1320,
+          "mana": 16,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "speed",
+            "hp"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 16725.170582456827,
+            "healing": 0,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "witch",
+          "hp": 840,
+          "mana": 89,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "regen",
+            "spell"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 8277.681489505256,
+            "healing": 1305.1292515869313,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "magnus",
+          "hp": 0,
+          "mana": 46,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "reach",
+            "mana"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 14496.728580295105,
+            "healing": 0,
+            "deaths": 1
+          }
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "heroes": [
+        "cm",
+        "jugger",
+        "mars",
+        "witch",
+        "magnus",
+        "drow"
+      ],
+      "difficulty": 2,
+      "maxSeconds": 300,
+      "outcome": "timeout",
+      "room": 5,
+      "roomName": "Primal Beast",
+      "phase": "combat",
+      "seconds": 300,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "The Bone Yard",
+          "entered": 44.8
+        },
+        {
+          "room": 3,
+          "name": "Haunted Gallery",
+          "entered": 118
+        },
+        {
+          "room": 4,
+          "name": "Elite Menagerie",
+          "entered": 170.2
+        },
+        {
+          "room": 5,
+          "name": "Primal Beast",
+          "entered": 240.8
+        }
+      ],
+      "players": [
+        {
+          "hero": "cm",
+          "hp": 394,
+          "mana": 20,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "spell",
+            "spell"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 9241.931801080296,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "jugger",
+          "hp": 764,
+          "mana": 53,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "cooldown",
+            "mana"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 17130.183939938437,
+            "healing": 2222.263501047683,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "mars",
+          "hp": 1085,
+          "mana": 26,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "attack",
+            "cooldown"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 16534.66065977892,
+            "healing": 0,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "witch",
+          "hp": 364,
+          "mana": 12,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "reach",
+            "armor"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 9167.56163377996,
+            "healing": 1652.6285682216799,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "magnus",
+          "hp": 0,
+          "mana": 5,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "spell",
+            "attack"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 13900.079189048252,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "drow",
+          "hp": 168,
+          "mana": 8,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "last",
+            "attack"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 10550.120333504949,
+            "healing": 0,
+            "deaths": 0
+          }
+        }
+      ]
+    },
+    {
+      "seed": 2,
+      "heroes": [
+        "jugger",
+        "mars",
+        "witch",
+        "magnus",
+        "drow",
+        "timber"
+      ],
+      "difficulty": 2,
+      "maxSeconds": 300,
+      "outcome": "timeout",
+      "room": 5,
+      "roomName": "Primal Beast",
+      "phase": "combat",
+      "seconds": 300,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "Venom Garden",
+          "entered": 39.6
+        },
+        {
+          "room": 3,
+          "name": "Kobold Warrens",
+          "entered": 127.5
+        },
+        {
+          "room": 4,
+          "name": "Elite Butchery",
+          "entered": 171.8
+        },
+        {
+          "room": 5,
+          "name": "Primal Beast",
+          "entered": 275.3
+        }
+      ],
+      "players": [
+        {
+          "hero": "jugger",
+          "hp": 960,
+          "mana": 44,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "attack",
+            "mana"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 16081.985870998176,
+            "healing": 2131.2114519995775,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "mars",
+          "hp": 1140,
+          "mana": 41,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "move",
+            "mana_cost"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 12036.079349404663,
+            "healing": 0,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "witch",
+          "hp": 840,
+          "mana": 71,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "healing",
+            "move"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 8139.708502890636,
+            "healing": 1765.5427685570203,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "magnus",
+          "hp": 476,
+          "mana": 44,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "mana_cost",
+            "reach"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 10770.25641859178,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "drow",
+          "hp": 602,
+          "mana": 38,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "regen",
+            "mana"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 9188.384978356347,
+            "healing": 0,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "timber",
+          "hp": 1080,
+          "mana": 42,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "execution",
+            "attack"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 15289.877774860272,
+            "healing": 0,
+            "deaths": 0
+          }
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "heroes": [
+        "drow"
+      ],
+      "difficulty": 3,
+      "maxSeconds": 300,
+      "outcome": "defeat",
+      "room": 2,
+      "roomName": "The Bone Yard",
+      "phase": "defeat",
+      "seconds": 92.8,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "The Bone Yard",
+          "entered": 71.3
+        }
+      ],
+      "players": [
+        {
+          "hero": "drow",
+          "hp": 0,
+          "mana": 31,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 4422.857142857143,
+            "healing": 0,
+            "deaths": 1
+          }
+        }
+      ]
+    },
+    {
+      "seed": 2,
+      "heroes": [
+        "timber"
+      ],
+      "difficulty": 3,
+      "maxSeconds": 300,
+      "outcome": "defeat",
+      "room": 2,
+      "roomName": "The Bone Yard",
+      "phase": "defeat",
+      "seconds": 88.8,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "The Bone Yard",
+          "entered": 49.3
+        }
+      ],
+      "players": [
+        {
+          "hero": "timber",
+          "hp": 0,
+          "mana": 59,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 7319.086134453769,
+            "healing": 0,
+            "deaths": 1
+          }
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "heroes": [
+        "timber",
+        "sf"
+      ],
+      "difficulty": 3,
+      "maxSeconds": 300,
+      "outcome": "defeat",
+      "room": 2,
+      "roomName": "Venom Garden",
+      "phase": "defeat",
+      "seconds": 94.9,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "Venom Garden",
+          "entered": 47.9
+        }
+      ],
+      "players": [
+        {
+          "hero": "timber",
+          "hp": 0,
+          "mana": 49,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 5964.404700991348,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "sf",
+          "hp": 0,
+          "mana": 6,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 5220.2148339348505,
+            "healing": 0,
+            "deaths": 1
+          }
+        }
+      ]
+    },
+    {
+      "seed": 2,
+      "heroes": [
+        "sf",
+        "rubick"
+      ],
+      "difficulty": 3,
+      "maxSeconds": 300,
+      "outcome": "defeat",
+      "room": 2,
+      "roomName": "Haunted Gallery",
+      "phase": "defeat",
+      "seconds": 85.2,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "Haunted Gallery",
+          "entered": 56.9
+        }
+      ],
+      "players": [
+        {
+          "hero": "sf",
+          "hp": 0,
+          "mana": 34,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 4834.107142857142,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "rubick",
+          "hp": 0,
+          "mana": 74,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 4181.854857142858,
+            "healing": 0,
+            "deaths": 2
+          }
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "heroes": [
+        "sf",
+        "rubick",
+        "sniper"
+      ],
+      "difficulty": 3,
+      "maxSeconds": 300,
+      "outcome": "defeat",
+      "room": 2,
+      "roomName": "The Bone Yard",
+      "phase": "defeat",
+      "seconds": 89.8,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "The Bone Yard",
+          "entered": 52.3
+        }
+      ],
+      "players": [
+        {
+          "hero": "sf",
+          "hp": 0,
+          "mana": 62,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 5455.514976958524,
+            "healing": 0,
+            "deaths": 2
+          }
+        },
+        {
+          "hero": "rubick",
+          "hp": 0,
+          "mana": 70,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 4062.546531200869,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "sniper",
+          "hp": 0,
+          "mana": 58,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 4346.277378693412,
+            "healing": 0,
+            "deaths": 1
+          }
+        }
+      ]
+    },
+    {
+      "seed": 2,
+      "heroes": [
+        "rubick",
+        "sniper",
+        "cm"
+      ],
+      "difficulty": 3,
+      "maxSeconds": 300,
+      "outcome": "defeat",
+      "room": 2,
+      "roomName": "Haunted Gallery",
+      "phase": "defeat",
+      "seconds": 83.3,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "Haunted Gallery",
+          "entered": 46.6
+        }
+      ],
+      "players": [
+        {
+          "hero": "rubick",
+          "hp": 0,
+          "mana": 79,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 3982.9680000000003,
+            "healing": 0,
+            "deaths": 2
+          }
+        },
+        {
+          "hero": "sniper",
+          "hp": 0,
+          "mana": 128,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 4839,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "cm",
+          "hp": 0,
+          "mana": 79,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 3524,
+            "healing": 0,
+            "deaths": 2
+          }
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "heroes": [
+        "rubick",
+        "sniper",
+        "cm",
+        "jugger"
+      ],
+      "difficulty": 3,
+      "maxSeconds": 300,
+      "outcome": "defeat",
+      "room": 2,
+      "roomName": "The Bone Yard",
+      "phase": "defeat",
+      "seconds": 94.6,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "The Bone Yard",
+          "entered": 46.6
+        }
+      ],
+      "players": [
+        {
+          "hero": "rubick",
+          "hp": 0,
+          "mana": 14,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 3159.223361344537,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "sniper",
+          "hp": 0,
+          "mana": 116,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 4799.628151260506,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "cm",
+          "hp": 0,
+          "mana": 13,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 3194.8571428571427,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "jugger",
+          "hp": 0,
+          "mana": 72,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 7940.836134453783,
+            "healing": 120,
+            "deaths": 1
+          }
+        }
+      ]
+    },
+    {
+      "seed": 2,
+      "heroes": [
+        "sniper",
+        "cm",
+        "jugger",
+        "mars"
+      ],
+      "difficulty": 3,
+      "maxSeconds": 300,
+      "outcome": "defeat",
+      "room": 4,
+      "roomName": "Elite Menagerie",
+      "phase": "defeat",
+      "seconds": 298.4,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "The Bone Yard",
+          "entered": 44.7
+        },
+        {
+          "room": 3,
+          "name": "Kobold Warrens",
+          "entered": 139.6
+        },
+        {
+          "room": 4,
+          "name": "Elite Menagerie",
+          "entered": 176.3
+        }
+      ],
+      "players": [
+        {
+          "hero": "sniper",
+          "hp": 0,
+          "mana": 9,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "move"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 12926.448191140878,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "cm",
+          "hp": 0,
+          "mana": 55,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "speed"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 8868.1622276029,
+            "healing": 0,
+            "deaths": 3
+          }
+        },
+        {
+          "hero": "jugger",
+          "hp": 0,
+          "mana": 69,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "mana"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 12608.724433841331,
+            "healing": 646.618168880442,
+            "deaths": 2
+          }
+        },
+        {
+          "hero": "mars",
+          "hp": 0,
+          "mana": 36,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "last"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 16179.576342401393,
+            "healing": 0,
+            "deaths": 2
+          }
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "heroes": [
+        "sniper",
+        "cm",
+        "jugger",
+        "mars",
+        "witch"
+      ],
+      "difficulty": 3,
+      "maxSeconds": 300,
+      "outcome": "timeout",
+      "room": 4,
+      "roomName": "Elite Butchery",
+      "phase": "combat",
+      "seconds": 300,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "Venom Garden",
+          "entered": 45.1
+        },
+        {
+          "room": 3,
+          "name": "Haunted Gallery",
+          "entered": 128.4
+        },
+        {
+          "room": 4,
+          "name": "Elite Butchery",
+          "entered": 181.3
+        }
+      ],
+      "players": [
+        {
+          "hero": "sniper",
+          "hp": 720,
+          "mana": 44,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "cooldown"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 12306.591867255393,
+            "healing": 0,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "cm",
+          "hp": 740,
+          "mana": 63,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "attack"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 8999.40266343827,
+            "healing": 0,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "jugger",
+          "hp": 393,
+          "mana": 61,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "reach"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 21721.308716706943,
+            "healing": 1437.2509558823483,
+            "deaths": 2
+          }
+        },
+        {
+          "hero": "mars",
+          "hp": 609,
+          "mana": 44,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "spell"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 17099.06868679678,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "witch",
+          "hp": 388,
+          "mana": 18,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "last"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 8707.657352229018,
+            "healing": 1450.2999360613521,
+            "deaths": 2
+          }
+        }
+      ]
+    },
+    {
+      "seed": 2,
+      "heroes": [
+        "cm",
+        "jugger",
+        "mars",
+        "witch",
+        "magnus"
+      ],
+      "difficulty": 3,
+      "maxSeconds": 300,
+      "outcome": "timeout",
+      "room": 5,
+      "roomName": "Primal Beast",
+      "phase": "combat",
+      "seconds": 300,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "Kobold Warrens",
+          "entered": 44.9
+        },
+        {
+          "room": 3,
+          "name": "Haunted Gallery",
+          "entered": 88.6
+        },
+        {
+          "room": 4,
+          "name": "Elite Butchery",
+          "entered": 156.7
+        },
+        {
+          "room": 5,
+          "name": "Primal Beast",
+          "entered": 271.7
+        }
+      ],
+      "players": [
+        {
+          "hero": "cm",
+          "hp": 990,
+          "mana": 67,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "speed",
+            "hp"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 10236.803581650476,
+            "healing": 0,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "jugger",
+          "hp": 960,
+          "mana": 64,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "mana_cost",
+            "spell"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 17061.231184823384,
+            "healing": 2401.9498309854484,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "mars",
+          "hp": 955,
+          "mana": 22,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "attack",
+            "move"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 16121.4454758919,
+            "healing": 0,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "witch",
+          "hp": 814,
+          "mana": 45,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "execution",
+            "hp"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 8037.524910247004,
+            "healing": 1350.009269957956,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "magnus",
+          "hp": 67,
+          "mana": 22,
+          "gold": 900,
+          "level": 3,
+          "items": [],
+          "shards": [
+            "armor",
+            "spell"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 14569.056785013372,
+            "healing": 0,
+            "deaths": 0
+          }
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "heroes": [
+        "cm",
+        "jugger",
+        "mars",
+        "witch",
+        "magnus",
+        "drow"
+      ],
+      "difficulty": 3,
+      "maxSeconds": 300,
+      "outcome": "defeat",
+      "room": 4,
+      "roomName": "Elite Workshop",
+      "phase": "defeat",
+      "seconds": 270.4,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "The Bone Yard",
+          "entered": 50
+        },
+        {
+          "room": 3,
+          "name": "Haunted Gallery",
+          "entered": 125.1
+        },
+        {
+          "room": 4,
+          "name": "Elite Workshop",
+          "entered": 193.7
+        }
+      ],
+      "players": [
+        {
+          "hero": "cm",
+          "hp": 0,
+          "mana": 69,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "spell"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 7596.193822393825,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "jugger",
+          "hp": 0,
+          "mana": 51,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "cooldown"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 11462.265302066771,
+            "healing": 992.9253480629345,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "mars",
+          "hp": 0,
+          "mana": 51,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "attack"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 14079.63431751082,
+            "healing": 0,
+            "deaths": 3
+          }
+        },
+        {
+          "hero": "witch",
+          "hp": 0,
+          "mana": 60,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "reach"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 6693.972791278675,
+            "healing": 1304.4885375493402,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "magnus",
+          "hp": 0,
+          "mana": 49,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "spell"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 10662.773660231658,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "drow",
+          "hp": 0,
+          "mana": 38,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "last"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 8779.853508971151,
+            "healing": 0,
+            "deaths": 1
+          }
+        }
+      ]
+    },
+    {
+      "seed": 2,
+      "heroes": [
+        "jugger",
+        "mars",
+        "witch",
+        "magnus",
+        "drow",
+        "timber"
+      ],
+      "difficulty": 3,
+      "maxSeconds": 300,
+      "outcome": "timeout",
+      "room": 4,
+      "roomName": "Elite Workshop",
+      "phase": "combat",
+      "seconds": 300,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "Venom Garden",
+          "entered": 41.7
+        },
+        {
+          "room": 3,
+          "name": "The Bone Yard",
+          "entered": 144
+        },
+        {
+          "room": 4,
+          "name": "Elite Workshop",
+          "entered": 226.3
+        }
+      ],
+      "players": [
+        {
+          "hero": "jugger",
+          "hp": 611,
+          "mana": 137,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "attack"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 13293.290047714032,
+            "healing": 2737.596121028355,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "mars",
+          "hp": 0,
+          "mana": 37,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "healing"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 14253.658062492053,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "witch",
+          "hp": 759,
+          "mana": 61,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "resist"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 7553.607155560347,
+            "healing": 1537.3999999999903,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "magnus",
+          "hp": 994,
+          "mana": 13,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "mana"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 10997.723118049335,
+            "healing": 0,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "drow",
+          "hp": 790,
+          "mana": 32,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "attack"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 9097.277976928273,
+            "healing": 0,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "timber",
+          "hp": 0,
+          "mana": 44,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "last"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 15307.0531208017,
+            "healing": 0,
+            "deaths": 2
+          }
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "heroes": [
+        "drow"
+      ],
+      "difficulty": 4,
+      "maxSeconds": 300,
+      "outcome": "defeat",
+      "room": 1,
+      "roomName": "Kobold Warrens",
+      "phase": "defeat",
+      "seconds": 54.9,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        }
+      ],
+      "players": [
+        {
+          "hero": "drow",
+          "hp": 0,
+          "mana": 38,
+          "gold": 200,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 2703,
+            "healing": 0,
+            "deaths": 1
+          }
+        }
+      ]
+    },
+    {
+      "seed": 2,
+      "heroes": [
+        "timber"
+      ],
+      "difficulty": 4,
+      "maxSeconds": 300,
+      "outcome": "defeat",
+      "room": 2,
+      "roomName": "Venom Garden",
+      "phase": "defeat",
+      "seconds": 93.5,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "Venom Garden",
+          "entered": 53.7
+        }
+      ],
+      "players": [
+        {
+          "hero": "timber",
+          "hp": 0,
+          "mana": 13,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 6791.135593220329,
+            "healing": 0,
+            "deaths": 1
+          }
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "heroes": [
+        "timber",
+        "sf"
+      ],
+      "difficulty": 4,
+      "maxSeconds": 300,
+      "outcome": "defeat",
+      "room": 2,
+      "roomName": "The Bone Yard",
+      "phase": "defeat",
+      "seconds": 81.1,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "The Bone Yard",
+          "entered": 49.7
+        }
+      ],
+      "players": [
+        {
+          "hero": "timber",
+          "hp": 0,
+          "mana": 37,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 6533.615546218476,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "sf",
+          "hp": 0,
+          "mana": 108,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 3276.1428571428564,
+            "healing": 0,
+            "deaths": 1
+          }
+        }
+      ]
+    },
+    {
+      "seed": 2,
+      "heroes": [
+        "sf",
+        "rubick"
+      ],
+      "difficulty": 4,
+      "maxSeconds": 300,
+      "outcome": "defeat",
+      "room": 2,
+      "roomName": "Kobold Warrens",
+      "phase": "defeat",
+      "seconds": 98.2,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "Kobold Warrens",
+          "entered": 59.7
+        }
+      ],
+      "players": [
+        {
+          "hero": "sf",
+          "hp": 0,
+          "mana": 4,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 6181.607142857145,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "rubick",
+          "hp": 0,
+          "mana": 43,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 3910.2985714285737,
+            "healing": 0,
+            "deaths": 1
+          }
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "heroes": [
+        "sf",
+        "rubick",
+        "sniper"
+      ],
+      "difficulty": 4,
+      "maxSeconds": 300,
+      "outcome": "defeat",
+      "room": 2,
+      "roomName": "The Bone Yard",
+      "phase": "defeat",
+      "seconds": 97.5,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "The Bone Yard",
+          "entered": 62.5
+        }
+      ],
+      "players": [
+        {
+          "hero": "sf",
+          "hp": 0,
+          "mana": 123,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 4195.940092165898,
+            "healing": 0,
+            "deaths": 2
+          }
+        },
+        {
+          "hero": "rubick",
+          "hp": 0,
+          "mana": 75,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 3805.0826764976973,
+            "healing": 0,
+            "deaths": 2
+          }
+        },
+        {
+          "hero": "sniper",
+          "hp": 0,
+          "mana": 6,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 3778.3905529953918,
+            "healing": 0,
+            "deaths": 1
+          }
+        }
+      ]
+    },
+    {
+      "seed": 2,
+      "heroes": [
+        "rubick",
+        "sniper",
+        "cm"
+      ],
+      "difficulty": 4,
+      "maxSeconds": 300,
+      "outcome": "defeat",
+      "room": 2,
+      "roomName": "Haunted Gallery",
+      "phase": "defeat",
+      "seconds": 76.9,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "Haunted Gallery",
+          "entered": 52.3
+        }
+      ],
+      "players": [
+        {
+          "hero": "rubick",
+          "hp": 0,
+          "mana": 19,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 3831.8640000000014,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "sniper",
+          "hp": 0,
+          "mana": 166,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 3892,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "cm",
+          "hp": 0,
+          "mana": 94,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 3428,
+            "healing": 0,
+            "deaths": 1
+          }
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "heroes": [
+        "rubick",
+        "sniper",
+        "cm",
+        "jugger"
+      ],
+      "difficulty": 4,
+      "maxSeconds": 300,
+      "outcome": "defeat",
+      "room": 2,
+      "roomName": "The Bone Yard",
+      "phase": "defeat",
+      "seconds": 121.2,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "The Bone Yard",
+          "entered": 46.1
+        }
+      ],
+      "players": [
+        {
+          "hero": "rubick",
+          "hp": 0,
+          "mana": 71,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 4405.816100840335,
+            "healing": 0,
+            "deaths": 2
+          }
+        },
+        {
+          "hero": "sniper",
+          "hp": 0,
+          "mana": 37,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 5069.9747899159665,
+            "healing": 0,
+            "deaths": 2
+          }
+        },
+        {
+          "hero": "cm",
+          "hp": 0,
+          "mana": 86,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 4191.428571428568,
+            "healing": 0,
+            "deaths": 2
+          }
+        },
+        {
+          "hero": "jugger",
+          "hp": 0,
+          "mana": 30,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 9338.241596638654,
+            "healing": 502.3999999999901,
+            "deaths": 1
+          }
+        }
+      ]
+    },
+    {
+      "seed": 2,
+      "heroes": [
+        "sniper",
+        "cm",
+        "jugger",
+        "mars"
+      ],
+      "difficulty": 4,
+      "maxSeconds": 300,
+      "outcome": "defeat",
+      "room": 2,
+      "roomName": "Venom Garden",
+      "phase": "defeat",
+      "seconds": 113.1,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "Venom Garden",
+          "entered": 45.8
+        }
+      ],
+      "players": [
+        {
+          "hero": "sniper",
+          "hp": 0,
+          "mana": 101,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 3932.9661016949153,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "cm",
+          "hp": 0,
+          "mana": 85,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 3299.3898305084763,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "jugger",
+          "hp": 0,
+          "mana": 85,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 5374.610169491525,
+            "healing": 284.79999999999245,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "mars",
+          "hp": 0,
+          "mana": 61,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 5400.372881355934,
+            "healing": 0,
+            "deaths": 1
+          }
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "heroes": [
+        "sniper",
+        "cm",
+        "jugger",
+        "mars",
+        "witch"
+      ],
+      "difficulty": 4,
+      "maxSeconds": 300,
+      "outcome": "defeat",
+      "room": 3,
+      "roomName": "Venom Garden",
+      "phase": "defeat",
+      "seconds": 256.5,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "The Bone Yard",
+          "entered": 52.7
+        },
+        {
+          "room": 3,
+          "name": "Venom Garden",
+          "entered": 169.1
+        }
+      ],
+      "players": [
+        {
+          "hero": "sniper",
+          "hp": 0,
+          "mana": 2,
+          "gold": 500,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "spell"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 9141.847279589807,
+            "healing": 0,
+            "deaths": 2
+          }
+        },
+        {
+          "hero": "cm",
+          "hp": 0,
+          "mana": 70,
+          "gold": 500,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "cooldown"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 5915.719128329298,
+            "healing": 0,
+            "deaths": 3
+          }
+        },
+        {
+          "hero": "jugger",
+          "hp": 0,
+          "mana": 24,
+          "gold": 500,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "attack"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 11283.145442244702,
+            "healing": 1252.0781617647035,
+            "deaths": 3
+          }
+        },
+        {
+          "hero": "mars",
+          "hp": 0,
+          "mana": 21,
+          "gold": 500,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "reach"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 11749.456843754464,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "witch",
+          "hp": 0,
+          "mana": 71,
+          "gold": 500,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "spell"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 7331.519655319748,
+            "healing": 1041.3999999999937,
+            "deaths": 2
+          }
+        }
+      ]
+    },
+    {
+      "seed": 2,
+      "heroes": [
+        "cm",
+        "jugger",
+        "mars",
+        "witch",
+        "magnus"
+      ],
+      "difficulty": 4,
+      "maxSeconds": 300,
+      "outcome": "defeat",
+      "room": 2,
+      "roomName": "Venom Garden",
+      "phase": "defeat",
+      "seconds": 143.4,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "Venom Garden",
+          "entered": 48.9
+        }
+      ],
+      "players": [
+        {
+          "hero": "cm",
+          "hp": 0,
+          "mana": 28,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 3233.627118644068,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "jugger",
+          "hp": 0,
+          "mana": 53,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 6407.923728813559,
+            "healing": 415.72433071813714,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "mars",
+          "hp": 0,
+          "mana": 68,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 5921.932203389842,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "witch",
+          "hp": 0,
+          "mana": 26,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 3431.0508474576277,
+            "healing": 332.4758064515979,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "magnus",
+          "hp": 0,
+          "mana": 31,
+          "gold": 350,
+          "level": 1,
+          "items": [],
+          "shards": [],
+          "legendary": [],
+          "stats": {
+            "damage": 6686.763771186444,
+            "healing": 0,
+            "deaths": 1
+          }
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "heroes": [
+        "cm",
+        "jugger",
+        "mars",
+        "witch",
+        "magnus",
+        "drow"
+      ],
+      "difficulty": 4,
+      "maxSeconds": 300,
+      "outcome": "timeout",
+      "room": 4,
+      "roomName": "Elite Ossuary",
+      "phase": "combat",
+      "seconds": 300,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "The Bone Yard",
+          "entered": 53.6
+        },
+        {
+          "room": 3,
+          "name": "Haunted Gallery",
+          "entered": 148.4
+        },
+        {
+          "room": 4,
+          "name": "Elite Ossuary",
+          "entered": 207.4
+        }
+      ],
+      "players": [
+        {
+          "hero": "cm",
+          "hp": 740,
+          "mana": 61,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "healing"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 9067.813855774855,
+            "healing": 0,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "jugger",
+          "hp": 311,
+          "mana": 72,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "cooldown"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 16064.922366621078,
+            "healing": 1480.3466504413748,
+            "deaths": 2
+          }
+        },
+        {
+          "hero": "mars",
+          "hp": 0,
+          "mana": 56,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "move"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 17803.05765096742,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "witch",
+          "hp": 463,
+          "mana": 74,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "attack"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 8192.469537815114,
+            "healing": 1035.3923076922738,
+            "deaths": 0
+          }
+        },
+        {
+          "hero": "magnus",
+          "hp": 128,
+          "mana": 43,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "attack"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 16763.943718853792,
+            "healing": 0,
+            "deaths": 2
+          }
+        },
+        {
+          "hero": "drow",
+          "hp": 497,
+          "mana": 15,
+          "gold": 650,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "attack"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 8424.34744234903,
+            "healing": 0,
+            "deaths": 0
+          }
+        }
+      ]
+    },
+    {
+      "seed": 2,
+      "heroes": [
+        "jugger",
+        "mars",
+        "witch",
+        "magnus",
+        "drow",
+        "timber"
+      ],
+      "difficulty": 4,
+      "maxSeconds": 300,
+      "outcome": "defeat",
+      "room": 3,
+      "roomName": "Venom Garden",
+      "phase": "defeat",
+      "seconds": 203.9,
+      "visits": [
+        {
+          "room": 1,
+          "name": "Kobold Warrens",
+          "entered": 0
+        },
+        {
+          "room": 2,
+          "name": "Haunted Gallery",
+          "entered": 49.2
+        },
+        {
+          "room": 3,
+          "name": "Venom Garden",
+          "entered": 136.4
+        }
+      ],
+      "players": [
+        {
+          "hero": "jugger",
+          "hp": 0,
+          "mana": 49,
+          "gold": 500,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "execution"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 13114.83152542373,
+            "healing": 1329.9016923076692,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "mars",
+          "hp": 0,
+          "mana": 64,
+          "gold": 500,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "last"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 9364.231991525432,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "witch",
+          "hp": 0,
+          "mana": 22,
+          "gold": 500,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "spell"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 5881.266101694915,
+            "healing": 571.9283653846131,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "magnus",
+          "hp": 0,
+          "mana": 15,
+          "gold": 500,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "healing"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 7596.161016949158,
+            "healing": 0,
+            "deaths": 1
+          }
+        },
+        {
+          "hero": "drow",
+          "hp": 0,
+          "mana": 35,
+          "gold": 500,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "regen"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 6100.237288135597,
+            "healing": 0,
+            "deaths": 2
+          }
+        },
+        {
+          "hero": "timber",
+          "hp": 0,
+          "mana": 40,
+          "gold": 500,
+          "level": 2,
+          "items": [],
+          "shards": [
+            "healing"
+          ],
+          "legendary": [],
+          "stats": {
+            "damage": 7494.411016949165,
+            "healing": 0,
+            "deaths": 1
+          }
+        }
+      ]
+    }
+  ]
+}
