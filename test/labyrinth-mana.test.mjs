@@ -7,16 +7,16 @@ test('skill mana display uses actual rounded, capped shard cost',()=>{
  assert.equal(labyrinthCommand(w,p.id,{type:'cast',slot:0,x:800,y:500}).ok,true);assert.equal(before-p.mana,35);
  p.shards=Array(10).fill('mana_cost');assert.equal(labyrinthManaCost(w,p,0),23);
 });
-test('passive slots have no mana cost and Rubick stolen casts cost zero',()=>{
+test('passive slots have no mana cost and stolen casts use the ultimate cost',()=>{
  const w=game('rubick'),p=w.players.s1;assert.equal(labyrinthManaCost(w,p,2),null);assert.equal(labyrinthManaCost(w,p,3),100);
- p.stolen={kind:'hellbear',expires:w.seconds+10,charges:1};assert.equal(labyrinthManaCost(w,p,3),0);
+ p.stolen={kind:'hellbear'};assert.equal(labyrinthManaCost(w,p,3),100);
 });
 test('HUD maximums include shard and item bonuses',async()=>{
  const {labyrinthMaxHP,labyrinthMaxMana}=await import('../dist/labyrinth-engine.js');
  const w=game('drow'),p=w.players.s1;p.shards=['hp','mana'];p.items=['bracer','null'];
  assert.equal(labyrinthMaxHP(p),720+180+180);assert.equal(labyrinthMaxMana(p),360+120+100);
 });
-test('Rubick stolen recast really spends zero mana',()=>{
- const w=game('rubick'),p=w.players.s1;p.level=4;p.stolen={kind:'hellbear',expires:w.seconds+10,charges:1};const before=p.mana;
- assert.equal(labyrinthCommand(w,p.id,{type:'cast',slot:3,x:800,y:500}).ok,true);assert.equal(p.mana,before);assert.equal(p.stolen,null);
+test('Rubick stolen recast spends ultimate mana and keeps the stolen spell',()=>{
+ const w=game('rubick'),p=w.players.s1;p.level=4;p.stolen={kind:'hellbear'};const before=p.mana;
+ assert.equal(labyrinthCommand(w,p.id,{type:'cast',slot:3,x:800,y:500}).ok,true);assert.equal(before-p.mana,100);assert.equal(p.stolen.kind,'hellbear');assert.ok(p.stolen.readyAt>w.seconds);
 });

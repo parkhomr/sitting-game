@@ -1,6 +1,6 @@
 import http from 'node:http';
 import { randomBytes } from 'node:crypto';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync, watch } from 'node:fs';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import path from 'node:path';
 import { gzipSync } from 'node:zlib';
@@ -14,6 +14,7 @@ import {LAB_SLOTS,labyrinthPartyUnlock,createLabyrinthWorld,startLabyrinth,stepL
 const root=path.dirname(fileURLToPath(import.meta.url));
 const files=new Map(['index.html','style.css','game.js','engine.js','netcode.js','effects.js','arcade.html','arcade.css','arcade-client.js','arcade-engine.js','arcade-wire.js','arcade-art.js','arcade-prediction.js','chaos-data.js','labyrinth.html','labyrinth.css','labyrinth-client.js','labyrinth-audio.js','labyrinth-engine.js','labyrinth-data.js','labyrinth-art.js'].map(name=>['/'+(name==='index.html'?'':name),{data:readFileSync(path.join(root,'dist',name)),type:name.endsWith('.html')?'text/html; charset=utf-8':name.endsWith('.css')?'text/css; charset=utf-8':'text/javascript; charset=utf-8'}]));
 const token=()=>randomBytes(24).toString('base64url');
+try{const distWatcher=watch(path.join(root,'dist'),(event,name)=>{if(!name)return;const key=name==='index.html'?'/':'/'+name;const entry=files.get(key);if(!entry)return;try{files.set(key,{data:readFileSync(path.join(root,'dist',name)),type:entry.type})}catch{}});distWatcher.unref();}catch{}
 export function createGameServer({worldFactory=createWorld,arcadeFactory=createArcadeWorld}={}){
   const rooms=new Map(),limits=new Map();
   const instanceId=randomBytes(12).toString('hex');
@@ -134,9 +135,12 @@ export function createGameServer({worldFactory=createWorld,arcadeFactory=createA
         json(req,res,200,{...snapshot(room,session,session.ack),lastSeq:session.seq});return;
       }
       if(!['GET','HEAD'].includes(req.method)){json(req,res,405,{error:'Метод не поддерживается'});return;}
+      if(url.pathname==='/sounds/heroes/manifest.json'){const files={};try{for(const f of readdirSync(path.join(root,'dist','sounds','heroes'))){const m=f.match(/^([a-z_]+)\.(mp3|ogg|wav)$/);if(m)files[m[1]]=m[2]}}catch{}const body=JSON.stringify(files);res.writeHead(200,{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});res.end(req.method==='HEAD'?undefined:body);return;}
+      const heroSound=url.pathname.match(/^\/sounds\/heroes\/([a-z_]+)\.(mp3|ogg|wav)$/);
+      if(heroSound){try{const data=readFileSync(path.join(root,'dist','sounds','heroes',heroSound[1]+'.'+heroSound[2]));res.writeHead(200,{'Content-Type':'audio/'+(heroSound[2]==='mp3'?'mpeg':heroSound[2]),'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer'});res.end(req.method==='HEAD'?undefined:data)}catch{json(req,res,404,{error:'Файл не найден'})}return;}
       const asset=files.get(url.pathname==='/index.html'?'/':url.pathname);
       if(!asset){json(req,res,404,{error:'Файл не найден'});return;}
-      res.writeHead(200,{'Content-Type':asset.type,'Cache-Control':'no-cache','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer'});res.end(req.method==='HEAD'?undefined:asset.data);
+      res.writeHead(200,{'Content-Type':asset.type,'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer'});res.end(req.method==='HEAD'?undefined:asset.data);
     }catch(error){if(!res.headersSent)json(req,res,error.status||500,{error:error.status?error.message:'Ошибка сервера'});else res.end();}
   });
   const wss=new WebSocketServer({noServer:true,maxPayload:16384,perMessageDeflate:false});
@@ -196,8 +200,9 @@ export function createGameServer({worldFactory=createWorld,arcadeFactory=createA
       syncPudgeSeats(room);
       const bots=room.mode==='labyrinth'?[]:seats(room).filter(id=>room.mode==='pudge'?room.world.players[id].bot&&!reserved(room,id):!active.some(s=>s.hero===id));
       for(const id of bots){room.world.players[id].paused=false;room.world.players[id].auto=true;}
-      (room.mode==='farm'?step:room.mode==='labyrinth'?stepLabyrinth:stepArcade)(room.world,dt,bots);
-      broadcast(room);
+      // One broken room must never stall the shared tick loop for every other room.
+      try{(room.mode==='farm'?step:room.mode==='labyrinth'?stepLabyrinth:stepArcade)(room.world,dt,bots);broadcast(room)}
+      catch(e){room.stepErrors=(room.stepErrors||0)+1;if(room.stepErrors<3||room.stepErrors%100===0)console.error('Room '+code+' step failed:',e&&e.stack||e)}
     }
     if(limits.size>10000)for(const [key,v] of limits)if(now-v.start>60000)limits.delete(key);
   },50);timer.unref();server.on('close',()=>clearInterval(timer));
@@ -213,5 +218,6 @@ if(process.argv[1]&&import.meta.url===pathToFileURL(path.resolve(process.argv[1]
   const port=Number(process.env.PORT)||8787;
   const server=createGameServer();server.on('error',error=>{console.error('Сервер не запустился:',error.message);process.exitCode=1;});
   server.listen(port,process.env.HOST||'127.0.0.1',()=>console.log(`СИДИ КАЧАЙСЯ: http://localhost:${port}\nДля друзей из других стран: npm run online`));
-  for(const signal of ['SIGINT','SIGTERM'])process.on(signal,()=>{server.closeLiveConnections();server.close(()=>process.exit(0));});
+  let closing=false;const shutdown=()=>{if(closing)process.exit(0);closing=true;server.closeLiveConnections();if(server.closeAllConnections)server.closeAllConnections();server.close(()=>process.exit(0));setTimeout(()=>process.exit(0),1500).unref();};
+  for(const signal of ['SIGINT','SIGTERM'])process.on(signal,shutdown);
 }
