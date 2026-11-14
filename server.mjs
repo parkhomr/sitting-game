@@ -1,6 +1,6 @@
 import http from 'node:http';
 import { randomBytes } from 'node:crypto';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync, watch } from 'node:fs';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import path from 'node:path';
 import { gzipSync } from 'node:zlib';
@@ -9,10 +9,12 @@ import WebSocket,{WebSocketServer} from './vendor/ws/wrapper.mjs';
 import {wireWorld,deltaFrame} from './dist/netcode.js';
 import {ARCADE_MODES,arcadeSlots,createArcadeWorld,arcadeCommand,startArcade,stepArcade,pudgeSetHuman,pudgeSetBot} from './dist/arcade-engine.js';
 import {arcadeWireWorld,arcadeDelta} from './dist/arcade-wire.js';
+import {LAB_SLOTS,labyrinthPartyUnlock,createLabyrinthWorld,startLabyrinth,stepLabyrinth,labyrinthCommand,labyrinthAdminCommand} from './dist/labyrinth-engine.js';
 
 const root=path.dirname(fileURLToPath(import.meta.url));
-const files=new Map(['index.html','style.css','game.js','engine.js','netcode.js','effects.js','arcade.html','arcade.css','arcade-client.js','arcade-engine.js','arcade-wire.js','arcade-art.js','arcade-prediction.js','chaos-data.js'].map(name=>['/'+(name==='index.html'?'':name),{data:readFileSync(path.join(root,'dist',name)),type:name.endsWith('.html')?'text/html; charset=utf-8':name.endsWith('.css')?'text/css; charset=utf-8':'text/javascript; charset=utf-8'}]));
+const files=new Map(['index.html','style.css','game.js','engine.js','netcode.js','effects.js','arcade.html','arcade.css','arcade-client.js','arcade-engine.js','arcade-wire.js','arcade-art.js','arcade-prediction.js','chaos-data.js','labyrinth.html','labyrinth.css','labyrinth-client.js','labyrinth-audio.js','labyrinth-engine.js','labyrinth-data.js','labyrinth-art.js'].map(name=>['/'+(name==='index.html'?'':name),{data:readFileSync(path.join(root,'dist',name)),type:name.endsWith('.html')?'text/html; charset=utf-8':name.endsWith('.css')?'text/css; charset=utf-8':'text/javascript; charset=utf-8'}]));
 const token=()=>randomBytes(24).toString('base64url');
+try{const distWatcher=watch(path.join(root,'dist'),(event,name)=>{if(!name)return;const key=name==='index.html'?'/':'/'+name;const entry=files.get(key);if(!entry)return;try{files.set(key,{data:readFileSync(path.join(root,'dist',name)),type:entry.type})}catch{}});distWatcher.unref();}catch{}
 export function createGameServer({worldFactory=createWorld,arcadeFactory=createArcadeWorld}={}){
   const rooms=new Map(),limits=new Map();
   const instanceId=randomBytes(12).toString('hex');
@@ -26,18 +28,26 @@ export function createGameServer({worldFactory=createWorld,arcadeFactory=createA
     let text='';for await(const chunk of req){text+=chunk;if(text.length>12000)throw Object.assign(Error('Слишком большой запрос'),{status:413});}
     try {return JSON.parse(text||'{}');}catch{throw Object.assign(Error('Некорректный JSON'),{status:400});}
   }
-  function seats(room){return room.mode==='farm'?HEROES.map(h=>h.id):arcadeSlots(room.mode);}
-  function roomWire(room){return room.mode==='farm'?wireWorld(room.world):arcadeWireWorld(room.world);}
-  function reserved(room,id){return [...room.sessions.values()].some(s=>s.hero===id&&Date.now()-s.seen<90000);}
+  function seats(room){return room.mode==='farm'?HEROES.map(h=>h.id):room.mode==='labyrinth'?LAB_SLOTS:arcadeSlots(room.mode);}
+  function roomWire(room){return room.mode==='farm'?wireWorld(room.world):room.mode==='labyrinth'?structuredClone(room.world):arcadeWireWorld(room.world);}
+  function reserved(room,id){return [...room.sessions.values()].some(s=>s.hero===id&&(room.mode==='labyrinth'&&room.world.started||Date.now()-s.seen<90000));}
+  function expireLabLobby(room){
+    if(room.mode!=='labyrinth'||room.world.started)return;
+    const now=Date.now();
+    for(const [key,s] of room.sessions)if(!s.host&&now-s.seen>=90000){room.sessions.delete(key);s.socket?.close(4003,'Lobby reservation expired');if(room.world.players[s.hero]&&![...room.sessions.values()].some(other=>other.hero===s.hero&&now-other.seen<90000)){room.world.players[s.hero].hero=null;room.world.players[s.hero].unlocked=0;}}
+  }
   function syncPudgeSeats(room){if(room.mode==='pudge')for(const id of seats(room))pudgeSetHuman(room.world,id,reserved(room,id));}
   function roster(room){const now=Date.now();return [...seats(room),'host'].map(id=>({id,human:[...room.sessions.values()].some(s=>s.hero===id&&now-s.seen<15000),reserved:reserved(room,id),...(room.mode==='pudge'?{bot:!!room.world.players[id]?.bot,active:!!room.world.players[id]?.active}:{})}));}
   function changeSeat(room,session,target){const old=room.world.players[session.hero],next=room.world.players[target];
     if(room.mode==='pudge'&&!room.world.started&&old&&next&&old!==next){const from={id:old.id,seat:old.seat,team:old.team},to={id:next.id,seat:next.seat,team:next.team},unused={...next};Object.assign(next,old,to,{bot:false});Object.assign(old,unused,from,{bot:false,active:false,hp:0});}
+    if(room.mode==='labyrinth'&&!room.world.started&&old&&session.hero!==target){old.hero=null;old.unlocked=0}
     session.hero=target;syncPudgeSeats(room);if(session.socket)session.socket.needsFull=true;return {ok:true};
   }
   function snapshot(room,session,ack=[]){return {mode:room.mode,world:room.mode==='farm'?room.world:roomWire(room),roster:roster(room),hero:session.hero,host:!!session.host,ack,lastSeq:session.seq,serverTime:Date.now(),inviteBase:publicOrigin};}
   function limited(key,capacity,period){const now=Date.now(),v=limits.get(key)||{start:now,count:0};if(now-v.start>=period){v.start=now;v.count=0;}v.count++;limits.set(key,v);return v.count>capacity;}
   function applyActions(room,session,commands){
+    expireLabLobby(room);
+    if(room.mode==='labyrinth'&&!room.world.started)room.world.difficulty=Math.min(room.world.difficulty,labyrinthPartyUnlock(room.world));
     for(const item of Array.isArray(commands)?commands.slice(0,12):[]){
       if(!item||typeof item!=='object'||!Number.isSafeInteger(item.seq)||item.seq<=session.seq)continue;
       if(item.seq!==session.seq+1)break;
@@ -54,13 +64,19 @@ export function createGameServer({worldFactory=createWorld,arcadeFactory=createA
       }else if(item.type==='take_seat'&&room.mode!=='farm'){
         const target=item.seat;
         if(!session.host)result={ok:false,message:'Only the host can change seats'};
+        else if(room.mode==='labyrinth'&&room.world.started)result={ok:false,message:'Seats are locked during the run'};
         else if(target!=='host'&&!seats(room).includes(target))result={ok:false,message:'Unknown seat'};
         else if([...room.sessions.values()].some(s=>s!==session&&s.hero===target&&Date.now()-s.seen<90000))result={ok:false,message:'That seat is reserved by another player'};
         else if(room.mode==='pudge'&&room.world.players[target]?.bot)result={ok:false,message:'Сначала убери бота с этого места'};
         else result=changeSeat(room,session,target);
       }else if(item.type==='restart'){
         if(!session.host||!room.world.gameOver)result={ok:false,message:'Only the host can restart a finished match'};
-        else{const names=Object.fromEntries(Object.entries(room.world.players).map(([id,p])=>[id,p.name])),bots=Object.values(room.world.players).filter(p=>p.bot).map(p=>p.id);room.world=room.mode==='farm'?worldFactory():arcadeFactory(room.mode,{bots});if(room.mode!=='farm')for(const [id,p] of Object.entries(room.world.players))if(names[id])p.name=names[id];syncPudgeSeats(room);room.wirePrevious=null;result={ok:true};}
+        else{const names=Object.fromEntries(Object.entries(room.world.players).map(([id,p])=>[id,p.name])),bots=Object.values(room.world.players).filter(p=>p.bot).map(p=>p.id);room.world=room.mode==='farm'?worldFactory():room.mode==='labyrinth'?createLabyrinthWorld():arcadeFactory(room.mode,{bots});if(room.mode!=='farm')for(const [id,p] of Object.entries(room.world.players))if(names[id])p.name=names[id];syncPudgeSeats(room);room.wirePrevious=null;result={ok:true};}
+      }else if(room.mode==='labyrinth'){
+        if(item.type==='start')result=session.host?startLabyrinth(room.world,[...room.sessions.values()].filter(s=>Date.now()-s.seen<90000&&s.hero!=='host').map(s=>s.hero),session.hero):{ok:false,message:'Only the host can start'};
+        else if(item.type==='admin')result=session.host?labyrinthAdminCommand(room.world,item):{ok:false,message:'Only the host can use testing commands'};
+        else if(item.type==='difficulty'&&session.hero==='host')result=labyrinthCommand(room.world,'s1',item);
+        else result=labyrinthCommand(room.world,session.hero,item);
       }else if(room.mode!=='farm'){
         if(item.type==='start')result=session.host?startArcade(room.world,[...room.sessions.values()].filter(s=>Date.now()-s.seen<(room.mode==='pudge'?90000:15000)&&s.hero!=='host').map(s=>s.hero)):{ok:false,message:'Only the host can start this mode'};
         else if(['mode','set_mode','host','change_mode'].includes(item.type))result={ok:false,message:'The room mode is locked'};
@@ -85,20 +101,22 @@ export function createGameServer({worldFactory=createWorld,arcadeFactory=createA
         if(url.pathname==='/api/rooms'){
           const ip=req.socket.remoteAddress||'unknown';
           if(limited('create:'+ip,10,60000)||rooms.size>=100){json(req,res,429,{error:'Слишком много комнат. Попробуй позже.'});return;}
-          const mode=input.mode||'farm';if(mode!=='farm'&&!ARCADE_MODES.includes(mode)){json(req,res,400,{error:'Unknown game mode'});return;}
-          if(input.hero!=='host'&&!(mode==='farm'?HEROES.map(h=>h.id):arcadeSlots(mode)).includes(input.hero)){json(req,res,400,{error:'Выбери героя'});return;}
+          const mode=input.mode||'farm';if(mode!=='farm'&&mode!=='labyrinth'&&!ARCADE_MODES.includes(mode)){json(req,res,400,{error:'Unknown game mode'});return;}
+          if(input.hero!=='host'&&!(mode==='farm'?HEROES.map(h=>h.id):mode==='labyrinth'?LAB_SLOTS:arcadeSlots(mode)).includes(input.hero)){json(req,res,400,{error:'Выбери героя'});return;}
           let code;do{code=randomBytes(4).toString('hex').slice(0,6).toUpperCase();}while(rooms.has(code));
           const session={hero:input.hero,host:true,seen:now,seq:0,ack:[],token:token()};
-          const room={code,mode,world:mode==='farm'?worldFactory():arcadeFactory(mode,{bots:mode==='pudge'&&Array.isArray(input.bots)?input.bots.filter(id=>id!==input.hero):[]}),sessions:new Map([[session.token,session]]),sockets:new Set(),frameSeq:0,lastActive:now};rooms.set(code,room);syncPudgeSeats(room);
+          const room={code,mode,world:mode==='farm'?worldFactory():mode==='labyrinth'?createLabyrinthWorld():arcadeFactory(mode,{bots:mode==='pudge'&&Array.isArray(input.bots)?input.bots.filter(id=>id!==input.hero):[]}),sessions:new Map([[session.token,session]]),sockets:new Set(),frameSeq:0,lastActive:now};rooms.set(code,room);syncPudgeSeats(room);
           json(req,res,201,{code,token:session.token,...snapshot(room,session)});return;
         }
         const match=url.pathname.match(/^\/api\/rooms\/([A-F0-9]{6})\/(join|sync|leave)$/);
         const room=match&&rooms.get(match[1]);if(!room){json(req,res,404,{error:'Комната не найдена. Ведущий мог перезапустить сервер.'});return;}
         room.lastActive=now;
+        expireLabLobby(room);
         if(match[2]==='join'){
           if(input.mode&&input.mode!==room.mode){json(req,res,409,{error:'This invite belongs to '+room.mode+'. The room mode cannot be changed.',mode:room.mode});return;}
           let session=typeof input.token==='string'&&room.sessions.get(input.token);
           if(!session){
+            if(room.mode==='labyrinth'&&room.world.started){json(req,res,409,{error:'Run already started; reconnect with your saved session.'});return;}
             if(room.mode==='pudge'&&room.world.players[input.hero]?.bot){json(req,res,409,{error:'Это место занято ботом. Только ведущий может его освободить.'});return;}
             if(!seats(room).includes(input.hero)){json(req,res,400,{error:'Выбери героя'});return;}
             if([...room.sessions.values()].some(s=>s.hero===input.hero&&now-s.seen<90000)){json(req,res,409,{error:'Этот герой уже занят. Выбери другого.'});return;}
@@ -110,16 +128,19 @@ export function createGameServer({worldFactory=createWorld,arcadeFactory=createA
         }
         const session=typeof input.token==='string'&&room.sessions.get(input.token);
         if(!session){json(req,res,401,{error:'Место в комнате потеряно. Войди заново.'});return;}
-        if(match[2]==='leave'){if(session.host&&session.hero==='host')session.seen=0;else room.sessions.delete(session.token);session.socket?.close(4000,'Left room');syncPudgeSeats(room);const p=room.world.players[session.hero];if(p){p.paused=false;p.auto=true;}json(req,res,200,{ok:true});return;}
+        if(match[2]==='leave'){if(session.host&&session.hero==='host')session.seen=0;else room.sessions.delete(session.token);session.socket?.close(4000,'Left room');syncPudgeSeats(room);const p=room.world.players[session.hero];if(p){p.paused=false;p.auto=true;if(room.mode==='labyrinth'&&!room.world.started&&!reserved(room,session.hero)){p.hero=null;p.unlocked=0;room.world.difficulty=Math.min(room.world.difficulty,labyrinthPartyUnlock(room.world))}}json(req,res,200,{ok:true});return;}
         if(limited('sync:'+session.token,30,1000)){json(req,res,429,{error:'Слишком много команд'});return;}
         session.seen=now;
         applyActions(room,session,input.commands);
         json(req,res,200,{...snapshot(room,session,session.ack),lastSeq:session.seq});return;
       }
       if(!['GET','HEAD'].includes(req.method)){json(req,res,405,{error:'Метод не поддерживается'});return;}
+      if(url.pathname==='/sounds/heroes/manifest.json'){const files={};try{for(const f of readdirSync(path.join(root,'dist','sounds','heroes'))){const m=f.match(/^([a-z_]+)\.(mp3|ogg|wav)$/);if(m)files[m[1]]=m[2]}}catch{}const body=JSON.stringify(files);res.writeHead(200,{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});res.end(req.method==='HEAD'?undefined:body);return;}
+      const heroSound=url.pathname.match(/^\/sounds\/heroes\/([a-z_]+)\.(mp3|ogg|wav)$/);
+      if(heroSound){try{const data=readFileSync(path.join(root,'dist','sounds','heroes',heroSound[1]+'.'+heroSound[2]));res.writeHead(200,{'Content-Type':'audio/'+(heroSound[2]==='mp3'?'mpeg':heroSound[2]),'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer'});res.end(req.method==='HEAD'?undefined:data)}catch{json(req,res,404,{error:'Файл не найден'})}return;}
       const asset=files.get(url.pathname==='/index.html'?'/':url.pathname);
       if(!asset){json(req,res,404,{error:'Файл не найден'});return;}
-      res.writeHead(200,{'Content-Type':asset.type,'Cache-Control':'no-cache','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer'});res.end(req.method==='HEAD'?undefined:asset.data);
+      res.writeHead(200,{'Content-Type':asset.type,'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer'});res.end(req.method==='HEAD'?undefined:asset.data);
     }catch(error){if(!res.headersSent)json(req,res,error.status||500,{error:error.status?error.message:'Ошибка сервера'});else res.end();}
   });
   const wss=new WebSocketServer({noServer:true,maxPayload:16384,perMessageDeflate:false});
@@ -156,7 +177,7 @@ export function createGameServer({worldFactory=createWorld,arcadeFactory=createA
   });
   function broadcast(room){
     if(!room.sockets.size)return;
-    const current=roomWire(room),frame=room.wirePrevious?(room.mode==='farm'?deltaFrame:arcadeDelta)(room.wirePrevious,current,room.world.events):{type:'state',mode:room.mode,full:current};
+    const current=roomWire(room),frame=room.mode==='labyrinth'?{type:'state',mode:room.mode,full:current}:room.wirePrevious?(room.mode==='farm'?deltaFrame:arcadeDelta)(room.wirePrevious,current,room.world.events):{type:'state',mode:room.mode,full:current};
     frame.seq=++room.frameSeq;
     if(room.inviteBase!==publicOrigin){frame.inviteBase=publicOrigin;room.inviteBase=publicOrigin;}
     const rosterValue=roster(room),key=JSON.stringify(rosterValue);if(key!==room.rosterKey){frame.roster=rosterValue;room.rosterKey=key;}
@@ -177,10 +198,11 @@ export function createGameServer({worldFactory=createWorld,arcadeFactory=createA
       const active=[...room.sessions.values()].filter(s=>now-s.seen<15000);
       if(!active.length)continue;
       syncPudgeSeats(room);
-      const bots=seats(room).filter(id=>room.mode==='pudge'?room.world.players[id].bot&&!reserved(room,id):!active.some(s=>s.hero===id));
+      const bots=room.mode==='labyrinth'?[]:seats(room).filter(id=>room.mode==='pudge'?room.world.players[id].bot&&!reserved(room,id):!active.some(s=>s.hero===id));
       for(const id of bots){room.world.players[id].paused=false;room.world.players[id].auto=true;}
-      (room.mode==='farm'?step:stepArcade)(room.world,dt,bots);
-      broadcast(room);
+      // One broken room must never stall the shared tick loop for every other room.
+      try{(room.mode==='farm'?step:room.mode==='labyrinth'?stepLabyrinth:stepArcade)(room.world,dt,bots);broadcast(room)}
+      catch(e){room.stepErrors=(room.stepErrors||0)+1;if(room.stepErrors<3||room.stepErrors%100===0)console.error('Room '+code+' step failed:',e&&e.stack||e)}
     }
     if(limits.size>10000)for(const [key,v] of limits)if(now-v.start>60000)limits.delete(key);
   },50);timer.unref();server.on('close',()=>clearInterval(timer));
@@ -196,5 +218,6 @@ if(process.argv[1]&&import.meta.url===pathToFileURL(path.resolve(process.argv[1]
   const port=Number(process.env.PORT)||8787;
   const server=createGameServer();server.on('error',error=>{console.error('Сервер не запустился:',error.message);process.exitCode=1;});
   server.listen(port,process.env.HOST||'127.0.0.1',()=>console.log(`СИДИ КАЧАЙСЯ: http://localhost:${port}\nДля друзей из других стран: npm run online`));
-  for(const signal of ['SIGINT','SIGTERM'])process.on(signal,()=>{server.closeLiveConnections();server.close(()=>process.exit(0));});
+  let closing=false;const shutdown=()=>{if(closing)process.exit(0);closing=true;server.closeLiveConnections();if(server.closeAllConnections)server.closeAllConnections();server.close(()=>process.exit(0));setTimeout(()=>process.exit(0),1500).unref();};
+  for(const signal of ['SIGINT','SIGTERM'])process.on(signal,shutdown);
 }

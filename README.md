@@ -302,3 +302,7 @@ and real 8-/10-seat WebSocket sessions. Run `npm run balance:arcade` for
 reproducible campaigns and [balance/ARCADE-REPORT.md](balance/ARCADE-REPORT.md).
 The audit records bot matches, not human playtesting. `npm run package`
 regenerates the offline HTML and both ZIPs, including the new source files.
+
+## Aghanim’s Labyrinth prototype
+
+A new cooperative 1–6-player prototype is available from the main menu or `labyrinth.html`. See [README-LABYRINTH.md](README-LABYRINTH.md) for controls, solo and multiplayer startup, test coverage, and important differences from the full design.

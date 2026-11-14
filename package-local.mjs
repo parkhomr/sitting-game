@@ -11,6 +11,10 @@ const js = readFileSync(path.join(root, 'dist/game.js'), 'utf8').replace(/^impor
 const arcadeModules=['chaos-data.js','arcade-engine.js','arcade-wire.js','arcade-art.js','arcade-prediction.js','arcade-client.js'];
 const arcadeJS=arcadeModules.map(file=>readFileSync(path.join(root,'dist',file),'utf8').replace(/^import[^\n]+from ['"]\.\/[^'"]+['"];?\s*/gm,'')).join('\n');
 let arcadeHTML=readFileSync(path.join(root,'dist/arcade.html'),'utf8').replace('<link rel="stylesheet" href="arcade.css">',()=>'<style>'+readFileSync(path.join(root,'dist/arcade.css'),'utf8')+'</style>').replace('<script type="module" src="arcade-client.js"></script>','').replace('</body>',()=>'<script type="module">'+arcadeJS.replace(/<\/script/gi,'<\\/script')+'</script></body>');
+const labModules=['labyrinth-data.js','labyrinth-art.js','labyrinth-engine.js','labyrinth-audio.js','labyrinth-client.js'];
+const labJS=labModules.map(file=>readFileSync(path.join(root,'dist',file),'utf8').replace(/^import[^\n]+from ['"]\.\/[^'"]+['"];?\s*/gm,'')).join('\n');
+const labHTML=readFileSync(path.join(root,'dist/labyrinth.html'),'utf8').replace('<link rel="stylesheet" href="labyrinth.css">',()=>'<style>'+readFileSync(path.join(root,'dist/labyrinth.css'),'utf8')+'</style>').replace('<script type="module" src="labyrinth-client.js"></script>',()=>'<script type="module">'+labJS.replace(/<\/script/gi,'<\\/script')+'</script>');
+writeFileSync(path.resolve(root,'..','labyrinth.html'),labHTML,'utf8');
 let html = readFileSync(path.join(root, 'dist/index.html'), 'utf8');
 
 // Everything needed to play travels inside one file. No server or network.
@@ -43,16 +47,16 @@ function zip(entries,destination){
   writeFileSync(destination,Buffer.concat([...local,directory,end]));console.log(destination);
 }
 const guide=readFileSync(path.join(root,'КАК-ИГРАТЬ.txt'));
-zip([['СИДИ-КАЧАЙСЯ.html',html],['КАК-ИГРАТЬ.txt',guide]],path.resolve(root,'..','oscar-farm-local.zip'));
-const sourceFiles=['package-local.mjs','package.json','server.mjs','start-online.mjs','tunnel-ready.mjs','README.md','КАК-ИГРАТЬ.txt','balance/simulate.mjs','balance/run-audit.mjs','balance/REPORT.md','balance/report.json','balance/arcade-audit.mjs','balance/ARCADE-REPORT.md','balance/arcade-report.json','dist/index.html','dist/style.css','dist/game.js','dist/engine.js','dist/netcode.js','dist/effects.js',...arcadeModules.map(file=>'dist/'+file),'dist/arcade.html','dist/arcade.css','research/MODES.md','research/VALIDATION.md','vendor/ws/LICENSE','vendor/ws/package.json','vendor/ws/wrapper.mjs','vendor/ws/index.js'];
+zip([['СИДИ-КАЧАЙСЯ.html',html],['labyrinth.html',labHTML],['КАК-ИГРАТЬ.txt',guide]],path.resolve(root,'..','oscar-farm-local.zip'));
+const sourceFiles=['labyrinth/simulate.mjs','labyrinth/HANDOFF.md','labyrinth/simulation-sample.json','labyrinth/simulation-part1-sample.json','labyrinth/simulation-part2-sample.json','labyrinth/simulation-skills-sample.json','labyrinth/batch-check.mjs','labyrinth/simulation-part3-sample.json','package-local.mjs','package.json','server.mjs','start-online.mjs','tunnel-ready.mjs','README.md','README-LABYRINTH.md','КАК-ИГРАТЬ.txt','balance/simulate.mjs','balance/run-audit.mjs','balance/REPORT.md','balance/report.json','balance/arcade-audit.mjs','balance/ARCADE-REPORT.md','balance/arcade-report.json','dist/index.html','dist/style.css','dist/game.js','dist/engine.js','dist/netcode.js','dist/effects.js',...arcadeModules.map(file=>'dist/'+file),'dist/arcade.html','dist/arcade.css',...labModules.map(file=>'dist/'+file),'dist/labyrinth.html','dist/labyrinth.css','research/MODES.md','research/VALIDATION.md','vendor/ws/LICENSE','vendor/ws/package.json','vendor/ws/wrapper.mjs','vendor/ws/index.js'];
 sourceFiles.push(...readdirSync(path.join(root,'test')).filter(file=>file.endsWith('.test.mjs')).map(file=>'test/'+file));
 sourceFiles.push(...readdirSync(path.join(root,'vendor/ws/lib')).filter(file=>file.endsWith('.js')).map(file=>'vendor/ws/lib/'+file));
-zip([...sourceFiles.map(file=>['oscar-farm/'+file,readFileSync(path.join(root,file))]),['oscar-farm/СИДИ-КАЧАЙСЯ.html',html]],path.resolve(root,'..','oscar-farm-multiplayer.zip'));
+zip([...sourceFiles.map(file=>['oscar-farm/'+file,readFileSync(path.join(root,file))]),['oscar-farm/СИДИ-КАЧАЙСЯ.html',html],['oscar-farm/labyrinth.html',labHTML],['oscar-farm/downloads/labyrinth.html',labHTML]],path.resolve(root,'..','oscar-farm-multiplayer.zip'));
 
 // Keep ready-to-play artifacts inside the repository as well as beside the local project.
 const downloads=path.join(root,'downloads');
 mkdirSync(downloads,{recursive:true});
-for(const name of ['СИДИ-КАЧАЙСЯ.html','oscar-farm-local.zip','oscar-farm-multiplayer.zip']){
+for(const name of ['СИДИ-КАЧАЙСЯ.html','labyrinth.html','oscar-farm-local.zip','oscar-farm-multiplayer.zip']){
   copyFileSync(path.resolve(root,'..',name),path.join(downloads,name));
 }
 console.log(downloads);

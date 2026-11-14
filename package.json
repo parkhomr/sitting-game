@@ -13,6 +13,7 @@
     "balance": "node balance/simulate.mjs",
     "balance:audit": "node balance/run-audit.mjs",
     "package": "node package-local.mjs",
-    "balance:arcade": "node balance/arcade-audit.mjs"
+    "balance:arcade": "node balance/arcade-audit.mjs",
+    "balance:labyrinth": "node labyrinth/simulate.mjs"
   }
 }
